@@ -1,4 +1,5 @@
 tab:unnamed-chunk-1
+előszó
 mi-az-adatbázis
 alapfogalmak
 strukturáltság
