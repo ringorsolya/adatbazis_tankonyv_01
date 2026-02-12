@@ -11,8 +11,8 @@ strukturáltság
 tárolás
 kapcsolatok
 miért-van-szükség-adatbázisokra
-probléma-1-nagy-adatmennyiség-kezelése
-probléma-2-kapcsolatok-kezelése
+nagy-adatmennyiség-kezelése
+kapcsolatok-kezelése
 probléma-3-adatintegritás
 adatbázisok-a-levéltári-munkában
 tipikus-felhasználási-területek
@@ -55,8 +55,6 @@ népszerű-rendszerek
 nosql-adatbázisok---a-21.-század-kihívásai
 a-big-data-kihívás-miért-kellett-valami-új-2000-es-évek
 mi-az-a-nosql
-cap-tétel---miért-nem-lehet-minden-tökéletes
-miért
 nosql-típusok-részletesen
 dokumentum-orientált-adatbázisok-pl.-mongodb
 ellenőrző-kérdések-1
@@ -106,7 +104,7 @@ minden-sor-egy-rekord
 nincs-üres-sor
 nincs-összevont-cella-1
 egy-oszlop-egy-típus
-atomi-értékek-1nf
+atomi-értékek
 formázás
 fejléc-kiemelése
 table-formázás
