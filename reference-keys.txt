@@ -1,10 +1,4 @@
 tab:unnamed-chunk-1
-előszó
-a-kurzusról
-célok
-szerkezet
-a-tananyag-használata
-előismeretek
 mi-az-adatbázis
 alapfogalmak
 strukturáltság
@@ -113,8 +107,8 @@ szűrés-és-rendezés
 szűrés
 rendezés
 adat-validáció
-példa-1-születési-év-1900-2024
-példa-2-dropdown-lista-intézmény
+születési-év-1900-2024
+dropdown-lista-intézmény
 gyakori-hibák
 checklist---jó-excel-adattábla
 ellenőrző-kérdések-3
