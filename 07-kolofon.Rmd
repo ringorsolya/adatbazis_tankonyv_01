@@ -1,0 +1,60 @@
+# Kolofon {-}
+
+```{=html}
+<div class="kolofon-wrapper">
+
+  <div class="kolofon-dísz"></div>
+  <div class="kolofon-cím">A kiadványról</div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Cím</span>
+    <span class="kolofon-érték">Adatbázisépítés I. – Bevezetés az adatkezelés és adatbázis-tervezés alapjaiba</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Szerző</span>
+    <span class="kolofon-érték">Ring Orsolya</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Intézmény</span>
+    <span class="kolofon-érték">Eötvös Loránd Tudományegyetem<br>Bölcsészettudományi Kar</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Szak / kurzus</span>
+    <span class="kolofon-érték">Levéltár MA – Adatbázisépítés I.</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Tanév</span>
+    <span class="kolofon-érték">2025–2026</span>
+  </div>
+
+  <hr class="kolofon-elválasztó">
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Verzió</span>
+    <span class="kolofon-érték">1.0</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Készült</span>
+    <span class="kolofon-érték">R bookdown rendszerrel</span>
+  </div>
+
+  <div class="kolofon-sor">
+    <span class="kolofon-label">Betűtípus</span>
+    <span class="kolofon-érték">Georgia (szöveg) · Helvetica Neue (fejlécek)</span>
+  </div>
+
+  <hr class="kolofon-elválasztó">
+
+  <div class="kolofon-copyright">
+    © Ring Orsolya, 2025–2026.<br>
+    Ez a tananyag az ELTE BTK Levéltár MA hallgatói számára készült oktatási célra.<br>
+    Kereskedelmi felhasználása és reprodukálása a szerző előzetes írásbeli engedélye nélkül tilos.
+  </div>
+
+</div>
+```

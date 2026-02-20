@@ -1,0 +1,193 @@
+# Mi az adatbázis?
+
+## Alapfogalmak
+
+:::: {.blueblock data-latex=""}
+**Adatbázis:** Strukturáltan tárolt, egymással kapcsolatban lévő adatok összessége, amelyek egy meghatározott célra szervezve, elektronikusan  vannak tárolva.
+::::
+
+Az adatbázis definíciójában három kulcsfogalmat kell kiemelni:
+
+### Strukturáltság
+
+Az adatok **nem összevissza**, hanem **rendezett formában**, meghatározott szabályok szerint vannak elrendezve. Ez azt jelenti, hogy:
+
+- Minden adatnak megvan a **helye** a rendszerben
+- Az adatok **típusa** előre definiált (szöveg, szám, dátum, stb.)
+- Az adatok **kapcsolatai** logikusan szervezettek
+- Az **elérés** szabályozott és gyors
+
+**Példa:** Egy levéltári fond adatai nem egyszerűen felsorolásban szerepelnek, hanem strukturált mezőkben: jelzet, megnevezés, időkör, terjedelem, stb.
+
+### Tárolás
+
+Az adatok **elektronikusan**, tartósan őrődnek meg, és **bármikor visszakereshetők**. A tárolás jellemzői:
+
+- **Tartósság:** Az adatok nem vesznek el (backup rendszerek)
+- **Gyorsaság:** Gyors hozzáférés akár nagy mennyiségű adathoz is
+- **Biztonság:** Jogosultságok, titkosítás
+- **Konzisztencia:** Az adatok egységesek
+
+### Kapcsolatok
+
+Az adatok között **logikai kapcsolatok** vannak, összetartoznak, egymásra hivatkoznak. Például:
+
+- Egy **kutató** több **látogatást** tehet
+- Egy **látogatás** során több **fondotból** kérhet iratokat
+- Egy **fond** több **dobozból** áll
+- Egy **dobozban** több **irat** van
+
+Ezek a kapcsolatok nem véletlenszerűek, hanem a **valós világ struktúráját** tükrözik.
+
+## Miért van szükség adatbázisokra?
+
+### Nagy adatmennyiség kezelése
+
+:::: {.greenblock data-latex=""}
+**Levéltári példa:**  
+500 dobozos fond, benne kb. 20.000 irat. Hogyan tartjuk nyilván? Hogyan keresünk benne?
+
+**Hagyományos megoldások:**
+- Papír alapú leltárkönyv: Nehéz keresni, lassú, nem lehet rendezni
+- Word dokumentum: Nincs rendezés, szűrés, nehézkes keresés
+- Nem strukturált Excel: Áttekinthetetlen, lassú, hibás adatok
+
+**Adatbázis megoldás:**
+- Gyors keresés bármilyen mező alapján
+- Többszempontú rendezés
+- Szűrés kombinált feltételek szerint
+- Statisztikák, összesítések másodpercek alatt
+::::
+
+### Kapcsolatok kezelése
+
+Az adatok között gyakran bonyolult kapcsolatrendszerek vannak. 
+
+**Példa: Kutatószolgálat**
+
+- Kovács János kutatót nyilván kell tartani (név, cím, email, telefon, intézmény)
+- Kovács János **többször** is jön kutatni (látogatások dátumai, időpontjai)
+- Minden látogatáson **több fondból** kérhet
+- Egy fondot **több kutató** is kérhet
+- Egy fondban **több doboz** van
+- Minden kérésről dokumentálni kell, **ki, mit, mikor** kért
+
+**Hagyományos megoldás (Excel):**
+```
+Név         | Email      | Dátum    | Fond  | Doboz
+Kovács János| k@...      | 2024.11.05| XXV-1 | 3
+Kovács János| k@...      | 2024.11.05| XXV-2 | 5
+Kovács János| k@...      | 2024.11.12| XXV-1 | 4
+```
+
+**Probléma:** Ha Kovács János emailje megváltozik, **mindhárom** sort javítani kell!
+
+**Adatbázis megoldás:**
+- Kovács János adatai **egyszer** szerepelnek (KUTATÓK tábla)
+- Látogatásai külön táblában (LÁTOGATÁSOK)
+- Kérései külön táblában (KÉRÉSEK)
+- Email változás → **egy helyen** javítás
+
+### Probléma 3: Adatintegritás
+
+**Adatintegritás:** Az adatok pontosak, konzisztensek és megbízhatóak.
+
+:::: {.orangebox data-latex=""}
+**Gyakori hibák strukturálatlan adatkezelésben:**
+
+1. **Elgépelés:** "Kovács János" vs "Kovacs János" vs "Kovács Janos"
+2. **Hiányzó kötelező adat:** Fond jelzet nélküli rekord
+3. **Nem létező hivatkozás:** Olyan fondot kérnek, ami nincs nyilvántartva
+4. **Duplikáció:** Ugyanaz az adat többször szerepel
+5. **Elavult adat:** Az egyik helyen frissítve, máshol nem
+::::
+
+**Adatbázis megoldás:**
+- **Típusellenőrzés:** Csak szám írható be a "Születési év" mezőbe
+- **Kötelező mezők:** Nem menthető rekord fondjel nélkül
+- **Referenciális integritás:** Csak létező fondra lehet hivatkozni
+- **Egyedi kulcs:** Nem lehet két azonos kutatói azonosító
+- **Automatikus frissítés:** Kapcsolt adatok automatikusan frissülnek
+
+## Adatbázisok a levéltári munkában
+
+### Tipikus felhasználási területek
+
+```{r, echo=FALSE}
+library(knitr)
+
+alkalmazasok <- data.frame(
+  Terület = c("Nyilvántartás", 
+              "Iktatókönyv", 
+              "Kutatószolgálat", 
+              "Digitalizálási projekt",
+              "Raktárkezelés",
+              "Kiállítás menedzsment",
+              "Munkatársi nyilvántartás"),
+  
+  Leírás = c("Fondok, dobozok, iratok hierarchikus rendszere",
+             "Iktatott ügyek, iktatószámok, ügyintézők, határidők",
+             "Kutatók, látogatások, kért fondok, engedélyek",
+             "Dobozok, iratok, szkennelés státusza, munkatársak",
+             "Épületek, raktárak, polcok, fondok elhelyezése",
+             "Kiállítások, kiállított tárgyak, iratok, kölcsönzések",
+             "Munkatársak, jogosultságok, szakterületek"),
+  
+  Bonyolultság = c("Közepes", "Közepes", "Magas", "Közepes", "Egyszerű", "Magas", "Egyszerű")
+)
+
+kable(alkalmazasok, caption = "Adatbázis alkalmazások a levéltárban")
+```
+
+### Előnyök a levéltári munkában
+
+1. **Gyors keresés:** Bármely mező szerint másodpercek alatt
+2. **Statisztikák:** Hány fond, mennyi terjedelem, évenkénti bontás
+3. **Kapcsolatok:** Ki, mikor, mit kért - összetett lekérdezések
+4. **Jelentések:** Automatikus kimutatások, összesítők
+5. **Többfelhasználós:** Több munkatárs dolgozhat egy időben (korlátokkal)
+6. **Verziókövetés:** Ki, mikor módosított mit
+7. **Biztonsági mentés:** Automatikus backup rendszerek
+
+## Az adatbázisok fejlődése
+
+### Rövid történeti áttekintés
+
+**1960-as évek:** Hierarchikus és hálós adatbázisok  
+- IBM IMS (Information Management System)
+- Merev struktúra, nehéz módosítás
+
+**1970-es évek:** Relációs modell megjelenése  
+- Edgar F. Codd publikációja (1970)
+- SQL nyelv kifejlesztése
+- Rugalmas, matematikai alapokon nyugvó modell
+
+**1980-as évek:** Relációs adatbázisok elterjedése  
+- Oracle, DB2, Microsoft SQL Server
+- Személyi számítógépeken is elérhetővé válnak
+
+**1990-es évek:** Desktop adatbázisok  
+- Microsoft Access (1992)
+- Nem informatikusok is használhatják
+- Levéltárak is elkezdik használni
+
+**2000-es évek:** Web-alapú rendszerek  
+- MySQL, PostgreSQL térnyerése
+- Online katalógusok, digitális archívumok
+
+**2010-es évek:** NoSQL és Big Data  
+- MongoDB, Cassandra
+- Hatalmas adatmennyiségek kezelése
+- Nem strukturált adatok (képek, videók)
+
+## Ellenőrző kérdések
+
+1. Mit jelent az, hogy az adatok "strukturáltan" vannak tárolva?
+2. Milyen problémákat old meg egy adatbázis a hagyományos (pl. Word) megoldásokhoz képest?
+3. Mi az adatintegritás, és miért fontos?
+4. Mondjon példát egy levéltári felhasználási területre, ahol adatbázis használata indokolt!
+5. Miért előnyös az adatbázisokban, hogy az adatok kapcsolatban vannak egymással?
+
+## Következő fejezet
+
+A következő fejezetben részletesen megismerjük a különböző **adatbázis típusokat**: lapos, relációs, hierarchikus, hálós, és NoSQL adatbázisokat. Megnézzük, mikor melyiket érdemes használni, és milyen előnyökkel, hátrányokkal rendelkeznek.

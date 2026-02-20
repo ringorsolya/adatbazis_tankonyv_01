@@ -1,0 +1,370 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Gyakorlati példa: Levéltári nyilvántartás készítése
+
+## A feladat
+
+Digitális nyilvántartás készítése
+
+**Mezők:** 1. Jelzet 2. Fond megnevezése 3. Kezdő év 4. Záró év 5.
+Terjedelem (iratfolyóméter) 6. Raktári épület 7. Digitalizálva
+(Igen/Nem/Részben)
+
+## Előkészületek
+
+### Excel megnyitása és mentés
+
+1.  Indítsük el az Excelt
+2.  **Fájl → Mentés másként**
+3.  Név: `Nyilvantartas_JELZET.xlsx`
+4.  **Mentés**
+
+### Munkalap átnevezése
+
+1.  Dupla klikk „Munka1" fülre (lent)
+2.  Írd: `Fondok`
+3.  Enter
+
+## Fejléc sor
+
+### Oszlopnevek beírása
+
+Kattints **A1**-re, majd írd be (Tab-bal ugorj):
+
+```         
+A1: Jelzet
+B1: Fond_megnevezése
+C1: Kezdő_év
+D1: Záró_év
+E1: Terjedelem_ifm
+F1: Raktári_épület
+G1: Digitalizálva
+```
+
+### Fejléc formázása
+
+1.  Jelöld ki A1:G1
+2.  **Félkövér** (Ctrl+B)
+3.  Betűméret: 12
+4.  **Kitöltőszín:** Világoskék
+5.  **Középre igazítás**
+6.  **Szegélyek → Alsó szegély**
+
+### Oszlopszélesség
+
+Minden oszlopnál: vidd az egeret az oszlopok határára (A–B, B–C...) →
+**Dupla klikk** (automatikus szélesség)
+
+**Mentés:** Ctrl+S
+
+## Adatok felvitele
+
+### Első fond
+
+Kattints **A2**-re, írd be (Tab-bal tovább):
+
+```         
+A2: XXV-1
+B2: Tanácsi ülések jegyzőkönyvei
+C2: 1950
+D2: 1990
+E2: 5
+F2: I. épület
+G2: Igen
+```
+
+Az utolsó mezőnél **Enter** → ugrik A3-ra (következő fond).
+
+### További fondok (min. 10 db)
+
+Mintaadatok:
+
+| Jelzet | Megnevezés | Kezdő | Záró | Terjedelem (ifm) | Raktár | Digitalizálva |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------| 
+| XXVI-I-3 | Magyar Állami Operaház | 1945 | 1989 | 9 | I. épület | Igen |
+| XXVI-I-4 | Állami Hangverseny- és Műsorigazgatóság | 1956 | 1964 | 5 | II. épület | Nem |
+| XXVI-I-5 | Magyar Állami Népi Együttes | 1950 | 1986 | 6.6 | I. épület | Részben |
+| XXVI-I-6 | Huszonötödik Színház | 1969 | 1977 | 1.9 | II. épület | Nem |
+| XXVI-I-7 | Állami Déryné Színház | 1951 | 1977 | 4 | I. épület | Igen |
+| XXVI-I-8 | Nemzeti Színház | 1933 | 1997 | 17.85 | III. épület | Nem |
+| XXVI-I-9 | Pesti Hírlap | 1845 | 1944 | 0.72 | II. épület | Részben |
+| XXVI-I-10 | Műcsarnok | 1952 | 1992 | 14.64 | I. épület | Nem |
+| XXVI-I-23 | Magyar Filmtudományi Intézet és Filmarchívum | 1960 | 1977 | 6.2 | III. épület | Igen |
+| XXVI-I-65 | Színház- és Filmtudományi Intézet | 1957 | 1959 | 0.6 | II. épület | Részben |
+
+**Tipp:** Legyünk következetesek! „I. épület" (pont után szóköz) vagy
+„I.épület"? Válasszunk egyet és alkalmazzuk mindig ugyanúgy!
+
+**Mentés:** Ctrl+S
+
+## Formázás
+
+### Táblázat formázás
+
+1.  Kattintsunk bárhova az adattáblán
+2.  **Kezdőlap → Formázás táblázatként**
+3.  Válasszunk stílust (pl. kék)
+4.  ☑ „A táblázatnak van fejléce"
+5.  OK
+
+**Eredmény:**
+- Váltakozó sor színek
+- Szűrő nyilak (▼)
+- Dinamikus tábla
+
+### Ablaktábla rögzítése
+
+1.  Kattintsunk **A2**-re
+2.  **Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése**
+3.  Görgetéskor a fejléc látszik!
+
+**Mentés:** Ctrl+S
+
+## Szűrés és rendezés
+
+### Rendezés időrendi sorrendbe
+
+1.  Kattintsunk „Kezdő_év" nyílra (▼)
+2.  **Rendezés legkisebbtől a legnagyobbig**
+
+### Szűrés – Egy épület
+
+1.  Kattintsunk „Raktári_épület" nyílra
+2.  Pipáljuk ki (Az összes kijelölése)
+3.  Pipáljuk be csak: **I. épület**
+4.  OK
+
+Csak I. épület fondok látszanak!
+
+**Törlés:** Ugyanaz a nyíl → Szűrő törlése
+
+### Komplex szűrés – Nem digitalizált, régi fondok
+
+**1. feltétel:** Kezdő_év < 1960 – „Kezdő_év" nyíl → Számszűrők →
+Kisebb, mint... → 1960 → OK
+
+**2. feltétel:** Digitalizálva = Nem – „Digitalizálva" nyíl → Pipáljuk
+be csak „Nem" → OK
+
+**Eredmény:** Régi, nem digitalizált fondok (2–3 db)
+
+**Törlés:** Adatok → Törlés
+
+## Adatellenőrzés
+
+### Évek ellenőrzése (1800–2024)
+
+1.  Jelöljük ki **C2:C100** (Kezdő_év)
+2.  **Adatok → Adatellenőrzés**
+3.  **Beállítások:**
+    -   Engedélyezés: Egész szám
+    -   Adatok: között
+    -   Minimum: 1800
+    -   Maximum: 2024
+4.  **Hibajelzés:**
+    -   Cím: „Hibás év"
+    -   Üzenet: „1800–2024 között!"
+5.  OK
+
+Ismételd meg **D2:D100**-ra (Záró_év)!
+
+### Legördülő lista – Raktári épület
+
+1.  Írd le **I1:I3**-ba:
+
+    ```         
+    I1: I. épület
+    I2: II. épület
+    I3: III. épület
+    ```
+
+2.  Jelöld ki **F2:F100**
+
+3.  Adatok → Adatellenőrzés
+
+4.  Engedélyezés: **Lista**
+
+5.  Forrás: `=$I$1:$I$3`
+
+6.  OK
+
+Most legördülő lista van!
+
+### Legördülő lista – Digitalizálva
+
+1.  Írjuk le **J1:J3**-ba:
+
+    ```         
+    J1: Igen
+    J2: Nem
+    J3: Részben
+    ```
+
+2.  Jelöljük ki **G2:G100**
+
+3.  Adatok → Adatellenőrzés → Lista → Forrás: `=$J$1:$J$3` → OK
+
+**Mentés:** Ctrl+S
+
+## Statisztikák
+
+### Alapstatisztikák
+
+Üres cellákba (pl. A13-tól):
+
+```         
+A13: Fondok száma:
+B13: =DARAB2(A2:A11)
+
+A14: Átlagos terjedelem:
+B14: =ÁTLAG(E2:E11)
+
+A15: Legrégebbi:
+B15: =MIN(C2:C11)
+
+A16: Legfiatalabb:
+B16: =MAX(C2:C11)
+```
+
+### Feltételes számolás
+
+```         
+A17: Digitalizált (Igen):
+B17: =DARABTELI(G2:G11;"Igen")
+
+A18: Részben:
+B18: =DARABTELI(G2:G11;"Részben")
+
+A19: Nem digitalizált:
+B19: =DARABTELI(G2:G11;"Nem")
+```
+
+**Mentés:** Ctrl+S
+
+## Excel függvények
+
+A képleteket mindig `=` jellel indítjuk a cellákban – ezáltal ismeri fel az Excel, hogy képlet vagy függvény következik.
+
+| Függvény | Mit csinál? | Példa |
+|----------|-------------|-------|
+| **SZUM** | Összesíti a kijelölt tartomány értékeit | `=SZUM(A2:A25)` |
+| **ÁTLAG** | Kiszámolja a kijelölt elemek átlagát | `=ÁTLAG(A2:A25)` |
+| **MIN / MAX** | A legkisebb / legnagyobb elemet határozza meg | `=MIN(A2:A42)` `=MAX(A2:A42)` |
+| **DARAB** | Megszámolja, hány darab **szám** van a tartományban | `=DARAB(A2:A32)` |
+| **DARAB2** | Megszámolja, hány darab **nem üres** mező van a tartományban | `=DARAB2(A2:A32)` |
+| **DARABÜRES** | Megszámolja, hány darab **üres** mező van a tartományban | `=DARABÜRES(A2:A32)` |
+| **ÉS** | Halmozott feltételek – eredmény IGAZ, ha **minden** feltétel teljesül | `=ÉS(B2>50; D2="nő")` |
+| **VAGY** | Halmozott feltételek – eredmény IGAZ, ha **legalább egy** feltétel teljesül | `=VAGY(B2>50; D2="nő")` |
+| **BAL** | A szöveg bal oldaláról ad vissza meghatározott számú karaktert | `=BAL(A2;3)` → első 3 karakter |
+| **KÖZÉP** | A szöveg meghatározott pozíciójától ad vissza karaktereket | `=KÖZÉP(A2;4;3)` → 4. karaktertől 3 db |
+| **JOBB** | A szöveg jobb oldaláról ad vissza meghatározott számú karaktert | `=JOBB(A2;3)` → utolsó 3 karakter |
+| **AZONOS** | IGAZ/HAMIS: a két cella pontosan azonos-e (kis/nagybetű is számít) | `=AZONOS(A2;A3)` |
+| **DÁTUM** | Számokból dátumformátumot hoz létre | `=DÁTUM(2022;3;9)` → 2022.03.09. |
+| **FKERES** | Listából keres ki egy értéket és visszaadja a kapcsolt adatot | `=FKERES(A2;$W$1:$Z$57;4;0)` |
+| **ÖSSZEFŰZ** | Két vagy több cella tartalmát fűzi össze | `=ÖSSZEFŰZ(A2;" ";B2)` |
+
+**Levéltári példák a szövegfüggvényekre:**
+
+A `BAL`, `KÖZÉP` és `JOBB` függvények jelzetkezelésnél hasznosak. Ha a jelzet formátuma `XXV-1`, és szeretnénk kinyerni a fondfőcsoport számát:
+
+```
+A2: XXV-1
+=BAL(A2;3)   → XXV   (fondfőcsoport jelzete)
+=KÖZÉP(A2;5;1) → 1   (fond sorszáma)
+```
+
+### Cellahivatkozások rögzítése
+
+Alapértelmezés szerint a cellahivatkozások **relatívak** – másoláskor automatikusan módosulnak. A `$` jellel rögzíthetjük őket:
+
+| Rögzítés | Jelentés |
+|----------|----------|
+| `$A2` | Csak az **oszlop** rögzített, a sor másoláskor változik |
+| `A$2` | Csak a **sor** rögzített, az oszlop másoláskor változik |
+| `$A$2` | **Oszlop és sor is rögzített** – másoláskor sem változik |
+
+```{r, echo=FALSE, out.width="45%", fig.show="hold"}
+knitr::include_graphics(c("image1.png", "image2.png"))
+```
+
+```{r, echo=FALSE, out.width="45%", fig.show="hold"}
+knitr::include_graphics(c("image3.png", "image4.png"))
+```
+
+**Gyorsbillentyű:** Jelöljük ki a hivatkozást a képletben, majd nyomjuk meg az **F4** billentyűt (egyes laptopokhoz: **Fn+F4**) – az Excel végigváltja a négy rögzítési módot.
+
+**Levéltári példa:** Ha a tárgyévet egy fix cellában tároljuk (`$B$1`), és minden fond esetén arra hivatkozunk a számításban, rögzítés nélkül a másolásnál „eltolódna" a hivatkozás.
+
+```
+B1: 2024        ← rögzített referencia-év
+C2: =B1-A2      ← rossz: másoláskor B2, B3... lesz belőle
+C2: =$B$1-A2    ← jó: $B$1 mindig a rögzített évet veszi
+```
+
+**Mentés:** Ctrl+S
+
+## Vizualizáció
+
+### Kimutatás (Pivot tábla) – Épületek szerinti megoszlás
+
+1.  Kattintunk az adattáblán
+2.  **Beszúrás → Kimutatás**
+3.  Új munkalap → OK
+4.  **Kimutatásmezők panel (jobbra):**
+    -   Húzzuk „Raktári_épület" → **Sorok**
+    -   Húzzuk „Raktári_épület" → **Értékek**
+
+**Eredmény:**
+
+```         
+Raktári_épület     Darab
+I. épület          4
+II. épület         3
+III. épület        2
+```
+
+### Grafikon
+
+1.  Kattintunk a kimutatásra
+2.  **Beszúrás → Oszlopdiagram**
+3.  Válasszuk az első oszlopdiagram-típust
+
+**Testreszabás:**
+- Diagram címe: „Fondok megoszlása raktári épületek szerint"
+
+### Munkalap átnevezése
+
+Dupla klikk „Munka2" fülre → Írjuk be: `Statisztika`
+
+**Mentés:** Ctrl+S (utoljára!)
+
+## Gyakori hibák
+
+**Szűrés nem működik** → Üres sorok vannak  
+**Adatellenőrzés nincs** → Rossz tartomány  
+**DARAB2 rossz** → Fejléc benne van a tartományban  
+**Ablaktábla rögzítése nem működik** → Rossz cellán állunk (A2 kell!)  
+
+**Miről volt szó ebben a részben:**
+1. Strukturált tábla (fejléc, sorok, nincs üres)
+2. Formázás (táblázat, ablaktábla rögzítése)
+3. Szűrés és rendezés
+4. Adatellenőrzés (számok, legördülő lista)
+5. Statisztikák (DARAB2, DARABTELI, ÁTLAG)
+6. Vizualizáció (kimutatás, grafikon)
+
+## Ellenőrző kérdések
+
+1.  Miért fontos az első sor fejléc?
+2.  Miért rossz összevont cellákat használni?
+3.  Hogyan állíthatunk be legördülő listát?
+4.  Mi a különbség a Szűrő és a Kimutatás között?
+5.  Hogyan rögzíthetjük a fejléc sort?
+6.  Milyen képlet számolja a rekordokat?
+7.  Milyen képlet számolja az „Igen" értékeket?
+8.  Miért fontos a konzisztencia az adatbevitelnél?
+9.  Hogyan szűrhetünk egyszerre több feltétel szerint?

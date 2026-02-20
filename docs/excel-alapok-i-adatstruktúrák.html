@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Excel alapok I – Adatstruktúrák | Adatbázisépítés I.</title>
+  <meta name="description" content="Levéltár MA szakos hallgatóknak készült tananyag az adatbázis-kezelés alapjairól" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Excel alapok I – Adatstruktúrák | Adatbázisépítés I." />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Levéltár MA szakos hallgatóknak készült tananyag az adatbázis-kezelés alapjairól" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Excel alapok I – Adatstruktúrák | Adatbázisépítés I." />
+  
+  <meta name="twitter:description" content="Levéltár MA szakos hallgatóknak készült tananyag az adatbázis-kezelés alapjairól" />
+  
+
+<meta name="author" content="Ring Orsolya" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="excel-vs-access---döntés-a-gyakorlatban.html"/>
+<link rel="next" href="excel-alapok-gyakorlati-bevezetés.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Adatbázisépítés I.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előszó</a></li>
+<li class="chapter" data-level="2" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html"><i class="fa fa-check"></i><b>2</b> Mi az adatbázis?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#alapfogalmak"><i class="fa fa-check"></i><b>2.1</b> Alapfogalmak</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#struktur%C3%A1lts%C3%A1g"><i class="fa fa-check"></i><b>2.1.1</b> Strukturáltság</a></li>
+<li class="chapter" data-level="2.1.2" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#t%C3%A1rol%C3%A1s"><i class="fa fa-check"></i><b>2.1.2</b> Tárolás</a></li>
+<li class="chapter" data-level="2.1.3" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#kapcsolatok"><i class="fa fa-check"></i><b>2.1.3</b> Kapcsolatok</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#mi%C3%A9rt-van-sz%C3%BCks%C3%A9g-adatb%C3%A1zisokra"><i class="fa fa-check"></i><b>2.2</b> Miért van szükség adatbázisokra?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#nagy-adatmennyis%C3%A9g-kezel%C3%A9se"><i class="fa fa-check"></i><b>2.2.1</b> Nagy adatmennyiség kezelése</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#kapcsolatok-kezel%C3%A9se"><i class="fa fa-check"></i><b>2.2.2</b> Kapcsolatok kezelése</a></li>
+<li class="chapter" data-level="2.2.3" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#probl%C3%A9ma-3-adatintegrit%C3%A1s"><i class="fa fa-check"></i><b>2.2.3</b> Probléma 3: Adatintegritás</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#adatb%C3%A1zisok-a-lev%C3%A9lt%C3%A1ri-munk%C3%A1ban"><i class="fa fa-check"></i><b>2.3</b> Adatbázisok a levéltári munkában</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#tipikus-felhaszn%C3%A1l%C3%A1si-ter%C3%BCletek"><i class="fa fa-check"></i><b>2.3.1</b> Tipikus felhasználási területek</a></li>
+<li class="chapter" data-level="2.3.2" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#el%C5%91ny%C3%B6k-a-lev%C3%A9lt%C3%A1ri-munk%C3%A1ban"><i class="fa fa-check"></i><b>2.3.2</b> Előnyök a levéltári munkában</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#az-adatb%C3%A1zisok-fejl%C5%91d%C3%A9se"><i class="fa fa-check"></i><b>2.4</b> Az adatbázisok fejlődése</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#r%C3%B6vid-t%C3%B6rt%C3%A9neti-%C3%A1ttekint%C3%A9s"><i class="fa fa-check"></i><b>2.4.1</b> Rövid történeti áttekintés</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek"><i class="fa fa-check"></i><b>2.5</b> Ellenőrző kérdések</a></li>
+<li class="chapter" data-level="2.6" data-path="mi-az-adatbázis.html"><a href="mi-az-adatbázis.html#k%C3%B6vetkez%C5%91-fejezet"><i class="fa fa-check"></i><b>2.6</b> Következő fejezet</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html"><i class="fa fa-check"></i><b>3</b> Adatbázis típusok részletesen</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#lapos-flat-file-adatb%C3%A1zisok"><i class="fa fa-check"></i><b>3.1</b> Lapos (flat file) adatbázisok</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#p%C3%A9lda-lev%C3%A9lt%C3%A1ri-fondlista"><i class="fa fa-check"></i><b>3.1.1</b> Példa: Levéltári fondlista</a></li>
+<li class="chapter" data-level="3.1.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mikor-m%C5%B1k%C3%B6dik-j%C3%B3l"><i class="fa fa-check"></i><b>3.1.2</b> Mikor működik jól?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#a-redundancia-probl%C3%A9m%C3%A1ja"><i class="fa fa-check"></i><b>3.1.3</b> A redundancia problémája</a></li>
+<li class="chapter" data-level="3.1.4" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mikor-ne-haszn%C3%A1ljuk"><i class="fa fa-check"></i><b>3.1.4</b> Mikor NE használjuk?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#hierarchikus-adatb%C3%A1zisok"><i class="fa fa-check"></i><b>3.2</b> Hierarchikus adatbázisok</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#t%C3%B6rt%C3%A9neti-h%C3%A1tt%C3%A9r"><i class="fa fa-check"></i><b>3.2.1</b> Történeti háttér</a></li>
+<li class="chapter" data-level="3.2.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#a-fa-strukt%C3%BAra"><i class="fa fa-check"></i><b>3.2.2</b> A fa struktúra</a></li>
+<li class="chapter" data-level="3.2.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#lev%C3%A9lt%C3%A1ri-p%C3%A9lda-fond-hierarchia"><i class="fa fa-check"></i><b>3.2.3</b> Levéltári példa: Fond-hierarchia</a></li>
+<li class="chapter" data-level="3.2.4" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#el%C5%91ny%C3%B6k"><i class="fa fa-check"></i><b>3.2.4</b> Előnyök</a></li>
+<li class="chapter" data-level="3.2.5" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#korl%C3%A1tok"><i class="fa fa-check"></i><b>3.2.5</b> Korlátok</a></li>
+<li class="chapter" data-level="3.2.6" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mi%C3%A9rt-vesztett%C3%A9k-el-n%C3%A9pszer%C5%B1s%C3%A9g%C3%BCket"><i class="fa fa-check"></i><b>3.2.6</b> Miért vesztették el népszerűségüket?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#h%C3%A1l%C3%B3s-network-adatb%C3%A1zisok"><i class="fa fa-check"></i><b>3.3</b> Hálós (network) adatbázisok</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#a-sok-sok-kapcsolat-probl%C3%A9m%C3%A1ja"><i class="fa fa-check"></i><b>3.3.1</b> A sok-sok kapcsolat problémája</a></li>
+<li class="chapter" data-level="3.3.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#codasyl-h%C3%A1l%C3%B3s-modell-1969"><i class="fa fa-check"></i><b>3.3.2</b> CODASYL hálós modell (1969)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#m%C5%B1k%C3%B6d%C3%A9s"><i class="fa fa-check"></i><b>3.3.3</b> Működés</a></li>
+<li class="chapter" data-level="3.3.4" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#p%C3%A9lda-kutat%C3%A1si-h%C3%A1l%C3%B3zat"><i class="fa fa-check"></i><b>3.3.4</b> Példa: Kutatási hálózat</a></li>
+<li class="chapter" data-level="3.3.5" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mi%C3%A9rt-vesztett%C3%A9k-el-n%C3%A9pszer%C5%B1s%C3%A9g%C3%BCket-1"><i class="fa fa-check"></i><b>3.3.5</b> Miért vesztették el népszerűségüket?</a></li>
+<li class="chapter" data-level="3.3.6" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#modern-megfelel%C5%91-gr%C3%A1f-adatb%C3%A1zisok"><i class="fa fa-check"></i><b>3.3.6</b> Modern megfelelő: Gráf adatbázisok</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#rel%C3%A1ci%C3%B3s-adatb%C3%A1zisok"><i class="fa fa-check"></i><b>3.4</b> Relációs adatbázisok</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mi-az-%C3%BAjdons%C3%A1g"><i class="fa fa-check"></i><b>3.4.1</b> Mi az újdonság?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#kulcsok"><i class="fa fa-check"></i><b>3.4.2</b> Kulcsok</a></li>
+<li class="chapter" data-level="3.4.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#p%C3%A9lda-kutat%C3%B3szolg%C3%A1lat"><i class="fa fa-check"></i><b>3.4.3</b> Példa: Kutatószolgálat</a></li>
+<li class="chapter" data-level="3.4.4" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#kapcsolat-t%C3%ADpusok"><i class="fa fa-check"></i><b>3.4.4</b> Kapcsolat típusok</a></li>
+<li class="chapter" data-level="3.4.5" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#normaliz%C3%A1l%C3%A1s---az-adatredundancia-elleni-harc"><i class="fa fa-check"></i><b>3.4.5</b> Normalizálás - Az adatredundancia elleni harc</a></li>
+<li class="chapter" data-level="3.4.6" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#referenci%C3%A1lis-integrit%C3%A1s"><i class="fa fa-check"></i><b>3.4.6</b> Referenciális integritás</a></li>
+<li class="chapter" data-level="3.4.7" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mi%C3%A9rt-nyertek"><i class="fa fa-check"></i><b>3.4.7</b> Miért nyertek?</a></li>
+<li class="chapter" data-level="3.4.8" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#n%C3%A9pszer%C5%B1-rendszerek"><i class="fa fa-check"></i><b>3.4.8</b> Népszerű rendszerek</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#nosql-adatb%C3%A1zisok---a-21.-sz%C3%A1zad-kih%C3%ADv%C3%A1sai"><i class="fa fa-check"></i><b>3.5</b> NoSQL adatbázisok - A 21. század kihívásai</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#a-big-data-kih%C3%ADv%C3%A1s-mi%C3%A9rt-kellett-valami-%C3%BAj-2000-es-%C3%A9vek"><i class="fa fa-check"></i><b>3.5.1</b> A Big Data kihívás: Miért kellett valami új? (2000-es évek)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#mi-az-a-nosql"><i class="fa fa-check"></i><b>3.5.2</b> Mi az a NoSQL?</a></li>
+<li class="chapter" data-level="3.5.3" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#nosql-t%C3%ADpusok-r%C3%A9szletesen"><i class="fa fa-check"></i><b>3.5.3</b> NoSQL típusok részletesen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="adatbázis-típusok-részletesen.html"><a href="adatbázis-típusok-részletesen.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-1"><i class="fa fa-check"></i><b>3.6</b> Ellenőrző kérdések</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html"><i class="fa fa-check"></i><b>4</b> Excel vs Access - Döntés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#mi-az-excel-%C3%A9s-mi-az-access"><i class="fa fa-check"></i><b>4.1</b> Mi az Excel és mi az Access?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#excel-a-t%C3%A1bl%C3%A1zatkezel%C5%91-spreadsheet"><i class="fa fa-check"></i><b>4.1.1</b> Excel: A táblázatkezelő (Spreadsheet)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#access-az-adatb%C3%A1zis-kezel%C5%91-rdbms"><i class="fa fa-check"></i><b>4.1.2</b> Access: Az adatbázis-kezelő (RDBMS)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#r%C3%A9szletes-%C3%B6sszehasonl%C3%ADt%C3%A1s"><i class="fa fa-check"></i><b>4.2</b> Részletes összehasonlítás</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#adatstrukt%C3%BAra"><i class="fa fa-check"></i><b>4.2.1</b> Adatstruktúra</a></li>
+<li class="chapter" data-level="4.2.2" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#adatmennyis%C3%A9g-%C3%A9s-teljes%C3%ADtm%C3%A9ny"><i class="fa fa-check"></i><b>4.2.2</b> Adatmennyiség és teljesítmény</a></li>
+<li class="chapter" data-level="4.2.3" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#kapcsolatok-kezel%C3%A9se-vlookup-pokla-vs-join-egyszer%C5%B1s%C3%A9ge"><i class="fa fa-check"></i><b>4.2.3</b> Kapcsolatok kezelése: VLOOKUP pokla vs JOIN egyszerűsége</a></li>
+<li class="chapter" data-level="4.2.4" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#adatintegrit%C3%A1s"><i class="fa fa-check"></i><b>4.2.4</b> Adatintegritás</a></li>
+<li class="chapter" data-level="4.2.5" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#felhaszn%C3%A1l%C3%B3i-fel%C3%BClet"><i class="fa fa-check"></i><b>4.2.5</b> Felhasználói felület</a></li>
+<li class="chapter" data-level="4.2.6" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#t%C3%B6bb-felhaszn%C3%A1l%C3%B3-egyidej%C5%B1-munk%C3%A1ja"><i class="fa fa-check"></i><b>4.2.6</b> Több felhasználó egyidejű munkája</a></li>
+<li class="chapter" data-level="4.2.7" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#amit-az-excel-jobban-tud"><i class="fa fa-check"></i><b>4.2.7</b> Amit az Excel jobban tud</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#%C3%A1tmenet-excelb%C5%91l-accessbe---l%C3%A9p%C3%A9sr%C5%91l-l%C3%A9p%C3%A9sre"><i class="fa fa-check"></i><b>4.3</b> Átmenet Excelből Accessbe - Lépésről lépésre</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#l%C3%A9p%C3%A9s-tiszt%C3%ADtsuk-meg-az-excel-adatokat"><i class="fa fa-check"></i><b>4.3.1</b> 1. lépés: Tisztítsuk meg az Excel adatokat</a></li>
+<li class="chapter" data-level="4.3.2" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#l%C3%A9p%C3%A9s-tervezz%C3%BCk-meg-az-access-strukt%C3%BAr%C3%A1t"><i class="fa fa-check"></i><b>4.3.2</b> 2. lépés: Tervezzük meg az Access struktúrát</a></li>
+<li class="chapter" data-level="4.3.3" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#l%C3%A9p%C3%A9s-import%C3%A1ljuk-accessbe"><i class="fa fa-check"></i><b>4.3.3</b> 3. lépés: Importáljuk Accessbe</a></li>
+<li class="chapter" data-level="4.3.4" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#l%C3%A9p%C3%A9s-defini%C3%A1ljuk-a-kapcsolatokat"><i class="fa fa-check"></i><b>4.3.4</b> 4. lépés: Definiáljuk a kapcsolatokat</a></li>
+<li class="chapter" data-level="4.3.5" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#gyakori-buktat%C3%B3k-az-%C3%A1tmenetn%C3%A9l"><i class="fa fa-check"></i><b>4.3.5</b> Gyakori buktatók az átmenetnél</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="excel-vs-access---döntés-a-gyakorlatban.html"><a href="excel-vs-access---döntés-a-gyakorlatban.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-2"><i class="fa fa-check"></i><b>4.4</b> Ellenőrző kérdések</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html"><i class="fa fa-check"></i><b>5</b> Excel alapok I – Adatstruktúrák</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#a-munkaf%C3%BCzet-fel%C3%A9p%C3%ADt%C3%A9se"><i class="fa fa-check"></i><b>5.1</b> A munkafüzet felépítése</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#a-t%C3%A1bla-anat%C3%B3mi%C3%A1ja"><i class="fa fa-check"></i><b>5.1.1</b> A tábla anatómiája</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#adatt%C3%ADpusok-mit-tud-t%C3%A1rolni-egy-cella"><i class="fa fa-check"></i><b>5.2</b> Adattípusok – Mit tud tárolni egy cella?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#a-n%C3%A9gy-alapvet%C5%91-t%C3%ADpus"><i class="fa fa-check"></i><b>5.2.1</b> A négy alapvető típus</a></li>
+<li class="chapter" data-level="5.2.2" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#hogyan-ismerj%C3%BCk-fel-a-t%C3%ADpust"><i class="fa fa-check"></i><b>5.2.2</b> Hogyan ismerjük fel a típust?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#lev%C3%A9lt%C3%A1ri-fogalmak-lek%C3%A9pez%C3%A9se-mez%C5%91kre"><i class="fa fa-check"></i><b>5.3</b> Levéltári fogalmak leképezése mezőkre</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#a-lev%C3%A9lt%C3%A1ri-hierarchia"><i class="fa fa-check"></i><b>5.3.1</b> A levéltári hierarchia</a></li>
+<li class="chapter" data-level="5.3.2" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#fond-nyilv%C3%A1ntart%C3%A1s-mez%C5%91i-tervez%C3%A9si-folyamat"><i class="fa fa-check"></i><b>5.3.2</b> Fond-nyilvántartás mezői – Tervezési folyamat</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#mez%C5%91tervez%C3%A9si-elvek"><i class="fa fa-check"></i><b>5.4</b> Mezőtervezési elvek</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#egy-mez%C5%91-egy-inform%C3%A1ci%C3%B3-atomicit%C3%A1s"><i class="fa fa-check"></i><b>5.4.1</b> 1. Egy mező = egy információ (atomicitás)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#jelzetek-sz%C3%B6vegk%C3%A9nt-ne-sz%C3%A1mk%C3%A9nt"><i class="fa fa-check"></i><b>5.4.2</b> 2. Jelzetek: szövegként, ne számként!</a></li>
+<li class="chapter" data-level="5.4.3" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#%C3%A9vek-sz%C3%A1m-vagy-sz%C3%B6veg"><i class="fa fa-check"></i><b>5.4.3</b> 3. Évek: szám vagy szöveg?</a></li>
+<li class="chapter" data-level="5.4.4" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#m%C3%A9rt%C3%A9kegys%C3%A9gek-k%C3%BCl%C3%B6n"><i class="fa fa-check"></i><b>5.4.4</b> 4. Mértékegységek külön!</a></li>
+<li class="chapter" data-level="5.4.5" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#k%C3%B3dolt-%C3%A9rt%C3%A9kek-legyen-lista"><i class="fa fa-check"></i><b>5.4.5</b> 5. Kódolt értékek: legyen lista!</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#hierarchikus-adat-lapos-t%C3%A1bl%C3%A1ban"><i class="fa fa-check"></i><b>5.5</b> Hierarchikus adat lapos táblában</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#megk%C3%B6zel%C3%ADt%C3%A9s-1-fond-szint%C5%B1-t%C3%A1bla-aj%C3%A1nlott-kezd%C5%91knek"><i class="fa fa-check"></i><b>5.5.1</b> Megközelítés 1 – Fond szintű tábla (ajánlott kezdőknek)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#megk%C3%B6zel%C3%ADt%C3%A9s-2-doboz-szint%C5%B1-t%C3%A1bla"><i class="fa fa-check"></i><b>5.5.2</b> Megközelítés 2 – Doboz szintű tábla</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#referencia-seg%C3%A9d-t%C3%A1bl%C3%A1k"><i class="fa fa-check"></i><b>5.6</b> Referencia (segéd) táblák</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#p%C3%A9lda-rakt%C3%A1rak"><i class="fa fa-check"></i><b>5.6.1</b> Példa: Raktárak</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#mez%C5%91n%C3%A9v-konvenci%C3%B3k"><i class="fa fa-check"></i><b>5.7</b> Mezőnév-konvenciók</a></li>
+<li class="chapter" data-level="5.8" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#a-j%C3%B3-strukt%C3%BAra-ellen%C5%91rz%C3%A9se-%C3%B6n%C3%A1ll%C3%B3-feladat"><i class="fa fa-check"></i><b>5.8</b> A jó struktúra ellenőrzése – Önálló feladat</a></li>
+<li class="chapter" data-level="5.9" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#%C3%B6sszefoglal%C3%A1s"><i class="fa fa-check"></i><b>5.9</b> Összefoglalás</a></li>
+<li class="chapter" data-level="5.10" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-3"><i class="fa fa-check"></i><b>5.10</b> Ellenőrző kérdések</a></li>
+<li class="chapter" data-level="5.11" data-path="excel-alapok-i-adatstruktúrák.html"><a href="excel-alapok-i-adatstruktúrák.html#k%C3%B6vetkez%C5%91-fejezet-1"><i class="fa fa-check"></i><b>5.11</b> Következő fejezet</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html"><i class="fa fa-check"></i><b>6</b> Excel alapok – Gyakorlati bevezetés</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91"><i class="fa fa-check"></i><b>6.1</b> Az Excel mint adatbázis-előkészítő</a></li>
+<li class="chapter" data-level="6.2" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3"><i class="fa fa-check"></i><b>6.2</b> Alapvető navigáció</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k"><i class="fa fa-check"></i><b>6.2.1</b> Billentyűk:</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly"><i class="fa fa-check"></i><b>6.3</b> Táblázat felépítése – 6 aranyszabály</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c"><i class="fa fa-check"></i><b>6.3.1</b> Első sor = Fejléc</a></li>
+<li class="chapter" data-level="6.3.2" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord"><i class="fa fa-check"></i><b>6.3.2</b> Minden sor = Egy rekord</a></li>
+<li class="chapter" data-level="6.3.3" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor"><i class="fa fa-check"></i><b>6.3.3</b> Nincs üres sor</a></li>
+<li class="chapter" data-level="6.3.4" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1"><i class="fa fa-check"></i><b>6.3.4</b> Nincs összevont cella</a></li>
+<li class="chapter" data-level="6.3.5" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus"><i class="fa fa-check"></i><b>6.3.5</b> Egy oszlop = Egy típus</a></li>
+<li class="chapter" data-level="6.3.6" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek"><i class="fa fa-check"></i><b>6.3.6</b> Atomi értékek</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s"><i class="fa fa-check"></i><b>6.4</b> Formázás</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se"><i class="fa fa-check"></i><b>6.4.1</b> Fejléc kiemelése</a></li>
+<li class="chapter" data-level="6.4.2" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s"><i class="fa fa-check"></i><b>6.4.2</b> Táblázat formázás</a></li>
+<li class="chapter" data-level="6.4.3" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se"><i class="fa fa-check"></i><b>6.4.3</b> Ablaktábla rögzítése</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s"><i class="fa fa-check"></i><b>6.5</b> Szűrés és rendezés</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s"><i class="fa fa-check"></i><b>6.5.1</b> Szűrés</a></li>
+<li class="chapter" data-level="6.5.2" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s"><i class="fa fa-check"></i><b>6.5.2</b> Rendezés</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s"><i class="fa fa-check"></i><b>6.6</b> Adatellenőrzés</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024"><i class="fa fa-check"></i><b>6.6.1</b> Születési év (1900–2024)</a></li>
+<li class="chapter" data-level="6.6.2" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny"><i class="fa fa-check"></i><b>6.6.2</b> Legördülő lista (Intézmény)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k"><i class="fa fa-check"></i><b>6.7</b> Gyakori hibák</a></li>
+<li class="chapter" data-level="6.8" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla"><i class="fa fa-check"></i><b>6.8</b> Checklist – Jó Excel adattábla</a></li>
+<li class="chapter" data-level="6.9" data-path="excel-alapok-gyakorlati-bevezetés.html"><a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4"><i class="fa fa-check"></i><b>6.9</b> Ellenőrző kérdések</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><i class="fa fa-check"></i><b>7</b> Gyakorlati példa: Levéltári nyilvántartás készítése</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#a-feladat"><i class="fa fa-check"></i><b>7.1</b> A feladat</a></li>
+<li class="chapter" data-level="7.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#el%C5%91k%C3%A9sz%C3%BCletek"><i class="fa fa-check"></i><b>7.2</b> Előkészületek</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#excel-megnyit%C3%A1sa-%C3%A9s-ment%C3%A9s"><i class="fa fa-check"></i><b>7.2.1</b> Excel megnyitása és mentés</a></li>
+<li class="chapter" data-level="7.2.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#munkalap-%C3%A1tnevez%C3%A9se"><i class="fa fa-check"></i><b>7.2.2</b> Munkalap átnevezése</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#fejl%C3%A9c-sor"><i class="fa fa-check"></i><b>7.3</b> Fejléc sor</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#oszlopnevek-be%C3%ADr%C3%A1sa"><i class="fa fa-check"></i><b>7.3.1</b> Oszlopnevek beírása</a></li>
+<li class="chapter" data-level="7.3.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#fejl%C3%A9c-form%C3%A1z%C3%A1sa"><i class="fa fa-check"></i><b>7.3.2</b> Fejléc formázása</a></li>
+<li class="chapter" data-level="7.3.3" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#oszlopsz%C3%A9less%C3%A9g"><i class="fa fa-check"></i><b>7.3.3</b> Oszlopszélesség</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#adatok-felvitele"><i class="fa fa-check"></i><b>7.4</b> Adatok felvitele</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#els%C5%91-fond"><i class="fa fa-check"></i><b>7.4.1</b> Első fond</a></li>
+<li class="chapter" data-level="7.4.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#tov%C3%A1bbi-fondok-min.-10-db"><i class="fa fa-check"></i><b>7.4.2</b> További fondok (min. 10 db)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#form%C3%A1z%C3%A1s-1"><i class="fa fa-check"></i><b>7.5</b> Formázás</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s-1"><i class="fa fa-check"></i><b>7.5.1</b> Táblázat formázás</a></li>
+<li class="chapter" data-level="7.5.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se-1"><i class="fa fa-check"></i><b>7.5.2</b> Ablaktábla rögzítése</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s-1"><i class="fa fa-check"></i><b>7.6</b> Szűrés és rendezés</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#rendez%C3%A9s-id%C5%91rendi-sorrendbe"><i class="fa fa-check"></i><b>7.6.1</b> Rendezés időrendi sorrendbe</a></li>
+<li class="chapter" data-level="7.6.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#sz%C5%B1r%C3%A9s-egy-%C3%A9p%C3%BClet"><i class="fa fa-check"></i><b>7.6.2</b> Szűrés – Egy épület</a></li>
+<li class="chapter" data-level="7.6.3" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#komplex-sz%C5%B1r%C3%A9s-nem-digitaliz%C3%A1lt-r%C3%A9gi-fondok"><i class="fa fa-check"></i><b>7.6.3</b> Komplex szűrés – Nem digitalizált, régi fondok</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#adatellen%C5%91rz%C3%A9s-1"><i class="fa fa-check"></i><b>7.7</b> Adatellenőrzés</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#%C3%A9vek-ellen%C5%91rz%C3%A9se-18002024"><i class="fa fa-check"></i><b>7.7.1</b> Évek ellenőrzése (1800–2024)</a></li>
+<li class="chapter" data-level="7.7.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#leg%C3%B6rd%C3%BCl%C5%91-lista-rakt%C3%A1ri-%C3%A9p%C3%BClet"><i class="fa fa-check"></i><b>7.7.2</b> Legördülő lista – Raktári épület</a></li>
+<li class="chapter" data-level="7.7.3" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#leg%C3%B6rd%C3%BCl%C5%91-lista-digitaliz%C3%A1lva"><i class="fa fa-check"></i><b>7.7.3</b> Legördülő lista – Digitalizálva</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#statisztik%C3%A1k"><i class="fa fa-check"></i><b>7.8</b> Statisztikák</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#alapstatisztik%C3%A1k"><i class="fa fa-check"></i><b>7.8.1</b> Alapstatisztikák</a></li>
+<li class="chapter" data-level="7.8.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#felt%C3%A9teles-sz%C3%A1mol%C3%A1s"><i class="fa fa-check"></i><b>7.8.2</b> Feltételes számolás</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#excel-f%C3%BCggv%C3%A9nyek"><i class="fa fa-check"></i><b>7.9</b> Excel függvények</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#cellahivatkoz%C3%A1sok-r%C3%B6gz%C3%ADt%C3%A9se"><i class="fa fa-check"></i><b>7.9.1</b> Cellahivatkozások rögzítése</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#vizualiz%C3%A1ci%C3%B3"><i class="fa fa-check"></i><b>7.10</b> Vizualizáció</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#kimutat%C3%A1s-pivot-t%C3%A1bla-%C3%A9p%C3%BCletek-szerinti-megoszl%C3%A1s"><i class="fa fa-check"></i><b>7.10.1</b> Kimutatás (Pivot tábla) – Épületek szerinti megoszlás</a></li>
+<li class="chapter" data-level="7.10.2" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#grafikon"><i class="fa fa-check"></i><b>7.10.2</b> Grafikon</a></li>
+<li class="chapter" data-level="7.10.3" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#munkalap-%C3%A1tnevez%C3%A9se-1"><i class="fa fa-check"></i><b>7.10.3</b> Munkalap átnevezése</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#gyakori-hib%C3%A1k-1"><i class="fa fa-check"></i><b>7.11</b> Gyakori hibák</a></li>
+<li class="chapter" data-level="7.12" data-path="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"><a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-5"><i class="fa fa-check"></i><b>7.12</b> Ellenőrző kérdések</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kolofon.html"><a href="kolofon.html"><i class="fa fa-check"></i>Kolofon</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Készült bookdown használatával</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Adatbázisépítés I.</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="excel-alapok-i-adatstruktúrák" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Excel alapok I – Adatstruktúrák<a href="excel-alapok-i-adatstruktúrák.html#excel-alapok-i-adatstrukt%C3%BAr%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Az Excelben nem elég tudni gombokat nyomni – először meg kell érteni, <strong>hogyan érdemes az adatokat elrendezni</strong>. Ez a fejezet arról szól, hogyan gondolkozzunk levéltárosként az adatstruktúráról, mielőtt egy sort is begépelnénk.</p>
+<hr />
+<div id="a-munkafüzet-felépítése" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> A munkafüzet felépítése<a href="excel-alapok-i-adatstruktúrák.html#a-munkaf%C3%BCzet-fel%C3%A9p%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az Excel fájl neve: <strong>munkafüzet</strong> (<em>workbook</em>). Egy munkafüzet több <strong>munkalapból</strong> (<em>worksheet</em>) áll – ezek a füzet fülei.</p>
+<pre><code>Munkafüzet (Fondnyilvantartas.xlsx)
+│
+├── Fondok        ← 1. munkalap
+├── Kutatók       ← 2. munkalap
+└── Referencia    ← 3. munkalap (segédtáblák)</code></pre>
+<p><strong>Jó ökölszabály:</strong> Egy munkalap = egy jól körülhatárolt téma. Ne zsúfoljunk mindent egy lapra.</p>
+<div id="a-tábla-anatómiája" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> A tábla anatómiája<a href="excel-alapok-i-adatstruktúrák.html#a-t%C3%A1bla-anat%C3%B3mi%C3%A1ja" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A munkalapon belül az adatokat <strong>táblázatban</strong> (<em>tábla</em>) tároljuk:</p>
+<pre><code>       A            B                C          D
+1   Jelzet      Fond_neve       Kezdő_év    Záró_év      ← FEJLÉC SOR
+2   XIX-A-1     Miniszterelnökség  1944       1949        ← 1. rekord
+3   XIX-I-1     VKM                1945       1951        ← 2. rekord
+4   XXVIII-M-19 MNDSZ             1948       1955        ← 3. rekord</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Fogalom</th>
+<th>Magyarul</th>
+<th>Mit jelent?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Row</td>
+<td>Sor</td>
+<td>Egyetlen rekord (egy fond, egy irat, egy kutató)</td>
+</tr>
+<tr class="even">
+<td>Column</td>
+<td>Oszlop</td>
+<td>Egyetlen mező (jelzet, év, terjedelem…)</td>
+</tr>
+<tr class="odd">
+<td>Cell</td>
+<td>Cella</td>
+<td>Egy adat: sor × oszlop metszéspontja</td>
+</tr>
+<tr class="even">
+<td>Header row</td>
+<td>Fejléc sor</td>
+<td>Az 1. sor – az oszlopok neve</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="adattípusok-mit-tud-tárolni-egy-cella" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Adattípusok – Mit tud tárolni egy cella?<a href="excel-alapok-i-adatstruktúrák.html#adatt%C3%ADpusok-mit-tud-t%C3%A1rolni-egy-cella" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az Excel minden cellában megpróbálja <strong>felismerni</strong>, milyen típusú adatot adtunk meg. Ez automatikus, de nem mindig helyes – ezért kell tudnunk, mit várunk el.</p>
+<div id="a-négy-alapvető-típus" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> A négy alapvető típus<a href="excel-alapok-i-adatstruktúrák.html#a-n%C3%A9gy-alapvet%C5%91-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Típus</th>
+<th>Excel neve</th>
+<th>Levéltári példa</th>
+<th>Igazítás</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Szöveg</strong></td>
+<td>Text</td>
+<td>Jelzet, fond neve, raktár helye</td>
+<td>Bal</td>
+</tr>
+<tr class="even">
+<td><strong>Szám</strong></td>
+<td>Number</td>
+<td>Terjedelem (ifm), dobozszám</td>
+<td>Jobb</td>
+</tr>
+<tr class="odd">
+<td><strong>Dátum</strong></td>
+<td>Date</td>
+<td>Keletkezési dátum, feldolgozás dátuma</td>
+<td>Jobb</td>
+</tr>
+<tr class="even">
+<td><strong>Logikai</strong></td>
+<td>Logical</td>
+<td>Digitalizálva? (IGAZ/HAMIS)</td>
+<td>Közép</td>
+</tr>
+</tbody>
+</table>
+<div class="blueblock">
+<p><strong>Fontos!</strong> Az Excel a <em>megjelenést</em> és a <em>tényleges típust</em> külön kezeli. Az <code>1950</code> kinézhet számnak, de ha szövegként tárolja, nem tudunk rá számolni.</p>
+</div>
+</div>
+<div id="hogyan-ismerjük-fel-a-típust" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Hogyan ismerjük fel a típust?<a href="excel-alapok-i-adatstruktúrák.html#hogyan-ismerj%C3%BCk-fel-a-t%C3%ADpust" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Szám:</strong> jobbra igazított, nem kezdődik aposztróffal<br />
+<strong>Szöveg:</strong> balra igazított (vagy aposztróffal kényszerített: <code>'01</code>)<br />
+<strong>Dátum:</strong> jobbra igazított, formátumtól függően pl. <code>1950.01.01</code><br />
+<strong>Hibás típus:</strong> kis <strong>zöld háromszög</strong> a cella sarkában – Excel figyelmeztet</p>
+<hr />
+</div>
+</div>
+<div id="levéltári-fogalmak-leképezése-mezőkre" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Levéltári fogalmak leképezése mezőkre<a href="excel-alapok-i-adatstruktúrák.html#lev%C3%A9lt%C3%A1ri-fogalmak-lek%C3%A9pez%C3%A9se-mez%C5%91kre" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A levéltári nyilvántartás célja, hogy a <strong>valós iratanyagot</strong> pontosan leírjuk. Ehhez először végiggondoljuk: <strong>mit akarunk nyilvántartani?</strong></p>
+<div id="a-levéltári-hierarchia" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> A levéltári hierarchia<a href="excel-alapok-i-adatstruktúrák.html#a-lev%C3%A9lt%C3%A1ri-hierarchia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>Levéltár
+│
+└── Fondfőcsoport (pl. XIX – Minisztériumok)
+    │
+    └── Fond (pl. XIX-A-1 Miniszterelnökség)
+        │
+        └── Sorozat / Állag (pl. iratok, naplók)
+            │
+            └── Doboz / Kötet
+                │
+                └── Irat</code></pre>
+<p><strong>Egyetlen lapos táblában</strong> ezt a hierarchiát nem lehet teljesen visszaadni – de levéltári alapnyilvántartáshoz általában <strong>fond szinten</strong> dolgozunk.</p>
+</div>
+<div id="fond-nyilvántartás-mezői-tervezési-folyamat" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Fond-nyilvántartás mezői – Tervezési folyamat<a href="excel-alapok-i-adatstruktúrák.html#fond-nyilv%C3%A1ntart%C3%A1s-mez%C5%91i-tervez%C3%A9si-folyamat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kérdezzük meg: <strong>Mit szeretnénk tudni minden fondról?</strong></p>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="33%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kérdés</th>
+<th>Mező neve</th>
+<th>Típus</th>
+<th>Példa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Melyik fond ez?</td>
+<td><code>Jelzet</code></td>
+<td>Szöveg</td>
+<td><code>XIX-A-1</code></td>
+</tr>
+<tr class="even">
+<td>Mi a neve?</td>
+<td><code>Fond_neve</code></td>
+<td>Szöveg</td>
+<td><code>Miniszterelnökség</code></td>
+</tr>
+<tr class="odd">
+<td>Mikor keletkezett?</td>
+<td><code>Kezdő_év</code></td>
+<td>Szám (egész)</td>
+<td><code>1944</code></td>
+</tr>
+<tr class="even">
+<td>Meddig tart?</td>
+<td><code>Záró_év</code></td>
+<td>Szám (egész)</td>
+<td><code>1949</code></td>
+</tr>
+<tr class="odd">
+<td>Mekkora?</td>
+<td><code>Terjedelem_ifm</code></td>
+<td>Szám (tizedes)</td>
+<td><code>79</code></td>
+</tr>
+<tr class="even">
+<td>Hol van fizikailag?</td>
+<td><code>Raktári_épület</code></td>
+<td>Szöveg</td>
+<td><code>I. épület</code></td>
+</tr>
+<tr class="odd">
+<td>Fel van-e dolgozva?</td>
+<td><code>Digitalizálva</code></td>
+<td>Szöveg (kód)</td>
+<td><code>Igen / Nem / Részben</code></td>
+</tr>
+<tr class="even">
+<td>Ki felelős érte?</td>
+<td><code>Kezelő_munkatárs</code></td>
+<td>Szöveg</td>
+<td><code>Kiss Katalin</code></td>
+</tr>
+</tbody>
+</table>
+<div class="orangebox">
+<p><strong>Tervezési hiba:</strong> Ha utólag kell új oszlopot felvenni, az nem tragédia – de az adatok újrabekérése már igen. Érdemes előre átgondolni!</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="mezőtervezési-elvek" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Mezőtervezési elvek<a href="excel-alapok-i-adatstruktúrák.html#mez%C5%91tervez%C3%A9si-elvek" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="egy-mező-egy-információ-atomicitás" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> 1. Egy mező = egy információ (atomicitás)<a href="excel-alapok-i-adatstruktúrák.html#egy-mez%C5%91-egy-inform%C3%A1ci%C3%B3-atomicit%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Rossz:</strong></p>
+<pre><code>Terjedelem
+5 ifm
+3 doboz + 2 kötet</code></pre>
+<p><strong>Jó:</strong></p>
+<pre><code>Terjedelem_ifm   Doboz_db   Kötet_db
+5                –          –
+–                3          2</code></pre>
+<p><strong>Miért fontos?</strong> Mert ha összevegyítjük az egységeket, nem tudunk összesíteni, rendezni, szűrni.</p>
+</div>
+<div id="jelzetek-szövegként-ne-számként" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> 2. Jelzetek: szövegként, ne számként!<a href="excel-alapok-i-adatstruktúrák.html#jelzetek-sz%C3%B6vegk%C3%A9nt-ne-sz%C3%A1mk%C3%A9nt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A jelzet (<code>XIX-A-1</code>, <code>XXVI-I-65</code>) <strong>szöveg típus</strong>, még akkor is, ha számot tartalmaz.</p>
+<p><strong>Miért?</strong></p>
+<ul>
+<li>A <code>001</code> vezető nullával szerepel → számmá alakítva <code>1</code> lesz</li>
+<li>A <code>XIX-A-1</code> kötőjeleket tartalmaz → Excel nem tudja számként kezelni</li>
+<li><strong>Rendezésnél</strong> különbség van: szöveg szerint <code>XXV-10</code> &lt; <code>XXV-2</code> (betűrendben), szám szerint fordított</li>
+</ul>
+<div class="blueblock">
+<p><strong>Trükk:</strong> Ha jelzetet viszünk be, amelyet az Excel számként értelmezhet (pl. <code>01</code>), tegyünk elé aposztrófot: <code>'01</code> – ezt az Excel szövegként tárolja.</p>
+</div>
+</div>
+<div id="évek-szám-vagy-szöveg" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> 3. Évek: szám vagy szöveg?<a href="excel-alapok-i-adatstruktúrák.html#%C3%A9vek-sz%C3%A1m-vagy-sz%C3%B6veg" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="46%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Helyzet</th>
+<th>Ajánlott típus</th>
+<th>Miért?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kerek évszám (<code>1950</code>)</td>
+<td><strong>Egész szám</strong></td>
+<td>Tudunk rá számolni, szűrni (pl. 1945 előtti fondok)</td>
+</tr>
+<tr class="even">
+<td>Bizonytalan (<code>1950?</code>)</td>
+<td><strong>Szöveg</strong></td>
+<td>A kérdőjel miatt nem lehet szám</td>
+</tr>
+<tr class="odd">
+<td>Dátumtartomány (<code>1950–1960</code>)</td>
+<td><strong>Két külön mező</strong></td>
+<td>Csak így szűrhetünk időszakra</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Helyes:</strong> <code>Kezdő_év</code> és <code>Záró_év</code> két külön, egész szám típusú mező.</p>
+</div>
+<div id="mértékegységek-külön" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> 4. Mértékegységek külön!<a href="excel-alapok-i-adatstruktúrák.html#m%C3%A9rt%C3%A9kegys%C3%A9gek-k%C3%BCl%C3%B6n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Rossz:</strong></p>
+<pre><code>Terjedelem
+5 ifm</code></pre>
+<p><strong>Jó:</strong></p>
+<pre><code>Terjedelem_ifm
+5</code></pre>
+<p>Az egységet <strong>az oszlop nevébe</strong> vagy egy <strong>külön Egység oszlopba</strong> tegyük – sosem a cellába az értékkel együtt!</p>
+</div>
+<div id="kódolt-értékek-legyen-lista" class="section level3 hasAnchor" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> 5. Kódolt értékek: legyen lista!<a href="excel-alapok-i-adatstruktúrák.html#k%C3%B3dolt-%C3%A9rt%C3%A9kek-legyen-lista" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha egy mező csak néhány értéket vehet fel, <strong>definiáljuk előre a kódokat</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Mező</th>
+<th>Megengedett értékek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Digitalizálva</code></td>
+<td><code>Igen</code>, <code>Nem</code>, <code>Részben</code></td>
+</tr>
+<tr class="even">
+<td><code>Raktári_épület</code></td>
+<td><code>I. épület</code>, <code>II. épület</code>, <code>III. épület</code></td>
+</tr>
+<tr class="odd">
+<td><code>Állapot</code></td>
+<td><code>Jó</code>, <code>Közepes</code>, <code>Rossz</code>, <code>Restaurált</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ez <strong>adatvalidáció</strong> alapja lesz – a következő fejezetben beállítjuk Excelben is.</p>
+<hr />
+</div>
+</div>
+<div id="hierarchikus-adat-lapos-táblában" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Hierarchikus adat lapos táblában<a href="excel-alapok-i-adatstruktúrák.html#hierarchikus-adat-lapos-t%C3%A1bl%C3%A1ban" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A levéltári hierarchia (fond → sorozat → doboz) lapos táblában csak bizonyos szintig ábrázolható. Az alábbi táblázat mutatja, hogyan kezelhetjük ezt Excelben:</p>
+<div id="megközelítés-1-fond-szintű-tábla-ajánlott-kezdőknek" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Megközelítés 1 – Fond szintű tábla (ajánlott kezdőknek)<a href="excel-alapok-i-adatstruktúrák.html#megk%C3%B6zel%C3%ADt%C3%A9s-1-fond-szint%C5%B1-t%C3%A1bla-aj%C3%A1nlott-kezd%C5%91knek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Minden sor egy fond:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Jelzet</th>
+<th>Fond_neve</th>
+<th>Kezdő_év</th>
+<th>Záró_év</th>
+<th>Terjedelem_ifm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XIX-A-1</td>
+<td>Miniszterelnökség</td>
+<td>1944</td>
+<td>1949</td>
+<td>79</td>
+</tr>
+<tr class="even">
+<td>XIX-I-1</td>
+<td>VKM</td>
+<td>1945</td>
+<td>1951</td>
+<td>447</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Előny:</strong> Egyszerű, könnyen kezelhető<br />
+<strong>Hátrány:</strong> Nem tároljuk a doboz szintű adatokat</p>
+</div>
+<div id="megközelítés-2-doboz-szintű-tábla" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Megközelítés 2 – Doboz szintű tábla<a href="excel-alapok-i-adatstruktúrák.html#megk%C3%B6zel%C3%ADt%C3%A9s-2-doboz-szint%C5%B1-t%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Minden sor egy doboz, és a fond adatait megismételjük:</p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="16%" />
+<col width="15%" />
+<col width="24%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fond_jelzet</th>
+<th>Fond_neve</th>
+<th>Doboz_sz</th>
+<th>Doboz_tartalom</th>
+<th>Terjedelem_ifm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XIX-A-1</td>
+<td>Miniszterelnökség</td>
+<td>1</td>
+<td>Minisztertanácsi jk. 1944–1945</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>XIX-A-1</td>
+<td>Miniszterelnökség</td>
+<td>2</td>
+<td>Minisztertanácsi jk. 1945–1946</td>
+<td>0.4</td>
+</tr>
+<tr class="odd">
+<td>XIX-I-1</td>
+<td>VKM</td>
+<td>1</td>
+<td>Általános iratok 1945</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Előny:</strong> Részletes<br />
+<strong>Hátrány:</strong> A fond neve ismétlődik → redundancia (ld. 1. fejezet)</p>
+<div class="greenblock">
+<p><strong>Jó megoldás:</strong> Két munkalap – <code>Fondok</code> (fond szintű adatok) és <code>Dobozok</code> (doboz szintű adatok, ahol a <code>Fond_jelzet</code> összeköti őket). Ez közelít a relációs modellhez.</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="referencia-segéd-táblák" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Referencia (segéd) táblák<a href="excel-alapok-i-adatstruktúrák.html#referencia-seg%C3%A9d-t%C3%A1bl%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A kódolt értékeket érdemes <strong>külön munkalapra</strong> gyűjteni. Ennek neve: <strong>referencia tábla</strong> vagy <strong>segédtábla</strong>.</p>
+<div id="példa-raktárak" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Példa: Raktárak<a href="excel-alapok-i-adatstruktúrák.html#p%C3%A9lda-rakt%C3%A1rak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>Referencia</code> munkalap:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Épület_kód</th>
+<th>Épület_neve</th>
+<th>Cím</th>
+<th>Kapacitás_ifm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I. épület</td>
+<td>Főépület</td>
+<td>Bp., Bécsi u. 1.</td>
+<td>2000</td>
+</tr>
+<tr class="even">
+<td>II. épület</td>
+<td>Melléképület</td>
+<td>Bp., Bécsi u. 3.</td>
+<td>1500</td>
+</tr>
+<tr class="odd">
+<td>III. épület</td>
+<td>Külső raktár</td>
+<td>Bp., Raktár u. 5.</td>
+<td>3000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Miért hasznos?</strong>
+- A <code>Fondok</code> lapon csak a rövid kódot tároljuk (<code>I. épület</code>)
+- Ha az épület neve változik, egy helyen javítjuk
+- Validációhoz ebből a listából húzzuk a dropdown értékeket</p>
+<hr />
+</div>
+</div>
+<div id="mezőnév-konvenciók" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Mezőnév-konvenciók<a href="excel-alapok-i-adatstruktúrák.html#mez%C5%91n%C3%A9v-konvenci%C3%B3k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A fejléc sorban lévő nevek az adatbázis-kezelés alapjai. Kövessük ezeket a szabályokat:</p>
+<table>
+<colgroup>
+<col width="45%" />
+<col width="35%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Szabály</th>
+<th>Rossz</th>
+<th>Jó</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nincs szóköz</td>
+<td><code>Fond neve</code></td>
+<td><code>Fond_neve</code></td>
+</tr>
+<tr class="even">
+<td>Nincs ékezet (adatbázis-kompatibilitáshoz)</td>
+<td><code>Kezdő év</code></td>
+<td><code>Kezdő_év</code> vagy <code>Kezdo_ev</code></td>
+</tr>
+<tr class="odd">
+<td>Rövid, de értelmes</td>
+<td><code>T</code></td>
+<td><code>Terjedelem_ifm</code></td>
+</tr>
+<tr class="even">
+<td>Egységes stílus</td>
+<td><code>FondNev</code>, <code>fond_jel</code></td>
+<td><code>Fond_neve</code>, <code>Fond_jelzet</code></td>
+</tr>
+<tr class="odd">
+<td>Egyedi az egész munkafüzetben</td>
+<td>két <code>Dátum</code> → melyik?</td>
+<td><code>Keletkezési_dátum</code>, <code>Feldolgozás_dátuma</code></td>
+</tr>
+</tbody>
+</table>
+<div class="orangebox">
+<p><strong>Miért számít?</strong> Ha Accessbe, SQL-be vagy más rendszerbe viszszük az adatokat, a szóközök és ékezetek problémát okozhatnak. Érdemes már Excelben tisztán tartani.</p>
+</div>
+<hr />
+</div>
+<div id="a-jó-struktúra-ellenőrzése-önálló-feladat" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> A jó struktúra ellenőrzése – Önálló feladat<a href="excel-alapok-i-adatstruktúrák.html#a-j%C3%B3-strukt%C3%BAra-ellen%C5%91rz%C3%A9se-%C3%B6n%C3%A1ll%C3%B3-feladat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nézzük meg a következő táblázatot és keressük meg a hibákat!</p>
+<p><strong>Hibás tábla:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Fond</th>
+<th>Adatok</th>
+<th>Terjedelem</th>
+<th>Raktár</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XIX-A-1 Miniszterelnökség</td>
+<td>1944–1949</td>
+<td>79 ifm</td>
+<td>I. épület</td>
+</tr>
+<tr class="even">
+<td>XIX-I-1</td>
+<td>1945–1951</td>
+<td>447 ifm</td>
+<td>II. épület</td>
+</tr>
+<tr class="odd">
+<td>XXVIII-M-19 MNDSZ</td>
+<td>1948-55</td>
+<td>1.6</td>
+<td>III</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>I. épület</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Azonosítható hibák:</strong>
+1. <code>Fond</code> oszlopban a jelzet és a fond neve <strong>összevonva</strong> → ketté kell választani
+2. <code>Adatok</code> oszlopban az évtartomány <strong>egy mezőben</strong> → <code>Kezdő_év</code> és <code>Záró_év</code> kell
+3. <code>Terjedelem</code> értékek mögött <strong>egység</strong> (<code>ifm</code>) is szerepel a cellában → az egység az oszlop nevébe kerül
+4. <code>Raktár</code> oszlopban <code>III</code> és <code>III. épület</code> – <strong>nem konzisztens</strong>
+5. <strong>Üres sor</strong> a 4. rekord helyén
+6. Dátumformátum inkonzisztens: <code>1944–1949</code> vs. <code>1948-55</code></p>
+<p><strong>Javított tábla:</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="15%" />
+<col width="14%" />
+<col width="12%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Jelzet</th>
+<th>Fond_neve</th>
+<th>Kezdő_év</th>
+<th>Záró_év</th>
+<th>Terjedelem_ifm</th>
+<th>Raktári_épület</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XIX-A-1</td>
+<td>Miniszterelnökség</td>
+<td>1944</td>
+<td>1949</td>
+<td>79</td>
+<td>I. épület</td>
+</tr>
+<tr class="even">
+<td>XIX-I-1</td>
+<td>VKM</td>
+<td>1945</td>
+<td>1951</td>
+<td>447</td>
+<td>II. épület</td>
+</tr>
+<tr class="odd">
+<td>XXVIII-M-19</td>
+<td>MNDSZ</td>
+<td>1948</td>
+<td>1955</td>
+<td>1.6</td>
+<td>III. épület</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="összefoglalás" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Összefoglalás<a href="excel-alapok-i-adatstruktúrák.html#%C3%B6sszefoglal%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az adatstruktúra tervezése <strong>megelőzi</strong> az Excelbe való begépelést. A legfontosabb elvek:</p>
+<ul>
+<li><strong>Egy mező = egy információ</strong> – atomicitás</li>
+<li><strong>Adattípus tudatosan</strong> – szöveg, szám, dátum nem keverhető</li>
+<li><strong>Jelzetek szövegként</strong>, évek egész számként</li>
+<li><strong>Mértékegység az oszlop nevébe</strong>, nem a cellába</li>
+<li><strong>Kódolt értékekhez referencia tábla</strong></li>
+<li><strong>Mezőnevek</strong> szóköz és ékezet nélkül, egységes stílusban</li>
+<li><strong>Hierarchia</strong> → több munkalap vagy több tábla</li>
+</ul>
+<hr />
+</div>
+<div id="ellenőrző-kérdések-3" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Ellenőrző kérdések<a href="excel-alapok-i-adatstruktúrák.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Mi a különbség a munkafüzet és a munkalap között?</li>
+<li>Milyen típusú adatot tároljunk egy jelzetmezőben (szöveg vagy szám)? Miért?</li>
+<li>Miért tároljuk a kezdő és záró évet két külön mezőben?</li>
+<li>Mit jelent az atomicitás elve? Hozzon levéltári példát a megsértésére!</li>
+<li>Miért nem szabad az egységet (pl. „ifm”) a terjedelem cellájába írni?</li>
+<li>Mire való a referencia tábla? Hozzon rá példát a levéltári nyilvántartásból!</li>
+<li>Hogyan ábrázolható a levéltári hierarchia lapos táblában? Milyen kompromisszumokkal jár?</li>
+<li>Milyen szabályokat kövessünk a mezőnevek kialakításakor?</li>
+<li>Mik a különbségek a szám és szöveg típusú adatok megjelenítésében Excelben?</li>
+<li>Keresse meg és javítsa a következő fejléc hibáit: <code>Fond neve</code>, <code>Kezdő dátum</code>, <code>T(ifm)</code>, <code>Raktár szám</code>!</li>
+</ol>
+</div>
+<div id="következő-fejezet-1" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Következő fejezet<a href="excel-alapok-i-adatstruktúrák.html#k%C3%B6vetkez%C5%91-fejezet-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A következő fejezetben az elméleti alapokra <strong>Excelt nyitunk</strong>: navigáció, fejléc kialakítása, formázás, szűrés, rendezés és adatvalidáció – a gyakorlatban.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="excel-vs-access---döntés-a-gyakorlatban.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="excel-alapok-gyakorlati-bevezetés.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["adatbazisepites.pdf", "adatbazisepites.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
