@@ -776,12 +776,12 @@ J3: Részben</code></pre></li>
 <td><code>=DARAB(A2:A32)</code></td>
 </tr>
 <tr class="odd">
-<td><strong>DARAB2</strong></td>
+<td><strong>DARAB2</strong> / <strong>COUNTA</strong></td>
 <td>Megszámolja, hány darab <strong>nem üres</strong> mező van a tartományban</td>
 <td><code>=DARAB2(A2:A32)</code></td>
 </tr>
 <tr class="even">
-<td><strong>DARABÜRES</strong></td>
+<td><strong>DARABÜRES</strong> / <strong>COUNTBLANK</strong></td>
 <td>Megszámolja, hány darab <strong>üres</strong> mező van a tartományban</td>
 <td><code>=DARABÜRES(A2:A32)</code></td>
 </tr>
@@ -821,17 +821,52 @@ J3: Részben</code></pre></li>
 <td><code>=DÁTUM(2022;3;9)</code> → 2022.03.09.</td>
 </tr>
 <tr class="even">
-<td><strong>FKERES</strong></td>
+<td><strong>FKERES</strong> / <strong>VLOOKUP</strong></td>
 <td>Listából keres ki egy értéket és visszaadja a kapcsolt adatot</td>
 <td><code>=FKERES(A2;$W$1:$Z$57;4;0)</code></td>
 </tr>
 <tr class="odd">
-<td><strong>ÖSSZEFŰZ</strong></td>
+<td><strong>ÖSSZEFŰZ</strong> / <strong>CONCATENATE</strong></td>
 <td>Két vagy több cella tartalmát fűzi össze</td>
 <td><code>=ÖSSZEFŰZ(A2;" ";B2)</code></td>
 </tr>
 </tbody>
 </table>
+<div class="orangebox">
+<p><strong>Függvénynevek Excel-verzió szerint</strong></p>
+<p>A feltételes számlálás függvénye verziónként eltérő nevet visel:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Funkció</th>
+<th>Magyar Excel (régebbi)</th>
+<th>Magyar Excel 365</th>
+<th>Angol Excel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feltételes számlálás</td>
+<td><code>DARABTELI</code></td>
+<td><code>DARABHA</code></td>
+<td><code>COUNTIF</code></td>
+</tr>
+<tr class="even">
+<td>Nem üres cellák</td>
+<td><code>DARAB2</code></td>
+<td><code>DARAB2</code></td>
+<td><code>COUNTA</code></td>
+</tr>
+<tr class="odd">
+<td>Üres cellák</td>
+<td><code>DARABÜRES</code></td>
+<td><code>DARABÜRES</code></td>
+<td><code>COUNTBLANK</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ha a <code>DARABTELI</code> hibát jelez, próbáljuk a <code>DARABHA</code> nevet. Ha az sem működik, az angol <code>COUNTIF</code> általában minden verzióban elfogadott. <strong>Mac Excelben</strong> a pontosvessző helyett <strong>vesszőt</strong> kell használni: <code>=COUNTIF(G2:G11,"Igen")</code></p>
+</div>
 <p><strong>Levéltári példák a szövegfüggvényekre:</strong></p>
 <p>A <code>BAL</code>, <code>KÖZÉP</code> és <code>JOBB</code> függvények jelzetkezelésnél hasznosak. Ha a jelzet formátuma <code>XXV-1</code>, és szeretnénk kinyerni a fondfőcsoport számát:</p>
 <pre><code>A2: XXV-1
@@ -892,13 +927,13 @@ B16: =MAX(C2:C11)</code></pre>
 <div id="feltételes-számolás" class="section level3 hasAnchor" number="7.9.2">
 <h3><span class="header-section-number">7.9.2</span> Feltételes számolás<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#felt%C3%A9teles-sz%C3%A1mol%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>A17: Digitalizált (Igen):
-B17: =DARABTELI(G2:G11;&quot;Igen&quot;)
+B17: =DARABTELI(G2:G11;&quot;Igen&quot;)    ← vagy: =DARABHA(G2:G11;&quot;Igen&quot;)  / =COUNTIF(G2:G11,&quot;Igen&quot;)
 
 A18: Részben:
-B18: =DARABTELI(G2:G11;&quot;Részben&quot;)
+B18: =DARABTELI(G2:G11;&quot;Részben&quot;)  ← vagy: =DARABHA(G2:G11;&quot;Részben&quot;)
 
 A19: Nem digitalizált:
-B19: =DARABTELI(G2:G11;&quot;Nem&quot;)</code></pre>
+B19: =DARABTELI(G2:G11;&quot;Nem&quot;)      ← vagy: =DARABHA(G2:G11;&quot;Nem&quot;)</code></pre>
 <p><strong>Mentés:</strong> Ctrl+S</p>
 </div>
 </div>
@@ -942,14 +977,14 @@ III. épület        2</code></pre>
 <h2><span class="header-section-number">7.11</span> Gyakori hibák<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html#gyakori-hib%C3%A1k-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Szűrés nem működik</strong> → Üres sorok vannak<br />
 <strong>Adatellenőrzés nincs</strong> → Rossz tartomány<br />
-<strong>DARAB2 rossz</strong> → Fejléc benne van a tartományban<br />
+<strong>DARAB2 / DARABHA rossz</strong> → Fejléc benne van a tartományban<br />
 <strong>Ablaktábla rögzítése nem működik</strong> → Rossz cellán állunk (A2 kell!)</p>
 <p><strong>Miről volt szó ebben a részben:</strong>
 1. Strukturált tábla (fejléc, sorok, nincs üres)
 2. Formázás (táblázat, ablaktábla rögzítése)
 3. Szűrés és rendezés
 4. Adatellenőrzés (számok, legördülő lista)
-5. Statisztikák (DARAB2, DARABTELI, ÁTLAG)
+5. Statisztikák (DARAB2, DARABTELI / DARABHA, ÁTLAG)
 6. Vizualizáció (kimutatás, grafikon)</p>
 </div>
 <div id="ellenőrző-kérdések-5" class="section level2 hasAnchor" number="7.12">
