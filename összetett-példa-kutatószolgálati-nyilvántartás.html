@@ -437,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="összetett-példa-kutatószolgálati-nyilvántartás" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">8</span> Összetett példa: Kutatószolgálati nyilvántartás<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#%C3%B6sszetett-p%C3%A9lda-kutat%C3%B3szolg%C3%A1lati-nyilv%C3%A1ntart%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az előző fejezetben egyetlen munkalappal dolgoztunk. Most egy <strong>valódi levéltári problémát</strong> oldunk meg: a kutatószolgálat teljes nyilvántartását Excelben, több egymásra hivatkozó munkalappal.</p>
+<p>Az előző fejezetben egyetlen munkalappal dolgoztunk. Most egy valódi levéltári problémát oldunk meg: a kutatószolgálat teljes nyilvántartását Excelben, több egymásra hivatkozó munkalappal.</p>
 <p>A kiindulópontot az Evangélikus Országos Levéltár papíralapú nyilvántartási rendszere adja, amely három dokumentumból áll:</p>
 <ul>
 <li><strong>Kutatói nyilvántartó lap</strong> – a kutató személyes adatai</li>
@@ -445,10 +445,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Kutatott anyagok jegyzéke</strong> – kiadott és visszavett iratok</li>
 </ul>
 <p>Ezeket fogjuk digitalizálni és összekapcsolni.</p>
+<div class="blueblock">
+<p><strong>Letölthető fájlok ehhez a fejezethez</strong></p>
+<p>A fejezet során elkészített munkafüzet két változatban érhető el:</p>
+<ul>
+<li><a href="Kutatoszolgalat_2026_v2.xlsx">Kutatoszolgalat_2026_v2.xlsx</a> – kész, kitöltött munkafüzet (minden képlettel)</li>
+<li><a href="Kutatoszolgalat_gyakorlo.xlsx">Kutatoszolgalat_gyakorlo.xlsx</a> – gyakorló sablon: az adatok benne vannak, a sárga képlet-cellák üresek – ezeket a fejezet lépései alapján kell kitölteni</li>
+</ul>
+</div>
 <hr />
 <div id="a-tervezés-mit-tároljunk-és-hogyan" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> A tervezés: Mit tároljunk és hogyan?<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#a-tervez%C3%A9s-mit-t%C3%A1roljunk-%C3%A9s-hogyan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Mielőtt egyetlen cellát is kitöltenénk, tervezzük meg a struktúrát!</p>
+<p>Mielőtt egyetlen cellát is kitöltenénk, tervezzük meg a struktúrát.</p>
 <div id="az-entitások-azonosítása" class="section level3 hasAnchor" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Az entitások azonosítása<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#az-entit%C3%A1sok-azonos%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kérdezzük meg: <strong>mi az, amiről adatot tárolunk?</strong></p>
@@ -463,8 +471,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">8.1.2</span> A kapcsolatok<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#a-kapcsolatok" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>Kutatók ──1:N── Látogatások ──1:N── Kérések</code></pre>
 <ul>
-<li>Egy kutató <strong>több alkalommal</strong> is jöhet → 1:N</li>
-<li>Egy látogatáson <strong>több anyagot</strong> is kérhet → 1:N</li>
+<li>Egy kutató <strong>több alkalommal</strong> is jöhet → 1:N kapcsolat</li>
+<li>Egy látogatáson <strong>több anyagot</strong> is kérhet → 1:N kapcsolat</li>
 </ul>
 </div>
 <div id="a-munkafüzet-felépítése-1" class="section level3 hasAnchor" number="8.1.3">
@@ -506,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div class="blueblock">
-<p><strong>Alapelv:</strong> Az adatot <strong>egyszer tároljuk</strong> – a többi lapra FKERES képlettel hivatkozunk. Ha a kutató emailje megváltozik, csak a <code>Kutatók</code> lapon javítjuk – a <code>Látogatások</code> és <code>Kérések</code> lapon automatikusan frissül.</p>
+<p><strong>Alapelv:</strong> Az adatot <strong>egyszer tároljuk</strong> – a többi lapra FKERES képlettel hivatkozunk. Ha a kutató e-mail-címe megváltozik, csak a <code>Kutatók</code> lapon javítjuk – a <code>Látogatások</code> és <code>Kérések</code> lapon automatikusan frissül.</p>
 </div>
 <hr />
 </div>
@@ -515,9 +523,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.2</span> 1. lépés – A Referencia munkalap<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#l%C3%A9p%C3%A9s-a-referencia-munkalap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Először hozzuk létre a segédlistákat, amelyekből a legördülő listák táplálkoznak.</p>
 <ol style="list-style-type: decimal">
-<li>Kattintsunk a <code>+</code> gombra az alsó lapfülsoron → új munkalap</li>
+<li>Kattintsunk a <code>+</code> gombra az alsó lapfülsoron – új munkalap jön létre</li>
 <li>Nevezzük el: <code>Referencia</code></li>
-<li>Írjuk be:</li>
+<li>Írjuk be az alábbi adatokat:</li>
 </ol>
 <pre><code>A1: Levéltárosok          B1: Egységek
 A2: Horváth Péter         B2: doboz
@@ -526,11 +534,11 @@ A4: Kiss Márton           B4: kötet
 A5: Fekete Judit          B5: fasciculus
 A6: Varga László          B6: téka</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>A lapfület jobb klikkeljük → <strong>Lapfül színe</strong> → szürke</li>
-<li>Jobb klikk → <strong>Elrejtés</strong> (a hallgatók ne lássák a háttérlistát)</li>
+<li>Jobb klikk a lapfülre → <strong>Lapfül színe</strong> → szürke</li>
+<li>Jobb klikk → <strong>Elrejtés</strong></li>
 </ol>
 <div class="orangebox">
-<p><strong>Miért rejtjük el?</strong> A <code>Referencia</code> lap technikai segédeszköz – nem adatbevitelre való. Ha látható marad, valaki véletlenül módosíthatja az értékeket, és a legördülő listák elromlanak.</p>
+<p><strong>Miért rejtjük el?</strong> A <code>Referencia</code> lap technikai segédeszköz – nem adatbevitelre való. Ha látható marad, valaki véletlenül módosíthatja az értékeket, és a legördülő listák elromlanak. Az elrejtett lapot bármikor visszahozhatjuk: jobb klikk bármely lapfülre → <strong>Megjelenítés</strong>.</p>
 </div>
 <hr />
 </div>
@@ -556,10 +564,12 @@ M1:  Személyi_ig_szám
 N1:  Kutatási_téma
 O1:  Engedély_lejárta
 P1:  Regisztráció_dátuma</code></pre>
-<p>Formázzuk meg a fejlécsort:
-1. Jelöljük ki A1:P1
-2. <strong>Félkövér</strong> + sötétkék kitöltőszín + fehér betűszín + középre igazítás
-3. <strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong> (előtte kattintsunk A2-re!)</p>
+<p>Formázzuk meg a fejlécsort:</p>
+<ol style="list-style-type: decimal">
+<li>Jelöljük ki A1:P1</li>
+<li><strong>Félkövér</strong> + sötétkék kitöltőszín + fehér betűszín + középre igazítás</li>
+<li>Kattintsunk az <strong>A2</strong> cellára, majd: <strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
+</ol>
 </div>
 <div id="adattípusok-beállítása" class="section level3 hasAnchor" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Adattípusok beállítása<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#adatt%C3%ADpusok-be%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -652,7 +662,7 @@ P1:  Regisztráció_dátuma</code></pre>
 </tr>
 </tbody>
 </table>
-<p>A kész <code>Kutatók</code> munkalap (a legfontosabb oszlopok):</p>
+<p>A kész <code>Kutatók</code> munkalap (a legfontosabb oszlopok látszanak):</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="kepek/01_kutato%CC%81k.jpg" alt="A Kutatók munkalap – minden kutató egyszer, egy sorban" width="100%" />
 <p class="caption">
@@ -670,28 +680,68 @@ P1:  Regisztráció_dátuma</code></pre>
 <h3><span class="header-section-number">8.4.1</span> Fejléc<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>A1: Látogatás_ID
 B1: Kutató_ID
-C1: Kutató_neve       ← FKERES tölti ki!
-D1: Kutatószám        ← FKERES tölti ki!
+C1: Kutató_neve          ← FKERES tölti ki!
+D1: Kutatószám           ← FKERES tölti ki!
 E1: Dátum
 F1: Kiadó_levéltáros
 G1: Megjegyzés
-H1: Engedély_lejárta  ← FKERES tölti ki!</code></pre>
-<p>A C, D és H oszlopok fejlécét jelöljük meg vizuálisan (pl. sárga kitöltőszín) – ezek képlet-oszlopok, nem kézzel töltjük ki.</p>
+H1: Engedély_lejárta     ← FKERES tölti ki!
+I1: Kért_tételek_száma   ← DARABHA tölti ki!
+J1: Kutató_email         ← FKERES tölti ki!
+K1: Kutató_intézmény     ← FKERES tölti ki!</code></pre>
+<p>A C, D, H, I, J, K oszlopok fejlécét jelöljük meg sárga kitöltőszínnel – ezek képlet-oszlopok, nem kézzel töltjük ki.</p>
 </div>
 <div id="a-fkeres-képletek-beállítása" class="section level3 hasAnchor" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> A FKERES képletek beállítása<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#a-fkeres-k%C3%A9pletek-be%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A 2. adatsorban (3. sor) adjuk meg a képleteket:</p>
+<p>Kattintsunk a <strong>C3</strong> cellára, majd az <strong>fx</strong> gombra (függvényvarázsló). Keressük meg az FKERES függvényt és töltsük ki a négy mezőt:</p>
 <p><strong>Kutató neve (C3):</strong></p>
 <pre><code>=HAHIBA(FKERES(B3;Kutatók!$A:$C;3;0);&quot;– nincs találat –&quot;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Mező</th>
+<th>Érték</th>
+<th>Magyarázat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keresési_érték</td>
+<td><code>B3</code></td>
+<td>A Kutató_ID, amit keresünk</td>
+</tr>
+<tr class="even">
+<td>Tábla_tömb</td>
+<td><code>Kutatók!$A:$C</code></td>
+<td>A Kutatók lap A–C oszlopai</td>
+</tr>
+<tr class="odd">
+<td>Oszlop_index</td>
+<td><code>3</code></td>
+<td>A 3. oszlop = C = Név</td>
+</tr>
+<tr class="even">
+<td>Tartomány_keresés</td>
+<td><code>0</code></td>
+<td>Pontos egyezés</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Kutatószám (D3):</strong></p>
 <pre><code>=HAHIBA(FKERES(B3;Kutatók!$A:$B;2;0);&quot;&quot;)</code></pre>
 <p><strong>Engedély lejárta (H3):</strong></p>
 <pre><code>=HAHIBA(FKERES(B3;Kutatók!$A:$O;15;0);&quot;&quot;)</code></pre>
-<p>A képleteket másoljuk le az összes adatsorra.</p>
+<p><strong>Kért tételek száma (I3)</strong> – hány anyagot kért ezen a látogatáson (a Kérések lapból):</p>
+<pre><code>=DARABHA(Kérések!$B:$B;A3)</code></pre>
+<p><strong>Kutató e-mail (J3):</strong></p>
+<pre><code>=HAHIBA(FKERES(B3;Kutatók!$A:$I;9;0);&quot;&quot;)</code></pre>
+<p><strong>Kutató intézménye (K3):</strong></p>
+<pre><code>=HAHIBA(FKERES(B3;Kutatók!$A:$L;12;0);&quot;&quot;)</code></pre>
+<p>A képleteket másoljuk le az összes adatsorra (fogjuk meg a C3 cella jobb alsó sarkát és húzzuk le).</p>
 <div class="blueblock">
 <p><strong>A HAHIBA függvény szerepe:</strong></p>
 <pre><code>=HAHIBA(képlet; ha_hiba_akkor_ez)</code></pre>
-<p>Ha a FKERES nem talál egyező <code>Kutató_ID</code>-t (pl. elgépelték), ne jelenjen meg csúnya <code>#HIÁNYZIK</code> hibaüzenet, hanem egy értelmes szöveg vagy üres cella.</p>
+<p>Ha a FKERES nem talál egyező <code>Kutató_ID</code>-t (pl. elgépelték), ne jelenjen meg <code>#HIÁNYZIK</code> hibaüzenet, hanem egy értelmes szöveg vagy üres cella. A HAHIBA mindig FKERES köré kerül.</p>
 </div>
 </div>
 <div id="legördülő-lista-kiadó-levéltáros" class="section level3 hasAnchor" number="8.4.3">
@@ -739,10 +789,24 @@ H1: Engedély_lejárta  ← FKERES tölti ki!</code></pre>
 <td>2026.02.17</td>
 <td>Horváth Péter</td>
 </tr>
+<tr class="even">
+<td>104</td>
+<td>3</td>
+<td><em>Tóth Béla</em></td>
+<td>2026.02.18</td>
+<td>Kiss Márton</td>
+</tr>
+<tr class="odd">
+<td>105</td>
+<td>2</td>
+<td><em>Nagy Anna</em></td>
+<td>2026.03.03</td>
+<td>Szabó Erzsébet</td>
+</tr>
 </tbody>
 </table>
-<p><em>* A dőlt értékek FKERES-sel töltődnek – nem kell kézzel beírni!</em></p>
-<p>A sárga oszlopok a FKERES képletekkel kitöltött cellák – ezeket nem kell kézzel beírni:</p>
+<p><em>* A dőlt értékek FKERES-sel töltődnek – nem kell kézzel beírni.</em></p>
+<p>A sárga oszlopok képletekkel töltődnek ki automatikusan:</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="kepek/02_la%CC%81togata%CC%81sok.jpg" alt="A Látogatások munkalap – a sárga oszlopok FKERES képletekkel töltődnek" width="100%" />
 <p class="caption">
@@ -760,15 +824,18 @@ H1: Engedély_lejárta  ← FKERES tölti ki!</code></pre>
 <h3><span class="header-section-number">8.5.1</span> Fejléc<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#fejl%C3%A9c-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>A1: Kérés_ID
 B1: Látogatás_ID
-C1: Kutató_neve       ← FKERES (Látogatások lapból)
-D1: Dátum             ← FKERES (Látogatások lapból)
+C1: Kutató_neve        ← FKERES (Látogatások lapból)
+D1: Dátum              ← FKERES (Látogatások lapból)
 E1: Jelzet_fond
 F1: Jelzet_állag
 G1: Mennyiség
 H1: Egység
 I1: Visszavéve
 J1: Reponálva
-K1: Reponáló_levéltáros</code></pre>
+K1: Reponáló_levéltáros
+L1: Kutató_ID          ← FKERES (Látogatások lapból)
+M1: Kutatószám         ← beágyazott FKERES
+N1: Kutatási_téma      ← beágyazott FKERES</code></pre>
 </div>
 <div id="fkeres-képletek" class="section level3 hasAnchor" number="8.5.2">
 <h3><span class="header-section-number">8.5.2</span> FKERES képletek<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#fkeres-k%C3%A9pletek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -776,18 +843,27 @@ K1: Reponáló_levéltáros</code></pre>
 <pre><code>=HAHIBA(FKERES(B3;Látogatások!$A:$C;3;0);&quot;&quot;)</code></pre>
 <p><strong>Látogatás dátuma (D3)</strong> – a Látogatások lapból:</p>
 <pre><code>=HAHIBA(FKERES(B3;Látogatások!$A:$E;5;0);&quot;&quot;)</code></pre>
+<p><strong>Kutató_ID visszakeresve (L3):</strong></p>
+<pre><code>=HAHIBA(FKERES(B3;Látogatások!$A:$B;2;0);&quot;&quot;)</code></pre>
+<p><strong>Kutatószám (M3)</strong> – beágyazott FKERES: először a Látogatások lapból kérjük le a Kutató_ID-t, majd azzal keresünk a Kutatók lapon:</p>
+<pre><code>=HAHIBA(FKERES(FKERES(B3;Látogatások!$A:$B;2;0);Kutatók!$A:$B;2;0);&quot;&quot;)</code></pre>
+<p><strong>Kutatási téma (N3)</strong> – szintén beágyazott FKERES:</p>
+<pre><code>=HAHIBA(FKERES(FKERES(B3;Látogatások!$A:$B;2;0);Kutatók!$A:$N;14;0);&quot;&quot;)</code></pre>
 <div class="greenblock">
 <p><strong>Kétlépéses hivatkozás:</strong> A <code>Kérések</code> lap a <code>Látogatások</code> lapból kérdezi le a kutató nevét – a <code>Látogatások</code> lap pedig a <code>Kutatók</code> lapból. Ez a láncolat pontosan a relációs modellt tükrözi: minden adat egyszer tárolódik, a többi tábla csak hivatkozik rá.</p>
 </div>
 </div>
 <div id="legördülő-listák" class="section level3 hasAnchor" number="8.5.3">
 <h3><span class="header-section-number">8.5.3</span> Legördülő listák<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#leg%C3%B6rd%C3%BCl%C5%91-list%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Egység (H3:H200):</strong>
-- Forrás: <code>=Referencia!$B$2:$B$6</code></p>
-<p><strong>Reponálva (J3:J200):</strong>
-- Forrás: <code>"I,N"</code> (közvetlenül megadva, nem külön listából)</p>
-<p><strong>Reponáló levéltáros (K3:K200):</strong>
-- Forrás: <code>=Referencia!$A$2:$A$6</code></p>
+<p><strong>Egység (H3:H200):</strong></p>
+<ol style="list-style-type: decimal">
+<li>Jelöljük ki H3:H200</li>
+<li>Adatok → Adatellenőrzés → Lista → Forrás: <code>=Referencia!$B$2:$B$6</code></li>
+</ol>
+<p><strong>Reponálva (J3:J200):</strong></p>
+<p>Forrás: <code>"I,N"</code> – közvetlenül megadva, nem külön listából.</p>
+<p><strong>Reponáló levéltáros (K3:K200):</strong></p>
+<p>Forrás: <code>=Referencia!$A$2:$A$6</code></p>
 </div>
 <div id="feltételes-formázás-mi-van-még-kint" class="section level3 hasAnchor" number="8.5.4">
 <h3><span class="header-section-number">8.5.4</span> Feltételes formázás – Mi van még kint?<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#felt%C3%A9teles-form%C3%A1z%C3%A1s-mi-van-m%C3%A9g-kint" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -797,10 +873,9 @@ K1: Reponáló_levéltáros</code></pre>
 <li><strong>Kezdőlap → Feltételes formázás → Új szabály</strong></li>
 <li>„Képlettel meghatározott cellák formázása”</li>
 <li>Képlet: <code>=$J3="N"</code></li>
-<li>Formátum: narancs kitöltőszín</li>
-<li>OK</li>
+<li>Formátum: narancs kitöltőszín → OK</li>
 </ol>
-<p>Most minden sor, ahol a Reponálva = „N”, narancsszínnel jelenik meg – azonnal látjuk, mi van még kint!</p>
+<p>Most minden sor, ahol a Reponálva = „N”, narancsszínnel jelenik meg – azonnal látjuk, mi van még kint.</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="kepek/03_ke%CC%81re%CC%81sek.jpg" alt="A Kérések munkalap – zöld: visszahozva, narancs: még kint van" width="100%" />
 <p class="caption">
@@ -841,7 +916,7 @@ K1: Reponáló_levéltáros</code></pre>
 <tr class="even">
 <td>B4</td>
 <td>Aktív engedélyek (lejárat &gt; ma)</td>
-<td><code>=DARABTELI(Kutatók!O3:O1000;"&gt;"&amp;MA())</code></td>
+<td><code>=DARABHA(Kutatók!O3:O1000;"&gt;"&amp;MA())</code></td>
 </tr>
 </tbody>
 </table>
@@ -894,41 +969,67 @@ K1: Reponáló_levéltáros</code></pre>
 <tr class="even">
 <td>B12</td>
 <td>Visszahozva (reponálva)</td>
-<td><code>=DARABTELI(Kérések!J3:J1000;"I")</code></td>
+<td><code>=DARABHA(Kérések!J3:J1000;"I")</code></td>
 </tr>
 <tr class="odd">
 <td>B13</td>
 <td>Még kint lévő anyagok</td>
-<td><code>=DARABTELI(Kérések!J3:J1000;"N")</code></td>
+<td><code>=DARABHA(Kérések!J3:J1000;"N")</code></td>
 </tr>
 <tr class="even">
 <td>B14</td>
-<td>Kint lévő anyagok %-a</td>
-<td><code>=HAHIBA(B13/B11;0)</code> → százalék formátum</td>
+<td>Kint lévő anyagok aránya</td>
+<td><code>=HAHIBA(B13/B11;0)</code> – százalék formátum</td>
 </tr>
 </tbody>
 </table>
+<div class="orangebox">
+<p><strong>Függvénynév-eltérések:</strong> A feltételes számlálás függvényének neve verziónként eltérhet.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Verzió</th>
+<th>Függvénynév</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Magyar Excel (régebbi)</td>
+<td><code>DARABTELI</code></td>
+</tr>
+<tr class="even">
+<td>Magyar Excel 365</td>
+<td><code>DARABHA</code></td>
+</tr>
+<tr class="odd">
+<td>Angol Excel</td>
+<td><code>COUNTIF</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ha az egyik nevet nem fogadja el az Excel, próbáljuk meg a másikat.</p>
+</div>
 </div>
 </div>
 <div id="a-ma-függvény" class="section level3 hasAnchor" number="8.6.2">
 <h3><span class="header-section-number">8.6.2</span> A MA() függvény<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#a-ma-f%C3%BCggv%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Az aktív engedélyek számításában a <code>MA()</code> függvény a mai dátumot adja vissza – ezért ez az összesítő <strong>minden nap automatikusan frissül</strong>, nem kell kézzel módosítani.</p>
-<pre><code>=DARABTELI(Kutatók!O3:O1000;&quot;&gt;&quot;&amp;MA())</code></pre>
-<p>Értelmezés: Számoljuk meg azokat a sorokat a <code>Kutatók</code> lapon, ahol az <code>Engedély_lejárta</code> értéke nagyobb (azaz későbbi), mint a mai nap.</p>
+<pre><code>=DARABHA(Kutatók!O3:O1000;&quot;&gt;&quot;&amp;MA())</code></pre>
+<p>Értelmezés: számoljuk meg azokat a sorokat a <code>Kutatók</code> lapon, ahol az <code>Engedély_lejárta</code> értéke nagyobb (azaz későbbi), mint a mai nap.</p>
 </div>
 <div id="az-indexhol.van-kombináció" class="section level3 hasAnchor" number="8.6.3">
 <h3><span class="header-section-number">8.6.3</span> Az INDEX/HOL.VAN kombináció<a href="összetett-példa-kutatószolgálati-nyilvántartás.html#az-indexhol.van-kombin%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A legtöbbet látogató kutató nevének meghatározásához összetettebb képlet kell:</p>
 <pre><code>=INDEX(Látogatások!C3:C1000;
   HOL.VAN(
-    MAX(DARABTELI(Látogatások!C3:C1000;Látogatások!C3:C1000));
-    DARABTELI(Látogatások!C3:C1000;Látogatások!C3:C1000);
+    MAX(DARABHA(Látogatások!C3:C1000;Látogatások!C3:C1000));
+    DARABHA(Látogatások!C3:C1000;Látogatások!C3:C1000);
     0
   )
 )</code></pre>
-<p><strong>Hogyan működik lépésről lépésre?</strong></p>
+<p>Hogyan működik lépésről lépésre?</p>
 <ol style="list-style-type: decimal">
-<li><code>DARABTELI(C3:C1000; C3:C1000)</code> – minden névhez megszámolja, hányszor szerepel a listában → egy számtömböt ad vissza</li>
+<li><code>DARABHA(C3:C1000; C3:C1000)</code> – minden névhez megszámolja, hányszor szerepel a listában</li>
 <li><code>MAX(...)</code> – megkeresi a legnagyobb számot (= legtöbb látogatás)</li>
 <li><code>HOL.VAN(MAX...; tömb; 0)</code> – megkeresi, hányadik helyen van az a sor, ahol ez a maximum előfordul</li>
 <li><code>INDEX(C3:C1000; ...)</code> – visszaadja az adott pozícióban lévő nevet</li>
@@ -1036,7 +1137,7 @@ K1: Reponáló_levéltáros</code></pre>
 <tr class="odd">
 <td>Lejár valakinek az engedélye?</td>
 <td>Minden lapot megnézünk</td>
-<td><code>=DARABTELI(Kutatók!O:O;"&lt;"&amp;MA()+30)</code></td>
+<td><code>=DARABHA(Kutatók!O:O;"&lt;"&amp;MA()+30)</code></td>
 </tr>
 </tbody>
 </table>
@@ -1061,12 +1162,12 @@ K1: Reponáló_levéltáros</code></pre>
 <tr class="odd">
 <td><strong>FKERES</strong></td>
 <td>Látogatások, Kérések</td>
-<td>Kutató neve / kutatószám / dátum behúzása ID alapján</td>
+<td>Kutató neve, kutatószám, dátum, email, intézmény behúzása azonosító alapján</td>
 </tr>
 <tr class="even">
 <td><strong>HAHIBA</strong></td>
 <td>Látogatások, Kérések</td>
-<td>Elrejti a <code>#HIÁNYZIK</code> hibát, ha az ID nincs meg</td>
+<td>Elrejti a <code>#HIÁNYZIK</code> hibát, ha az azonosító nincs meg</td>
 </tr>
 <tr class="odd">
 <td><strong>DARAB2</strong></td>
@@ -1074,14 +1175,14 @@ K1: Reponáló_levéltáros</code></pre>
 <td>Nem üres cellák megszámlálása (rekordok száma)</td>
 </tr>
 <tr class="even">
-<td><strong>DARABTELI</strong></td>
-<td>Statisztika</td>
-<td>Feltételes számlálás (aktív engedélyek, kint lévő anyagok)</td>
+<td><strong>DARABHA</strong></td>
+<td>Statisztika, Látogatások</td>
+<td>Feltételes számlálás (aktív engedélyek, kint lévő anyagok, kért tételek)</td>
 </tr>
 <tr class="odd">
 <td><strong>MA()</strong></td>
 <td>Statisztika</td>
-<td>Mindig a mai dátumot adja – automatikus frissülés</td>
+<td>Mindig a mai dátumot adja – automatikus napi frissülés</td>
 </tr>
 <tr class="even">
 <td><strong>MAX</strong></td>
@@ -1102,9 +1203,9 @@ K1: Reponáló_levéltáros</code></pre>
 <ol style="list-style-type: decimal">
 <li>Miért érdemes a legördülő listák forrását külön <code>Referencia</code> munkalapra gyűjteni?</li>
 <li>Mit csinál a HAHIBA függvény? Miért fontos FKERES-sel együtt használni?</li>
-<li>Hogyan hivatkozik a <code>Kérések</code> lap a <code>Kutatók</code> lap adataira? (Hány lépéses a láncolat?)</li>
+<li>Hogyan hivatkozik a <code>Kérések</code> lap a <code>Kutatók</code> lap adataira? Hány lépéses a láncolat?</li>
 <li>Mire jó a <code>MA()</code> függvény a statisztikai összesítőkben?</li>
-<li>Mi a különbség a DARAB és a DARAB2 függvény között?</li>
+<li>Mi a különbség a DARAB2 és a DARABHA függvény között?</li>
 <li>Miért narancsszínű a feltételes formázásnál a <code>=$J3="N"</code> képlet – és miért fontos a <code>$</code> a J előtt, de nem a 3 előtt?</li>
 <li>Milyen adatot nem lehet digitalizálni ebből a rendszerből? (Gondoljunk az eredeti papírlapokra!)</li>
 <li>Hasonlítsuk össze: mit tudna ez a rendszer Accessben, amit Excelben nem tud?</li>
