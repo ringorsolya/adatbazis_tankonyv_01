@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>16 Jelentések: Nyomtatható listák készítése | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="16 Jelentések: Nyomtatható listák készítése | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="16 Jelentések: Nyomtatható listák készítése | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="lekérdezések-adatok-szűrése-és-elemzése.html"/>
+<link rel="next" href="összefoglalás-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,255 +733,417 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
-</div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table>
-<thead>
-<tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
-</tr>
-<tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
-</tr>
-<tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
-</tr>
-<tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
-</tr>
-<tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
-</tr>
-<tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
-</div>
-</div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
-</div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
-</ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
+<div id="jelentések-nyomtatható-listák-készítése" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">16</span> Jelentések: Nyomtatható listák készítése<a href="jelentések-nyomtatható-listák-készítése.html#jelent%C3%A9sek-nyomtathat%C3%B3-list%C3%A1k-k%C3%A9sz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bevezetés-6" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Bevezetés<a href="jelentések-nyomtatható-listák-készítése.html#bevezet%C3%A9s-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az adatokat eddig táblákban, űrlapokon és lekérdezésekben néztük. De mi van, ha nyomtatni szeretnénk őket? Vagy PDF-be exportálni?</p>
+<p>Erre valók a <strong>jelentések</strong> (reports)!</p>
+<p>A jelentés:</p>
 <ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
-</ul></li>
-<li><strong>Hibajelzés:</strong>
+<li><strong>Nyomtatásra</strong> optimalizált formátum</li>
+<li><strong>Professzionális</strong> megjelenés (fejléc, lábléc, oldalszámok)</li>
+<li><strong>Csoportosítható</strong> (pl. kutatók intézmény szerint csoportosítva)</li>
+<li><strong>Exportálható</strong> (PDF, Word, Excel)</li>
+</ul>
+</div>
+<div id="egyszerű-jelentés-kutatók-listája" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Egyszerű jelentés: Kutatók listája<a href="jelentések-nyomtatható-listák-készítése.html#egyszer%C5%B1-jelent%C3%A9s-kutat%C3%B3k-list%C3%A1ja" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Készítsünk egy egyszerű nyomtatható kutatói listát!</p>
+<div id="lépés-jelentés-varázsló-indítása" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> 1. lépés: Jelentés varázsló indítása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-jelent%C3%A9s-var%C3%A1zsl%C3%B3-ind%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk egyszer a <code>tbl_Kutatók</code> táblára (kijelölés, NE megnyitás!)</li>
+<li><strong>Létrehozás</strong> fül → <strong>Jelentés</strong> gomb</li>
+</ol>
+<p>Az Access automatikusan készít egy jelentést!</p>
+</div>
+<div id="lépés-a-jelentés-megtekintése" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> 2. lépés: A jelentés megtekintése<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-a-jelent%C3%A9s-megtekint%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most egy formázott listát látunk:</p>
+<pre><code>┌─────────────────────────────────────────────┐
+│                tbl_Kutatók                  │  ← Jelentés fejléce
+│              2024. március 15.              │
+├─────────────────────────────────────────────┤
+│ KutatóID  Név            Email      Intézmény│  ← Oszlopfejlécek
+├─────────────────────────────────────────────┤
+│    1      Kovács Anna    kovacs... ELTE BTK │
+│    2      Nagy Péter     nagy...   Független│
+│    3      Szabó Mária    szabo...  PTE BTK  │
+│   ...                                        │
+├─────────────────────────────────────────────┤
+│                      1. oldal                │  ← Oldal lábléce
+└─────────────────────────────────────────────┘</code></pre>
+</div>
+<div id="lépés-nyomtatási-kép-nézet" class="section level3 hasAnchor" number="16.2.3">
+<h3><span class="header-section-number">16.2.3</span> 3. lépés: Nyomtatási kép nézet<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-nyomtat%C3%A1si-k%C3%A9p-n%C3%A9zet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nézzük meg, hogyan nézne ki kinyomtatva:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Nézet</strong> gomb → <strong>Nyomtatási kép</strong> (Print Preview)</li>
+</ol>
+<p>Most látjuk a teljes oldalt, úgy, ahogy kinyomtatnánk.</p>
+<p><strong>Eszközök:</strong></p>
 <ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
+<li><strong>Zoom</strong> (nagyítás/kicsinyítés)</li>
+<li><strong>Egy/Két oldal</strong> nézet</li>
+<li><strong>Nyomtatás</strong> gomb (ha ténylegesen kinyomtatnánk)</li>
+<li><strong>PDF vagy XPS</strong> – Exportálás PDF-be</li>
+</ul>
+</div>
+<div id="lépés-pdf-exportálás" class="section level3 hasAnchor" number="16.2.4">
+<h3><span class="header-section-number">16.2.4</span> 4. lépés: PDF exportálás<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-pdf-export%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Exportáljuk PDF-be a listát:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Adatok</strong> fül → <strong>PDF vagy XPS</strong></li>
+<li>Válasszuk ki a helyet (pl. Asztalt)</li>
+<li>Fájlnév: <code>Kutatók_lista.pdf</code></li>
+<li><strong>Közzététel</strong></li>
+</ol>
+<p>Létrejött a PDF! Megnyithatjuk és kinyomtathatjuk.</p>
+</div>
+<div id="lépés-jelentés-mentése" class="section level3 hasAnchor" number="16.2.5">
+<h3><span class="header-section-number">16.2.5</span> 5. lépés: Jelentés mentése<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-jelent%C3%A9s-ment%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mentsük el a jelentést:</p>
+<ol style="list-style-type: decimal">
+<li>Zárjuk be a jelentést (✕)</li>
+<li>Az Access megkérdezi: “Mentsük?”</li>
+<li><strong>Igen</strong></li>
+<li>Név: <code>rpt_Kutatok_lista</code></li>
+<li><strong>OK</strong></li>
+</ol>
+<blockquote>
+<p><strong>Jó gyakorlat:</strong> A jelentések nevét <code>rpt_</code> előtaggal kezdjük (report = jelentés).</p>
+</blockquote>
+</div>
+</div>
+<div id="jelentés-testre-szabása" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Jelentés testre szabása<a href="jelentések-nyomtatható-listák-készítése.html#jelent%C3%A9s-testre-szab%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A jelentéseket is testre szabhatjuk, mint az űrlapokat!</p>
+<div id="lépés-tervezési-nézetre-váltás-2" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> 1. lépés: Tervezési nézetre váltás<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-tervez%C3%A9si-n%C3%A9zetre-v%C3%A1lt%C3%A1s-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Dupla kattintás az <code>rpt_Kutatok_lista</code> jelentésre (megnyitás)</li>
+<li><strong>Nézet</strong> gomb → <strong>Tervezési nézet</strong></li>
+</ol>
+</div>
+<div id="lépés-a-jelentés-szakaszai" class="section level3 hasAnchor" number="16.3.2">
+<h3><span class="header-section-number">16.3.2</span> 2. lépés: A jelentés szakaszai<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-a-jelent%C3%A9s-szakaszai" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Egy jelentés több szakaszból áll:</p>
+<pre><code>┌──────────────────────────────────┐
+│ Jelentés fejléce                 │  ← Egyszer, az elején
+├──────────────────────────────────┤
+│ Oldalfejléc                      │  ← Minden oldal tetején
+├──────────────────────────────────┤
+│ Részletek                        │  ← Ismétlődik minden rekordnál
+├──────────────────────────────────┤
+│ Oldallábléc                      │  ← Minden oldal alján
+├──────────────────────────────────┤
+│ Jelentés lábléce                 │  ← Egyszer, a végén
+└──────────────────────────────────┘</code></pre>
+</div>
+<div id="lépés-cím-hozzáadása" class="section level3 hasAnchor" number="16.3.3">
+<h3><span class="header-section-number">16.3.3</span> 3. lépés: Cím hozzáadása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-c%C3%ADm-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adjunk hozzá egy szép címet a jelentés fejlécéhez:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Jelentés fejléce</strong> szakaszba</li>
+<li>Keressük meg a cím címkét (pl. “tbl_Kutatók”)</li>
+<li>Dupla kattintás → Szerkesztési mód</li>
+<li>Töröljük ki, írjuk be: <strong>Kutatói Nyilvántartás</strong></li>
+</ol>
+<div id="formázás-3" class="section level4 hasAnchor" number="16.3.3.1">
+<h4><span class="header-section-number">16.3.3.1</span> Formázás<a href="jelentések-nyomtatható-listák-készítése.html#form%C3%A1z%C3%A1s-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Címke kijelölve</li>
+<li><strong>Kezdőlap</strong> fül:
+<ul>
+<li>Betűméret: 20</li>
+<li>Félkövér</li>
+<li>Középre igazítás</li>
 </ul></li>
-<li>OK</li>
 </ol>
 </div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="lépés-kutatóid-oszlop-elrejtése" class="section level3 hasAnchor" number="16.3.4">
+<h3><span class="header-section-number">16.3.4</span> 4. lépés: KutatóID oszlop elrejtése<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-kutat%C3%B3id-oszlop-elrejt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A KutatóID-t nem szükséges nyomtatni. Rejtsük el:</p>
 <ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
+<li>Kattintsunk a <strong>KutatóID</strong> szövegdobozra (Részletek szakasz)</li>
+<li>F4 → Tulajdonságlap</li>
+<li><strong>Látható</strong> → Nem</li>
 </ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
+<p>Ugyanezt a <strong>KutatóID</strong> oszlopfejléccel is (Oldalfejléc szakaszban).</p>
 </div>
-</div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lépés-oszlopok-átméretezése" class="section level3 hasAnchor" number="16.3.5">
+<h3><span class="header-section-number">16.3.5</span> 5. lépés: Oszlopok átméretezése<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-oszlopok-%C3%A1tm%C3%A9retez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha túl széles vagy keskeny egy oszlop:</p>
 <ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
+<li>Kattintsunk az oszlop szövegdobozára</li>
+<li>Húzzuk a jobb szélét (◀▶ kurzor)</li>
 </ol>
+</div>
+<div id="lépés-dátum-hozzáadása-a-lábléchez" class="section level3 hasAnchor" number="16.3.6">
+<h3><span class="header-section-number">16.3.6</span> 6. lépés: Dátum hozzáadása a lábléchez<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-d%C3%A1tum-hozz%C3%A1ad%C3%A1sa-a-l%C3%A1bl%C3%A9chez" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adjuk hozzá a nyomtatás dátumát az oldal láblécéhez:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezés</strong> fül → <strong>Dátum és idő</strong> gomb</li>
+<li>Válasszuk ki a dátumformátumot (pl. “Hosszú dátum”)</li>
+<li><strong>OK</strong></li>
+</ol>
+<p>Megjelenik a láblécben: <code>=Date()</code></p>
+</div>
+<div id="lépés-oldalszám-hozzáadása" class="section level3 hasAnchor" number="16.3.7">
+<h3><span class="header-section-number">16.3.7</span> 7. lépés: Oldalszám hozzáadása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-oldalsz%C3%A1m-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adjuk hozzá az oldalszámot:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezés</strong> fül → <strong>Oldalszámok</strong> gomb</li>
+<li>Formátum: “X / Y oldal” (pl. “1 / 3 oldal”)</li>
+<li>Pozíció: Oldal lábléce, középen</li>
+<li><strong>OK</strong></li>
+</ol>
+</div>
+<div id="lépés-mentés-és-előnézet" class="section level3 hasAnchor" number="16.3.8">
+<h3><span class="header-section-number">16.3.8</span> 8. lépés: Mentés és előnézet<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-ment%C3%A9s-%C3%A9s-el%C5%91n%C3%A9zet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Ctrl+S</strong> (mentés)</li>
+<li><strong>Nézet</strong> → <strong>Nyomtatási kép</strong></li>
+</ol>
+<p>Most egy profi jelentést látunk címmel, dátummal, oldalszámmal! 🎉</p>
+</div>
+</div>
+<div id="jelentés-lekérdezésből" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Jelentés lekérdezésből<a href="jelentések-nyomtatható-listák-készítése.html#jelent%C3%A9s-lek%C3%A9rdez%C3%A9sb%C5%91l" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Természetesen jelentést nemcsak táblákból, hanem lekérdezésekből is készíthetünk!</p>
+<div id="példa-márciusi-látogatások-jelentése" class="section level3 hasAnchor" number="16.4.1">
+<h3><span class="header-section-number">16.4.1</span> Példa: Márciusi látogatások jelentése<a href="jelentések-nyomtatható-listák-készítése.html#p%C3%A9lda-m%C3%A1rciusi-l%C3%A1togat%C3%A1sok-jelent%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk egyszer a <code>qry_Marciusi_latogatasok</code> lekérdezésre</li>
+<li><strong>Létrehozás</strong> → <strong>Jelentés</strong></li>
+</ol>
+<p>Az Access készít egy jelentést a márciusi látogatásokról!</p>
+</div>
+<div id="mentés" class="section level3 hasAnchor" number="16.4.2">
+<h3><span class="header-section-number">16.4.2</span> Mentés<a href="jelentések-nyomtatható-listák-készítése.html#ment%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Ctrl+S</strong> → Név: <code>rpt_Marciusi_latogatasok</code></li>
+</ul>
+</div>
+</div>
+<div id="csoportosított-jelentés" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Csoportosított jelentés<a href="jelentések-nyomtatható-listák-készítése.html#csoportos%C3%ADtott-jelent%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A jelentések egyik legerősebb funkciója a <strong>csoportosítás</strong>.</p>
+<p><strong>Példa:</strong> Kutatók listája, intézmények szerint csoportosítva.</p>
+<div id="lépés-jelentésvarázsló" class="section level3 hasAnchor" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> 1. lépés: Jelentésvarázsló<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-jelent%C3%A9svar%C3%A1zsl%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ezúttal használjuk a varázslót:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Létrehozás</strong> → <strong>Jelentésvarázsló</strong> (Report Wizard)</li>
+</ol>
+</div>
+<div id="lépés-táblák-és-mezők-kiválasztása" class="section level3 hasAnchor" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> 2. lépés: Táblák és mezők kiválasztása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-t%C3%A1bl%C3%A1k-%C3%A9s-mez%C5%91k-kiv%C3%A1laszt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Táblák/lekérdezések:</strong> <code>tbl_Kutatók</code></li>
+<li><strong>Elérhető mezők</strong> → <strong>Kiválasztott mezők:</strong>
+<ul>
+<li>Intézmény</li>
+<li>Név</li>
+<li>Email</li>
+<li>Aktív</li>
+</ul></li>
+<li><strong>Tovább</strong></li>
+</ol>
+</div>
+<div id="lépés-csoportosítási-szintek" class="section level3 hasAnchor" number="16.5.3">
+<h3><span class="header-section-number">16.5.3</span> 3. lépés: Csoportosítási szintek<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-csoportos%C3%ADt%C3%A1si-szintek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>“Szeretne csoportosítási szinteket megadni?”</li>
+<li>Dupla kattintás: <strong>Intézmény</strong></li>
+</ol>
+<p>Most az Intézmény “feljebb kerül” → ez lesz a csoportosító mező.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Tovább</strong></li>
+</ol>
+</div>
+<div id="lépés-rendezési-sorrend" class="section level3 hasAnchor" number="16.5.4">
+<h3><span class="header-section-number">16.5.4</span> 4. lépés: Rendezési sorrend<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-rendez%C3%A9si-sorrend" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Rendezzük a neveket ABC sorrendben</li>
+<li>Első rendezési mező: <strong>Név</strong>, <strong>Növekvő</strong></li>
+<li><strong>Tovább</strong></li>
+</ol>
+</div>
+<div id="lépés-elrendezés" class="section level3 hasAnchor" number="16.5.5">
+<h3><span class="header-section-number">16.5.5</span> 5. lépés: Elrendezés<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-elrendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Elrendezés: <strong>Lépcsőzetes</strong> (Stepped)</li>
+<li>Tájolás: <strong>Álló</strong> (Portrait)</li>
+<li><strong>Tovább</strong></li>
+</ol>
+</div>
+<div id="lépés-cím-és-befejezés" class="section level3 hasAnchor" number="16.5.6">
+<h3><span class="header-section-number">16.5.6</span> 6. lépés: Cím és befejezés<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-c%C3%ADm-%C3%A9s-befejez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Cím: <code>Kutatók intézmények szerint</code></li>
+<li><strong>Befejezés</strong></li>
+</ol>
+</div>
+<div id="lépés-eredmény" class="section level3 hasAnchor" number="16.5.7">
+<h3><span class="header-section-number">16.5.7</span> 7. lépés: Eredmény<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-eredm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most egy csoportosított jelentést látunk:</p>
+<pre><code>┌─────────────────────────────────────────────┐
+│      Kutatók intézmények szerint            │
+├─────────────────────────────────────────────┤
+│                                              │
+│ ELTE BTK                                     │  ← Csoport fejléc
+│    Kovács Anna       kovacs.a@elte.hu   ☑   │
+│    Tóth Katalin      toth.k@elte.hu     ☑   │
+│                                              │
+│ Független kutató                             │
+│    Nagy Péter        nagy.p@gmail.com   ☑   │
+│    Varga Éva         (nincs email)      ☐   │
+│                                              │
+│ PTE BTK                                      │
+│    Szabó Mária       szabo.m@...        ☑   │
+└─────────────────────────────────────────────┘</code></pre>
+</div>
+<div id="lépés-mentés-3" class="section level3 hasAnchor" number="16.5.8">
+<h3><span class="header-section-number">16.5.8</span> 8. lépés: Mentés<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-ment%C3%A9s-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Ctrl+S</strong> → Név: <code>rpt_Kutatok_intezmeny_szerint</code></li>
+</ul>
+</div>
+</div>
+<div id="összesítés-jelentésekben" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> Összesítés jelentésekben<a href="jelentések-nyomtatható-listák-készítése.html#%C3%B6sszes%C3%ADt%C3%A9s-jelent%C3%A9sekben" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Csoportokon belül összesíthetünk is!</p>
+<p><strong>Példa:</strong> Hány kutató van intézményenként?</p>
+<div id="lépés-tervezési-nézet" class="section level3 hasAnchor" number="16.6.1">
+<h3><span class="header-section-number">16.6.1</span> 1. lépés: Tervezési nézet<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-tervez%C3%A9si-n%C3%A9zet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Nyissuk meg: <code>rpt_Kutatok_intezmeny_szerint</code></li>
+<li><strong>Nézet</strong> → <strong>Tervezési nézet</strong></li>
+</ol>
+</div>
+<div id="lépés-csoportlábléc-megjelenítése" class="section level3 hasAnchor" number="16.6.2">
+<h3><span class="header-section-number">16.6.2</span> 2. lépés: Csoportlábléc megjelenítése<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-csoportl%C3%A1bl%C3%A9c-megjelen%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Jobb egérgomb az <strong>Intézmény fejléc</strong> sávra</li>
+<li><strong>Csoport tulajdonságai</strong></li>
+<li><strong>Csoportlábléc</strong> (Group Footer) → <strong>Igen</strong></li>
+<li><strong>OK</strong></li>
+</ol>
+<p>Most megjelent egy új szakasz: <strong>Intézmény lábléc</strong></p>
+</div>
+<div id="lépés-darabszám-hozzáadása" class="section level3 hasAnchor" number="16.6.3">
+<h3><span class="header-section-number">16.6.3</span> 3. lépés: Darabszám hozzáadása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-darabsz%C3%A1m-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezés</strong> fül → <strong>Vezérlők</strong> csoport → <strong>Szövegdoboz</strong> (Text Box)</li>
+<li>Rajzoljunk egy szövegdobozt az <strong>Intézmény lábléc</strong> szakaszba</li>
+<li>A szövegdobozba írjuk: <code>=Count([KutatóID])</code></li>
+</ol>
+<p>Ez megszámolja, hány kutató van az adott csoportban (intézményben).</p>
+</div>
+<div id="lépés-címke-hozzáadása" class="section level3 hasAnchor" number="16.6.4">
+<h3><span class="header-section-number">16.6.4</span> 4. lépés: Címke hozzáadása<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-c%C3%ADmke-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A szövegdoboz melletti címkét nevezzük át:</p>
+<ol style="list-style-type: decimal">
+<li>Dupla kattintás → Szerkesztési mód</li>
+<li>Írjuk be: <strong>Összesen:</strong></li>
+</ol>
+</div>
+<div id="lépés-formázás" class="section level3 hasAnchor" number="16.6.5">
+<h3><span class="header-section-number">16.6.5</span> 5. lépés: Formázás<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tegyük félkövérre:</p>
+<ul>
+<li>Címke és szövegdoboz kijelölése</li>
+<li><strong>Kezdőlap</strong> → <strong>Félkövér</strong> (B)</li>
+</ul>
+</div>
+<div id="lépés-eredmény-1" class="section level3 hasAnchor" number="16.6.6">
+<h3><span class="header-section-number">16.6.6</span> 6. lépés: Eredmény<a href="jelentések-nyomtatható-listák-készítése.html#l%C3%A9p%C3%A9s-eredm%C3%A9ny-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Nézet</strong> → <strong>Nyomtatási kép</strong></p>
+<p>Most látjuk:</p>
+<pre><code>ELTE BTK
+   Kovács Anna ...
+   Tóth Katalin ...
+   Összesen: 2
 
+Független kutató
+   Nagy Péter ...
+   Varga Éva ...
+   Összesen: 2
+
+PTE BTK
+   Szabó Mária ...
+   Összesen: 1</code></pre>
+</div>
+</div>
+<div id="exportálási-lehetőségek" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> Exportálási lehetőségek<a href="jelentések-nyomtatható-listák-készítése.html#export%C3%A1l%C3%A1si-lehet%C5%91s%C3%A9gek" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A jelentéseket különböző formátumokba exportálhatjuk:</p>
+<div id="pdf-exportálás" class="section level3 hasAnchor" number="16.7.1">
+<h3><span class="header-section-number">16.7.1</span> PDF exportálás<a href="jelentések-nyomtatható-listák-készítése.html#pdf-export%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Jelentés megnyitása (Nyomtatási kép nézet)</li>
+<li><strong>Adatok</strong> fül → <strong>PDF vagy XPS</strong></li>
+<li>Hely, fájlnév megadása</li>
+<li><strong>Közzététel</strong></li>
+</ol>
+</div>
+<div id="word-exportálás" class="section level3 hasAnchor" number="16.7.2">
+<h3><span class="header-section-number">16.7.2</span> Word exportálás<a href="jelentések-nyomtatható-listák-készítése.html#word-export%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Külső adatok</strong> fül → <strong>Word</strong> gomb</li>
+<li>Fájlnév megadása</li>
+<li><strong>OK</strong></li>
+</ol>
+<blockquote>
+<p><strong>Megjegyzés:</strong> A Word exportálás nem tökéletes (formázás elveszhet), de szöveg szerkesztéshez használható.</p>
+</blockquote>
+</div>
+<div id="excel-exportálás" class="section level3 hasAnchor" number="16.7.3">
+<h3><span class="header-section-number">16.7.3</span> Excel exportálás<a href="jelentések-nyomtatható-listák-készítése.html#excel-export%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Külső adatok</strong> → <strong>Excel</strong></li>
+<li>Fájlnév</li>
+<li><strong>OK</strong></li>
+</ol>
+<blockquote>
+<p><strong>Használat:</strong> Ha a nyomtatott adatokat továbbra is elemezni, szűrni szeretnénk Excelben.</p>
+</blockquote>
+</div>
+</div>
+<div id="gyakorlati-feladatok-3" class="section level2 hasAnchor" number="16.8">
+<h2><span class="header-section-number">16.8</span> Gyakorlati feladatok<a href="jelentések-nyomtatható-listák-készítése.html#gyakorlati-feladatok-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="feladat-1-látogatások-listája" class="section level3 hasAnchor" number="16.8.1">
+<h3><span class="header-section-number">16.8.1</span> Feladat 1: Látogatások listája<a href="jelentések-nyomtatható-listák-készítése.html#feladat-1-l%C3%A1togat%C3%A1sok-list%C3%A1ja" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Készítsünk egy egyszerű jelentést a <code>qry_Marciusi_latogatasok</code> lekérdezésből!</p>
+<ol style="list-style-type: decimal">
+<li>Jelentés automatikus generálása</li>
+<li>Testre szabás: cím, dátum, oldalszám</li>
+<li>Exportálás PDF-be</li>
+<li>Mentés: <code>rpt_Marciusi_latogatasok</code></li>
+</ol>
+</div>
+<div id="feladat-2-elte-s-kutatók" class="section level3 hasAnchor" number="16.8.2">
+<h3><span class="header-section-number">16.8.2</span> Feladat 2: ELTE-s kutatók<a href="jelentések-nyomtatható-listák-készítése.html#feladat-2-elte-s-kutat%C3%B3k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Készítsünk jelentést az ELTE-s kutatókról:</p>
+<ol style="list-style-type: decimal">
+<li>Használjuk a <code>qry_ELTE_latogatasok</code> lekérdezést</li>
+<li>Csoportosítsuk kutatók szerint (Név)</li>
+<li>Mindegyik kutató alatt legyenek a látogatásai</li>
+<li>Mentés: <code>rpt_ELTE_kutatok_latogatasai</code></li>
+</ol>
+</div>
+<div id="feladat-3-statisztikai-összesítő" class="section level3 hasAnchor" number="16.8.3">
+<h3><span class="header-section-number">16.8.3</span> Feladat 3: Statisztikai összesítő<a href="jelentések-nyomtatható-listák-készítése.html#feladat-3-statisztikai-%C3%B6sszes%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Készítsünk jelentést, amely intézményenként mutatja:</p>
+<ul>
+<li>Hány kutató van</li>
+<li>Hány látogatás volt összesen</li>
+</ul>
+
+</div>
 </div>
 </div>
             </section>
@@ -989,8 +1151,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lekérdezések-adatok-szűrése-és-elemzése.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="összefoglalás-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

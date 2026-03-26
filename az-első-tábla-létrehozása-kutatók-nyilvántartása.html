@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>10 Az első tábla létrehozása: Kutatók nyilvántartása | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="10 Az első tábla létrehozása: Kutatók nyilvántartása | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="10 Az első tábla létrehozása: Kutatók nyilvántartása | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="access-alapfogalmak.html"/>
+<link rel="next" href="űrlap-készítése-adatbevitelhez.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,255 +733,477 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
+<div id="az-első-tábla-létrehozása-kutatók-nyilvántartása" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Az első tábla létrehozása: Kutatók nyilvántartása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#az-els%C5%91-t%C3%A1bla-l%C3%A9trehoz%C3%A1sa-kutat%C3%B3k-nyilv%C3%A1ntart%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bevezetés-2" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Bevezetés<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#bevezet%C3%A9s-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ebben a fejezetben lépésről lépésre létrehozzuk az első Access táblánkat a gyakorlatban.</p>
+<p>A célunk: egy <strong>kutatói nyilvántartó</strong> tábla, amely tartalmazza: - Kutatók nevét - Email címét - Intézményét - Regisztrációjának dátumát - Azt, hogy jelenleg aktív-e</p>
 </div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="előkészületek-1" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Előkészületek<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#el%C5%91k%C3%A9sz%C3%BCletek-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="munkakönyvtár-létrehozása" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Munkakönyvtár létrehozása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#munkak%C3%B6nyvt%C3%A1r-l%C3%A9trehoz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Először hozzunk létre egy mappát a számítógépünkön, ahol az Access fájljainkat fogjuk tárolni.</p>
+<ol style="list-style-type: decimal">
+<li>Nyissuk meg a <strong>Fájlkezelőt</strong> (Windows Intéző)</li>
+<li>Navigáljunk oda, ahol dolgozni szeretnénk (pl. <code>Dokumentumok</code>)</li>
+<li>Hozzunk létre egy új mappát: jobb egérgomb → <strong>Új</strong> → <strong>Mappa</strong></li>
+<li>Nevezzük el: <code>Access_tanfolyam</code></li>
+</ol>
+<blockquote>
+<p>Érdemes rendszeresen menteni/biztonsági mentést készíteni!</p>
+</blockquote>
+</div>
+<div id="access-indítása" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Access indítása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#access-ind%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Nyissuk meg a <strong>Microsoft Access</strong> programot</p>
+<ul>
+<li>Start menü → <strong>Access</strong> vagy</li>
+<li>Keresés: “Access”</li>
+</ul></li>
+<li><p>Az Access kezdőképernyőjén kattintsunk: <strong>Üres adatbázis</strong></p></li>
+<li><p>Adjunk nevet az adatbázisnak:</p>
+<ul>
+<li><strong>Fájlnév:</strong> <code>Kutatoi_nyilvantartas.accdb</code></li>
+<li><strong>Hely:</strong> Válasszuk ki a létrehozott <code>Access_tanfolyam</code> mappát (mappa ikon)</li>
+</ul></li>
+<li><p>Kattintsunk a <strong>Létrehozás</strong> gombra</p></li>
+</ol>
+<blockquote>
+<p><strong>Fontos:</strong> Az Access automatikusan létrehoz egy üres táblát (<code>Tábla1</code> néven). Ezt később átnevezzük vagy töröljük.</p>
+</blockquote>
+</div>
+</div>
+<div id="a-tábla-megtervezése" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> A tábla megtervezése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#a-t%C3%A1bla-megtervez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mielőtt elkezdenénk gépelni, tervezzük meg, milyen mezőket szeretnénk:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
+<th>Mezőnév</th>
+<th>Adattípus</th>
+<th>Méret</th>
+<th>Kötelező</th>
+<th>Leírás</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
+<td>KutatóID</td>
+<td>AutoNumber</td>
+<td>-</td>
+<td>✓</td>
+<td>Egyedi azonosító (elsődleges kulcs)</td>
 </tr>
 <tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
+<td>Név</td>
+<td>Short Text</td>
+<td>100</td>
+<td>✓</td>
+<td>Kutató teljes neve</td>
 </tr>
 <tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
+<td>Email</td>
+<td>Short Text</td>
+<td>100</td>
+<td>✓</td>
+<td>Email cím</td>
 </tr>
 <tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
+<td>Intézmény</td>
+<td>Short Text</td>
+<td>150</td>
+<td>✗</td>
+<td>Munkahely/egyetem</td>
 </tr>
 <tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
+<td>RegDátum</td>
+<td>Date/Time</td>
+<td>-</td>
+<td>✓</td>
+<td>Regisztráció dátuma</td>
 </tr>
 <tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
+<td>Aktív</td>
+<td>Yes/No</td>
+<td>-</td>
+<td>✓</td>
+<td>Jelenleg aktív kutató?</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
 </div>
-</div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
-</div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tábla-létrehozása-tervezési-nézetben" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Tábla létrehozása tervezési nézetben<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#t%C3%A1bla-l%C3%A9trehoz%C3%A1sa-tervez%C3%A9si-n%C3%A9zetben" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lépés-tervezési-nézetre-váltás" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> 1. lépés: Tervezési nézetre váltás<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-tervez%C3%A9si-n%C3%A9zetre-v%C3%A1lt%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az Access alapértelmezetten <strong>Adatlap nézetben</strong> nyitotta meg a táblát (mint az Excel). Mi azonban <strong>Tervezési nézetben</strong> szeretnénk dolgozni, mert ott pontosan megadhatjuk a mezőket és típusaikat.</p>
 <ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
+<li>Kattintsunk a <code>Kezdőlap</code> fülre (ha nincs már ott)</li>
+<li>Bal oldalon keressük meg a <strong>Nézet</strong> gombot (nagy ikon)</li>
+<li>Kattintsunk rá: <strong>Nézet</strong> → <strong>Tervezési nézet</strong></li>
 </ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
+<p>Vagy egyszerűbben:</p>
 <ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
-</ul></li>
-<li><strong>Hibajelzés:</strong>
+<li>Jobb alsó sarokban három kis ikon látható: 📋 📝 📄</li>
+<li>Kattintsunk a középső ikonra (📝 Tervezési nézet)</li>
+</ul>
+<p>Az Access megkérdezi a tábla nevét:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Írjuk be: <code>tbl_Kutatók</code></li>
+<li>Kattintsunk: <strong>OK</strong></li>
+</ol>
+<blockquote>
+<p><strong>Jó gyakorlat:</strong> A táblák nevét érdemes <code>tbl_</code> előtaggal kezdeni, hogy könnyen megkülönböztessük őket a lekérdezésektől, űrlapoktól.</p>
+</blockquote>
+</div>
+<div id="lépés-a-tervezési-nézet-megismerése" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> 2. lépés: A tervezési nézet megismerése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-a-tervez%C3%A9si-n%C3%A9zet-megismer%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most egy rácsos táblázatot látunk három oszloppal:</p>
+<pre><code>┌─────────────┬──────────────┬─────────────────────────────┐
+│ Mezőnév     │ Adattípus    │ Leírás (opcionális)        │
+├─────────────┼──────────────┼─────────────────────────────┤
+│ ID          │ AutoNumber   │                             │
+│             │              │                             │
+│             │              │                             │
+└─────────────┴──────────────┴─────────────────────────────┘</code></pre>
+<p>Az Access automatikusan létrehozott egy <code>ID</code> nevű mezőt, ami AutoNumber típusú. Ezt használjuk majd elsődleges kulcsnak!</p>
+<p><strong>Alul</strong> látjuk a <strong>Mező tulajdonságai</strong> panelt. Itt részletesen beállíthatjuk a kiválasztott mező tulajdonságait.</p>
+</div>
+<div id="lépés-az-id-mező-átnevezése" class="section level3 hasAnchor" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> 3. lépés: Az ID mező átnevezése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-az-id-mez%C5%91-%C3%A1tnevez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az első sor (<code>ID</code> mező) már ki van választva. Nevezzük át <code>KutatóID</code>-ra:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk az <code>ID</code> szóra (Mezőnév oszlop)</li>
+<li>Töröljük ki, és írjuk be: <strong>KutatóID</strong></li>
+<li>Nyomjunk <strong>Tab</strong> billentyűt (ez a következő oszlopra ugrik)</li>
+</ol>
+<p>Az Adattípus már <strong>AutoNumber</strong> – ezt hagyjuk így!</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Nyomjunk megint <strong>Tab</strong>-ot</li>
+<li>A Leírás oszlopban írjuk be: <strong>Egyedi azonosító</strong></li>
+</ol>
+<blockquote>
+<p><strong>Megjegyzés:</strong> A Leírás mező nem kötelező, de hasznos dokumentációnak.</p>
+</blockquote>
+</div>
+<div id="lépés-elsődleges-kulcs-beállítása" class="section level3 hasAnchor" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> 4. lépés: Elsődleges kulcs beállítása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-els%C5%91dleges-kulcs-be%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <code>KutatóID</code> lesz az elsődleges kulcs. Állítsuk be:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <code>KutatóID</code> sor elejére (a szürke négyzetbe a bal szélen)</li>
+<li>A felső menüszalagon (Tervezés fül) keressük meg a <strong>🔑 Elsődleges kulcs</strong> gombot</li>
+<li>Kattintsunk rá</li>
+</ol>
+<p>Most a <code>KutatóID</code> sor bal szélén megjelent egy kis 🔑 kulcs ikon. Ez jelzi, hogy ez az elsődleges kulcs.</p>
+<blockquote>
+<p><strong>Vagy:</strong> Jobb egérgombbal kattintva a sorra, válasszuk: <strong>Elsődleges kulcs</strong></p>
+</blockquote>
+</div>
+<div id="lépés-további-mezők-hozzáadása" class="section level3 hasAnchor" number="10.4.5">
+<h3><span class="header-section-number">10.4.5</span> 5. lépés: További mezők hozzáadása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-tov%C3%A1bbi-mez%C5%91k-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most adjuk hozzá a többi mezőt. Kattintsunk a <strong>második sor</strong> Mezőnév cellájába, és kezdjük:</p>
+<div id="név-mező" class="section level4 hasAnchor" number="10.4.5.1">
+<h4><span class="header-section-number">10.4.5.1</span> Név mező<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#n%C3%A9v-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> Írjuk be: <code>Név</code></li>
+<li><strong>Tab</strong> billentyű → Adattípus: <code>Short Text</code> (ez az alapértelmezett, hagyjuk)</li>
+<li><strong>Tab</strong> → Leírás: <code>Kutató teljes neve</code></li>
+<li><strong>Enter</strong> (új sor)</li>
+</ol>
+<p><strong>Tulajdonságok beállítása:</strong></p>
+<p>Most állítsuk be a mező részletes tulajdonságait az alsó panelen:</p>
 <ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
+<li>Keressük meg: <strong>Mező mérete</strong> (Field Size) → Írjuk be: <code>100</code></li>
+<li><strong>Kötelező</strong> (Required) → Válasszuk: <strong>Igen</strong></li>
+<li><strong>Üres karakterláncok engedélyezése</strong> (Allow Zero Length) → <strong>Nem</strong></li>
+</ul>
+<blockquote>
+<p><strong>Mit jelentenek ezek?</strong> - <strong>Mező mérete:</strong> Maximum 100 karakter hosszú lehet a név - <strong>Kötelező:</strong> Nem lehet üresen hagyni - <strong>Üres karakterláncok:</strong> Nem fogadunk el üres szöveget (““)</p>
+</blockquote>
+</div>
+<div id="email-mező" class="section level4 hasAnchor" number="10.4.5.2">
+<h4><span class="header-section-number">10.4.5.2</span> Email mező<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#email-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Kattintsunk a <strong>harmadik sor</strong> Mezőnév cellájába:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>Email</code></li>
+<li><strong>Adattípus:</strong> <code>Short Text</code></li>
+<li><strong>Leírás:</strong> <code>Email cím</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Mező mérete:</strong> <code>100</code></li>
+<li><strong>Kötelező:</strong> <code>Igen</code></li>
+</ul>
+<blockquote>
+<p><strong>Tipp:</strong> Később (haladó szinten) beállíthatunk ellenőrző szabályt, amely biztosítja, hogy valódi email formátumot adjanak meg (pl. tartalmaz <code>@</code> jelet).</p>
+</blockquote>
+</div>
+<div id="intézmény-mező" class="section level4 hasAnchor" number="10.4.5.3">
+<h4><span class="header-section-number">10.4.5.3</span> Intézmény mező<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#int%C3%A9zm%C3%A9ny-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>Intézmény</code></li>
+<li><strong>Adattípus:</strong> <code>Short Text</code></li>
+<li><strong>Leírás:</strong> <code>Munkahely vagy egyetem neve</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Mező mérete:</strong> <code>150</code></li>
+<li><strong>Kötelező:</strong> <code>Nem</code> (Ez lehet üres! Pl. független kutatók esetén)</li>
+</ul>
+<blockquote>
+<p><strong>Miért nem kötelező?</strong> Nem minden kutatónak van intézményi affiliációja.</p>
+</blockquote>
+</div>
+<div id="regdátum-mező" class="section level4 hasAnchor" number="10.4.5.4">
+<h4><span class="header-section-number">10.4.5.4</span> RegDátum mező<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#regd%C3%A1tum-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>RegDátum</code></li>
+<li><strong>Adattípus:</strong> Kattintsunk a legördülő menüre → válasszuk: <strong>Date/Time</strong></li>
+<li><strong>Leírás:</strong> <code>Regisztráció dátuma</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Formátum</strong> (Format) → Válasszuk: <strong>Rövid dátum</strong> (Short Date)</li>
+<li><strong>Kötelező:</strong> <code>Igen</code></li>
+<li><strong>Alapértelmezett érték</strong> (Default Value) → Írjuk be: <code>=Date()</code></li>
+</ul>
+<blockquote>
+<p><strong>Mit jelent a <code>=Date()</code>?</strong><br />
+Ez egy függvény, amely automatikusan beszúrja a mai dátumot, amikor új rekordot veszünk fel. Így nem kell minden alkalommal begépelni!</p>
+</blockquote>
+</div>
+<div id="aktív-mező" class="section level4 hasAnchor" number="10.4.5.5">
+<h4><span class="header-section-number">10.4.5.5</span> Aktív mező<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#akt%C3%ADv-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>Aktív</code></li>
+<li><strong>Adattípus:</strong> Válasszuk: <strong>Yes/No</strong></li>
+<li><strong>Leírás:</strong> <code>Jelenleg aktív kutató?</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Alapértelmezett érték:</strong> <code>True</code> (vagy <code>-1</code>)</li>
+</ul>
+<blockquote>
+<p><strong>Miért True?</strong> Alapértelmezésben minden új kutató aktív. Ha később inaktívvá válik, kézzel átírjuk.</p>
+</blockquote>
+</div>
+</div>
+<div id="lépés-a-tábla-mentése" class="section level3 hasAnchor" number="10.4.6">
+<h3><span class="header-section-number">10.4.6</span> 6. lépés: A tábla mentése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-a-t%C3%A1bla-ment%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mentsük el a táblát:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Ctrl+S</strong> vagy <strong>Fájl</strong> → <strong>Mentés</strong></li>
+</ol>
+<p>Az Access már korábban (a tervezési nézetre váltáskor) elmentette <code>tbl_Kutatók</code> néven, úgyhogy most csak elmenti a változtatásokat.</p>
+<blockquote>
+<p><strong>Fontos:</strong> Szoktassuk meg, hogy gyakran mentünk! <strong>Ctrl+S</strong> legyen reflex!</p>
+</blockquote>
+</div>
+<div id="lépés-ellenőrzés" class="section level3 hasAnchor" number="10.4.7">
+<h3><span class="header-section-number">10.4.7</span> 7. lépés: Ellenőrzés<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#l%C3%A9p%C3%A9s-ellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ellenőrizzük le, hogy minden rendben van-e:</p>
+<pre><code>┌────────────┬──────────────┬────────────────────────────┐
+│ Mezőnév    │ Adattípus    │ Leírás                     │
+├────────────┼──────────────┼────────────────────────────┤
+│🔑KutatóID  │ AutoNumber   │ Egyedi azonosító           │
+│ Név        │ Short Text   │ Kutató teljes neve         │
+│ Email      │ Short Text   │ Email cím                  │
+│ Intézmény  │ Short Text   │ Munkahely vagy egyetem     │
+│ RegDátum   │ Date/Time    │ Regisztráció dátuma        │
+│ Aktív      │ Yes/No       │ Jelenleg aktív kutató?     │
+└────────────┴──────────────┴────────────────────────────┘</code></pre>
+<p>Ha minden stimmel, készen vagyunk! 🎉</p>
+</div>
+</div>
+<div id="adatlap-nézetbe-váltás-első-adatok-bevitele" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Adatlap nézetbe váltás – első adatok bevitele<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#adatlap-n%C3%A9zetbe-v%C3%A1lt%C3%A1s-els%C5%91-adatok-bevitele" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most nézzük meg, hogyan néz ki a táblánk “élőben”, és vigyünk fel néhány kutatót!</p>
+<div id="adatlap-nézetre-váltás" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> Adatlap nézetre váltás<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#adatlap-n%C3%A9zetre-v%C3%A1lt%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Nézet</strong> gombra (vagy jobb alsó sarokban az adatlap ikon 📋)</li>
+<li>Válasszuk: <strong>Adatlap nézet</strong></li>
+</ol>
+<p>Most egy üres táblázatot látunk, oszlopokkal:</p>
+<pre><code>┌──────────┬─────┬───────┬───────────┬──────────┬───────┐
+│ KutatóID │ Név │ Email │ Intézmény │ RegDátum │ Aktív │
+├──────────┼─────┼───────┼───────────┼──────────┼───────┤
+│          │     │       │           │          │   ☐   │
+└──────────┴─────┴───────┴───────────┴──────────┴───────┘</code></pre>
+<blockquote>
+<p><strong>Figyeljük meg:</strong> - A <strong>KutatóID</strong> oszlop szürke – nem tudjuk szerkeszteni (AutoNumber) - A <strong>RegDátum</strong> automatikusan kitöltődik a mai dátummal (alapértelmezett érték) - Az <strong>Aktív</strong> egy jelölőnégyzet ☐</p>
+</blockquote>
+</div>
+<div id="első-rekord-felvétele" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> Első rekord felvétele<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#els%C5%91-rekord-felv%C3%A9tele" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kattintsunk a <strong>Név</strong> oszlop első cellájába, és kezdjük el beírni az adatokat:</p>
+<p><strong>1. kutató:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Név:</strong> Kovács Anna</li>
+<li><strong>Tab</strong> → <strong>Email:</strong> <a href="mailto:kovacs.a@elte.hu">kovacs.a@elte.hu</a></li>
+<li><strong>Tab</strong> → <strong>Intézmény:</strong> ELTE BTK</li>
+<li><strong>Tab</strong> → <strong>RegDátum:</strong> 2024-01-15 (vagy használjuk az alapértelmezettet)</li>
+<li><strong>Tab</strong> → <strong>Aktív:</strong> ☑ (pipáljuk be)</li>
+<li><strong>Enter</strong> (új sor)</li>
+</ol>
+<blockquote>
+<p><strong>Mi történt?</strong> - A <code>KutatóID</code> automatikusan <strong>1</strong> lett - Az összes adat elmentődött</p>
+</blockquote>
+<p><strong>2. kutató:</strong></p>
+<p>Írjuk be a következő sort:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Név:</strong> Nagy Péter</li>
+<li><strong>Email:</strong> <a href="mailto:nagy.p@gmail.com">nagy.p@gmail.com</a></li>
+<li><strong>Intézmény:</strong> MNL OL</li>
+<li><strong>RegDátum:</strong> 2024-01-20</li>
+<li><strong>Aktív:</strong> ☑</li>
+<li><strong>Enter</strong></li>
+</ol>
+<p><strong>3. kutató:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Név:</strong> Szabó Mária</li>
+<li><strong>Email:</strong> <a href="mailto:szabo.m@uni-pecs.hu">szabo.m@uni-pecs.hu</a></li>
+<li><strong>Intézmény:</strong> PTE BTK</li>
+<li><strong>RegDátum:</strong> 2024-02-03</li>
+<li><strong>Aktív:</strong> ☑</li>
+<li><strong>Enter</strong></li>
+</ol>
+</div>
+<div id="további-kutatók-hozzáadása" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> További kutatók hozzáadása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#tov%C3%A1bbi-kutat%C3%B3k-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vigyünk fel még legalább 5-10 kutatót!</p>
+<blockquote>
+<p><strong>Tipp:</strong> Variáljuk az adatokat! Legyen köztük olyan is, akinek nincs intézménye (hagyjuk üresen), és olyan is, aki inaktív (ne pipáljuk be az Aktív mezőt).</p>
+</blockquote>
+</div>
+</div>
+<div id="alapműveletek-az-adatlapon" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Alapműveletek az adatlapon<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#alapm%C5%B1veletek-az-adatlapon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most, hogy van néhány rekordunk, próbáljunk ki néhány alapműveletet!</p>
+<div id="navigáció-a-rekordok-között" class="section level3 hasAnchor" number="10.6.1">
+<h3><span class="header-section-number">10.6.1</span> Navigáció a rekordok között<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#navig%C3%A1ci%C3%B3-a-rekordok-k%C3%B6z%C3%B6tt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az ablak alján látunk navigációs gombokat:</p>
+<pre><code>◀◀  ◀  Rekord: ___ / 10  ▶  ▶▶  ▶*  🔍</code></pre>
+<ul>
+<li><strong>◀◀</strong> – Első rekordra ugrik</li>
+<li><strong>◀</strong> – Előző rekord</li>
+<li><strong>▶</strong> – Következő rekord</li>
+<li><strong>▶▶</strong> – Utolsó rekordra ugrik</li>
+<li><strong>▶*</strong> – Új (üres) rekord hozzáadása</li>
+</ul>
+</div>
+<div id="adatok-szerkesztése" class="section level3 hasAnchor" number="10.6.2">
+<h3><span class="header-section-number">10.6.2</span> Adatok szerkesztése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#adatok-szerkeszt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk bármelyik cellára</li>
+<li>Módosítsuk az értéket (pl. változtassuk meg valaki email címét)</li>
+<li><strong>Tab</strong> vagy <strong>Enter</strong> → Az adat automatikusan mentődik</li>
+</ol>
+<blockquote>
+<p><strong>Fontos:</strong> Az Access azonnal menti a változásokat! Nincs “Mentés” gomb az adatlapon.</p>
+</blockquote>
+</div>
+<div id="rekord-törlése" class="section level3 hasAnchor" number="10.6.3">
+<h3><span class="header-section-number">10.6.3</span> Rekord törlése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#rekord-t%C3%B6rl%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha tévedésből felvettünk egy kutatót, törölhetjük:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a törölni kívánt sor <strong>bal szélére</strong> (a szürke négyzetre)
+<ul>
+<li>Az egész sor kijelölődik</li>
 </ul></li>
-<li>OK</li>
+<li>Nyomjuk meg a <strong>Delete</strong> billentyűt</li>
+<li>Az Access megerősítést kér: <strong>Igen</strong> (törlés) vagy <strong>Nem</strong> (mégsem)</li>
+</ol>
+<blockquote>
+<p><strong>Figyelem:</strong> A törölt rekord KutatóID-ja nem kerül újra felhasználásra! Ha töröljük a 7-es ID-jű kutatót, a következő új kutató 8-as, 9-es, stb. lesz.</p>
+</blockquote>
+</div>
+<div id="oszlopszélességek-állítása" class="section level3 hasAnchor" number="10.6.4">
+<h3><span class="header-section-number">10.6.4</span> Oszlopszélességek állítása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#oszlopsz%C3%A9less%C3%A9gek-%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha egy oszlop túl keskény vagy túl széles:</p>
+<ol style="list-style-type: decimal">
+<li>Vigyük az egeret az oszlopfejlécek közötti határvonalra (pl. <code>Név</code> és <code>Email</code> között)</li>
+<li>Az egérkurzor ↔︎ alakra vált</li>
+<li>Kattintsunk és húzzuk jobbra vagy balra</li>
+</ol>
+<p><strong>Vagy:</strong></p>
+<ul>
+<li>Dupla kattintás a határvonalon → Automatikusan igazodik a legszélesebb tartalomhoz</li>
+</ul>
+</div>
+<div id="oszlopok-elrejtése" class="section level3 hasAnchor" number="10.6.5">
+<h3><span class="header-section-number">10.6.5</span> Oszlopok elrejtése<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#oszlopok-elrejt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szeretnénk ideiglenesen elrejteni egy oszlopot (pl. KutatóID):</p>
+<ol style="list-style-type: decimal">
+<li>Jobb egérgomb az oszlopfejlécre</li>
+<li><strong>Oszlop elrejtése</strong></li>
+</ol>
+<p><strong>Visszahozás:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Jobb egérgomb bármelyik oszlopfejlécre</li>
+<li><strong>Oszlopok megjelenítése/elrejtése</strong></li>
+<li>Pipáljuk be a kívánt oszlopokat</li>
 </ol>
 </div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="hibakezelés-mit-tegyünk-ha" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Hibakezelés – mit tegyünk, ha…<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#hibakezel%C3%A9s-mit-tegy%C3%BCnk-ha" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-mező-nem-frissíthető" class="section level3 hasAnchor" number="10.7.1">
+<h3><span class="header-section-number">10.7.1</span> “A mező nem frissíthető”<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#a-mez%C5%91-nem-friss%C3%ADthet%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Probléma:</strong> Nem tudjuk szerkeszteni a KutatóID mezőt.</p>
+<p><strong>Megoldás:</strong> Ez normális! Az AutoNumber mezőket az Access kezeli, mi nem módosíthatjuk.</p>
+</div>
+<div id="nullértékek-nem-engedélyezettek-az-mezőben" class="section level3 hasAnchor" number="10.7.2">
+<h3><span class="header-section-number">10.7.2</span> “Nullértékek nem engedélyezettek a(z) ‘…’ mezőben”<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#null%C3%A9rt%C3%A9kek-nem-enged%C3%A9lyezettek-az-mez%C5%91ben" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Probléma:</strong> Megpróbáltunk üresen hagyni egy kötelező mezőt (pl. Név).</p>
+<p><strong>Megoldás:</strong> Töltsük ki a mezőt! Ha valóban nem tudjuk az adatot, állítsuk át a mező tervezési nézetben, hogy ne legyen kötelező.</p>
+</div>
+<div id="a-begépelt-érték-nem-megfelelő-a-mezőhöz" class="section level3 hasAnchor" number="10.7.3">
+<h3><span class="header-section-number">10.7.3</span> “A begépelt érték nem megfelelő a mezőhöz”<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#a-beg%C3%A9pelt-%C3%A9rt%C3%A9k-nem-megfelel%C5%91-a-mez%C5%91h%C3%B6z" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Probléma:</strong> Rossz típusú adatot próbáltunk bevinni (pl. szöveget dátum mezőbe).</p>
+<p><strong>Megoldás:</strong></p>
+<ul>
+<li><strong>RegDátum</strong> mezőbe csak dátumot írjunk! Formátum: <code>YYYY-MM-DD</code> (pl. 2024-01-15)</li>
+<li>Ha nem biztos, hogy helyes formátumot adunk meg, használjunk dátumválasztót (kis naptár ikon 📅 a cellában)</li>
+</ul>
+</div>
+<div id="az-access-nem-talál-olyan-rekordot" class="section level3 hasAnchor" number="10.7.4">
+<h3><span class="header-section-number">10.7.4</span> “Az Access nem talál olyan rekordot…”<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#az-access-nem-tal%C3%A1l-olyan-rekordot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Probléma:</strong> Töröltünk egy rekordot, és most hibaüzenetet kapunk.</p>
+<p><strong>Megoldás:</strong> Az Access néha “emlékszik” a törölt rekordokra. Zárjuk be és nyissuk meg újra a táblát (<strong>Ctrl+W</strong>, majd dupla kattintás a táblára).</p>
+</div>
+</div>
+<div id="gyakorlati-feladatok" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Gyakorlati feladatok<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#gyakorlati-feladatok" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="feladat-1-további-kutatók-felvétele" class="section level3 hasAnchor" number="10.8.1">
+<h3><span class="header-section-number">10.8.1</span> Feladat 1: További kutatók felvétele<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#feladat-1-tov%C3%A1bbi-kutat%C3%B3k-felv%C3%A9tele" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vigyünk fel még legalább 5 kutatót! Variáljuk az intézményeket, és szerepeljen köztük:</p>
+<ul>
+<li>Legalább 1 független kutató (Intézmény üresen)</li>
+<li>Legalább 1 inaktív kutató (Aktív jelölőnégyzet nincs bepipálva)</li>
+</ul>
+</div>
+<div id="feladat-2-adatok-módosítása" class="section level3 hasAnchor" number="10.8.2">
+<h3><span class="header-section-number">10.8.2</span> Feladat 2: Adatok módosítása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#feladat-2-adatok-m%C3%B3dos%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
+<li>Válasszunk ki egy kutatót</li>
+<li>Változtassuk meg az email címét</li>
+<li>Állapítsuk meg az egyik kutatót inaktívvá</li>
 </ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
 </div>
-</div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="feladat-3-navigáció-gyakorlása" class="section level3 hasAnchor" number="10.8.3">
+<h3><span class="header-section-number">10.8.3</span> Feladat 3: Navigáció gyakorlása<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html#feladat-3-navig%C3%A1ci%C3%B3-gyakorl%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
+<li>Ugorjunk az első rekordra (◀◀ gomb)</li>
+<li>Lapozzunk végig egyesével (▶ gomb)</li>
+<li>Ugorjunk az utolsó rekordra (▶▶)</li>
+<li>Adjunk hozzá egy új rekordot (▶* gomb)</li>
 </ol>
 
+</div>
 </div>
 </div>
             </section>
@@ -989,8 +1211,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="access-alapfogalmak.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="űrlap-készítése-adatbevitelhez.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

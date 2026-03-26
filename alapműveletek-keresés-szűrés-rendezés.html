@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="űrlap-készítése-adatbevitelhez.html"/>
+<link rel="next" href="második-tábla-létrehozása.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,254 +733,30 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
+<div id="alapműveletek-keresés-szűrés-rendezés" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Alapműveletek: keresés, szűrés, rendezés<a href="alapműveletek-keresés-szűrés-rendezés.html#alapm%C5%B1veletek-keres%C3%A9s-sz%C5%B1r%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Most, hogy van egy működő táblánk és űrlapunk, tanuljuk meg, hogyan
+keressünk, szűrjünk és rendezzünk adatokat!</p>
+<div id="keresés" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Keresés<a href="alapműveletek-keresés-szűrés-rendezés.html#keres%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>keresés</strong> akkor hasznos, ha egy konkrét értéket keresünk (pl. egy
+kutató nevét).</p>
+<p><strong>Ctrl+F</strong> → Keresés ablak</p>
+<p><strong>Beállítások:</strong> - Keresés helye: tbl_Kutatók (egész űrlap) - Egyezés: A
+mező bármely része - Keresendő: pl. “ELTE”</p>
 </div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table>
-<thead>
-<tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
-</tr>
-<tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
-</tr>
-<tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
-</tr>
-<tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
-</tr>
-<tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
-</tr>
-<tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
+<div id="szűrés-1" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Szűrés<a href="alapműveletek-keresés-szűrés-rendezés.html#sz%C5%B1r%C3%A9s-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>szűrés</strong> ideiglenesen elrejti a nem megfelelő rekordokat.</p>
+<p><strong>Egyszerű szűrés:</strong> - Jobb egérgomb az Intézmény mezőn - “Szűrő az
+értékkel megegyezőre” → ELTE BTK</p>
+<p><strong>Szűrő eltávolítása:</strong> - Kezdőlap → Váltás szűrő</p>
 </div>
-</div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
-</div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
-</ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
-<ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
-</ul></li>
-<li><strong>Hibajelzés:</strong>
-<ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
-</ul></li>
-<li>OK</li>
-</ol>
-</div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
-</ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
-</div>
-</div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
-</ol>
+<div id="rendezés-1" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Rendezés<a href="alapműveletek-keresés-szűrés-rendezés.html#rendez%C3%A9s-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Név szerint (A→Z):</strong> - Kattintsunk a Név oszlopba - Kezdőlap → Növekvő
+sorrend</p>
+<p><strong>Dátum szerint (legújabb elől):</strong> - RegDátum oszlop - Csökkenő sorrend</p>
 
 </div>
 </div>
@@ -989,8 +765,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="űrlap-készítése-adatbevitelhez.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="második-tábla-létrehozása.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

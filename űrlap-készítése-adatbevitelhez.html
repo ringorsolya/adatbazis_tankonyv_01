@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>11 Űrlap készítése adatbevitelhez | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="11 Űrlap készítése adatbevitelhez | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="11 Űrlap készítése adatbevitelhez | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html"/>
+<link rel="next" href="alapműveletek-keresés-szűrés-rendezés.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,255 +733,439 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
+<div id="űrlap-készítése-adatbevitelhez" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> Űrlap készítése adatbevitelhez<a href="űrlap-készítése-adatbevitelhez.html#%C5%B1rlap-k%C3%A9sz%C3%ADt%C3%A9se-adatbevitelhez" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bevezetés-3" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Bevezetés<a href="űrlap-készítése-adatbevitelhez.html#bevezet%C3%A9s-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az előző fejezetben létrehoztuk a <code>tbl_Kutatók</code> táblát, és adatokat vittünk fel <strong>adatlap nézetben</strong>. Ez működik, de van néhány hátránya:</p>
+<p>Nem túl szép, professzionális<br />
+Egyszerre sok oszlop látszik → nehéz átlátni<br />
+Könnyen véletlenül módosíthatunk/törölhetünk adatot<br />
+Nem testre szabható</p>
+<p>A megoldás: <strong>űrlap (form)</strong> készítése!</p>
 </div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table>
-<thead>
-<tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
-</tr>
-<tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
-</tr>
-<tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
-</tr>
-<tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
-</tr>
-<tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
-</tr>
-<tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
+<div id="mi-az-az-űrlap" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Mi az az űrlap?<a href="űrlap-készítése-adatbevitelhez.html#mi-az-az-%C5%B1rlap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az <strong>űrlap</strong> egy felhasználóbarát felület, amely:</p>
+<p>Szép, professzionális megjelenésű<br />
+Egy rekordot mutat egyszerre (mint egy papíralapú űrlap)<br />
+Testre szabható (színek, betűk, elrendezés)<br />
+Védi az adatokat (el lehet rejteni bizonyos mezőket)<br />
+Egyszerűbb használni (gombok, navigáció)</p>
 </div>
-</div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
-</div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="automatikus-űrlap-generálása" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Automatikus űrlap generálása<a href="űrlap-készítése-adatbevitelhez.html#automatikus-%C5%B1rlap-gener%C3%A1l%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A leggyorsabb módszer: hagyjuk, hogy az Access automatikusan készítsen nekünk egy űrlapot!</p>
+<div id="lépés-tábla-kijelölése" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> 1. lépés: Tábla kijelölése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-t%C3%A1bla-kijel%C3%B6l%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
-</ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
+<li>Zárjuk be a <code>tbl_Kutatók</code> táblát, ha még nyitva van (jobb felső sarokban az ✕)</li>
+<li>A bal oldali <strong>Navigációs panelen</strong> kattintsunk <strong>egyszeri kattintással</strong> a <code>tbl_Kutatók</code> táblára
 <ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
+<li><strong>NE</strong> dupla kattintás (az megnyitná a táblát)</li>
+<li>Csak kattintsunk rá egyszer, hogy kijelöljük</li>
 </ul></li>
-<li><strong>Hibajelzés:</strong>
+</ol>
+<p>A tábla neve kék háttérrel kiemelődik.</p>
+</div>
+<div id="lépés-űrlap-varázsló-indítása" class="section level3 hasAnchor" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> 2. lépés: Űrlap varázsló indítása<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-%C5%B1rlap-var%C3%A1zsl%C3%B3-ind%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most, hogy a tábla ki van jelölve:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Létrehozás</strong> fülre (a menüszalagon)</li>
+<li>Keressük meg az <strong>Űrlap</strong> gombot (nagy, zöld ikon, rajta egy formanyomtatvány)</li>
+<li>Kattintsunk rá</li>
+</ol>
+<p><strong>Varázslat! ✨</strong> Az Access automatikusan létrehozott egy űrlapot!</p>
+</div>
+<div id="lépés-az-űrlap-megtekintése" class="section level3 hasAnchor" number="11.3.3">
+<h3><span class="header-section-number">11.3.3</span> 3. lépés: Az űrlap megtekintése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-az-%C5%B1rlap-megtekint%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nézzük meg, mit kaptunk:</p>
+<pre><code>┌──────────────────────────────────────────┐
+│  tbl_Kutatók                             │
+├──────────────────────────────────────────┤
+│  KutatóID        1                       │
+│  Név             Kovács Anna             │
+│  Email           kovacs.a@elte.hu        │
+│  Intézmény       ELTE BTK                │
+│  RegDátum        2024.01.15              │
+│  Aktív           ☑                       │
+│                                           │
+│  ◀◀  ◀  Rekord: 1 / 10  ▶  ▶▶  ▶*       │
+└──────────────────────────────────────────┘</code></pre>
+<p><strong>Figyeljük meg:</strong></p>
 <ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
+<li>Minden mező <strong>egymás alatt</strong> van (nem egymás mellett, mint az adatlapon)</li>
+<li>Mindegyik mellette van a <strong>címkéje</strong> (mezőnév)</li>
+<li><strong>Csak egy rekord</strong> látszik egyszerre (Kovács Anna)</li>
+<li>Alul <strong>navigációs gombok</strong> (ugyanazok, mint az adatlapon)</li>
+</ul>
+</div>
+<div id="lépés-navigáció-az-űrlapon" class="section level3 hasAnchor" number="11.3.4">
+<h3><span class="header-section-number">11.3.4</span> 4. lépés: Navigáció az űrlapon<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-navig%C3%A1ci%C3%B3-az-%C5%B1rlapon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Próbáljuk ki a navigációs gombokat:</p>
+<ul>
+<li><strong>▶</strong> (Következő rekord) → Nagy Péter</li>
+<li><strong>▶</strong> → Szabó Mária</li>
+<li><strong>◀</strong> (Előző rekord) → Nagy Péter</li>
+<li><strong>◀◀</strong> (Első rekord) → Kovács Anna</li>
+<li><strong>▶▶</strong> (Utolsó rekord) → Az utolsó felvett kutató</li>
+<li><strong>▶*</strong> (Új rekord) → Üres űrlap, új kutató hozzáadásához</li>
+</ul>
+</div>
+<div id="lépés-új-rekord-felvétele-az-űrlapon" class="section level3 hasAnchor" number="11.3.5">
+<h3><span class="header-section-number">11.3.5</span> 5. lépés: Új rekord felvétele az űrlapon<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-%C3%BAj-rekord-felv%C3%A9tele-az-%C5%B1rlapon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kattintsunk az <strong>▶*</strong> gombra (új rekord).</p>
+<p>Most egy üres űrlapot látunk:</p>
+<pre><code>┌──────────────────────────────────────────┐
+│  tbl_Kutatók                             │
+├──────────────────────────────────────────┤
+│  KutatóID        (AutoNumber)            │
+│  Név             _____________________   │
+│  Email           _____________________   │
+│  Intézmény       _____________________   │
+│  RegDátum        (mai dátum)             │
+│  Aktív           ☐                       │
+└──────────────────────────────────────────┘</code></pre>
+<p>Vigyünk fel egy új kutatót:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Név</strong> mezőbe</li>
+<li>Írjuk be: <code>Horváth István</code></li>
+<li><strong>Tab</strong> → Email: <code>horvath.i@corvinus.hu</code></li>
+<li><strong>Tab</strong> → Intézmény: <code>Corvinus Egyetem</code></li>
+<li><strong>Tab</strong> → RegDátum: (hagyjuk a mai dátumot)</li>
+<li><strong>Tab</strong> → Aktív: ☑ (pipáljuk be)</li>
+<li><strong>Tab</strong> vagy <strong>Enter</strong></li>
+</ol>
+<p>Az Access automatikusan menti! Nem kell külön mentési gombra kattintanunk.</p>
+</div>
+<div id="lépés-űrlap-mentése" class="section level3 hasAnchor" number="11.3.6">
+<h3><span class="header-section-number">11.3.6</span> 6. lépés: Űrlap mentése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-%C5%B1rlap-ment%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mentsük el az űrlapot:</p>
+<ol style="list-style-type: decimal">
+<li>Nyomjuk meg: <strong>Ctrl+S</strong> (vagy Fájl → Mentés)</li>
+<li>Az Access megkérdezi a nevet</li>
+<li>Írjuk be: <code>frm_Kutatók</code></li>
+<li><strong>OK</strong></li>
+</ol>
+<blockquote>
+<p><strong>Jó gyakorlat:</strong> Az űrlapok nevét érdemes <code>frm_</code> előtaggal kezdeni (form = űrlap).</p>
+</blockquote>
+<p>Most a bal oldali Navigációs panelen, az <strong>Űrlapok</strong> kategóriában látjuk a <code>frm_Kutatók</code> űrlapot.</p>
+</div>
+</div>
+<div id="az-űrlap-testre-szabása" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Az űrlap testre szabása<a href="űrlap-készítése-adatbevitelhez.html#az-%C5%B1rlap-testre-szab%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az automatikusan generált űrlap jó, de testre szabhatjuk! Színeket változtathatunk, mezőket elrendezhetünk, elrejthetünk stb.</p>
+<div id="lépés-tervezési-nézetre-váltás-1" class="section level3 hasAnchor" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> 1. lépés: Tervezési nézetre váltás<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-tervez%C3%A9si-n%C3%A9zetre-v%C3%A1lt%C3%A1s-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Váltsu különböző módokon válthatunk:</p>
+<p><strong>A módszer:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Nézet</strong> gombra (Kezdőlap fül, bal oldalt)</li>
+<li>Válasszuk: <strong>Tervezési nézet</strong></li>
+</ol>
+<p><strong>B módszer:</strong></p>
+<ul>
+<li>Jobb alsó sarokban három kis ikon: 📄 🖊️ 🎨</li>
+<li>Kattintsunk a jobb szélsőre (🎨 Tervezési nézet)</li>
+</ul>
+</div>
+<div id="lépés-a-tervezési-nézet-megismerése-1" class="section level3 hasAnchor" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> 2. lépés: A tervezési nézet megismerése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-a-tervez%C3%A9si-n%C3%A9zet-megismer%C3%A9se-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most egy teljesen más felületet látunk:</p>
+<pre><code>┌──────────────────────────────────────────┐
+│ Űrlap fejléce                            │  ← Fejléc szakasz
+├──────────────────────────────────────────┤
+│ KutatóID címke     KutatóID szövegdoboz │  ← Részletek szakasz
+│ Név címke          Név szövegdoboz      │
+│ Email címke        Email szövegdoboz    │
+│ ...                                      │
+├──────────────────────────────────────────┤
+│ Űrlap lábléce                            │  ← Lábléc szakasz
+└──────────────────────────────────────────┘</code></pre>
+<p><strong>Szakaszok:</strong></p>
+<ul>
+<li><strong>Űrlap fejléce:</strong> Ide kerül a cím, logó (egyszeri, minden rekordnál ugyanaz)</li>
+<li><strong>Részletek:</strong> Itt vannak a mezők (ez ismétlődik rekordonként)</li>
+<li><strong>Űrlap lábléce:</strong> Alul, gombok, megjegyzések</li>
+</ul>
+<p><strong>Vezérlők (Controls):</strong></p>
+<p>Minden elem az űrlapon egy <strong>vezérlő</strong>:</p>
+<ul>
+<li><strong>Címke (Label):</strong> “Név”, “Email” – csak szöveg, nem módosítható</li>
+<li><strong>Szövegdoboz (Text Box):</strong> Ide írjuk az adatokat</li>
+<li><strong>Jelölőnégyzet (Checkbox):</strong> Az “Aktív” mező</li>
+</ul>
+</div>
+<div id="lépés-címkék-átnevezése" class="section level3 hasAnchor" number="11.4.3">
+<h3><span class="header-section-number">11.4.3</span> 3. lépés: Címkék átnevezése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-c%C3%ADmk%C3%A9k-%C3%A1tnevez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A mezőnevek (pl. “KutatóID”, “RegDátum”) nem túl szépek. Nevezzük át őket!</p>
+<div id="kutatóid-címke-módosítása" class="section level4 hasAnchor" number="11.4.3.1">
+<h4><span class="header-section-number">11.4.3.1</span> KutatóID címke módosítása<a href="űrlap-készítése-adatbevitelhez.html#kutat%C3%B3id-c%C3%ADmke-m%C3%B3dos%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk <strong>egyszeri kattintással</strong> a <code>KutatóID</code> címkére (bal oldalt)
+<ul>
+<li>A címke körül megjelennek kis négyzetek (kiválasztva)</li>
 </ul></li>
-<li>OK</li>
+<li>Kattintsunk még egyszer (lassan, ne dupla kattintás!) → Szerkesztési mód</li>
+<li>Töröljük ki, és írjuk be: <strong>Azonosító</strong></li>
+<li>Kattintsunk máshova (pl. szürke háttérre)</li>
+</ol>
+<p>Vagy:</p>
+<ol style="list-style-type: decimal">
+<li>Dupla kattintás a címkére → Megnyílik a <strong>Tulajdonságlap</strong> (Property Sheet)</li>
+<li>Keressük meg: <strong>Felirat</strong> (Caption) → Írjuk be: <code>Azonosító</code></li>
+<li>Zárjuk be a Tulajdonságlapot (✕)</li>
+</ol>
+<blockquote>
+<p><strong>Tipp:</strong> Ha nem látjuk a Tulajdonságlapot, nyomjuk meg az <strong>F4</strong> billentyűt!</p>
+</blockquote>
+</div>
+<div id="további-címkék-átnevezése" class="section level4 hasAnchor" number="11.4.3.2">
+<h4><span class="header-section-number">11.4.3.2</span> További címkék átnevezése<a href="űrlap-készítése-adatbevitelhez.html#tov%C3%A1bbi-c%C3%ADmk%C3%A9k-%C3%A1tnevez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Ugyanígy nevezzük át:</p>
+<ul>
+<li><code>Név</code> → Maradhat (már jó)</li>
+<li><code>Email</code> → <strong>E-mail cím</strong></li>
+<li><code>Intézmény</code> → Maradhat</li>
+<li><code>RegDátum</code> → <strong>Regisztráció dátuma</strong></li>
+<li><code>Aktív</code> → <strong>Aktív kutató?</strong></li>
+</ul>
+</div>
+</div>
+<div id="lépés-kutatóid-mező-elrejtése" class="section level3 hasAnchor" number="11.4.4">
+<h3><span class="header-section-number">11.4.4</span> 4. lépés: KutatóID mező elrejtése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-kutat%C3%B3id-mez%C5%91-elrejt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az AutoNumber ID-t nem szükséges mutatni a felhasználónak. Rejtsük el!</p>
+<div id="módszer-1-láthatóság-kikapcsolása" class="section level4 hasAnchor" number="11.4.4.1">
+<h4><span class="header-section-number">11.4.4.1</span> Módszer 1: Láthatóság kikapcsolása<a href="űrlap-készítése-adatbevitelhez.html#m%C3%B3dszer-1-l%C3%A1that%C3%B3s%C3%A1g-kikapcsol%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <code>KutatóID</code> <strong>szövegdobozára</strong> (jobb oldalt, nem a címkére!)</li>
+<li>Nyomjuk meg az <strong>F4</strong>-et (Tulajdonságlap megnyitása)</li>
+<li>Keressük meg a <strong>Látható</strong> (Visible) tulajdonságot</li>
+<li>Válasszuk: <strong>Nem</strong> (No)</li>
+</ol>
+<p>A KutatóID mező eltűnt! (A tervezési nézetben még látszik, de halványan.)</p>
+</div>
+<div id="módszer-2-a-címke-is-elrejtése" class="section level4 hasAnchor" number="11.4.4.2">
+<h4><span class="header-section-number">11.4.4.2</span> Módszer 2: A címke is elrejtése<a href="űrlap-készítése-adatbevitelhez.html#m%C3%B3dszer-2-a-c%C3%ADmke-is-elrejt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Az “Azonosító” címke még látszik. Rejtsük el azt is:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <code>Azonosító</code> címkére</li>
+<li>F4 → Tulajdonságlap</li>
+<li><strong>Látható</strong> → <strong>Nem</strong></li>
+</ol>
+<p>Most mindkettő eltűnt!</p>
+<blockquote>
+<p><strong>Vagy:</strong> Törölhetjük is őket (kiválasztás → Delete), de jobb elrejteni, hátha később kelleni fog.</p>
+</blockquote>
+</div>
+</div>
+<div id="lépés-címsor-hozzáadása-az-űrlaphoz" class="section level3 hasAnchor" number="11.4.5">
+<h3><span class="header-section-number">11.4.5</span> 5. lépés: Címsor hozzáadása az űrlaphoz<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-c%C3%ADmsor-hozz%C3%A1ad%C3%A1sa-az-%C5%B1rlaphoz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adjunk hozzá egy szép címsort a fejlécbe!</p>
+<div id="fejléc-szakasz-nagyobbra-húzása" class="section level4 hasAnchor" number="11.4.5.1">
+<h4><span class="header-section-number">11.4.5.1</span> Fejléc szakasz nagyobbra húzása<a href="űrlap-készítése-adatbevitelhez.html#fejl%C3%A9c-szakasz-nagyobbra-h%C3%BAz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Először is, csináljuk nagyobbra a fejléc szakaszt:</p>
+<ol style="list-style-type: decimal">
+<li>Vigyük az egeret a <strong>“Részletek”</strong> szöveg alatti vonalra (szakaszhatár)</li>
+<li>Az egérkurzor ↕ alakra vált</li>
+<li>Húzzuk lefelé kb. 2 cm-t</li>
+</ol>
+<p>Most van hely a fejlécben!</p>
+</div>
+<div id="címke-beszúrása" class="section level4 hasAnchor" number="11.4.5.2">
+<h4><span class="header-section-number">11.4.5.2</span> Címke beszúrása<a href="űrlap-készítése-adatbevitelhez.html#c%C3%ADmke-besz%C3%BAr%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <strong>Tervezés</strong> fülre (ha nincs már ott)</li>
+<li>Keressük meg a <strong>Vezérlők</strong> csoportot</li>
+<li>Kattintsunk a <strong>Aa címke</strong> ikonra (Label)</li>
+<li>Vigyük az egeret a fejléc területére</li>
+<li>Rajzoljunk egy téglalapot (kattintás és húzás)</li>
+<li>Írjuk be: <strong>Kutatói Nyilvántartás</strong></li>
 </ol>
 </div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="formázás-2" class="section level4 hasAnchor" number="11.4.5.3">
+<h4><span class="header-section-number">11.4.5.3</span> Formázás<a href="űrlap-készítése-adatbevitelhez.html#form%C3%A1z%C3%A1s-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Tegyük széppé a címet:</p>
 <ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
+<li>A címke legyen kiválasztva</li>
+<li><strong>Kezdőlap</strong> fül → Formázás eszközök:
+<ul>
+<li><strong>Betűméret:</strong> 18</li>
+<li><strong>Félkövér:</strong> B gomb</li>
+<li><strong>Szöveg színe:</strong> válasszunk valami szépet (pl. sötétkék)</li>
+<li><strong>Igazítás:</strong> középre (három vonal ikon)</li>
+</ul></li>
 </ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
 </div>
 </div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lépés-mezők-elrendezése" class="section level3 hasAnchor" number="11.4.6">
+<h3><span class="header-section-number">11.4.6</span> 6. lépés: Mezők elrendezése<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-mez%C5%91k-elrendez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az űrlapon a mezők most elég kuszán helyezkednek el. Rendezzük őket!</p>
+<div id="mezők-igazítása-balra" class="section level4 hasAnchor" number="11.4.6.1">
+<h4><span class="header-section-number">11.4.6.1</span> Mezők igazítása balra<a href="űrlap-készítése-adatbevitelhez.html#mez%C5%91k-igaz%C3%ADt%C3%A1sa-balra" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
+<li>Tartsuk lenyomva a <strong>Shift</strong> billentyűt</li>
+<li>Kattintsunk az összes <strong>címkére</strong> egymás után (Név, E-mail cím, Intézmény, stb.)
+<ul>
+<li>Mindegyik kijelölődik (kis négyzetek körülöttük)</li>
+</ul></li>
+<li><strong>Rendezés</strong> fül → <strong>Balra igazítás</strong> gomb</li>
+</ol>
+<p>Most az összes címke egy függőleges vonalba került!</p>
+</div>
+<div id="szövegdobozok-igazítása" class="section level4 hasAnchor" number="11.4.6.2">
+<h4><span class="header-section-number">11.4.6.2</span> Szövegdobozok igazítása<a href="űrlap-készítése-adatbevitelhez.html#sz%C3%B6vegdobozok-igaz%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Ugyanígy igazítsuk a szövegdobozokat is:</p>
+<ol style="list-style-type: decimal">
+<li>Shift + kattintások a szövegdobozokon</li>
+<li><strong>Rendezés</strong> fül → <strong>Balra igazítás</strong></li>
+</ol>
+</div>
+<div id="egyenletes-távolságok" class="section level4 hasAnchor" number="11.4.6.3">
+<h4><span class="header-section-number">11.4.6.3</span> Egyenletes távolságok<a href="űrlap-készítése-adatbevitelhez.html#egyenletes-t%C3%A1vols%C3%A1gok" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Ha a mezők között egyenetlen távolságok vannak:</p>
+<ol style="list-style-type: decimal">
+<li>Jelöljük ki az összes vezérlőt (címkék + szövegdobozok)</li>
+<li><strong>Rendezés</strong> fül → <strong>Egyenlő távolság függőlegesen</strong></li>
+</ol>
+</div>
+</div>
+<div id="lépés-háttérszín-változtatása" class="section level3 hasAnchor" number="11.4.7">
+<h3><span class="header-section-number">11.4.7</span> 7. lépés: Háttérszín változtatása<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-h%C3%A1tt%C3%A9rsz%C3%ADn-v%C3%A1ltoztat%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tegyük színesebbé az űrlapot!</p>
+<div id="fejléc-háttérszíne" class="section level4 hasAnchor" number="11.4.7.1">
+<h4><span class="header-section-number">11.4.7.1</span> Fejléc háttérszíne<a href="űrlap-készítése-adatbevitelhez.html#fejl%C3%A9c-h%C3%A1tt%C3%A9rsz%C3%ADne" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a fejléc területére (üres helyre)</li>
+<li>F4 → Tulajdonságlap</li>
+<li><strong>Háttérszín</strong> (Back Color) → Válasszunk egy világos színt (pl. világoskék)</li>
+</ol>
+<p><strong>Vagy:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Jobb egérgomb a fejléc területén</li>
+<li><strong>Kitöltési szín</strong> → Válasszunk színt</li>
+</ol>
+</div>
+<div id="részletek-szakasz-háttérszíne" class="section level4 hasAnchor" number="11.4.7.2">
+<h4><span class="header-section-number">11.4.7.2</span> Részletek szakasz háttérszíne<a href="űrlap-készítése-adatbevitelhez.html#r%C3%A9szletek-szakasz-h%C3%A1tt%C3%A9rsz%C3%ADne" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Ugyanígy adjunk halvány háttérszínt a Részletek szakasznak is (pl. nagyon világos szürke vagy krém).</p>
+</div>
+</div>
+<div id="lépés-űrlap-nézetre-váltás-tesztelés" class="section level3 hasAnchor" number="11.4.8">
+<h3><span class="header-section-number">11.4.8</span> 8. lépés: Űrlap nézetre váltás – tesztelés<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-%C5%B1rlap-n%C3%A9zetre-v%C3%A1lt%C3%A1s-tesztel%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nézzük meg, hogy néz ki az űrlapunk!</p>
+<ol style="list-style-type: decimal">
+<li><strong>Nézet</strong> gomb → <strong>Űrlap nézet</strong></li>
+</ol>
+<p>Most egy szép, professzionális űrlapot látunk! 🎉</p>
+<pre><code>┌──────────────────────────────────────────┐
+│      Kutatói Nyilvántartás               │  (kék háttér)
+├──────────────────────────────────────────┤
+│  Név             Kovács Anna             │
+│  E-mail cím      kovacs.a@elte.hu        │
+│  Intézmény       ELTE BTK                │
+│  Regisztráció    2024.01.15              │
+│    dátuma                                 │
+│  Aktív kutató?   ☑                       │
+│                                           │
+│  ◀◀  ◀  Rekord: 1 / 11  ▶  ▶▶  ▶*       │
+└──────────────────────────────────────────┘</code></pre>
+</div>
+<div id="lépés-mentés" class="section level3 hasAnchor" number="11.4.9">
+<h3><span class="header-section-number">11.4.9</span> 9. lépés: Mentés<a href="űrlap-készítése-adatbevitelhez.html#l%C3%A9p%C3%A9s-ment%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mentsük el a változtatásokat:</p>
+<ul>
+<li><strong>Ctrl+S</strong></li>
+</ul>
+</div>
+</div>
+<div id="további-testre-szabási-lehetőségek-opcionális" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> További testre szabási lehetőségek (opcionális)<a href="űrlap-készítése-adatbevitelhez.html#tov%C3%A1bbi-testre-szab%C3%A1si-lehet%C5%91s%C3%A9gek-opcion%C3%A1lis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mezők-sorrendjének-megváltoztatása-tab-order" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> Mezők sorrendjének megváltoztatása (Tab Order)<a href="űrlap-készítése-adatbevitelhez.html#mez%C5%91k-sorrendj%C3%A9nek-megv%C3%A1ltoztat%C3%A1sa-tab-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Amikor <strong>Tab</strong> billentyűt nyomunk, az űrlap mezőről mezőre ugrik. Alapértelmezésben a létrehozási sorrend szerint. De mi változtathatjuk!</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezési nézet</strong></li>
+<li>Jobb egérgomb az űrlapon → <strong>Tab-sorrend</strong> (Tab Order)</li>
+<li>Megjelenik egy ablak, ahol a mezők sorrendjét átrendezhetjük (húzással)</li>
+<li><strong>OK</strong></li>
+</ol>
+<p><strong>Tipp:</strong> Logikus sorrend legyen: Név → Email → Intézmény → RegDátum → Aktív</p>
+</div>
+<div id="mezők-kötelező-kitöltésének-ellenőrzése" class="section level3 hasAnchor" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> Mezők kötelező kitöltésének ellenőrzése<a href="űrlap-készítése-adatbevitelhez.html#mez%C5%91k-k%C3%B6telez%C5%91-kit%C3%B6lt%C3%A9s%C3%A9nek-ellen%C5%91rz%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szeretnénk, hogy bizonyos mezők kötelezőek legyenek:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezési nézet</strong></li>
+<li>Kattintsunk a <code>Név</code> szövegdobozra</li>
+<li>F4 → Tulajdonságlap → <strong>Adatok</strong> fül</li>
+<li><strong>Kötelező</strong> (Required) → <strong>Igen</strong></li>
+</ol>
+<p>Most ha valaki megpróbál üresen hagyni egy nevet, az Access hibaüzenetet ad.</p>
+<blockquote>
+<p><strong>Megjegyzés:</strong> Ezt már beállítottuk a táblában, így duplikálás. De az űrlapon is beállíthatjuk extra biztonsági ellenőrzésnek.</p>
+</blockquote>
+</div>
+<div id="egyéni-szín-a-háttérnek-rgb-kód" class="section level3 hasAnchor" number="11.5.3">
+<h3><span class="header-section-number">11.5.3</span> Egyéni szín a háttérnek (RGB kód)<a href="űrlap-készítése-adatbevitelhez.html#egy%C3%A9ni-sz%C3%ADn-a-h%C3%A1tt%C3%A9rnek-rgb-k%C3%B3d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha pontosan meghatározott színt szeretnénk:</p>
+<ol style="list-style-type: decimal">
+<li>Tulajdonságlap → <strong>Háttérszín</strong></li>
+<li>Kattintsunk a <code>...</code> gombra (Build button)</li>
+<li>Adjuk meg az RGB kódot (pl. R: 220, G: 230, B: 255)</li>
+</ol>
+</div>
+</div>
+<div id="gyakorlati-feladatok-1" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Gyakorlati feladatok<a href="űrlap-készítése-adatbevitelhez.html#gyakorlati-feladatok-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="feladat-1-új-rekordok-felvétele-az-űrlapon" class="section level3 hasAnchor" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Feladat 1: Új rekordok felvétele az űrlapon<a href="űrlap-készítése-adatbevitelhez.html#feladat-1-%C3%BAj-rekordok-felv%C3%A9tele-az-%C5%B1rlapon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Nyissuk meg a <code>frm_Kutatók</code> űrlapot (dupla kattintás a Navigációs panelen)</li>
+<li>Kattintsunk az <strong>▶*</strong> gombra (új rekord)</li>
+<li>Vigyünk fel 3 új kutatót!</li>
+</ol>
+<p><strong>Példák:</strong></p>
+<ul>
+<li><strong>Tóth Katalin</strong> | <a href="mailto:toth.k@elte.hu">toth.k@elte.hu</a> | ELTE BTK | (mai dátum) | Aktív</li>
+<li><strong>Molnár Gábor</strong> | <a href="mailto:molnar.g@mta.hu">molnar.g@mta.hu</a> | MTA BTK | (mai dátum) | Aktív</li>
+<li><strong>Varga Éva</strong> | (nincs email) | BFL | (mai dátum) | Inaktív</li>
+</ul>
+</div>
+<div id="feladat-2-adatok-módosítása-1" class="section level3 hasAnchor" number="11.6.2">
+<h3><span class="header-section-number">11.6.2</span> Feladat 2: Adatok módosítása<a href="űrlap-készítése-adatbevitelhez.html#feladat-2-adatok-m%C3%B3dos%C3%ADt%C3%A1sa-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Navigáljunk egy korábbi kutatóhoz (pl. Nagy Péter)</li>
+<li>Változtassuk meg az email címét: <code>peter.nagy@newmail.com</code></li>
+<li>Tab vagy Enter → Az adat automatikusan mentődik</li>
+<li>Ellenőrizzük: nyissuk meg a <code>tbl_Kutatók</code> táblát, és nézzük meg, hogy valóban módosult!</li>
+</ol>
+</div>
+<div id="feladat-3-keresés-az-űrlapon" class="section level3 hasAnchor" number="11.6.3">
+<h3><span class="header-section-number">11.6.3</span> Feladat 3: Keresés az űrlapon<a href="űrlap-készítése-adatbevitelhez.html#feladat-3-keres%C3%A9s-az-%C5%B1rlapon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Van egy hasznos funkció: <strong>keresés</strong>.</p>
+<ol style="list-style-type: decimal">
+<li>Nyissuk meg a <code>frm_Kutatók</code> űrlapot</li>
+<li><strong>Kezdőlap</strong> fül → <strong>Keresés</strong> gomb (🔍) vagy <strong>Ctrl+F</strong></li>
+<li>Megjelenik a “Keresés és csere” ablak</li>
+<li><strong>Keresés:</strong> Írjuk be: <code>ELTE</code></li>
+<li><strong>Következő keresése</strong> gomb</li>
+</ol>
+<p>Az Access megtalálja az első ELTE-s kutatót! A <strong>Következő keresése</strong> gombbal továbbléphetünk a következőre.</p>
+</div>
+<div id="feladat-4-tervezési-módosítások" class="section level3 hasAnchor" number="11.6.4">
+<h3><span class="header-section-number">11.6.4</span> Feladat 4: Tervezési módosítások<a href="űrlap-készítése-adatbevitelhez.html#feladat-4-tervez%C3%A9si-m%C3%B3dos%C3%ADt%C3%A1sok" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Próbáljuk ki a következőket tervezési nézetben:</p>
+<ol style="list-style-type: decimal">
+<li>Változtassuk meg a fejléc szövegének színét pirosra</li>
+<li>Adjunk a fejléchez egy egyéni szöveget: “MLE Továbbképzés 2026”</li>
+<li>Növeljük a <code>Név</code> mező szélességét (húzzuk szélesebbre)</li>
+<li>Adjunk halvány sárga hátteret a <code>Részletek</code> szakasznak</li>
 </ol>
 
+</div>
 </div>
 </div>
             </section>
@@ -989,8 +1173,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="az-első-tábla-létrehozása-kutatók-nyilvántartása.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="alapműveletek-keresés-szűrés-rendezés.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

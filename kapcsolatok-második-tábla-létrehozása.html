@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>14 Kapcsolatok: Második tábla létrehozása | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="14 Kapcsolatok: Második tábla létrehozása | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="14 Kapcsolatok: Második tábla létrehozása | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="második-tábla-létrehozása.html"/>
+<link rel="next" href="lekérdezések-adatok-szűrése-és-elemzése.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,255 +733,502 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
+<div id="kapcsolatok-második-tábla-létrehozása" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">14</span> Kapcsolatok: Második tábla létrehozása<a href="kapcsolatok-második-tábla-létrehozása.html#kapcsolatok-m%C3%A1sodik-t%C3%A1bla-l%C3%A9trehoz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bevezetés-4" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Bevezetés<a href="kapcsolatok-második-tábla-létrehozása.html#bevezet%C3%A9s-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Eddig egy táblával dolgoztunk: <code>tbl_Kutatók</code>. De a valódi erejét az Access akkor mutatja meg, amikor <strong>több táblát kapcsolunk össze</strong>.</p>
+<p>Ebben a fejezetben:</p>
+<ol style="list-style-type: decimal">
+<li>Létrehozunk egy második táblát: <code>tbl_Látogatások</code></li>
+<li>Összekapcsoljuk a két táblát</li>
+<li>Megértjük a <strong>kapcsolatok</strong> fogalmát</li>
+</ol>
 </div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="miért-kell-több-tábla" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Miért kell több tábla?<a href="kapcsolatok-második-tábla-létrehozása.html#mi%C3%A9rt-kell-t%C3%B6bb-t%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-probléma-ismétlődő-adatok" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> A probléma: Ismétlődő adatok<a href="kapcsolatok-második-tábla-létrehozása.html#a-probl%C3%A9ma-ism%C3%A9tl%C5%91d%C5%91-adatok" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Képzeljük el, hogy <strong>egy táblában</strong> szeretnénk tárolni a kutatókat ÉS a látogatásaikat:</p>
+<pre><code>┌────────┬────────────┬───────────────┬──────────────┬────────────────┐
+│ Név    │ Email      │ Intézmény     │ LatDátum     │ CélKutatás     │
+├────────┼────────────┼───────────────┼──────────────┼────────────────┤
+│ Kovács │ kovacs.a@  │ ELTE BTK      │ 2024.03.10   │ Rákóczi        │
+│ Anna   │ elte.hu    │               │              │                │
+├────────┼────────────┼───────────────┼──────────────┼────────────────┤
+│ Kovács │ kovacs.a@  │ ELTE BTK      │ 2024.03.15   │ Rákóczi        │
+│ Anna   │ elte.hu    │               │              │                │
+├────────┼────────────┼───────────────┼──────────────┼────────────────┤
+│ Kovács │ kovacs.a@  │ ELTE BTK      │ 2024.04.02   │ Rákóczi        │
+│ Anna   │ elte.hu    │               │              │                │
+├────────┼────────────┼───────────────┼──────────────┼────────────────┤
+│ Nagy   │ nagy.p@    │ MNL OL        │ 2024.03.12   │ színháztört.   │
+│ Péter  │ gmail.com  │               │              │                │
+└────────┴────────────┴───────────────┴──────────────┴────────────────┘</code></pre>
+<p><strong>Problémák:</strong></p>
+<p>Kovács Anna neve, emailje, intézménye <strong>háromszor</strong> ismétlődik<br />
+Ha Kovács Anna emailt vált, <strong>három helyen</strong> kell módosítani<br />
+Elgépelés veszélye: “ELTE BTK” vs “ELTE BTk” vs “Elte BTK”<br />
+Rengeteg felesleges adat tárolása</p>
+</div>
+<div id="a-megoldás-két-tábla-kapcsolat" class="section level3 hasAnchor" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> A megoldás: Két tábla + kapcsolat<a href="kapcsolatok-második-tábla-létrehozása.html#a-megold%C3%A1s-k%C3%A9t-t%C3%A1bla-kapcsolat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1. tábla:</strong> <code>tbl_Kutatók</code> – minden kutató egyszer szerepel</p>
+<pre><code>┌────────┬────────────┬───────────────┬──────────────┐
+│KutatóID│ Név        │ Email         │ Intézmény    │
+├────────┼────────────┼───────────────┼──────────────┤
+│   1    │ Kovács Anna│ kovacs.a@...  │ ELTE BTK     │
+│   2    │ Nagy Péter │ nagy.p@...    │ MNL OL       │
+└────────┴────────────┴───────────────┴──────────────┘</code></pre>
+<p><strong>2. tábla:</strong> <code>tbl_Látogatások</code> – látogatások</p>
+<pre><code>┌───────────┬─────────┬────────────┬─────────────────┐
+│ LatID     │KutatóID │ LatDátum   │ CélKutatás      │
+├───────────┼─────────┼────────────┼─────────────────┤
+│     1     │    1    │ 2024.03.10 │ Kádár-kor       │
+│     2     │    1    │ 2024.03.15 │ Kádár-kor       │
+│     3     │    1    │ 2024.04.02 │ Kádár-kor       │
+│     4     │    2    │ 2024.03.12 │ színháztörténet │
+└───────────┴─────────┴────────────┴─────────────────┘</code></pre>
+<p><strong>Kapcsolat:</strong> A <code>KutatóID</code> összeköti a két táblát!</p>
+<p>Kovács Anna adatai <strong>egyszer</strong> szerepelnek<br />
+Email módosítás <strong>egy helyen</strong><br />
+Nincs elgépelés veszély<br />
+Hatékony adattárolás</p>
+</div>
+</div>
+<div id="kapcsolat-típusok-1" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Kapcsolat típusok<a href="kapcsolatok-második-tábla-létrehozása.html#kapcsolat-t%C3%ADpusok-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mielőtt létrehoznánk a második táblát, értsük meg a kapcsolat típusokat!</p>
+<div id="egy-a-többhöz-kapcsolat-1n" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Egy-a-többhöz kapcsolat (1:N)<a href="kapcsolatok-második-tábla-létrehozása.html#egy-a-t%C3%B6bbh%C3%B6z-kapcsolat-1n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A leggyakoribb kapcsolat típus. <strong>Egy</strong> rekord az egyik táblában <strong>több</strong> rekordhoz kapcsolódhat a másik táblában.</p>
+<p><strong>Példák:</strong></p>
+<ul>
+<li><strong>Egy</strong> kutató → <strong>Több</strong> látogatás</li>
+<li><strong>Egy</strong> fond → <strong>Több</strong> állag</li>
+<li><strong>Egy</strong> állag → <strong>Több</strong> irat</li>
+</ul>
+<p><strong>Jelölés:</strong></p>
+<pre><code>Kutatók (1) ─────&lt; Látogatások (N)</code></pre>
+<p>A “∞” vagy “&lt;” jel jelzi a “több” oldalt.</p>
+<p><strong>Hogyan működik?</strong></p>
+<ul>
+<li>A <code>tbl_Kutatók</code> táblában minden kutató <strong>egyszer</strong> szerepel (KutatóID = 1, 2, 3, …)</li>
+<li>A <code>tbl_Látogatások</code> táblában <strong>több sor</strong> is hivatkozhat ugyanarra a kutatóra (KutatóID = 1, 1, 1, 2, …)</li>
+</ul>
+</div>
+<div id="több-a-többhöz-kapcsolat-nm" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> Több-a-többhöz kapcsolat (N:M)<a href="kapcsolatok-második-tábla-létrehozása.html#t%C3%B6bb-a-t%C3%B6bbh%C3%B6z-kapcsolat-nm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ritkább, de előfordul. <strong>Több</strong> rekord az egyik táblában <strong>több</strong> rekordhoz kapcsolódhat a másik táblában.</p>
+<p><strong>Példa:</strong></p>
+<ul>
+<li><strong>Több</strong> kutató dolgozhat <strong>több</strong> kutatási projekten</li>
+<li><strong>Több</strong> iratot <strong>több</strong> témakörbe sorolhatunk</li>
+</ul>
+<p><strong>Megvalósítás:</strong> Egy köztes táblával (ezt majd a haladó kurzuson tanuljuk).</p>
+</div>
+<div id="egy-az-egyhez-kapcsolat-11" class="section level3 hasAnchor" number="14.3.3">
+<h3><span class="header-section-number">14.3.3</span> Egy-az-egyhez kapcsolat (1:1)<a href="kapcsolatok-második-tábla-létrehozása.html#egy-az-egyhez-kapcsolat-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nagyon ritka. <strong>Egy</strong> rekord az egyik táblában <strong>pontosan egy</strong> rekordhoz kapcsolódik a másik táblában.</p>
+<p><strong>Példa:</strong> Személy tábla és Útlevél tábla (egy személynek egy útlevele van).</p>
+<blockquote>
+<p><strong>Most:</strong> Az <strong>egy-a-többhöz</strong> (1:N) kapcsolattal fogunk dolgozni!</p>
+</blockquote>
+</div>
+</div>
+<div id="a-tbl_látogatások-tábla-megtervezése" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> A <code>tbl_Látogatások</code> tábla megtervezése<a href="kapcsolatok-második-tábla-létrehozása.html#a-tbl_l%C3%A1togat%C3%A1sok-t%C3%A1bla-megtervez%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tervezzük meg a második táblánkat!</p>
+<div id="milyen-adatokat-akarunk-tárolni" class="section level3 hasAnchor" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> Milyen adatokat akarunk tárolni?<a href="kapcsolatok-második-tábla-létrehozása.html#milyen-adatokat-akarunk-t%C3%A1rolni" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Egy látogatásról a következőket:</p>
+<ul>
+<li><strong>Ki</strong> jött? (melyik kutató)</li>
+<li><strong>Mikor</strong> jött?</li>
+<li><strong>Miért</strong> jött? (kutatási téma)</li>
+<li><strong>Megjegyzések</strong> (opcionális)</li>
+</ul>
+</div>
+<div id="mezők-definiálása" class="section level3 hasAnchor" number="14.4.2">
+<h3><span class="header-section-number">14.4.2</span> Mezők definiálása<a href="kapcsolatok-második-tábla-létrehozása.html#mez%C5%91k-defini%C3%A1l%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table>
 <thead>
 <tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
+<th>Mezőnév</th>
+<th>Adattípus</th>
+<th>Méret</th>
+<th>Kötelező</th>
+<th>Leírás</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
+<td>LatID</td>
+<td>AutoNumber</td>
+<td>-</td>
+<td>✓</td>
+<td>Egyedi azonosító (PK)</td>
 </tr>
 <tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
+<td>KutatóID</td>
+<td>Number (Long Integer)</td>
+<td>-</td>
+<td>✓</td>
+<td>Ki jött? (FK)</td>
 </tr>
 <tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
+<td>LatDátum</td>
+<td>Date/Time</td>
+<td>-</td>
+<td>✓</td>
+<td>Mikor jött?</td>
 </tr>
 <tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
+<td>CélKutatás</td>
+<td>Short Text</td>
+<td>200</td>
+<td>✗</td>
+<td>Kutatási téma</td>
 </tr>
 <tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
-</tr>
-<tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
+<td>Megjegyzés</td>
+<td>Long Text</td>
+<td>-</td>
+<td>✗</td>
+<td>További jegyzetek</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
-</div>
-</div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
-</div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
-</ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
+<p><strong>Fontos:</strong></p>
 <ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
-</ul></li>
-<li><strong>Hibajelzés:</strong>
+<li><strong>LatID:</strong> Elsődleges kulcs (Primary Key = PK)</li>
+<li><strong>KutatóID:</strong> <strong>Idegen kulcs</strong> (Foreign Key = FK) – ez kapcsolja össze a két táblát!</li>
+</ul>
+<blockquote>
+<p><strong>Idegen kulcs (Foreign Key):</strong> Egy mező, amely egy <strong>másik tábla</strong> elsődleges kulcsára hivatkozik.</p>
+</blockquote>
+</div>
+</div>
+<div id="a-tbl_látogatások-tábla-létrehozása" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> A <code>tbl_Látogatások</code> tábla létrehozása<a href="kapcsolatok-második-tábla-létrehozása.html#a-tbl_l%C3%A1togat%C3%A1sok-t%C3%A1bla-l%C3%A9trehoz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most hozzuk létre a táblát!</p>
+<div id="lépés-új-tábla-létrehozása" class="section level3 hasAnchor" number="14.5.1">
+<h3><span class="header-section-number">14.5.1</span> 1. lépés: Új tábla létrehozása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-%C3%BAj-t%C3%A1bla-l%C3%A9trehoz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Létrehozás</strong> fül → <strong>Táblatervezés</strong> gomb</li>
+<li>Megnyílik az üres táblatervező</li>
+</ol>
+</div>
+<div id="lépés-mezők-definiálása-1" class="section level3 hasAnchor" number="14.5.2">
+<h3><span class="header-section-number">14.5.2</span> 2. lépés: Mezők definiálása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-mez%C5%91k-defini%C3%A1l%C3%A1sa-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="latid-mező" class="section level4 hasAnchor" number="14.5.2.1">
+<h4><span class="header-section-number">14.5.2.1</span> LatID mező<a href="kapcsolatok-második-tábla-létrehozása.html#latid-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>LatID</code></li>
+<li><strong>Adattípus:</strong> <code>AutoNumber</code></li>
+<li><strong>Leírás:</strong> <code>Látogatás egyedi azonosítója</code></li>
+<li>Kattintsunk a sor bal szélére → Jobb egér → <strong>Elsődleges kulcs</strong> (vagy 🔑 gomb)</li>
+</ol>
+</div>
+<div id="kutatóid-mező" class="section level4 hasAnchor" number="14.5.2.2">
+<h4><span class="header-section-number">14.5.2.2</span> KutatóID mező<a href="kapcsolatok-második-tábla-létrehozása.html#kutat%C3%B3id-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Ez a kulcsmező, amely összeköti a két táblát!</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>KutatóID</code></li>
+<li><strong>Adattípus:</strong> <code>Number</code> (szám)</li>
+<li><strong>Leírás:</strong> <code>Melyik kutató látogatott?</code></li>
+</ol>
+<p><strong>Tulajdonságok (alsó panel):</strong></p>
 <ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
+<li><strong>Mező mérete</strong> (Field Size) → <code>Long Integer</code> (hosszú egész)</li>
+<li><strong>Kötelező</strong> (Required) → <code>Igen</code></li>
+</ul>
+<blockquote>
+<p><strong>Fontos:</strong> A <code>KutatóID</code> típusa <strong>Number (Long Integer)</strong> legyen, mert a <code>tbl_Kutatók</code> táblában a <code>KutatóID</code> AutoNumber típusú, ami Long Integer.</p>
+</blockquote>
+</div>
+<div id="latdátum-mező" class="section level4 hasAnchor" number="14.5.2.3">
+<h4><span class="header-section-number">14.5.2.3</span> LatDátum mező<a href="kapcsolatok-második-tábla-létrehozása.html#latd%C3%A1tum-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>LatDátum</code></li>
+<li><strong>Adattípus:</strong> <code>Date/Time</code></li>
+<li><strong>Leírás:</strong> <code>Látogatás dátuma</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Formátum:</strong> <code>Rövid dátum</code></li>
+<li><strong>Kötelező:</strong> <code>Igen</code></li>
+<li><strong>Alapértelmezett érték:</strong> <code>=Date()</code> (mai dátum)</li>
+</ul>
+</div>
+<div id="célkutatás-mező" class="section level4 hasAnchor" number="14.5.2.4">
+<h4><span class="header-section-number">14.5.2.4</span> CélKutatás mező<a href="kapcsolatok-második-tábla-létrehozása.html#c%C3%A9lkutat%C3%A1s-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>CélKutatás</code></li>
+<li><strong>Adattípus:</strong> <code>Short Text</code></li>
+<li><strong>Leírás:</strong> <code>Kutatási téma</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Mező mérete:</strong> <code>200</code></li>
+<li><strong>Kötelező:</strong> <code>Nem</code></li>
+</ul>
+</div>
+<div id="megjegyzés-mező" class="section level4 hasAnchor" number="14.5.2.5">
+<h4><span class="header-section-number">14.5.2.5</span> Megjegyzés mező<a href="kapcsolatok-második-tábla-létrehozása.html#megjegyz%C3%A9s-mez%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Mezőnév:</strong> <code>Megjegyzés</code></li>
+<li><strong>Adattípus:</strong> <code>Long Text</code></li>
+<li><strong>Leírás:</strong> <code>További jegyzetek</code></li>
+</ol>
+<p><strong>Tulajdonságok:</strong></p>
+<ul>
+<li><strong>Kötelező:</strong> <code>Nem</code></li>
+</ul>
+</div>
+</div>
+<div id="lépés-tábla-mentése" class="section level3 hasAnchor" number="14.5.3">
+<h3><span class="header-section-number">14.5.3</span> 3. lépés: Tábla mentése<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-t%C3%A1bla-ment%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Ctrl+S</strong></li>
+<li>Név: <code>tbl_Látogatások</code></li>
+<li><strong>OK</strong></li>
+</ol>
+</div>
+</div>
+<div id="kapcsolat-létrehozása-a-két-tábla-között" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Kapcsolat létrehozása a két tábla között<a href="kapcsolatok-második-tábla-létrehozása.html#kapcsolat-l%C3%A9trehoz%C3%A1sa-a-k%C3%A9t-t%C3%A1bla-k%C3%B6z%C3%B6tt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most összekapcsoljuk a <code>tbl_Kutatók</code> és <code>tbl_Látogatások</code> táblákat!</p>
+<div id="lépés-kapcsolatok-ablak-megnyitása" class="section level3 hasAnchor" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> 1. lépés: Kapcsolatok ablak megnyitása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kapcsolatok-ablak-megnyit%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Adatbázis-eszközök</strong> fül → <strong>Kapcsolatok</strong> gomb</li>
+</ol>
+<p>Megnyílik a <strong>Kapcsolatok</strong> ablak. Ez valószínűleg üres (még nincs kapcsolat).</p>
+</div>
+<div id="lépés-táblák-hozzáadása" class="section level3 hasAnchor" number="14.6.2">
+<h3><span class="header-section-number">14.6.2</span> 2. lépés: Táblák hozzáadása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-t%C3%A1bl%C3%A1k-hozz%C3%A1ad%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha nem látjuk a táblákat, adjuk hozzá őket:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tervezés</strong> fül (a Kapcsolatok ablakban) → <strong>Tábla megjelenítése</strong> gomb</li>
+</ol>
+<p><strong>Vagy:</strong></p>
+<ul>
+<li>Jobb egérgomb a Kapcsolatok ablak üres területén → <strong>Tábla megjelenítése</strong></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Megjelenik a “Tábla megjelenítése” ablak</li>
+<li>Válasszuk ki: <code>tbl_Kutatók</code> → <strong>Hozzáadás</strong></li>
+<li>Válasszuk ki: <code>tbl_Látogatások</code> → <strong>Hozzáadás</strong></li>
+<li><strong>Bezárás</strong></li>
+</ol>
+<p>Most két kis ablakot látunk a Kapcsolatok nézetben:</p>
+<pre><code>┌─────────────────┐       ┌──────────────────┐
+│ tbl_Kutatók     │       │ tbl_Látogatások  │
+├─────────────────┤       ├──────────────────┤
+│🔑KutatóID       │       │🔑LatID           │
+│ Név             │       │ KutatóID         │
+│ Email           │       │ LatDátum         │
+│ Intézmény       │       │ CélKutatás       │
+│ RegDátum        │       │ Megjegyzés       │
+│ Aktív           │       │                  │
+└─────────────────┘       └──────────────────┘</code></pre>
+</div>
+<div id="lépés-kapcsolat-létrehozása" class="section level3 hasAnchor" number="14.6.3">
+<h3><span class="header-section-number">14.6.3</span> 3. lépés: Kapcsolat létrehozása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kapcsolat-l%C3%A9trehoz%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most húzással hozzuk létre a kapcsolatot:</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <code>tbl_Kutatók</code> táblában a <code>KutatóID</code> mezőre</li>
+<li><strong>Tartsuk lenyomva az egeret</strong>, és húzzuk át a <code>tbl_Látogatások</code> táblában a <code>KutatóID</code> mezőre</li>
+<li>Engedjük el az egeret</li>
+</ol>
+<p>Megjelenik a <strong>Kapcsolatok szerkesztése</strong> ablak!</p>
+</div>
+<div id="lépés-kapcsolat-beállítása" class="section level3 hasAnchor" number="14.6.4">
+<h3><span class="header-section-number">14.6.4</span> 4. lépés: Kapcsolat beállítása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kapcsolat-be%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>Kapcsolatok szerkesztése</strong> ablakban látjuk:</p>
+<ul>
+<li><strong>Tábla/lekérdezés:</strong> <code>tbl_Kutatók</code></li>
+<li><strong>Kapcsolódó tábla/lekérdezés:</strong> <code>tbl_Látogatások</code></li>
+<li><strong>KutatóID</strong> ↔︎ <strong>KutatóID</strong></li>
+</ul>
+<p>Alul három jelölőnégyzet:</p>
+<ol style="list-style-type: decimal">
+<li>☑ <strong>Referenciális integritás érvényesítése</strong> (Enforce Referential Integrity)</li>
+<li><strong>Lépcsőzetes frissítés a kapcsolódó mezőkben</strong> (Cascade Update Related Fields)</li>
+<li><strong>Lépcsőzetes törlés a kapcsolódó rekordokban</strong> (Cascade Delete Related Records)</li>
+</ol>
+<p><strong>Mit jelöljünk be?</strong></p>
+<p><strong>Referenciális integritás</strong> – MINDIG jelöljük be!<br />
+<strong>Lépcsőzetes frissítés</strong> – Jelöljük be (biztonságos)<br />
+<strong>Lépcsőzetes törlés</strong> – NE jelöljük be levéltári kontextusban!</p>
+<div id="mit-jelentenek-ezek" class="section level4 hasAnchor" number="14.6.4.1">
+<h4><span class="header-section-number">14.6.4.1</span> Mit jelentenek ezek?<a href="kapcsolatok-második-tábla-létrehozása.html#mit-jelentenek-ezek" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Referenciális integritás:</strong></p>
+<ul>
+<li>Biztosítja, hogy <strong>érvényes</strong> kapcsolat legyen</li>
+<li>Nem lehet olyan látogatást felvenni, amelynek KutatóID-ja nem létezik a Kutatók táblában</li>
+<li>Nem lehet törölni kutatót, amíg vannak hozzá kapcsolódó látogatások</li>
+</ul>
+<p><strong>Lépcsőzetes frissítés:</strong></p>
+<ul>
+<li>Ha módosítjuk egy kutató ID-ját (ritkán fordul elő), akkor a Látogatások táblában is automatikusan frissül</li>
+</ul>
+<p><strong>Lépcsőzetes törlés:</strong></p>
+<ul>
+<li>Ha törlünk egy kutatót, <strong>automatikusan törlődnek</strong> az összes látogatása is</li>
+<li>** Nem akarjuk véletlenül törölni a látogatási nyilvántartást!</li>
+</ul>
+</div>
+</div>
+<div id="lépés-kapcsolat-létrehozása-1" class="section level3 hasAnchor" number="14.6.5">
+<h3><span class="header-section-number">14.6.5</span> 5. lépés: Kapcsolat létrehozása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kapcsolat-l%C3%A9trehoz%C3%A1sa-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Jelöljük be: ☑ <strong>Referenciális integritás</strong></li>
+<li>Jelöljük be: ☑ <strong>Lépcsőzetes frissítés</strong></li>
+<li>Kattintsunk: <strong>Létrehozás</strong></li>
+</ol>
+<p>Most a Kapcsolatok nézetben látunk egy <strong>vonalat</strong> a két tábla között:</p>
+<pre><code>┌─────────────────┐       ┌──────────────────┐
+│ tbl_Kutatók     │       │ tbl_Látogatások  │
+├─────────────────┤       ├──────────────────┤
+│🔑KutatóID ───────1────&lt;∞─ KutatóID         │
+│ Név             │       │ LatDátum         │
+│ Email           │       │ CélKutatás       │
+└─────────────────┘       └──────────────────┘</code></pre>
+<p>A vonal két végén:</p>
+<ul>
+<li><strong>1</strong> – Egy-a-többhöz kapcsolat “egy” oldala (Kutatók)</li>
+<li><strong>∞</strong> – “Több” oldala (Látogatások)</li>
+</ul>
+<blockquote>
+<p><strong>Ez jelenti:</strong> Egy kutatónak több látogatása lehet!</p>
+</blockquote>
+</div>
+<div id="lépés-kapcsolatok-ablak-bezárása" class="section level3 hasAnchor" number="14.6.6">
+<h3><span class="header-section-number">14.6.6</span> 6. lépés: Kapcsolatok ablak bezárása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kapcsolatok-ablak-bez%C3%A1r%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Zárjuk be a Kapcsolatok ablakot (✕)</li>
+<li>Ha kérdezi, hogy mentse-e az elrendezést: <strong>Igen</strong></li>
+</ol>
+</div>
+</div>
+<div id="adatok-felvétele-a-látogatások-táblába" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Adatok felvétele a Látogatások táblába<a href="kapcsolatok-második-tábla-létrehozása.html#adatok-felv%C3%A9tele-a-l%C3%A1togat%C3%A1sok-t%C3%A1bl%C3%A1ba" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most vigyünk fel néhány látogatást!</p>
+<div id="lépés-látogatások-tábla-megnyitása" class="section level3 hasAnchor" number="14.7.1">
+<h3><span class="header-section-number">14.7.1</span> 1. lépés: Látogatások tábla megnyitása<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-l%C3%A1togat%C3%A1sok-t%C3%A1bla-megnyit%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Dupla kattintás a <code>tbl_Látogatások</code> táblára (Navigációs panel)</li>
+<li>Adatlap nézet nyílik meg</li>
+</ol>
+</div>
+<div id="lépés-első-látogatás-felvétele" class="section level3 hasAnchor" number="14.7.2">
+<h3><span class="header-section-number">14.7.2</span> 2. lépés: Első látogatás felvétele<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-els%C5%91-l%C3%A1togat%C3%A1s-felv%C3%A9tele" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vigyük fel Kovács Anna első látogatását:</p>
+<ol style="list-style-type: decimal">
+<li><strong>LatID:</strong> (automatikusan 1 lesz)</li>
+<li><strong>KutatóID:</strong> <code>1</code> (Kovács Anna ID-ja)</li>
+<li><strong>LatDátum:</strong> <code>2024-03-10</code></li>
+<li><strong>CélKutatás:</strong> <code>Rákóczi-szabadságharc levéltári forrásai</code></li>
+<li><strong>Megjegyzés:</strong> (hagyjuk üresen)</li>
+<li><strong>Enter</strong></li>
+</ol>
+</div>
+<div id="lépés-további-látogatások" class="section level3 hasAnchor" number="14.7.3">
+<h3><span class="header-section-number">14.7.3</span> 3. lépés: További látogatások<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-tov%C3%A1bbi-l%C3%A1togat%C3%A1sok" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vigyünk fel még néhány látogatást:</p>
+<ul>
+<li><strong>LatID:</strong> 2 | <strong>KutatóID:</strong> 1 | <strong>LatDátum:</strong> 2024-03-15 | <strong>CélKutatás:</strong> Rákóczi-szabadságharc</li>
+<li><strong>LatID:</strong> 3 | <strong>KutatóID:</strong> 1 | <strong>LatDátum:</strong> 2024-04-02 | <strong>CélKutatás:</strong> Rákóczi-szabadságharc</li>
+<li><strong>LatID:</strong> 4 | <strong>KutatóID:</strong> 2 | <strong>LatDátum:</strong> 2024-03-12 | <strong>CélKutatás:</strong> Magyar színháztörténet 1945-1970</li>
+<li><strong>LatID:</strong> 5 | <strong>KutatóID:</strong> 3 | <strong>LatDátum:</strong> 2024-02-28 | <strong>CélKutatás:</strong> Barokk építészet Pécsett</li>
+</ul>
+<blockquote>
+<p><strong>Figyelem:</strong> A KutatóID-kat kézzel kell begépelni. Később megtanuljuk, hogyan lehet ezt egyszerűbbé tenni (kombinált lista).</p>
+</blockquote>
+</div>
+<div id="lépés-referenciális-integritás-tesztelése" class="section level3 hasAnchor" number="14.7.4">
+<h3><span class="header-section-number">14.7.4</span> 4. lépés: Referenciális integritás tesztelése<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-referenci%C3%A1lis-integrit%C3%A1s-tesztel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Próbáljunk meg érvénytelen adatot felvinni!</p>
+<ol style="list-style-type: decimal">
+<li>Új sor</li>
+<li><strong>KutatóID:</strong> <code>999</code> (ez nem létezik a Kutatók táblában!)</li>
+<li><strong>LatDátum:</strong> mai dátum</li>
+<li><strong>Enter</strong></li>
+</ol>
+<p><strong>Hibaüzenet:</strong> “Nem adhat hozzá vagy módosíthat rekordot, mert kapcsolódó rekord szükséges a tbl_Kutatók táblában.”</p>
+<p>Ez pontosan a referenciális integritás működése!</p>
+<blockquote>
+<p><strong>Ez védi az adatainkat</strong> attól, hogy érvénytelen kapcsolatokat hozzunk létre.</p>
+</blockquote>
+</div>
+<div id="lépés-kombinált-lista-combo-box-készítése" class="section level3 hasAnchor" number="14.7.5">
+<h3><span class="header-section-number">14.7.5</span> 5. lépés: Kombinált lista (Combo Box) készítése<a href="kapcsolatok-második-tábla-létrehozása.html#l%C3%A9p%C3%A9s-kombin%C3%A1lt-lista-combo-box-k%C3%A9sz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Unalmas begépelni a KutatóID-kat. Csináljunk belőle legördülő listát!</p>
+<div id="tervezési-nézetre-váltás" class="section level4 hasAnchor" number="14.7.5.1">
+<h4><span class="header-section-number">14.7.5.1</span> Tervezési nézetre váltás<a href="kapcsolatok-második-tábla-létrehozása.html#tervez%C3%A9si-n%C3%A9zetre-v%C3%A1lt%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Zárjuk be a <code>tbl_Látogatások</code> táblát</li>
+<li>Jobb egérgomb → <strong>Tervezési nézet</strong></li>
+</ol>
+</div>
+<div id="kutatóid-mező-módosítása" class="section level4 hasAnchor" number="14.7.5.2">
+<h4><span class="header-section-number">14.7.5.2</span> KutatóID mező módosítása<a href="kapcsolatok-második-tábla-létrehozása.html#kutat%C3%B3id-mez%C5%91-m%C3%B3dos%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk a <code>KutatóID</code> mezőre</li>
+<li>Az alsó panelen keressük meg: <strong>Keresés</strong> fül (Lookup tab)</li>
+<li><strong>Vezérlő megjelenítése</strong> (Display Control) → Válasszuk: <strong>Kombinált lista</strong> (Combo Box)</li>
+</ol>
+</div>
+<div id="sor-forrása-beállítása" class="section level4 hasAnchor" number="14.7.5.3">
+<h4><span class="header-section-number">14.7.5.3</span> Sor forrása beállítása<a href="kapcsolatok-második-tábla-létrehozása.html#sor-forr%C3%A1sa-be%C3%A1ll%C3%ADt%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Most adjuk meg, honnan töltse fel a listát:</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Sor típusa</strong> (Row Source Type) → <code>Tábla/lekérdezés</code></li>
+<li><strong>Sor forrása</strong> (Row Source) → Kattintsunk a <code>...</code> gombra</li>
+</ol>
+<p>Megjelenik a Lekérdezés-készítő.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Válasszuk ki a <code>tbl_Kutatók</code> táblát</li>
+<li>Húzzuk be a mezőket:
+<ul>
+<li><code>KutatóID</code></li>
+<li><code>Név</code></li>
+<li><code>Intézmény</code></li>
 </ul></li>
-<li>OK</li>
+<li><strong>Bezárás</strong> (✕) → <strong>Igen</strong> (mentés)</li>
 </ol>
 </div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
+<div id="további-beállítások" class="section level4 hasAnchor" number="14.7.5.4">
+<h4><span class="header-section-number">14.7.5.4</span> További beállítások<a href="kapcsolatok-második-tábla-létrehozása.html#tov%C3%A1bbi-be%C3%A1ll%C3%ADt%C3%A1sok" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol start="9" style="list-style-type: decimal">
+<li><strong>Oszlopok száma</strong> (Column Count) → <code>3</code></li>
+<li><strong>Kötött oszlop</strong> (Bound Column) → <code>1</code> (a KutatóID-t tárolja)</li>
+<li><strong>Oszlopszélességek</strong> (Column Widths) → <code>0cm;4cm;4cm</code></li>
 </ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
+<blockquote>
+<p><strong>Mit jelent ez?</strong>
+- <strong>Oszlopszélességek:</strong> Az első oszlop (KutatóID) 0 cm → rejtett, a Név és Intézmény látszik</p>
+</blockquote>
 </div>
-</div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
+<div id="mentés-és-tesztelés" class="section level4 hasAnchor" number="14.7.5.5">
+<h4><span class="header-section-number">14.7.5.5</span> Mentés és tesztelés<a href="kapcsolatok-második-tábla-létrehozása.html#ment%C3%A9s-%C3%A9s-tesztel%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol start="12" style="list-style-type: decimal">
+<li><strong>Ctrl+S</strong> (mentés)</li>
+<li>Váltunk <strong>Adatlap nézetre</strong></li>
 </ol>
+<p>Most a <code>KutatóID</code> oszlopban egy legördülő lista van! 🎉</p>
+<p>Kattintsunk rá → Látjuk a kutatók nevét és intézményét, de a rendszer az ID-t tárolja!</p>
+<pre><code>KutatóID         ▼
+┌────────────────────────────────┐
+│ Kovács Anna    ELTE BTK        │
+│ Nagy Péter     ML OL           │
+│ Szabó Mária    PTE BTK         │
+└────────────────────────────────┘</code></pre>
 
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -989,8 +1236,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="második-tábla-létrehozása.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lekérdezések-adatok-szűrése-és-elemzése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

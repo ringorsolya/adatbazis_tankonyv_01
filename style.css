@@ -407,3 +407,40 @@ hr {
   margin-top: 30px;
   line-height: 1.7;
 }
+
+/* === Access fejezetek extra stílusai === */
+
+/* Fejezetcím aláhúzás */
+h1 {
+  border-bottom: 3px solid #3498db;
+}
+
+h2 {
+  border-bottom: 1px solid #bdc3c7;
+}
+
+/* Rész-elválasztó (PART) */
+.book .book-summary ul.summary li.part {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #95a5a6;
+  padding: 16px 10px 6px 10px;
+  margin-top: 8px;
+  border-top: 1px solid #ecf0f1;
+}
+
+/* Lépésszámos doboz – Access lépések */
+.stepblock {
+  background-color: #fdf2f8;
+  border-left: 5px solid #8e44ad;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.stepblock strong {
+  color: #7d3c98;
+}

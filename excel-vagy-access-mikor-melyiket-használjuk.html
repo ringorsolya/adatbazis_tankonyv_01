@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben</title>
+  <title>8 Excel vagy Access? Mikor melyiket használjuk? | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="8 Excel vagy Access? Mikor melyiket használjuk? | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Excel alapok – Gyakorlati bevezetés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="8 Excel vagy Access? Mikor melyiket használjuk? | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="excel-alapok-i-adatstruktúrák.html"/>
-<link rel="next" href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html"/>
+<link rel="prev" href="összetett-példa-kutatószolgálati-nyilvántartás.html"/>
+<link rel="next" href="access-alapfogalmak.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -733,253 +733,227 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-alapok-gyakorlati-bevezetés" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Excel alapok – Gyakorlati bevezetés<a href="excel-alapok-gyakorlati-bevezetés.html#excel-alapok-gyakorlati-bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Az Excelt nem „táblázatkezelőként”, hanem <strong>strukturált adattárolóként</strong> fogjuk használni – adatbázis-szerűen.</p>
-<div id="az-excel-mint-adatbázis-előkészítő" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Az Excel mint adatbázis-előkészítő<a href="excel-alapok-gyakorlati-bevezetés.html#az-excel-mint-adatb%C3%A1zis-el%C5%91k%C3%A9sz%C3%ADt%C5%91" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>ROSSZ (hagyományos):</strong></p>
-<pre><code>       A              B           C
-1   Levéltár adatok          2024. november
-2
-3   Fondok száma:    25</code></pre>
-<p><strong>JÓ (adatbázis-szerű):</strong></p>
-<pre><code>       A           B              C         D
-1   Jelzet    Megnevezés     Kezdő_év  Záró_év
-2   XXV-1     Tanácsi ülések 1950      1990
-3   XXV-2     Polgármesteri  1960      1989</code></pre>
+<div id="excel-vagy-access-mikor-melyiket-használjuk" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Excel vagy Access? Mikor melyiket használjuk?<a href="excel-vagy-access-mikor-melyiket-használjuk.html#excel-vagy-access-mikor-melyiket-haszn%C3%A1ljuk" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bevezetés" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Bevezetés<a href="excel-vagy-access-mikor-melyiket-használjuk.html#bevezet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mielőtt nekikezdenénk az Access használatának, fontos megértenünk: <strong>mikor érdemes Access-t használni, és mikor maradjunk az Excelnél?</strong> Mindkét programnak megvan a maga helye a levéltári munkában, és nem egymás helyettesítői, hanem kiegészítői.</p>
 </div>
-<div id="alapvető-navigáció" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Alapvető navigáció<a href="excel-alapok-gyakorlati-bevezetés.html#alapvet%C5%91-navig%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="billentyűk" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Billentyűk:<a href="excel-alapok-gyakorlati-bevezetés.html#billenty%C5%B1k" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="az-excel-előnyei-és-hátrányai" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Az Excel előnyei és hátrányai<a href="excel-vagy-access-mikor-melyiket-használjuk.html#az-excel-el%C5%91nyei-%C3%A9s-h%C3%A1tr%C3%A1nyai" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mikor-válasszuk-az-excelt" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Mikor válasszuk az Excelt?<a href="excel-vagy-access-mikor-melyiket-használjuk.html#mikor-v%C3%A1lasszuk-az-excelt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az <strong>Excel</strong> táblázatkezelő program, amely kiválóan alkalmas:</p>
+<ul>
+<li><strong>Egyszerű listák, táblázatok</strong> kezelésére</li>
+<li><strong>Számítások, statisztikák</strong> készítésére</li>
+<li><strong>Gyors elemzésekre</strong> (pl. pivot táblák)</li>
+<li><strong>Grafikonok, diagramok</strong> készítésére</li>
+<li><strong>Egyszerű adatbevitelre</strong>, ahol nincs sok ismétlődő adat</li>
+<li><strong>Egyszeri feladatokra</strong> (pl. éves statisztika, egyszeri leltár)</li>
+</ul>
+</div>
+<div id="példák-levéltári-munkában" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Példák levéltári munkában:<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9ld%C3%A1k-lev%C3%A9lt%C3%A1ri-munk%C3%A1ban" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Éves látogatottsági statisztika</li>
+<li>Digitalizálási költségvetés számítása</li>
+<li>Gyors összesítések (pl. hányan látogattak februárban?)</li>
+<li>Munkatervek, időbeosztások</li>
+<li>Egyszerű kutatói listák</li>
+</ul>
+</div>
+<div id="az-excel-korlátai" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Az Excel korlátai<a href="excel-vagy-access-mikor-melyiket-használjuk.html#az-excel-korl%C3%A1tai" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az Excel <strong>nem igazán alkalmas</strong>, ha:</p>
+<ul>
+<li>Több ezer sornyi adatot kezelünk</li>
+<li>Több táblázat között van kapcsolat (pl. kutatók és látogatásaik)</li>
+<li>Ugyanaz az adat több helyen ismétlődik</li>
+<li>Több ember egyszerre dolgozik ugyanazokon az adatokon</li>
+<li>Bonyolult lekérdezésekre van szükség</li>
+<li>Adatintegritást (hibamentes adatbevitelt) szeretnénk garantálni</li>
+</ul>
+</div>
+</div>
+<div id="az-access-előnyei-és-hátrányai" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Az Access előnyei és hátrányai<a href="excel-vagy-access-mikor-melyiket-használjuk.html#az-access-el%C5%91nyei-%C3%A9s-h%C3%A1tr%C3%A1nyai" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mikor-válasszuk-az-access-t" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Mikor válasszuk az Access-t?<a href="excel-vagy-access-mikor-melyiket-használjuk.html#mikor-v%C3%A1lasszuk-az-access-t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az <strong>Access</strong> relációs adatbázis-kezelő, amely ideális:</p>
+<ul>
+<li><strong>Több összekapcsolódó tábla</strong> kezeléséhez</li>
+<li><strong>Nagy adatmennyiség</strong> (több ezer-tízezer rekord) tárolására</li>
+<li><strong>Ismétlődő adatok hatékony kezelésére</strong> (pl. intézménynevek, kutatónevek)</li>
+<li><strong>Összetett lekérdezésekre</strong> (pl. “Ki járt nálunk tavaly novemberben az ELTE-ről?”)</li>
+<li><strong>Adatintegritás biztosítására</strong> (nem lehet rossz adatot bevinni)</li>
+<li><strong>Többfelhasználós környezetben</strong> (hálózaton több ember dolgozhat egyszerre)</li>
+</ul>
+</div>
+<div id="példák-levéltári-munkában-1" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Példák levéltári munkában:<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9ld%C3%A1k-lev%C3%A9lt%C3%A1ri-munk%C3%A1ban-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Kutatói nyilvántartás + látogatások + kutatási kérelmek</li>
+<li>Nyilvántartás (fondok → állagok → iratok)</li>
+<li>Kölcsönzési rendszer</li>
+<li>Digitalizálási munkafolyamat-követés</li>
+<li>Raktári helyek és iratok kapcsolata</li>
+</ul>
+</div>
+<div id="az-access-korlátai" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Az Access korlátai<a href="excel-vagy-access-mikor-melyiket-használjuk.html#az-access-korl%C3%A1tai" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az Access <strong>nem igazán alkalmas</strong>, ha:</p>
+<ul>
+<li>Gyors, egyszeri számításokra van szükség</li>
+<li>Grafikonokat, diagrammokat szeretnénk készíteni</li>
+<li>Egyszerű, néhány soros listát kezelünk</li>
+<li>Nincs időnk megtanulni a használatát</li>
+</ul>
+</div>
+</div>
+<div id="összehasonlító-táblázat" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Összehasonlító táblázat<a href="excel-vagy-access-mikor-melyiket-használjuk.html#%C3%B6sszehasonl%C3%ADt%C3%B3-t%C3%A1bl%C3%A1zat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>Billentyű</th>
-<th>Művelet</th>
+<th>Szempont</th>
+<th>Excel</th>
+<th>Access</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>↑ ↓ ← →</td>
-<td>Szomszédos cella</td>
+<td><strong>Adatszerkezet</strong></td>
+<td>Egyszerű, egyetlen táblázat</td>
+<td>Több összekapcsolt tábla</td>
 </tr>
 <tr class="even">
-<td>Tab</td>
-<td>Jobbra (→)</td>
+<td><strong>Adatmennyiség</strong></td>
+<td>Néhány száz-ezer sor</td>
+<td>Több tízezer-millió rekord</td>
 </tr>
 <tr class="odd">
-<td>Enter</td>
-<td>Lefelé (↓)</td>
+<td><strong>Kapcsolatok</strong></td>
+<td>Nehezen kezelhető</td>
+<td>Könnyű és hatékony</td>
 </tr>
 <tr class="even">
-<td><strong>Ctrl + ↑ ↓ ← →</strong></td>
-<td><strong>Ugrás adatblokk szélére</strong></td>
+<td><strong>Statisztika, számítás</strong></td>
+<td>Kiváló</td>
+<td>Korlátozott</td>
 </tr>
 <tr class="odd">
-<td>Ctrl + Home</td>
-<td>A1-re</td>
+<td><strong>Grafikonok</strong></td>
+<td>Kiváló</td>
+<td>Korlátozott</td>
 </tr>
 <tr class="even">
-<td>Ctrl + End</td>
-<td>Utolsó használt cella</td>
+<td><strong>Lekérdezések</strong></td>
+<td>Korlátozott</td>
+<td>Kiváló</td>
+</tr>
+<tr class="odd">
+<td><strong>Adatintegritás</strong></td>
+<td>Könnyen elrontható</td>
+<td>Garantálható</td>
+</tr>
+<tr class="even">
+<td><strong>Többfelhasználós</strong></td>
+<td>Problémás</td>
+<td>Támogatott</td>
+</tr>
+<tr class="odd">
+<td><strong>Tanulási görbe</strong></td>
+<td>Könnyű</td>
+<td>Meredekebb</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Pro tipp:</strong> Ctrl + nyilak = gyors navigáció 1000+ soros adatban!</p>
 </div>
+<div id="gyakorlati-döntési-fa" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Gyakorlati döntési fa<a href="excel-vagy-access-mikor-melyiket-használjuk.html#gyakorlati-d%C3%B6nt%C3%A9si-fa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Amikor eldöntjük, melyik programot használjuk, kövessük ezt a döntési fát:</p>
+<pre><code>Kérdés 1: Van több, egymáshoz kapcsolódó táblánk?
+  │
+  ├─ IGEN → ACCESS
+  │
+  └─ NEM → Kérdés 2: Ezer sornál több adatunk lesz?
+           │
+           ├─ IGEN → ACCESS
+           │
+           └─ NEM → Kérdés 3: Többen egyszerre dolgoznak rajta?
+                    │
+                    ├─ IGEN → ACCESS
+                    │
+                    └─ NEM → Kérdés 4: Számításokat, grafikonokat készítünk?
+                             │
+                             ├─ IGEN → EXCEL
+                             │
+                             └─ NEM → EXCEL vagy ACCESS</code></pre>
 </div>
-<div id="táblázat-felépítése-6-aranyszabály" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Táblázat felépítése – 6 aranyszabály<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-fel%C3%A9p%C3%ADt%C3%A9se-6-aranyszab%C3%A1ly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="első-sor-fejléc" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Első sor = Fejléc<a href="excel-alapok-gyakorlati-bevezetés.html#els%C5%91-sor-fejl%C3%A9c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>A1: Jelzet
-B1: Megnevezés
-C1: Kezdő_év</code></pre>
-<p><strong>Tippek:</strong>
-- Rövid, értelmes
-- Nincs szóköz (használjunk <code>_</code> vagy CamelCase jelölést)
-- Egyedi nevek</p>
+<div id="konkrét-levéltári-példák" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Konkrét levéltári példák<a href="excel-vagy-access-mikor-melyiket-használjuk.html#konkr%C3%A9t-lev%C3%A9lt%C3%A1ri-p%C3%A9ld%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="példa-éves-látogatási-statisztika" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> 1. példa: Éves látogatási statisztika<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9lda-%C3%A9ves-l%C3%A1togat%C3%A1si-statisztika" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Feladat:</strong> Összesíteni, hogy havonta hányan látogatták a levéltárat 2024-ben.</p>
+<p><strong>Megoldás:</strong> <strong>EXCEL</strong></p>
+<p><strong>Indoklás:</strong> Egyszerű összesítés, egy táblázat, grafikonok kellenek. Az Excel pivot táblája erre tökéletes.</p>
 </div>
-<div id="minden-sor-egy-rekord" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Minden sor = Egy rekord<a href="excel-alapok-gyakorlati-bevezetés.html#minden-sor-egy-rekord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>2   XXV-1    Tanácsi ülések    1950   1990
-3   XXV-2    Polgármesteri     1960   1989</code></pre>
-</div>
-<div id="nincs-üres-sor" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Nincs üres sor<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%BCres-sor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4            ← Üres!
-5   XXV-3    ...</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>2   XXV-1    ...
-3   XXV-2    ...
-4   XXV-3    ...</code></pre>
-</div>
-<div id="nincs-összevont-cella-1" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Nincs összevont cella<a href="excel-alapok-gyakorlati-bevezetés.html#nincs-%C3%B6sszevont-cella-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Cellák összevonása</strong> – NE használjuk!</p>
-</div>
-<div id="egy-oszlop-egy-típus" class="section level3 hasAnchor" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Egy oszlop = Egy típus<a href="excel-alapok-gyakorlati-bevezetés.html#egy-oszlop-egy-t%C3%ADpus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Terjedelem
-5 ifm
-3 doboz
-8</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Terjedelem_ifm    Egység
-5                 ifm
-3                 ifm
-8                 ifm</code></pre>
-</div>
-<div id="atomi-értékek" class="section level3 hasAnchor" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Atomi értékek<a href="excel-alapok-gyakorlati-bevezetés.html#atomi-%C3%A9rt%C3%A9kek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Rossz:</strong></p>
-<pre><code>Témák
-Kádár-kor, Színház, 1956</code></pre>
-<p><strong>Jó:</strong></p>
-<pre><code>Téma_1        Téma_2
-Kádár-kor     Színház</code></pre>
-</div>
-</div>
-<div id="formázás" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Formázás<a href="excel-alapok-gyakorlati-bevezetés.html#form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="fejléc-kiemelése" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Fejléc kiemelése<a href="excel-alapok-gyakorlati-bevezetés.html#fejl%C3%A9c-kiemel%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az 1. sort</li>
-<li><strong>Kezdőlap → Félkövér</strong> (Ctrl+B)</li>
-<li><strong>Kitöltőszín</strong> (világoskék/szürke)</li>
-<li><strong>Középre igazítás</strong></li>
-<li><strong>Szegélyek → Alsó szegély</strong></li>
-</ol>
-</div>
-<div id="táblázat-formázás" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Táblázat formázás<a href="excel-alapok-gyakorlati-bevezetés.html#t%C3%A1bl%C3%A1zat-form%C3%A1z%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk bárhova az adattáblán</li>
-<li><strong>Kezdőlap → Formázás táblázatként</strong></li>
-<li>Válasszunk stílust</li>
-<li>☑ „A táblázatnak van fejléce”</li>
-<li>OK</li>
-</ol>
-<p><strong>Eredmény:</strong>
-- Váltakozó sor színek
-- Szűrő nyilak (▼) automatikusan
-- Dinamikus bővülés</p>
-</div>
-<div id="ablaktábla-rögzítése" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Ablaktábla rögzítése<a href="excel-alapok-gyakorlati-bevezetés.html#ablakt%C3%A1bla-r%C3%B6gz%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Fejléc rögzítése (mindig látszik):</p>
-<ol style="list-style-type: decimal">
-<li>Kattintsunk <strong>A2</strong>-re</li>
-<li><strong>Nézet → Ablaktábla rögzítése → Ablaktábla rögzítése</strong></li>
-<li>Kész!</li>
-</ol>
-</div>
-</div>
-<div id="szűrés-és-rendezés" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Szűrés és rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s-%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="szűrés" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Szűrés<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C5%B1r%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra (▼) a fejlécben:</p>
-<p><strong>Egyszerű szűrés:</strong>
-- Pipálgatás (mely értékek látszódjanak)</p>
-<p><strong>Számszűrők:</strong>
-- Nagyobb, mint…
-- Között…</p>
-<p><strong>Példa:</strong> Mutassuk az 1950 után kezdődő fondokat!
-1. Kezdő_év nyíl → Számszűrők → Nagyobb, mint…
-2. Írjuk be: 1950
-3. OK</p>
-</div>
-<div id="rendezés" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Rendezés<a href="excel-alapok-gyakorlati-bevezetés.html#rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Klikk a nyílra → <strong>Rendezés legkisebbtől a legnagyobbig</strong> (növekvő)</p>
-<p><strong>Több szempont:</strong>
-1. <strong>Adatok → Rendezés</strong>
-2. Rendezés: Kezdő_év
-3. <strong>Szint hozzáadása</strong>
-4. Majd: Megnevezés
-5. OK</p>
-</div>
-</div>
-<div id="adatellenőrzés" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Adatellenőrzés<a href="excel-alapok-gyakorlati-bevezetés.html#adatellen%C5%91rz%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hibák megelőzése – korlátozzuk, mi írható be.</p>
-<div id="születési-év-19002024" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Születési év (1900–2024)<a href="excel-alapok-gyakorlati-bevezetés.html#sz%C3%BClet%C3%A9si-%C3%A9v-19002024" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Jelöljük ki az oszlopot (pl. D2:D100)</li>
-<li><strong>Adatok → Adatellenőrzés</strong></li>
-<li><strong>Beállítások:</strong>
+<div id="példa-kutatói-nyilvántartó-rendszer" class="section level3 hasAnchor" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> 2. példa: Kutatói nyilvántartó rendszer<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9lda-kutat%C3%B3i-nyilv%C3%A1ntart%C3%B3-rendszer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Feladat:</strong> Nyilvántartani a kutatókat, látogatásaikat, kutatási kérelmeiket, és azt, hogy melyik kutatóanyagot kiknek szolgáltattuk ki.</p>
+<p><strong>Megoldás:</strong> <strong>ADATBÁZIS</strong> (<strong>ACCESS)</strong></p>
+<p><strong>Indoklás:</strong></p>
 <ul>
-<li>Engedélyezés: <strong>Egész szám</strong></li>
-<li>Adatok: <strong>között</strong></li>
-<li>Minimum: 1900</li>
-<li>Maximum: 2024</li>
-</ul></li>
-<li><strong>Hibajelzés:</strong>
+<li>Több tábla szükséges:
 <ul>
-<li>Cím: „Hibás év”</li>
-<li>Üzenet: „1900–2024 között!”</li>
+<li>Kutatók (név, email, intézmény)</li>
+<li>Látogatások (ki, mikor jött)</li>
+<li>Kutatási kérelmek (ki, mit kért)</li>
+<li>Iratanyagok (mit szolgáltattunk ki)</li>
 </ul></li>
-<li>OK</li>
-</ol>
+<li>Kapcsolatok: egy kutatónak több látogatása, több kérelme lehet</li>
+<li>Lekérdezések: “Ki kutatott az elmúlt hónapban?”</li>
+</ul>
 </div>
-<div id="legördülő-lista-intézmény" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Legördülő lista (Intézmény)<a href="excel-alapok-gyakorlati-bevezetés.html#leg%C3%B6rd%C3%BCl%C5%91-lista-int%C3%A9zm%C3%A9ny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="példa-digitalizálási-költségvetés" class="section level3 hasAnchor" number="8.6.3">
+<h3><span class="header-section-number">8.6.3</span> 3. példa: Digitalizálási költségvetés<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9lda-digitaliz%C3%A1l%C3%A1si-k%C3%B6lts%C3%A9gvet%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Feladat:</strong> Ki kell számolni, hogy mennyi egy digitalizálási projekt költsége (iratok száma × egységár, különböző kategóriákban).</p>
+<p><strong>Megoldás:</strong> <strong>EXCEL</strong></p>
+<p><strong>Indoklás:</strong> Számítások, összegzések, esetleg grafikon. Egyszerű táblázat, nincs kapcsolat más táblákkal.</p>
+</div>
+<div id="példa-állomány-nyilvántartó-rendszer" class="section level3 hasAnchor" number="8.6.4">
+<h3><span class="header-section-number">8.6.4</span> 4. példa: Állomány-nyilvántartó rendszer<a href="excel-vagy-access-mikor-melyiket-használjuk.html#p%C3%A9lda-%C3%A1llom%C3%A1ny-nyilv%C3%A1ntart%C3%B3-rendszer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Feladat:</strong> Nyilvántartani a levéltár teljes állományát: fondok → állagok → sorozatok → iratok, valamint hozzájuk kapcsolva a digitalizálás státuszát, raktári helyüket.</p>
+<p><strong>Megoldás:</strong> <strong>ADATBÁZIS</strong> (<strong>ACCESS)</strong></p>
+<p><strong>Indoklás:</strong></p>
+<ul>
+<li>Hierarchikus struktúra (fond tartalmaz állagokat, állag tartalmaz iratokat)</li>
+<li>Minden szinten más-más metaadatok (fond leírása, állag keletkezési évei, irat címe)</li>
+</ul>
+</div>
+</div>
+<div id="együttműködés-excel-és-access" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Együttműködés: Excel és Access<a href="excel-vagy-access-mikor-melyiket-használjuk.html#egy%C3%BCttm%C5%B1k%C3%B6d%C3%A9s-excel-%C3%A9s-access" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p><strong>Fontos:</strong> Az Excel és az Access <strong>nem</strong> ellenségek! Gyakran együtt használjuk őket:</p>
+</blockquote>
+<ul>
+<li>Az Access-ben <strong>tároljuk</strong> az adatokat (kutatók, látogatások stb.)</li>
+<li>Az Excelbe <strong>exportáljuk</strong> őket elemzéshez, grafikonokhoz</li>
+<li>Az Excelben előkészített adatokat <strong>importáljuk</strong> Access-be</li>
+</ul>
+<p><strong>Példa munkafolyamat:</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Írjuk le a listát külön helyre (pl. G1:G5):</p>
-<pre><code>G1: ELTE BTK
-G2: PPKE BTK
-G3: BME GTK</code></pre></li>
-<li><p>Jelöljük ki a célos oszlopot (E2:E100)</p></li>
-<li><p>Adatok → Adatellenőrzés</p></li>
-<li><p>Engedélyezés: <strong>Lista</strong></p></li>
-<li><p>Forrás: <code>=$G$1:$G$5</code></p></li>
-<li><p>OK</p></li>
-</ol>
-<p><strong>Előny:</strong> Nincs elgépelés, mindenki ugyanazt választja!</p>
-</div>
-</div>
-<div id="gyakori-hibák" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Gyakori hibák<a href="excel-alapok-gyakorlati-bevezetés.html#gyakori-hib%C3%A1k" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Vegyes típusok</strong> – Egy oszlopban szám és szöveg → rendezés hibás<br />
-<strong>Összevont cellák</strong> – Megöli az adatbázis-szerűséget<br />
-<strong>Üres sorok</strong> – Szűrés, kimutatás nem működik jól<br />
-<strong>Számok szövegként</strong> – Balra igazított, kis zöld háromszög</p>
-<p><strong>Megoldás:</strong> Konvertálás számmá (klikk a figyelmeztetésre → „Konvertálás számmá”)</p>
-</div>
-<div id="checklist-jó-excel-adattábla" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Checklist – Jó Excel adattábla<a href="excel-alapok-gyakorlati-bevezetés.html#checklist-j%C3%B3-excel-adatt%C3%A1bla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>☐ Első sor = fejléc<br />
-☐ Nincs üres sor<br />
-☐ Nincs összevont cella<br />
-☐ Egy oszlop = egy típus<br />
-☐ Atomi értékek<br />
-☐ Fejléc rögzítve (Ablaktábla rögzítése)<br />
-☐ Szűrés bekapcsolva<br />
-☐ Formázás olvasható<br />
-☐ Adatellenőrzés beállítva</p>
-</div>
-<div id="ellenőrző-kérdések-4" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Ellenőrző kérdések<a href="excel-alapok-gyakorlati-bevezetés.html#ellen%C5%91rz%C5%91-k%C3%A9rd%C3%A9sek-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Mi a különbség a munkafüzet és a munkalap között?</li>
-<li>Hogyan navigálunk gyorsan az utolsó adathoz? (billentyű)</li>
-<li>Milyen szabályok vonatkoznak az első sorra?</li>
-<li>Miért rossz összevont cellákat használni?</li>
-<li>Mi az Ablaktábla rögzítése? Mire használjuk?</li>
-<li>Hogyan állítunk be adatellenőrzést?</li>
-<li>Mi a különbség a Szűrő és a Rendezés között?</li>
-<li>Mit jelent a „Táblázat” Excelben?</li>
-<li>Hogyan illesztünk be csak értékeket? (Irányított beillesztés)</li>
-<li>Milyen gyakori hibákat kell elkerülni?</li>
+<li>Kutatói adatokat vezetjük Access-ben (sok kutató, több látogatás)</li>
+<li>Lekérdezést készítünk: “2024-es látogatások havi bontásban”</li>
+<li>Exportáljuk Excelbe</li>
+<li>Excelben készítünk grafikont az éves jelentéshez</li>
 </ol>
 
 </div>
@@ -989,8 +963,8 @@ G3: BME GTK</code></pre></li>
           </div>
         </div>
       </div>
-<a href="excel-alapok-i-adatstruktúrák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gyakorlati-példa-levéltári-nyilvántartás-készítése.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="összetett-példa-kutatószolgálati-nyilvántartás.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="access-alapfogalmak.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
