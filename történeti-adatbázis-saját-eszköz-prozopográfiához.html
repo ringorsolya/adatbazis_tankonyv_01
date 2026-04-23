@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben</title>
+  <title>18 Történeti adatbázis – saját eszköz prozopográfiához | Adatbázisépítés Excelben és Accessben</title>
   <meta name="description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben" />
+  <meta property="og:title" content="18 Történeti adatbázis – saját eszköz prozopográfiához | Adatbázisépítés Excelben és Accessben" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Alapműveletek: keresés, szűrés, rendezés | Adatbázisépítés Excelben és Accessben" />
+  <meta name="twitter:title" content="18 Történeti adatbázis – saját eszköz prozopográfiához | Adatbázisépítés Excelben és Accessben" />
   
   <meta name="twitter:description" content="Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="űrlap-készítése-adatbevitelhez.html"/>
-<link rel="next" href="második-tábla-létrehozása.html"/>
+<link rel="prev" href="összefoglalás-1.html"/>
+<link rel="next" href="a-könyvről.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -770,30 +770,240 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="alapműveletek-keresés-szűrés-rendezés" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">12</span> Alapműveletek: keresés, szűrés, rendezés<a href="alapműveletek-keresés-szűrés-rendezés.html#alapm%C5%B1veletek-keres%C3%A9s-sz%C5%B1r%C3%A9s-rendez%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Most, hogy van egy működő táblánk és űrlapunk, tanuljuk meg, hogyan
-keressünk, szűrjünk és rendezzünk adatokat!</p>
-<div id="keresés" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Keresés<a href="alapműveletek-keresés-szűrés-rendezés.html#keres%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>keresés</strong> akkor hasznos, ha egy konkrét értéket keresünk (pl. egy
-kutató nevét).</p>
-<p><strong>Ctrl+F</strong> → Keresés ablak</p>
-<p><strong>Beállítások:</strong> - Keresés helye: tbl_Kutatók (egész űrlap) - Egyezés: A
-mező bármely része - Keresendő: pl. “ELTE”</p>
+<div id="történeti-adatbázis-saját-eszköz-prozopográfiához" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">18</span> Történeti adatbázis – saját eszköz prozopográfiához<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#t%C3%B6rt%C3%A9neti-adatb%C3%A1zis-saj%C3%A1t-eszk%C3%B6z-prozopogr%C3%A1fi%C3%A1hoz" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Ebben a fejezetben egy <strong>böngészőben futó saját fejlesztésű eszközt</strong> mutatunk be, amelyet kifejezetten levéltári és történeti kutatásra terveztünk. Az eszköz neve <em>Történeti Adatbázis</em> (a fájl neve: <code>torteneti_adatbazis.html</code>), és az Access-ben megismert relációs logikát egyszerűsített formában, sablonokra és EAV-modellre építve teszi elérhetővé.</p>
+<div id="miért-egy-újabb-eszköz" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Miért egy újabb eszköz?<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#mi%C3%A9rt-egy-%C3%BAjabb-eszk%C3%B6z" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az Access tanulságai – elsődleges kulcs, idegen kulcs, kapcsolatok, referenciális integritás – <strong>változatlanul fontosak</strong>. A Történeti Adatbázis ugyanezt a logikát követi, de két olyan problémára ad választ, amellyel a hallgatók az előző fejezetekben találkoztak:</p>
+<p><strong>1. Telepítés nélkül, bárhol futtatható.</strong> Az Access csak Windows rendszeren, saját licenccel érhető el. Az eszköz egyetlen HTML-fájl, amelyet a saját gépünkön (vagy akár pendrive-on) megnyitva bármelyik böngésző elindít. Nincs telepítés, nincs licencdíj, nem kell rendszergazda.</p>
+<p><strong>2. Levéltári és történeti forrásokra szabott sémák.</strong> Az eszköz négy kész sablont kínál (prozopográfia, levelezés, intézmény, anyakönyv), amelyek a leggyakoribb forrástípusok modellezését készen hozzák. Az Access-ben minden táblát és mezőt magunknak kell megterveznünk; itt el lehet indulni egy működő sémából, és azon finomítani.</p>
+<p>A fejezet második felében egy konkrét gyakorlaton – az <strong>MTA alapítói és első nemzedéke (1825–1850)</strong> adatsor betöltésén – vesszük végig az eszköz használatát.</p>
 </div>
-<div id="szűrés-1" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Szűrés<a href="alapműveletek-keresés-szűrés-rendezés.html#sz%C5%B1r%C3%A9s-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>szűrés</strong> ideiglenesen elrejti a nem megfelelő rekordokat.</p>
-<p><strong>Egyszerű szűrés:</strong> - Jobb egérgomb az Intézmény mezőn - “Szűrő az
-értékkel megegyezőre” → ELTE BTK</p>
-<p><strong>Szűrő eltávolítása:</strong> - Kezdőlap → Váltás szűrő</p>
+<div id="az-eszköz-és-a-gyakorló-fájlok-letöltése" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> Az eszköz és a gyakorló fájlok letöltése<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#az-eszk%C3%B6z-%C3%A9s-a-gyakorl%C3%B3-f%C3%A1jlok-let%C3%B6lt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A fejezet két fájlja letöltésre kattintható formában:</p>
+<ul>
+<li><a href="torteneti_adatbazis.html">torteneti_adatbazis.html</a> – a Történeti Adatbázis eszköz (kb. 140 kB, egyetlen HTML-fájl)</li>
+<li><a href="MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx">MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx</a> – 50 rekordos demonstrációs adatsor prozopográfiai mintaként (az MTA alapítói és első nemzedéke)</li>
+</ul>
+<p><strong>A letöltéshez:</strong> jobb kattintás a linken → „Hivatkozás mentése másként” (Chrome / Firefox / Edge). A HTML-fájlt célszerű egy dedikált mappába tenni – a böngésző helyben fogja tárolni az adatainkat ehhez a fájlhoz.</p>
+<p><strong>Indítás:</strong> kettős kattintás a <code>torteneti_adatbazis.html</code> fájlra, vagy húzzuk be egy megnyitott böngészőablakba. Nincs szükség internetkapcsolatra a működéshez (kivéve a térképes vizualizációt).</p>
 </div>
-<div id="rendezés-1" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Rendezés<a href="alapműveletek-keresés-szűrés-rendezés.html#rendez%C3%A9s-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Név szerint (A→Z):</strong> - Kattintsunk a Név oszlopba - Kezdőlap → Növekvő
-sorrend</p>
-<p><strong>Dátum szerint (legújabb elől):</strong> - RegDátum oszlop - Csökkenő sorrend</p>
+<div id="az-eszköz-felépítése" class="section level2 hasAnchor" number="18.3">
+<h2><span class="header-section-number">18.3</span> Az eszköz felépítése<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#az-eszk%C3%B6z-fel%C3%A9p%C3%ADt%C3%A9se" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az eszköz a fejléc alatt <strong>hat nézetre</strong> tagolódik (felső fülek):</p>
+<ul>
+<li><strong>Rekordok</strong> – kártyás lista az entitásokkal, keresővel. Itt tekintjük meg és szerkesztjük a rekordjainkat.</li>
+<li><strong>Adatbevitel</strong> – egyszerre egy új rekord felvitele űrlapon keresztül, vagy több rekord <strong>CSV/Excel-importálása</strong> varázslóval.</li>
+<li><strong>Harmonizálás</strong> – a nyers (pl. Excelből érkezett) értékek egységesítése. Pl. „r.k.”, „rk.”, „római katolikus” mind → „Római katolikus”.</li>
+<li><strong>Kapcsolatok</strong> – két rekord közötti viszony rögzítése (kolléga, tanítvány, házastárs, szülő-gyerek stb.).</li>
+<li><strong>Vizualizáció</strong> – négy típus: idővonal, hálózat, statisztika és térkép.</li>
+<li><strong>Súgó</strong> – 11 fejezetes, kereshető beépített súgó.</li>
+</ul>
+<div id="séma-entitás-attribútum-kapcsolat" class="section level3 hasAnchor" number="18.3.1">
+<h3><span class="header-section-number">18.3.1</span> Séma, entitás, attribútum, kapcsolat<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#s%C3%A9ma-entit%C3%A1s-attrib%C3%BAtum-kapcsolat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az eszköz egyszerűsített <strong>EAV-modellt</strong> (Entity-Attribute-Value) használ. Ebben a modellben:</p>
+<ul>
+<li>Minden <strong>rekord</strong> egy entitás (pl. egy személy, egy levél, egy intézmény). A rekordnak van néhány kötött, séma által meghatározott mezője (név, születési év, halálozási év, nem, forrás, megjegyzés).</li>
+<li>Minden entitás mellé <strong>tetszőleges számú attribútum</strong> felvehető kulcs–érték párként. Pl. Foglalkozás = „ügyvéd”, Vallás = „református”, Lakóhely = „Debrecen”. Az attribútum-típusok listája a beállításokban bővíthető.</li>
+<li>A <strong>kapcsolatok</strong> két entitás közötti élek, típusmegjelöléssel és forrás-hivatkozással.</li>
+</ul>
+<p>Ez az Access-ben megismert három-táblás logika, csak összevonva: a kötött séma az Access fő tábláját helyettesíti, az attribútumok egy generikus kulcs-érték tábla, a kapcsolatok pedig egy önmagára hivatkozó kapcsolati tábla.</p>
+</div>
+<div id="sablonok" class="section level3 hasAnchor" number="18.3.2">
+<h3><span class="header-section-number">18.3.2</span> Sablonok<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#sablonok" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A Beállítások ▸ Séma ablakban négy kész sablon választható:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sablon</th>
+<th>Mit tart nyilván?</th>
+<th>Mezők</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Prozopográfia</strong></td>
+<td>személyeket</td>
+<td>név, születési év, halálozási év, nem, forrás, megjegyzés</td>
+</tr>
+<tr class="even">
+<td><strong>Levelezés</strong></td>
+<td>leveleket</td>
+<td>cím, dátum, feladó, címzett, forrás, megjegyzés</td>
+</tr>
+<tr class="odd">
+<td><strong>Intézmény</strong></td>
+<td>intézményeket</td>
+<td>név, alapítás éve, megszűnés éve, típus, forrás, megjegyzés</td>
+</tr>
+<tr class="even">
+<td><strong>Anyakönyv</strong></td>
+<td>keresztelési / házassági / halotti bejegyzéseket</td>
+<td>név, esemény dátuma, esemény típusa, hely, forrás, megjegyzés</td>
+</tr>
+</tbody>
+</table>
+<p>A sablon csak a kiindulópont – minden mezőt lehet átnevezni, új mezőt hozzáadni vagy elhagyni a Beállítások ablakban, még az első rekord felvitele előtt.</p>
+</div>
+</div>
+<div id="gyakorlat-az-mta-alapítóinak-adatsora" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> Gyakorlat: az MTA alapítóinak adatsora<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#gyakorlat-az-mta-alap%C3%ADt%C3%B3inak-adatsora" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A következő lépéseket az <code>MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx</code> fájlon demonstráljuk. Ez egy 50 rekordos prozopográfiai adatsor: 4 alapító, 4 kezdeti tisztségviselő, az 1831-ben választott első 23 rendes tag és a további 19 fő, akiket 1831 és 1850 között választottak meg az akadémia tagjává.</p>
+<div id="lépés-az-eszköz-megnyitása" class="section level3 hasAnchor" number="18.4.1">
+<h3><span class="header-section-number">18.4.1</span> 0. lépés: az eszköz megnyitása<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-az-eszk%C3%B6z-megnyit%C3%A1sa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk kétszer a letöltött <code>torteneti_adatbazis.html</code> fájlra – megnyílik a böngészőben.</li>
+<li>Első indításkor egy üdvözlő képernyő fogad – válasszuk a <strong>Prozopográfia</strong> sablont.</li>
+<li>A Beállítások gombra kattintva ellenőrizhetjük a séma mezőit. Ezeket most nem kell módosítani.</li>
+</ol>
+</div>
+<div id="lépés-az-excel-betöltése-csv-importtal" class="section level3 hasAnchor" number="18.4.2">
+<h3><span class="header-section-number">18.4.2</span> 1. lépés: az Excel betöltése CSV-importtal<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-az-excel-bet%C3%B6lt%C3%A9se-csv-importtal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Az <strong>Adatbevitel</strong> fülön kattintsunk a <strong>CSV/Excel import</strong> gombra.</li>
+<li>Tallózzuk ki az <code>MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx</code> fájlt.</li>
+<li>A varázsló <strong>első lépésében</strong> megjelenik az oszlopok előnézete. Ellenőrizzük, hogy az ékezetek helyesek (ha kérdőjelek jelennek meg, az Excel mentésénél válasszuk „CSV UTF-8” formátumot).</li>
+<li>A <strong>második lépésben</strong> az eszköz automatikusan (az <code>autoMap</code> funkcióval) megpróbálja összerendelni az Excel-oszlopokat a séma mezőivel és az attribútum-típusokkal. A demonstrációs fájl oszlopnevei pontosan egyeznek a séma mezőinek nevével, így <strong>minden hozzárendelés automatikusan helyes lesz</strong>:
+<ul>
+<li>„Teljes név” → névmező</li>
+<li>„Születési év” → születési év mező</li>
+<li>„Halálozási év” → halálozási év mező</li>
+<li>„Nem” → nem mező</li>
+<li>„Forrás” → forrás mező</li>
+<li>„Megjegyzés” → megjegyzés mező</li>
+<li>A többi oszlop (Születési hely, Foglalkozás, Vallás, MTA szerep, MTA osztály, Választás éve) <strong>attribútum-típusként</strong> kerül be.</li>
+</ul></li>
+<li>A <strong>harmadik lépésben</strong> kattintsunk az <strong>Importálás</strong> gombra. A Rekordok fülre lépve az 50 akadémikus kártyái jelennek meg.</li>
+</ol>
+</div>
+<div id="lépés-mentés-fontos" class="section level3 hasAnchor" number="18.4.3">
+<h3><span class="header-section-number">18.4.3</span> 2. lépés: mentés (fontos!)<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-ment%C3%A9s-fontos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kattintsunk a fejléc <strong>Mentés ▸ JSON</strong> gombjára, és mentsük le a fájlt pl. <code>mta_munkamenet_1.json</code> néven. Ez a biztonsági hálónk: ha bezárjuk a böngészőt, kitöröljük a sütiket, vagy másik gépen szeretnénk folytatni, ebből a fájlból a <strong>Betöltés</strong> gombbal bármikor visszatölthető minden rekord. <strong>Az eszköz a böngésző localStorage-ába ment – egy felületes süti-takarítás minden adatunkat törli, ezért JSON-mentés nélkül nem szabad kilépni.</strong></p>
+</div>
+<div id="lépés-harmonizálás" class="section level3 hasAnchor" number="18.4.4">
+<h3><span class="header-section-number">18.4.4</span> 3. lépés: harmonizálás<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-harmoniz%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>Harmonizálás</strong> fülre lépve látjuk, hogy a Vallás attribútum-típus alatt <strong>10 különböző írásmód</strong> szerepel ugyanarra a három felekezetre: „r.k.”, „r.kat.”, „rk”, „r. kat.”, „római katolikus”, „katolikus”, „ref.”, „református”, „ev.”, „evangélikus”. Ez szándékos: egy valódi történeti adatsorban ez a normál helyzet.</p>
+<ol style="list-style-type: decimal">
+<li>Kattintsunk az <strong>Automatikus kitöltés (autoFill)</strong> gombra: minden nyers érték harmonizált mezője feltöltődik önmagával.</li>
+<li>Most egyesítsük a variánsokat: írjuk át pl. az „r.k.”, „r.kat.”, „rk”, „r. kat.”, „katolikus” harmonizált értékét <strong>egységesen</strong> „Római katolikus”-ra. Ugyanígy a két református és a két evangélikus variánst.</li>
+<li>Mentsünk JSON-t (Mentés ▸ JSON).</li>
+</ol>
+<p>Ugyanezt a lépést érdemes a Foglalkozás attribútum-típusra is elvégezni (az adatsorban 26 különböző foglalkozás-leírás szerepel – ezeket célszerű néhány fő kategóriára redukálni: politikus, irodalmár, tudós, egyházi, orvos, jogász, főnemes). Figyeljünk arra, hogy egyes esetekben ugyanaz a foglalkozás különböző írásmódokkal jelenik meg (pl. „politikus” / „pol.”, „költő” / „poéta”, „nyelvész” / „philologus”) – ezeket is egységesíteni kell.</p>
+</div>
+<div id="lépés-kapcsolatok-felvétele" class="section level3 hasAnchor" number="18.4.5">
+<h3><span class="header-section-number">18.4.5</span> 4. lépés: kapcsolatok felvétele<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-kapcsolatok-felv%C3%A9tele" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>Kapcsolatok</strong> fülön vegyünk fel néhány ismert, forrásokkal alátámasztott kapcsolatot. Néhány javaslat:</p>
+<ul>
+<li><strong>Kazinczy Ferenc</strong> → <em>Tanítvány</em> → <strong>Kölcsey Ferenc</strong> (forrás: Kazinczy-levelezés)</li>
+<li><strong>Kazinczy Ferenc</strong> → <em>Tanítvány</em> → <strong>Toldy Ferenc</strong></li>
+<li><strong>Vörösmarty Mihály</strong> ↔︎ <em>Kolléga</em> ↔︎ <strong>Bajza József</strong> (forrás: Athenaeum triumvirátus)</li>
+<li><strong>Kisfaludy Sándor</strong> ↔︎ <em>Szülő/gyerek vagy testvér</em> ↔︎ <strong>Kisfaludy Károly</strong> (testvérek)</li>
+<li><strong>Eötvös József</strong> ↔︎ <em>Kolléga</em> ↔︎ <strong>Szalay László</strong> (forrás: Centralisták)</li>
+</ul>
+<p>Minden kapcsolatnál adjuk meg a forrás mezőt is – ez az, ami a mi adatbázisunkat szakmailag használhatóvá teszi.</p>
+</div>
+<div id="lépés-vizualizáció" class="section level3 hasAnchor" number="18.4.6">
+<h3><span class="header-section-number">18.4.6</span> 5. lépés: vizualizáció<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-vizualiz%C3%A1ci%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>Vizualizáció</strong> fülön négy nézet közül választhatunk:</p>
+<ul>
+<li><strong>Idővonal</strong> (D3) – az egyes akadémikusok életútja időrendben.</li>
+<li><strong>Hálózat</strong> (D3 force-directed gráf) – a bevitt kapcsolatok hálózati megjelenítése.</li>
+<li><strong>Statisztika</strong> – a harmonizált attribútumok eloszlása (pl. vallási megoszlás, foglalkozási megoszlás).</li>
+<li><strong>Térkép</strong> (Leaflet + beépített helynév-szótár) – a születési/lakó helyek térképre vetítve. Az eszköz egy beépített történelmi magyar/Kárpát-medencei helynév-szótárral dolgozik (ékezet-független egyezéssel), valamint elfogadja a <code>47.49, 19.04</code> formátumú közvetlen koordinátákat is. Az alaptérkép-csempék betöltéséhez internetkapcsolat szükséges; ha egy helynév nincs a szótárban, a térkép alatti figyelmeztetésben felsorolódik.</li>
+</ul>
+</div>
+<div id="lépés-publikálás" class="section level3 hasAnchor" number="18.4.7">
+<h3><span class="header-section-number">18.4.7</span> 6. lépés: publikálás<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#l%C3%A9p%C3%A9s-publik%C3%A1l%C3%A1s" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha az adatbázis készen van, a fejléc <strong>Publikálás</strong> gombjával véglegesíthetjük. A modálban meg kell adni a készítő nevét és intézményét. A publikált állapot <strong>nem feloldható</strong> – ha később javítani szeretnénk, az utolsó JSON-mentést kell újra betöltenünk egy friss példányba, ott javítani, majd újra publikálni.</p>
+</div>
+</div>
+<div id="mikor-használjuk-az-eszközt-és-mikor-mást" class="section level2 hasAnchor" number="18.5">
+<h2><span class="header-section-number">18.5</span> Mikor használjuk az eszközt, és mikor mást?<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#mikor-haszn%C3%A1ljuk-az-eszk%C3%B6zt-%C3%A9s-mikor-m%C3%A1st" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>                   KEZELHETŐ-E EXCELBEN?
+                            |
+             +--------------+--------------+
+             |                             |
+            IGEN                           NEM (entitások közötti
+             |                             hálózatot szeretnénk,
+       Excel elég                          vagy attribútum-értékek
+                                           harmonizálására van szükség)
+                                                    |
+                                +-------------------+-------------------+
+                                |                                       |
+              KIS PROJEKT, LEVÉLTÁRI JELLEG            NAGY KORPUSZ, TÖBB FELHASZNÁLÓ,
+              PROZOPOGRÁFIA, KUTATÁSTÖRTÉNET           SZIGORÚ SZERVEREKKEL
+                                |                                       |
+                    TÖRTÉNETI ADATBÁZIS                          ACCESS VAGY SQL
+                    (EZ AZ ESZKÖZ)</code></pre>
+<p>Egyszerű ökölszabály:</p>
+<ul>
+<li><strong>Excel</strong>: egyszerű tabuláris adat, képletek, gyors áttekintés.</li>
+<li><strong>Történeti Adatbázis (ez a HTML-eszköz)</strong>: egyéni prozopográfiai kutatás, kapcsolati és földrajzi vizualizáció, harmonizálás, publikálható eredmény.</li>
+<li><strong>Access</strong>: intézményi környezetben, több felhasználóval közösen karbantartott nyilvántartások, összetett lekérdezések.</li>
+<li><strong>SQL-alapú szerver</strong> (MySQL, PostgreSQL): nagy adatmennyiség, webes kereső, többen írnak ugyanabba az adatbázisba.</li>
+</ul>
+<p>Mindhárom eszköz ugyanazt az adatmodellezési logikát követi – a különbség a <strong>méret, a megoszthatóság és a lekérdezési erő</strong>, nem pedig az elvekben.</p>
+</div>
+<div id="önálló-feladatok" class="section level2 hasAnchor" number="18.6">
+<h2><span class="header-section-number">18.6</span> Önálló feladatok<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#%C3%B6n%C3%A1ll%C3%B3-feladatok" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="feladat-1-saját-prozopográfiai-adatbázis" class="section level3 hasAnchor" number="18.6.1">
+<h3><span class="header-section-number">18.6.1</span> Feladat 1: saját prozopográfiai adatbázis<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#feladat-1-saj%C3%A1t-prozopogr%C3%A1fiai-adatb%C3%A1zis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Válasszunk egy 20-30 fős kört a saját szakterületünkről (pl. a szakdolgozat-témánkhoz kapcsolódó hivatalnokok, egy település tanítói egy adott évtizedben, egy tudóskör tagjai), és építsük fel a Történeti Adatbázisban. Minimum 4 attribútum-típus, minimum 5 kapcsolat.</p>
+</div>
+<div id="feladat-2-harmonizálási-gyakorlat" class="section level3 hasAnchor" number="18.6.2">
+<h3><span class="header-section-number">18.6.2</span> Feladat 2: harmonizálási gyakorlat<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#feladat-2-harmoniz%C3%A1l%C3%A1si-gyakorlat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A letöltött MTA-adatsor Foglalkozás attribútum-típusában a 26 nyers érték redukálása 6–8 kanonikus kategóriára. Indokoljuk, hogy mely döntések voltak nehezek (pl. jogász-politikus határeset, vagy hogy a „drámaíró” és „regényíró” egybevonható-e az „irodalmár” kategóriába).</p>
+</div>
+<div id="feladat-3-forráskritika-kapcsolatoknál" class="section level3 hasAnchor" number="18.6.3">
+<h3><span class="header-section-number">18.6.3</span> Feladat 3: forráskritika kapcsolatoknál<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#feladat-3-forr%C3%A1skritika-kapcsolatokn%C3%A1l" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A Kapcsolatok fülön vegyünk fel 10 új kapcsolatot – mindegyiknél <strong>pontos forráshivatkozással</strong> (akadémikus életrajz, levelezéskötet, szakirodalom). Reflektáljunk: mely kapcsolatokat tudtunk egyértelműen alátámasztani, melyeknél csak „valószínű”?</p>
+</div>
+<div id="feladat-4-vizualizáció-kritika" class="section level3 hasAnchor" number="18.6.4">
+<h3><span class="header-section-number">18.6.4</span> Feladat 4: vizualizáció-kritika<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#feladat-4-vizualiz%C3%A1ci%C3%B3-kritika" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nézzük meg ugyanazt az adathalmazt mind a négy vizualizációban. Melyik mit mutat meg jól, és mit rejt el? Egy 1 oldalas rövid reflexió.</p>
+</div>
+</div>
+<div id="gyakori-hibák-és-megoldások-1" class="section level2 hasAnchor" number="18.7">
+<h2><span class="header-section-number">18.7</span> Gyakori hibák és megoldások<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#gyakori-hib%C3%A1k-%C3%A9s-megold%C3%A1sok-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="az-adataim-eltűntek" class="section level3 hasAnchor" number="18.7.1">
+<h3><span class="header-section-number">18.7.1</span> „Az adataim eltűntek”<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#az-adataim-elt%C5%B1ntek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ok:</strong> a böngésző localStorage-ából mindent töröl a sütik/előzmények tisztítása, vagy másik böngészőben nyitottuk meg a HTML-t.</p>
+<p><strong>Megoldás:</strong> <strong>mindig</strong> mentsünk JSON-t óra végén, és nyissuk meg a fájlt mindig ugyanabban a böngészőben. Elveszett adatok esetén a legutóbbi JSON-mentést a Betöltés gombbal kell visszatölteni.</p>
+</div>
+<div id="ugyanazt-a-rekordot-kétszer-importálom" class="section level3 hasAnchor" number="18.7.2">
+<h3><span class="header-section-number">18.7.2</span> „Ugyanazt a rekordot kétszer importálom”<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#ugyanazt-a-rekordot-k%C3%A9tszer-import%C3%A1lom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ok:</strong> a CSV-import nem vizsgál duplikátumot, az autoMap megbízik a fejlécekben.</p>
+<p><strong>Megoldás:</strong> új importálás előtt ürítsük ki a Rekordok listát (Beállítások ▸ Rekordok törlése), vagy kezeljük két külön projektként és utólag tisztítsuk a listát.</p>
+</div>
+<div id="két-html-fájlt-is-megnyitottam-ugyanabban-a-böngészőben-és-felülírták-egymást" class="section level3 hasAnchor" number="18.7.3">
+<h3><span class="header-section-number">18.7.3</span> „Két HTML-fájlt is megnyitottam ugyanabban a böngészőben, és felülírták egymást”<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#k%C3%A9t-html-f%C3%A1jlt-is-megnyitottam-ugyanabban-a-b%C3%B6ng%C3%A9sz%C5%91ben-%C3%A9s-fel%C3%BCl%C3%ADrt%C3%A1k-egym%C3%A1st" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ok:</strong> a Történeti Adatbázis és a hasonló nevű <code>prozopograf.html</code> <strong>ugyanazt a localStorage-kulcsot használja</strong> (<code>rekordtar_v1</code>). Ha mindkettővel dolgozunk ugyanabban a böngészőben, felülírhatják egymás adatait.</p>
+<p><strong>Megoldás:</strong> egy projektet egyféle eszközben tartsunk, vagy használjunk külön böngészőt (pl. egyik munkához Chrome, másikhoz Firefox).</p>
+</div>
+<div id="nem-találom-a-publikálás-gombot" class="section level3 hasAnchor" number="18.7.4">
+<h3><span class="header-section-number">18.7.4</span> „Nem találom a Publikálás gombot”<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#nem-tal%C3%A1lom-a-publik%C3%A1l%C3%A1s-gombot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ok:</strong> az adatbázis jelenleg Zárolva van (csak olvasható állapot).</p>
+<p><strong>Megoldás:</strong> nyomjuk meg a <strong>Szerkesztés</strong> gombot a zárolás feloldására. A véglegesen publikált állapotot viszont <strong>nem lehet</strong> feloldani – ilyenkor új példányt kell nyitni az utolsó JSON-mentésből.</p>
+</div>
+<div id="a-térkép-üres" class="section level3 hasAnchor" number="18.7.5">
+<h3><span class="header-section-number">18.7.5</span> „A térkép üres”<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#a-t%C3%A9rk%C3%A9p-%C3%BCres" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ok:</strong> a leggyakoribb eset, hogy a helyadat-mező dropdown egy olyan mezőre / attribútumra mutat, amiben egyetlen rekordban sincs érték (pl. alapértelmezésben a Lakóhely attribútumra áll, de a CSV-importból csak a Születési hely oszlop került be). Ritkábban: az adatok megvannak, de a helynevek nincsenek a beépített szótárban.</p>
+<p><strong>Megoldás:</strong> a dropdown most már mutatja az egyes mezők kitöltöttségét („· 48 érték” vagy „· üres”), így egy pillantás alatt kiderül, melyiket érdemes választani. A térkép alatt megjelenő narancssárga figyelmeztetés szintén javaslatot ad. A nem azonosított helyekhez a cellába koordinátát is be lehet írni <code>47.49, 19.04</code> formátumban.</p>
+</div>
+</div>
+<div id="a-fejezet-letölthető-anyagai-összefoglaló" class="section level2 hasAnchor" number="18.8">
+<h2><span class="header-section-number">18.8</span> A fejezet letölthető anyagai – összefoglaló<a href="történeti-adatbázis-saját-eszköz-prozopográfiához.html#a-fejezet-let%C3%B6lthet%C5%91-anyagai-%C3%B6sszefoglal%C3%B3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="torteneti_adatbazis.html">torteneti_adatbazis.html</a> – maga az eszköz</li>
+<li><a href="MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx">MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx</a> – demonstrációs Excel-adatsor</li>
+</ul>
 
 </div>
 </div>
@@ -802,8 +1012,8 @@ sorrend</p>
           </div>
         </div>
       </div>
-<a href="űrlap-készítése-adatbevitelhez.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="második-tábla-létrehozása.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="összefoglalás-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-könyvről.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -8,6 +8,11 @@ lang: hu
 bibliography: []
 description: |
   Tananyag az ELTE BTK Levéltár MA szakos hallgatói számára.
+resource_files:
+  - Kutatoszolgalat_2026_v2.xlsx
+  - Kutatoszolgalat_gyakorlo.xlsx
+  - torteneti_adatbazis.html
+  - MTA_alapitok_es_elso_nemzedek_1825-1850.xlsx
 ---
 
 # Előszó {-}

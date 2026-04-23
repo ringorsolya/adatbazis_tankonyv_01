@@ -14,8 +14,8 @@ Ezeket fogjuk digitalizálni és összekapcsolni.
 
 A fejezet során elkészített munkafüzet két változatban érhető el:
 
-- <Kutatoszolgalat_2026_v2.xlsx> – kész, kitöltött munkafüzet (minden képlettel)
-- <Kutatoszolgalat_gyakorlo.xlsx> – gyakorló sablon: az adatok benne vannak, a sárga képlet-cellák üresek – ezeket a fejezet lépései alapján kell kitölteni
+- [Kutatoszolgalat_2026_v2.xlsx](Kutatoszolgalat_2026_v2.xlsx) – kész, kitöltött munkafüzet (minden képlettel)
+- [Kutatoszolgalat_gyakorlo.xlsx](Kutatoszolgalat_gyakorlo.xlsx) – gyakorló sablon: az adatok benne vannak, a sárga képlet-cellák üresek – ezeket a fejezet lépései alapján kell kitölteni
 
 ---
 

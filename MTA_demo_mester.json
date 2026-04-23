@@ -1,0 +1,2666 @@
+{
+  "config": {
+    "projectName": "MTA alapítók és első nemzedék (1825–1850)",
+    "projectDesc": "Prozopográfiai mintaadatbázis oktatási célra; 50 rekord, 18 kapcsolat",
+    "entitySchema": {
+      "label": "Személy",
+      "labelPlural": "Személyek",
+      "icon": "👤",
+      "fields": [
+        {
+          "id": "f_name",
+          "label": "Teljes név",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "f_birth",
+          "label": "Születési év",
+          "type": "number"
+        },
+        {
+          "id": "f_death",
+          "label": "Halálozási év",
+          "type": "number"
+        },
+        {
+          "id": "f_gender",
+          "label": "Nem",
+          "type": "select",
+          "options": [
+            "Férfi",
+            "Nő",
+            "Ismeretlen"
+          ]
+        },
+        {
+          "id": "f_source",
+          "label": "Forrás",
+          "type": "text"
+        },
+        {
+          "id": "f_notes",
+          "label": "Megjegyzés",
+          "type": "textarea"
+        }
+      ],
+      "titleField": "f_name",
+      "dateField1": "f_birth",
+      "dateField2": "f_death",
+      "locationField": null
+    },
+    "attrTypes": [
+      "Foglalkozás",
+      "Iskolázottság",
+      "Lakóhely",
+      "Vallás",
+      "Születési hely",
+      "MTA szerep",
+      "MTA osztály"
+    ],
+    "relTypes": [
+      "Házastárs",
+      "Szülő/gyerek",
+      "Kolléga",
+      "Barát",
+      "Tanítvány"
+    ],
+    "_schemaChosen": true,
+    "_locked": false,
+    "_lockedPermanent": false,
+    "creatorName": "",
+    "creatorAffiliation": "",
+    "publishedDate": ""
+  },
+  "entities": [
+    {
+      "id": "moa33toj4ur9",
+      "f_name": "Széchenyi István",
+      "f_birth": 1791,
+      "f_death": 1860,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok; MTA 200",
+      "f_notes": "Az MTA alapítója, 60 000 Ft adomány (1825). Alelnök 1830–1855."
+    },
+    {
+      "id": "moa33tokyy23",
+      "f_name": "Vay Ábrahám",
+      "f_birth": 1789,
+      "f_death": 1855,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "8 000 Ft-os adomány az MTA alapításakor."
+    },
+    {
+      "id": "moa33tol8jdl",
+      "f_name": "Andrássy György",
+      "f_birth": 1797,
+      "f_death": 1872,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "10 000 Ft-os adomány; az első négy alapító adakozó egyike."
+    },
+    {
+      "id": "moa33tom83e5",
+      "f_name": "Károlyi György",
+      "f_birth": 1802,
+      "f_death": 1877,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Az alapító négyek legfiatalabbja; jelentős mecénás."
+    },
+    {
+      "id": "moa33tonmqsx",
+      "f_name": "Teleki József",
+      "f_birth": 1790,
+      "f_death": 1855,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok; MTA 200",
+      "f_notes": "Az első MTA-elnök (1830–1855); a Hunyadiak-kori könyvek szerzője."
+    },
+    {
+      "id": "moa33toosth9",
+      "f_name": "Döbrentei Gábor",
+      "f_birth": 1785,
+      "f_death": 1851,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Első titoknok (1830–1835). Az Erdélyi Muzéum szerkesztője."
+    },
+    {
+      "id": "moa33topb5n2",
+      "f_name": "Helmeczy Mihály",
+      "f_birth": 1792,
+      "f_death": 1852,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Jelenkor szerkesztője, az MTA első pénztárnoka."
+    },
+    {
+      "id": "moa33toq8y4p",
+      "f_name": "Toldy (Schedel) Ferenc",
+      "f_birth": 1805,
+      "f_death": 1875,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Második titkár (1835-től); a magyar irodalomtörténet-írás atyja."
+    },
+    {
+      "id": "moa33torgd4v",
+      "f_name": "Kisfaludy Sándor",
+      "f_birth": 1772,
+      "f_death": 1844,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Himfy szerelmei költője; Kisfaludy Károly bátyja."
+    },
+    {
+      "id": "moa33toskfk7",
+      "f_name": "Vörösmarty Mihály",
+      "f_birth": 1800,
+      "f_death": 1855,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Szózat szerzője (1836)."
+    },
+    {
+      "id": "moa33totgkxg",
+      "f_name": "Kölcsey Ferenc",
+      "f_birth": 1790,
+      "f_death": 1838,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Himnusz szerzője (1823)."
+    },
+    {
+      "id": "moa33touhnn5",
+      "f_name": "Horvát István",
+      "f_birth": 1784,
+      "f_death": 1846,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Széchényi Országos Könyvtár őre; őstörténeti munkáiról ismert."
+    },
+    {
+      "id": "moa33tov9oou",
+      "f_name": "Horváth Endre",
+      "f_birth": 1778,
+      "f_death": 1839,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pázmándi Horváth Endre; az Árpád (1831) szerzője."
+    },
+    {
+      "id": "moa33tow3pnx",
+      "f_name": "Berzsenyi Dániel",
+      "f_birth": 1776,
+      "f_death": 1836,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A klasszicista óda mestere; niklai remete."
+    },
+    {
+      "id": "moa33toxy0q5",
+      "f_name": "Szilasy János",
+      "f_birth": 1795,
+      "f_death": 1859,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Katolikus teológus; A nevelés tudománya szerzője."
+    },
+    {
+      "id": "moa33toydhfg",
+      "f_name": "Bugát Pál",
+      "f_birth": 1793,
+      "f_death": 1865,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A magyar orvosi szaknyelv megalkotója; a Magyar Orvosi Tár szerkesztője."
+    },
+    {
+      "id": "moa33tozitya",
+      "f_name": "Gebhardt Ferenc",
+      "f_birth": 1791,
+      "f_death": 1869,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pesti egyetemi orvosprofesszor."
+    },
+    {
+      "id": "moa33tp06nc7",
+      "f_name": "Bitnicz Lajos",
+      "f_birth": 1790,
+      "f_death": 1871,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Szombathelyi líceum tanára; a magyar matematikai nyelv pionírja."
+    },
+    {
+      "id": "moa33tp1osii",
+      "f_name": "Tittel Pál",
+      "f_birth": 1784,
+      "f_death": 1831,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Gellérthegyi Csillagvizsgáló igazgatója; pár hónappal megválasztása után elhunyt."
+    },
+    {
+      "id": "moa33tp2worw",
+      "f_name": "Szlemenics Pál",
+      "f_birth": 1783,
+      "f_death": 1856,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pozsonyi jogakadémia tanára; Elementa juris szerzője."
+    },
+    {
+      "id": "moa33tp35omh",
+      "f_name": "Imre János",
+      "f_birth": 1790,
+      "f_death": 1832,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pesti egyetemi filozófiatanár; rövid MTA-tagság, halála miatt."
+    },
+    {
+      "id": "moa33tp4y50z",
+      "f_name": "Kisfaludy Károly",
+      "f_birth": 1788,
+      "f_death": 1830,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Az Aurora szerkesztője; 1830. november 21-én halt meg, pár nappal megválasztása után."
+    },
+    {
+      "id": "moa33tp5xyw3",
+      "f_name": "Petrovics Fridrik",
+      "f_birth": 1799,
+      "f_death": 1836,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Fiatal történetkutató; rövid életű."
+    },
+    {
+      "id": "moa33tp6pu6z",
+      "f_name": "Kassai József",
+      "f_birth": 1767,
+      "f_death": 1842,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Szókönyvét (1833–1836) az MTA adta ki."
+    },
+    {
+      "id": "moa33tp7dxu7",
+      "f_name": "Guzmics Izidor",
+      "f_birth": 1786,
+      "f_death": 1839,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pannonhalmi bencés; az Egyházi Tár szerkesztője."
+    },
+    {
+      "id": "moa33tp8q77l",
+      "f_name": "Köteles Sámuel",
+      "f_birth": 1770,
+      "f_death": 1831,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Nagyenyedi kollégium tanára; 1831-ben kolerában hunyt el."
+    },
+    {
+      "id": "moa33tp9npy7",
+      "f_name": "Kazinczy Ferenc",
+      "f_birth": 1759,
+      "f_death": 1831,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A nyelvújítás vezéralakja; 1831-ben kolerában halt meg. Eredetileg rendes tagnak választották."
+    },
+    {
+      "id": "moa33tpa44l6",
+      "f_name": "Fáy András",
+      "f_birth": 1786,
+      "f_death": 1864,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Pesti Hazai Első Takarékpénztár alapítója (1840)."
+    },
+    {
+      "id": "moa33tpbjcua",
+      "f_name": "Budai Ézsaiás",
+      "f_birth": 1766,
+      "f_death": 1841,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Debreceni kollégium professzora; tiszántúli református püspök."
+    },
+    {
+      "id": "moa33tpcja1n",
+      "f_name": "Schedius Lajos",
+      "f_birth": 1768,
+      "f_death": 1847,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A pesti egyetem esztétikaprofesszora."
+    },
+    {
+      "id": "moa33tpd04eo",
+      "f_name": "Kresznerics Ferenc",
+      "f_birth": 1766,
+      "f_death": 1832,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Magyar szótár gyökerekkel (1831–1832) szerzője."
+    },
+    {
+      "id": "moa33tpe27aw",
+      "f_name": "Prónay Sándor",
+      "f_birth": 1760,
+      "f_death": 1839,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Evangélikus egyetemes főfelügyelő (1819–1839)."
+    },
+    {
+      "id": "moa33tpfkmt9",
+      "f_name": "Bajza József",
+      "f_birth": 1804,
+      "f_death": 1858,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Az Athenaeum szerkesztője; a Nemzeti Színház első igazgatója."
+    },
+    {
+      "id": "moa33tpgjluw",
+      "f_name": "Czuczor Gergely",
+      "f_birth": 1800,
+      "f_death": 1866,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pannonhalmi bencés; a Czuczor–Fogarasi szótár társszerzője."
+    },
+    {
+      "id": "moa33tphjrqv",
+      "f_name": "Bártfay László",
+      "f_birth": 1797,
+      "f_death": 1858,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Pesti irodalmi szalon központi alakja."
+    },
+    {
+      "id": "moa33tpibzyx",
+      "f_name": "Bolyai Farkas",
+      "f_birth": 1775,
+      "f_death": 1856,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Tentamen szerzője; Bolyai János apja."
+    },
+    {
+      "id": "moa33tpjo3mu",
+      "f_name": "Eötvös József",
+      "f_birth": 1813,
+      "f_death": 1871,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok; MTA 200",
+      "f_notes": "A falu jegyzője szerzője; 1848 és 1867 vallás- és közoktatásügyi miniszter; MTA-elnök 1866–1871."
+    },
+    {
+      "id": "moa33tpknfq2",
+      "f_name": "Jósika Miklós",
+      "f_birth": 1794,
+      "f_death": 1865,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Az első magyar történelmi regény (Abafi, 1836) írója."
+    },
+    {
+      "id": "moa33tpl7d7e",
+      "f_name": "Szalay László",
+      "f_birth": 1813,
+      "f_death": 1864,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Magyarország története (1852–1859) szerzője."
+    },
+    {
+      "id": "moa33tpmgv1a",
+      "f_name": "Fényes Elek",
+      "f_birth": 1807,
+      "f_death": 1876,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A magyar statisztika atyja; Magyarország leírása (1836–1840)."
+    },
+    {
+      "id": "moa33tpnd85w",
+      "f_name": "Gaal József",
+      "f_birth": 1811,
+      "f_death": 1866,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A peleskei nótárius szerzője."
+    },
+    {
+      "id": "moa33tpon098",
+      "f_name": "Pulszky Ferenc",
+      "f_birth": 1814,
+      "f_death": 1897,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "1848-as államtitkár; a Nemzeti Múzeum igazgatója (1869-től)."
+    },
+    {
+      "id": "moa33tpp1p5g",
+      "f_name": "Horváth Mihály",
+      "f_birth": 1809,
+      "f_death": 1878,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "1849-es kultuszminiszter; Magyarország története (1842–1846) szerzője."
+    },
+    {
+      "id": "moa33tpqejv6",
+      "f_name": "Erdélyi János",
+      "f_birth": 1814,
+      "f_death": 1868,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Népdalok és mondák gyűjtemény szerkesztője."
+    },
+    {
+      "id": "moa33tpr9h2c",
+      "f_name": "Garay János",
+      "f_birth": 1812,
+      "f_death": 1853,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A Kont és Az obsitos szerzője."
+    },
+    {
+      "id": "moa33tpsvelu",
+      "f_name": "Szontagh Gusztáv",
+      "f_birth": 1793,
+      "f_death": 1858,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Magyar egyezményes filozófia (1855) szerzője."
+    },
+    {
+      "id": "moa33tptcfgc",
+      "f_name": "Deák Ferenc",
+      "f_birth": 1803,
+      "f_death": 1876,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A haza bölcse; 1867-es kiegyezés fő előkészítője."
+    },
+    {
+      "id": "moa33tpuj4pa",
+      "f_name": "Trefort Ágoston",
+      "f_birth": 1817,
+      "f_death": 1888,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "Későbbi vallás- és közoktatásügyi miniszter (1872–1888); MTA-elnök 1885-től."
+    },
+    {
+      "id": "moa33tpv2e3r",
+      "f_name": "Dessewffy Emil",
+      "f_birth": 1814,
+      "f_death": 1866,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok; MTA 200",
+      "f_notes": "Konzervatív publicista; 1855–1866 között MTA-elnök."
+    },
+    {
+      "id": "moa33tpwh9m8",
+      "f_name": "Jedlik Ányos",
+      "f_birth": 1800,
+      "f_death": 1895,
+      "f_gender": "Férfi",
+      "f_source": "MTA Akadémikusok",
+      "f_notes": "A dinamó elvének felfedezője (1861); bencés szerzetes, pesti egyetemi tanár."
+    }
+  ],
+  "attributes": [
+    {
+      "id": "moa33tpx8i5t",
+      "entity_id": "moa33toj4ur9",
+      "type": "Születési hely",
+      "value_raw": "Bécs",
+      "value_harmonized": "Bécs",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tpyz1qh",
+      "entity_id": "moa33toj4ur9",
+      "type": "Foglalkozás",
+      "value_raw": "reformer, politikus",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tpzmwgp",
+      "entity_id": "moa33toj4ur9",
+      "type": "Vallás",
+      "value_raw": "római katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq0w4kh",
+      "entity_id": "moa33toj4ur9",
+      "type": "MTA szerep",
+      "value_raw": "alapító, alelnök",
+      "value_harmonized": "alapító, alelnök",
+      "date_label": "1825"
+    },
+    {
+      "id": "moa33tq13y5q",
+      "entity_id": "moa33tokyy23",
+      "type": "Születési hely",
+      "value_raw": "Zsolca",
+      "value_harmonized": "Zsolca",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq2ykhi",
+      "entity_id": "moa33tokyy23",
+      "type": "Foglalkozás",
+      "value_raw": "főispán, politikus",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq31l0i",
+      "entity_id": "moa33tokyy23",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq4k7ny",
+      "entity_id": "moa33tokyy23",
+      "type": "MTA szerep",
+      "value_raw": "alapító, igazgató tag",
+      "value_harmonized": "alapító, igazgató tag",
+      "date_label": "1825"
+    },
+    {
+      "id": "moa33tq58xy0",
+      "entity_id": "moa33tol8jdl",
+      "type": "Születési hely",
+      "value_raw": "Kassa",
+      "value_harmonized": "Kassa",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq6bk9t",
+      "entity_id": "moa33tol8jdl",
+      "type": "Foglalkozás",
+      "value_raw": "főispán",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq7hktb",
+      "entity_id": "moa33tol8jdl",
+      "type": "Vallás",
+      "value_raw": "r. kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tq8x6y8",
+      "entity_id": "moa33tol8jdl",
+      "type": "MTA szerep",
+      "value_raw": "alapító, igazgató tag",
+      "value_harmonized": "alapító, igazgató tag",
+      "date_label": "1825"
+    },
+    {
+      "id": "moa33tq9gawh",
+      "entity_id": "moa33tom83e5",
+      "type": "Születési hely",
+      "value_raw": "Bécs",
+      "value_harmonized": "Bécs",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqahmex",
+      "entity_id": "moa33tom83e5",
+      "type": "Foglalkozás",
+      "value_raw": "nagybirtokos, politikus",
+      "value_harmonized": "Főnemes",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqbeauf",
+      "entity_id": "moa33tom83e5",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqc2f8g",
+      "entity_id": "moa33tom83e5",
+      "type": "MTA szerep",
+      "value_raw": "alapító, igazgató tag",
+      "value_harmonized": "alapító, igazgató tag",
+      "date_label": "1825"
+    },
+    {
+      "id": "moa33tqd2rye",
+      "entity_id": "moa33tonmqsx",
+      "type": "Születési hely",
+      "value_raw": "Pest",
+      "value_harmonized": "Pest",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqeqxqw",
+      "entity_id": "moa33tonmqsx",
+      "type": "Foglalkozás",
+      "value_raw": "történetíró, politikus",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqfo36l",
+      "entity_id": "moa33tonmqsx",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqgwag4",
+      "entity_id": "moa33tonmqsx",
+      "type": "MTA szerep",
+      "value_raw": "elnök, rendes tag",
+      "value_harmonized": "elnök, rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tqhbm0z",
+      "entity_id": "moa33tonmqsx",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqj2lzc",
+      "entity_id": "moa33toosth9",
+      "type": "Születési hely",
+      "value_raw": "Nagyszőlős",
+      "value_harmonized": "Nagyszőlős",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqkaikg",
+      "entity_id": "moa33toosth9",
+      "type": "Foglalkozás",
+      "value_raw": "író, nyelvész",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqlui44",
+      "entity_id": "moa33toosth9",
+      "type": "Vallás",
+      "value_raw": "ev.",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqmgf1r",
+      "entity_id": "moa33toosth9",
+      "type": "MTA szerep",
+      "value_raw": "titoknok, rendes tag",
+      "value_harmonized": "titoknok, rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tqndy7a",
+      "entity_id": "moa33toosth9",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqosb8t",
+      "entity_id": "moa33topb5n2",
+      "type": "Születési hely",
+      "value_raw": "Kismarton",
+      "value_harmonized": "Kismarton",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqpt3xq",
+      "entity_id": "moa33topb5n2",
+      "type": "Foglalkozás",
+      "value_raw": "szerkesztő, író",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqq5c58",
+      "entity_id": "moa33topb5n2",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqr9jpy",
+      "entity_id": "moa33topb5n2",
+      "type": "MTA szerep",
+      "value_raw": "pénztárnok, levelező tag",
+      "value_harmonized": "pénztárnok, levelező tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tqsigkd",
+      "entity_id": "moa33topb5n2",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqt5hiy",
+      "entity_id": "moa33toq8y4p",
+      "type": "Születési hely",
+      "value_raw": "Buda",
+      "value_harmonized": "Buda",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tquhu3d",
+      "entity_id": "moa33toq8y4p",
+      "type": "Foglalkozás",
+      "value_raw": "irodalomtörténész, orvos",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqvqw10",
+      "entity_id": "moa33toq8y4p",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqw7m3w",
+      "entity_id": "moa33toq8y4p",
+      "type": "MTA szerep",
+      "value_raw": "titkár, rendes tag",
+      "value_harmonized": "titkár, rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tqxs1ub",
+      "entity_id": "moa33toq8y4p",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqy56uj",
+      "entity_id": "moa33torgd4v",
+      "type": "Születési hely",
+      "value_raw": "Sümeg",
+      "value_harmonized": "Sümeg",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tqze6wm",
+      "entity_id": "moa33torgd4v",
+      "type": "Foglalkozás",
+      "value_raw": "költő",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr02lz5",
+      "entity_id": "moa33torgd4v",
+      "type": "Vallás",
+      "value_raw": "római katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr173nl",
+      "entity_id": "moa33torgd4v",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tr236o5",
+      "entity_id": "moa33torgd4v",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr3fkkl",
+      "entity_id": "moa33toskfk7",
+      "type": "Születési hely",
+      "value_raw": "Puszta-Nyék",
+      "value_harmonized": "Puszta-Nyék",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr4whkc",
+      "entity_id": "moa33toskfk7",
+      "type": "Foglalkozás",
+      "value_raw": "költő, drámaíró",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr5j4af",
+      "entity_id": "moa33toskfk7",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr6rizj",
+      "entity_id": "moa33toskfk7",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tr7dwe7",
+      "entity_id": "moa33toskfk7",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr87tdu",
+      "entity_id": "moa33totgkxg",
+      "type": "Születési hely",
+      "value_raw": "Sződemeter",
+      "value_harmonized": "Sződemeter",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tr9ctc2",
+      "entity_id": "moa33totgkxg",
+      "type": "Foglalkozás",
+      "value_raw": "költő, politikus",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trae768",
+      "entity_id": "moa33totgkxg",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trb5grp",
+      "entity_id": "moa33totgkxg",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33trck7yx",
+      "entity_id": "moa33totgkxg",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trd5m6p",
+      "entity_id": "moa33touhnn5",
+      "type": "Születési hely",
+      "value_raw": "Székesfehérvár",
+      "value_harmonized": "Székesfehérvár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trezgpq",
+      "entity_id": "moa33touhnn5",
+      "type": "Foglalkozás",
+      "value_raw": "történész, könyvtáros",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trfyvq8",
+      "entity_id": "moa33touhnn5",
+      "type": "Vallás",
+      "value_raw": "r. kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trgvcsy",
+      "entity_id": "moa33touhnn5",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33trhpw0x",
+      "entity_id": "moa33touhnn5",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tri8kzn",
+      "entity_id": "moa33tov9oou",
+      "type": "Születési hely",
+      "value_raw": "Pázmánd",
+      "value_harmonized": "Pázmánd",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trj4tvd",
+      "entity_id": "moa33tov9oou",
+      "type": "Foglalkozás",
+      "value_raw": "költő, plébános",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trkagj3",
+      "entity_id": "moa33tov9oou",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trlxdt8",
+      "entity_id": "moa33tov9oou",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33trmt7xh",
+      "entity_id": "moa33tov9oou",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trnhnmp",
+      "entity_id": "moa33tow3pnx",
+      "type": "Születési hely",
+      "value_raw": "Egyházashetye",
+      "value_harmonized": "Egyházashetye",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tro1vp0",
+      "entity_id": "moa33tow3pnx",
+      "type": "Foglalkozás",
+      "value_raw": "költő",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trp83n8",
+      "entity_id": "moa33tow3pnx",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trqw744",
+      "entity_id": "moa33tow3pnx",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33trrtlp0",
+      "entity_id": "moa33tow3pnx",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trs85e5",
+      "entity_id": "moa33toxy0q5",
+      "type": "Születési hely",
+      "value_raw": "Szilas",
+      "value_harmonized": "Szilas",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trtp63d",
+      "entity_id": "moa33toxy0q5",
+      "type": "Foglalkozás",
+      "value_raw": "pap, neveléstudós",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trux6sj",
+      "entity_id": "moa33toxy0q5",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trvi6ym",
+      "entity_id": "moa33toxy0q5",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33trw3lew",
+      "entity_id": "moa33toxy0q5",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trxilax",
+      "entity_id": "moa33toydhfg",
+      "type": "Születési hely",
+      "value_raw": "Gyöngyös",
+      "value_harmonized": "Gyöngyös",
+      "date_label": ""
+    },
+    {
+      "id": "moa33try13e3",
+      "entity_id": "moa33toydhfg",
+      "type": "Foglalkozás",
+      "value_raw": "orvos, nyelvújító",
+      "value_harmonized": "Orvos",
+      "date_label": ""
+    },
+    {
+      "id": "moa33trzyj6y",
+      "entity_id": "moa33toydhfg",
+      "type": "Vallás",
+      "value_raw": "r.k.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts0w8ta",
+      "entity_id": "moa33toydhfg",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ts1kkgn",
+      "entity_id": "moa33toydhfg",
+      "type": "MTA osztály",
+      "value_raw": "természettudományi",
+      "value_harmonized": "természettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts21mk3",
+      "entity_id": "moa33tozitya",
+      "type": "Születési hely",
+      "value_raw": "Keszthely",
+      "value_harmonized": "Keszthely",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts3x8i4",
+      "entity_id": "moa33tozitya",
+      "type": "Foglalkozás",
+      "value_raw": "orvos, egyetemi tanár",
+      "value_harmonized": "Orvos",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts4ls9v",
+      "entity_id": "moa33tozitya",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts5i9qs",
+      "entity_id": "moa33tozitya",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ts6br3a",
+      "entity_id": "moa33tozitya",
+      "type": "MTA osztály",
+      "value_raw": "természettudományi",
+      "value_harmonized": "természettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts7eeww",
+      "entity_id": "moa33tp06nc7",
+      "type": "Születési hely",
+      "value_raw": "Jákó",
+      "value_harmonized": "Jákó",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts8hhrt",
+      "entity_id": "moa33tp06nc7",
+      "type": "Foglalkozás",
+      "value_raw": "matematikus, pap",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ts9h7zw",
+      "entity_id": "moa33tp06nc7",
+      "type": "Vallás",
+      "value_raw": "római katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsaomkh",
+      "entity_id": "moa33tp06nc7",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tsbkjfr",
+      "entity_id": "moa33tp06nc7",
+      "type": "MTA osztály",
+      "value_raw": "matematikai",
+      "value_harmonized": "matematikai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsc2ez8",
+      "entity_id": "moa33tp1osii",
+      "type": "Születési hely",
+      "value_raw": "Pásztó",
+      "value_harmonized": "Pásztó",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsd6gp7",
+      "entity_id": "moa33tp1osii",
+      "type": "Foglalkozás",
+      "value_raw": "csillagász, pap",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tse0pjw",
+      "entity_id": "moa33tp1osii",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsfr39j",
+      "entity_id": "moa33tp1osii",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tsgi1s6",
+      "entity_id": "moa33tp1osii",
+      "type": "MTA osztály",
+      "value_raw": "matematikai",
+      "value_harmonized": "matematikai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tshkohh",
+      "entity_id": "moa33tp2worw",
+      "type": "Születési hely",
+      "value_raw": "Kecskemét",
+      "value_harmonized": "Kecskemét",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsiwu18",
+      "entity_id": "moa33tp2worw",
+      "type": "Foglalkozás",
+      "value_raw": "jogtudós",
+      "value_harmonized": "Jogász",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsjggyp",
+      "entity_id": "moa33tp2worw",
+      "type": "Vallás",
+      "value_raw": "r. kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tskvtw0",
+      "entity_id": "moa33tp2worw",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tsl4mr2",
+      "entity_id": "moa33tp2worw",
+      "type": "MTA osztály",
+      "value_raw": "törvénytudományi",
+      "value_harmonized": "törvénytudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsml5yf",
+      "entity_id": "moa33tp35omh",
+      "type": "Születési hely",
+      "value_raw": "Al-Szölgyén",
+      "value_harmonized": "Al-Szölgyén",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsnemy1",
+      "entity_id": "moa33tp35omh",
+      "type": "Foglalkozás",
+      "value_raw": "pap, filozófus",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tso2941",
+      "entity_id": "moa33tp35omh",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsptw6a",
+      "entity_id": "moa33tp35omh",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tsqpuym",
+      "entity_id": "moa33tp35omh",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsrze5y",
+      "entity_id": "moa33tp4y50z",
+      "type": "Születési hely",
+      "value_raw": "Téti",
+      "value_harmonized": "Téti",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tssz29u",
+      "entity_id": "moa33tp4y50z",
+      "type": "Foglalkozás",
+      "value_raw": "drámaíró, szerkesztő",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tst7xdt",
+      "entity_id": "moa33tp4y50z",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsukjwz",
+      "entity_id": "moa33tp4y50z",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tsvhw8c",
+      "entity_id": "moa33tp4y50z",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tswm80c",
+      "entity_id": "moa33tp5xyw3",
+      "type": "Születési hely",
+      "value_raw": "Felsőmeczenzéf",
+      "value_harmonized": "Felsőmeczenzéf",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsxozx3",
+      "entity_id": "moa33tp5xyw3",
+      "type": "Foglalkozás",
+      "value_raw": "történész",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsyeo8u",
+      "entity_id": "moa33tp5xyw3",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tsz4c6l",
+      "entity_id": "moa33tp5xyw3",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tt0ij8w",
+      "entity_id": "moa33tp5xyw3",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt11w77",
+      "entity_id": "moa33tp6pu6z",
+      "type": "Születési hely",
+      "value_raw": "Bodrogkeresztúr",
+      "value_harmonized": "Bodrogkeresztúr",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt2jglh",
+      "entity_id": "moa33tp6pu6z",
+      "type": "Foglalkozás",
+      "value_raw": "nyelvész, pap",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt33axg",
+      "entity_id": "moa33tp6pu6z",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt40yw2",
+      "entity_id": "moa33tp6pu6z",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tt56lfb",
+      "entity_id": "moa33tp6pu6z",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt683fy",
+      "entity_id": "moa33tp7dxu7",
+      "type": "Születési hely",
+      "value_raw": "Vámos-Család",
+      "value_harmonized": "Vámos-Család",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt7qid7",
+      "entity_id": "moa33tp7dxu7",
+      "type": "Foglalkozás",
+      "value_raw": "bencés szerzetes, teológus",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt89mj4",
+      "entity_id": "moa33tp7dxu7",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tt9swlb",
+      "entity_id": "moa33tp7dxu7",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ttaskz4",
+      "entity_id": "moa33tp7dxu7",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttbc7uq",
+      "entity_id": "moa33tp8q77l",
+      "type": "Születési hely",
+      "value_raw": "Újtorda",
+      "value_harmonized": "Újtorda",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttcbosp",
+      "entity_id": "moa33tp8q77l",
+      "type": "Foglalkozás",
+      "value_raw": "filozófus",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttdsf0c",
+      "entity_id": "moa33tp8q77l",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttef1ks",
+      "entity_id": "moa33tp8q77l",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ttf1r84",
+      "entity_id": "moa33tp8q77l",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttgyhkp",
+      "entity_id": "moa33tp9npy7",
+      "type": "Születési hely",
+      "value_raw": "Érsemjén",
+      "value_harmonized": "Érsemjén",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tthyywn",
+      "entity_id": "moa33tp9npy7",
+      "type": "Foglalkozás",
+      "value_raw": "író, nyelvújító",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttiw7t2",
+      "entity_id": "moa33tp9npy7",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttj5om4",
+      "entity_id": "moa33tp9npy7",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ttkk3cc",
+      "entity_id": "moa33tp9npy7",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttlg8xc",
+      "entity_id": "moa33tpa44l6",
+      "type": "Születési hely",
+      "value_raw": "Kohány",
+      "value_harmonized": "Kohány",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttm3q0a",
+      "entity_id": "moa33tpa44l6",
+      "type": "Foglalkozás",
+      "value_raw": "író, politikus",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttn98xp",
+      "entity_id": "moa33tpa44l6",
+      "type": "Vallás",
+      "value_raw": "ref.",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttows5a",
+      "entity_id": "moa33tpa44l6",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ttpcejg",
+      "entity_id": "moa33tpa44l6",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttqchlk",
+      "entity_id": "moa33tpbjcua",
+      "type": "Születési hely",
+      "value_raw": "Pér",
+      "value_harmonized": "Pér",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttrsu7w",
+      "entity_id": "moa33tpbjcua",
+      "type": "Foglalkozás",
+      "value_raw": "történész, református püspök",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttshq5j",
+      "entity_id": "moa33tpbjcua",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttt2rw7",
+      "entity_id": "moa33tpbjcua",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33ttursvi",
+      "entity_id": "moa33tpbjcua",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttvdagx",
+      "entity_id": "moa33tpcja1n",
+      "type": "Születési hely",
+      "value_raw": "Győr",
+      "value_harmonized": "Győr",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttxkvry",
+      "entity_id": "moa33tpcja1n",
+      "type": "Foglalkozás",
+      "value_raw": "esztéta, egyetemi tanár",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttyt25d",
+      "entity_id": "moa33tpcja1n",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33ttzl17o",
+      "entity_id": "moa33tpcja1n",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tu0npps",
+      "entity_id": "moa33tpcja1n",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu1j406",
+      "entity_id": "moa33tpd04eo",
+      "type": "Születési hely",
+      "value_raw": "Ivánc",
+      "value_harmonized": "Ivánc",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu21p3q",
+      "entity_id": "moa33tpd04eo",
+      "type": "Foglalkozás",
+      "value_raw": "nyelvész, pap",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu3ce9p",
+      "entity_id": "moa33tpd04eo",
+      "type": "Vallás",
+      "value_raw": "r.kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu417p5",
+      "entity_id": "moa33tpd04eo",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tu52b0a",
+      "entity_id": "moa33tpd04eo",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu6rne7",
+      "entity_id": "moa33tpe27aw",
+      "type": "Születési hely",
+      "value_raw": "Acsa",
+      "value_harmonized": "Acsa",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu73ul7",
+      "entity_id": "moa33tpe27aw",
+      "type": "Foglalkozás",
+      "value_raw": "főnemes, egyházi felügyelő",
+      "value_harmonized": "Főnemes",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu8e3l4",
+      "entity_id": "moa33tpe27aw",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tu9fqjh",
+      "entity_id": "moa33tpe27aw",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag, igazgató tag",
+      "value_harmonized": "tiszteleti tag, igazgató tag",
+      "date_label": "1830"
+    },
+    {
+      "id": "moa33tua0aqu",
+      "entity_id": "moa33tpfkmt9",
+      "type": "Születési hely",
+      "value_raw": "Szücsi",
+      "value_harmonized": "Szücsi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tubiou7",
+      "entity_id": "moa33tpfkmt9",
+      "type": "Foglalkozás",
+      "value_raw": "költő, kritikus, szerkesztő",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tucas2s",
+      "entity_id": "moa33tpfkmt9",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tudk0ya",
+      "entity_id": "moa33tpfkmt9",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1831"
+    },
+    {
+      "id": "moa33tuedoqe",
+      "entity_id": "moa33tpfkmt9",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tufkq0v",
+      "entity_id": "moa33tpgjluw",
+      "type": "Születési hely",
+      "value_raw": "Andód",
+      "value_harmonized": "Andód",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tugezp2",
+      "entity_id": "moa33tpgjluw",
+      "type": "Foglalkozás",
+      "value_raw": "bencés költő, nyelvész",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuh570e",
+      "entity_id": "moa33tpgjluw",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuiicaj",
+      "entity_id": "moa33tpgjluw",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1831"
+    },
+    {
+      "id": "moa33tuj1x3a",
+      "entity_id": "moa33tpgjluw",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tukunph",
+      "entity_id": "moa33tphjrqv",
+      "type": "Születési hely",
+      "value_raw": "Felsővadász",
+      "value_harmonized": "Felsővadász",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuly898",
+      "entity_id": "moa33tphjrqv",
+      "type": "Foglalkozás",
+      "value_raw": "író, jogász",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuma3yc",
+      "entity_id": "moa33tphjrqv",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tunpc1p",
+      "entity_id": "moa33tphjrqv",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1831"
+    },
+    {
+      "id": "moa33tuoq889",
+      "entity_id": "moa33tphjrqv",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tup83at",
+      "entity_id": "moa33tpibzyx",
+      "type": "Születési hely",
+      "value_raw": "Bolya",
+      "value_harmonized": "Bolya",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuqs8b1",
+      "entity_id": "moa33tpibzyx",
+      "type": "Foglalkozás",
+      "value_raw": "matematikus",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33turbfej",
+      "entity_id": "moa33tpibzyx",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tus262j",
+      "entity_id": "moa33tpibzyx",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1832"
+    },
+    {
+      "id": "moa33tutp8qw",
+      "entity_id": "moa33tpibzyx",
+      "type": "MTA osztály",
+      "value_raw": "matematikai",
+      "value_harmonized": "matematikai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuuhujl",
+      "entity_id": "moa33tpjo3mu",
+      "type": "Születési hely",
+      "value_raw": "Buda",
+      "value_harmonized": "Buda",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuveto2",
+      "entity_id": "moa33tpjo3mu",
+      "type": "Foglalkozás",
+      "value_raw": "író, politikus, miniszter",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuwxp78",
+      "entity_id": "moa33tpjo3mu",
+      "type": "Vallás",
+      "value_raw": "r. kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuxj8js",
+      "entity_id": "moa33tpjo3mu",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1835"
+    },
+    {
+      "id": "moa33tuypaxv",
+      "entity_id": "moa33tpjo3mu",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tuzuytu",
+      "entity_id": "moa33tpknfq2",
+      "type": "Születési hely",
+      "value_raw": "Torda",
+      "value_harmonized": "Torda",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv0a82u",
+      "entity_id": "moa33tpknfq2",
+      "type": "Foglalkozás",
+      "value_raw": "regényíró",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv1omis",
+      "entity_id": "moa33tpknfq2",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv2cvux",
+      "entity_id": "moa33tpknfq2",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1835"
+    },
+    {
+      "id": "moa33tv3ci12",
+      "entity_id": "moa33tpknfq2",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv4ohq2",
+      "entity_id": "moa33tpl7d7e",
+      "type": "Születési hely",
+      "value_raw": "Buda",
+      "value_harmonized": "Buda",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv5mwys",
+      "entity_id": "moa33tpl7d7e",
+      "type": "Foglalkozás",
+      "value_raw": "történész, jogász",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv6s3p2",
+      "entity_id": "moa33tpl7d7e",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv74t53",
+      "entity_id": "moa33tpl7d7e",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1836"
+    },
+    {
+      "id": "moa33tv8v2yb",
+      "entity_id": "moa33tpl7d7e",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tv9orcp",
+      "entity_id": "moa33tpmgv1a",
+      "type": "Születési hely",
+      "value_raw": "Csokaly",
+      "value_harmonized": "Csokaly",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvachym",
+      "entity_id": "moa33tpmgv1a",
+      "type": "Foglalkozás",
+      "value_raw": "statisztikus, földrajztudós",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvbzifg",
+      "entity_id": "moa33tpmgv1a",
+      "type": "Vallás",
+      "value_raw": "református",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvcysod",
+      "entity_id": "moa33tpmgv1a",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1837"
+    },
+    {
+      "id": "moa33tvd4ggt",
+      "entity_id": "moa33tpmgv1a",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvexip2",
+      "entity_id": "moa33tpnd85w",
+      "type": "Születési hely",
+      "value_raw": "Nagykároly",
+      "value_harmonized": "Nagykároly",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvfg0vv",
+      "entity_id": "moa33tpnd85w",
+      "type": "Foglalkozás",
+      "value_raw": "író, drámaíró",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvguqsp",
+      "entity_id": "moa33tpnd85w",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvh9ual",
+      "entity_id": "moa33tpnd85w",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1837"
+    },
+    {
+      "id": "moa33tvidxk2",
+      "entity_id": "moa33tpnd85w",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvjgdkg",
+      "entity_id": "moa33tpon098",
+      "type": "Születési hely",
+      "value_raw": "Eperjes",
+      "value_harmonized": "Eperjes",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvkr0oj",
+      "entity_id": "moa33tpon098",
+      "type": "Foglalkozás",
+      "value_raw": "politikus, régész",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvljdvn",
+      "entity_id": "moa33tpon098",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvmd9n7",
+      "entity_id": "moa33tpon098",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1838"
+    },
+    {
+      "id": "moa33tvn1ns1",
+      "entity_id": "moa33tpon098",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvohfd1",
+      "entity_id": "moa33tpp1p5g",
+      "type": "Születési hely",
+      "value_raw": "Szentes",
+      "value_harmonized": "Szentes",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvpb3ji",
+      "entity_id": "moa33tpp1p5g",
+      "type": "Foglalkozás",
+      "value_raw": "történész, püspök",
+      "value_harmonized": "Egyházi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvqn2xf",
+      "entity_id": "moa33tpp1p5g",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvr1jfw",
+      "entity_id": "moa33tpp1p5g",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1839"
+    },
+    {
+      "id": "moa33tvs7xkh",
+      "entity_id": "moa33tpp1p5g",
+      "type": "MTA osztály",
+      "value_raw": "történettudományi",
+      "value_harmonized": "történettudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvtfz61",
+      "entity_id": "moa33tpqejv6",
+      "type": "Születési hely",
+      "value_raw": "Nagykapos",
+      "value_harmonized": "Nagykapos",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvubjgd",
+      "entity_id": "moa33tpqejv6",
+      "type": "Foglalkozás",
+      "value_raw": "költő, filozófus, népdalgyűjtő",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvvqtyw",
+      "entity_id": "moa33tpqejv6",
+      "type": "Vallás",
+      "value_raw": "ref.",
+      "value_harmonized": "Református",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvwmoji",
+      "entity_id": "moa33tpqejv6",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1839"
+    },
+    {
+      "id": "moa33tvxthbi",
+      "entity_id": "moa33tpqejv6",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvyyjog",
+      "entity_id": "moa33tpr9h2c",
+      "type": "Születési hely",
+      "value_raw": "Szekszárd",
+      "value_harmonized": "Szekszárd",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tvz7gc3",
+      "entity_id": "moa33tpr9h2c",
+      "type": "Foglalkozás",
+      "value_raw": "költő, újságíró",
+      "value_harmonized": "Irodalmár",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw1rjbs",
+      "entity_id": "moa33tpr9h2c",
+      "type": "Vallás",
+      "value_raw": "r.k.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw21vrm",
+      "entity_id": "moa33tpr9h2c",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1839"
+    },
+    {
+      "id": "moa33tw3uc2l",
+      "entity_id": "moa33tpr9h2c",
+      "type": "MTA osztály",
+      "value_raw": "nyelvtudományi",
+      "value_harmonized": "nyelvtudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw4hcod",
+      "entity_id": "moa33tpsvelu",
+      "type": "Születési hely",
+      "value_raw": "Csetnek",
+      "value_harmonized": "Csetnek",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw5zcnh",
+      "entity_id": "moa33tpsvelu",
+      "type": "Foglalkozás",
+      "value_raw": "filozófus, katonatiszt",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw66m8q",
+      "entity_id": "moa33tpsvelu",
+      "type": "Vallás",
+      "value_raw": "evangélikus",
+      "value_harmonized": "Evangélikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw75d17",
+      "entity_id": "moa33tpsvelu",
+      "type": "MTA szerep",
+      "value_raw": "rendes tag",
+      "value_harmonized": "rendes tag",
+      "date_label": "1839"
+    },
+    {
+      "id": "moa33tw8rtkd",
+      "entity_id": "moa33tpsvelu",
+      "type": "MTA osztály",
+      "value_raw": "filozófiai",
+      "value_harmonized": "filozófiai",
+      "date_label": ""
+    },
+    {
+      "id": "moa33tw9d7rx",
+      "entity_id": "moa33tptcfgc",
+      "type": "Születési hely",
+      "value_raw": "Söjtör",
+      "value_harmonized": "Söjtör",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twawx71",
+      "entity_id": "moa33tptcfgc",
+      "type": "Foglalkozás",
+      "value_raw": "politikus, jogász",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twbwh1m",
+      "entity_id": "moa33tptcfgc",
+      "type": "Vallás",
+      "value_raw": "római katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twces16",
+      "entity_id": "moa33tptcfgc",
+      "type": "MTA szerep",
+      "value_raw": "tiszteleti tag",
+      "value_harmonized": "tiszteleti tag",
+      "date_label": "1839"
+    },
+    {
+      "id": "moa33twdbnwm",
+      "entity_id": "moa33tptcfgc",
+      "type": "MTA osztály",
+      "value_raw": "törvénytudományi",
+      "value_harmonized": "törvénytudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twe09gy",
+      "entity_id": "moa33tpuj4pa",
+      "type": "Születési hely",
+      "value_raw": "Homonna",
+      "value_harmonized": "Homonna",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twfoxhw",
+      "entity_id": "moa33tpuj4pa",
+      "type": "Foglalkozás",
+      "value_raw": "politikus, miniszter",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twgq4j9",
+      "entity_id": "moa33tpuj4pa",
+      "type": "Vallás",
+      "value_raw": "rk",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twh1a3g",
+      "entity_id": "moa33tpuj4pa",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1841"
+    },
+    {
+      "id": "moa33twikdl3",
+      "entity_id": "moa33tpuj4pa",
+      "type": "MTA osztály",
+      "value_raw": "törvénytudományi",
+      "value_harmonized": "törvénytudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twjhb2p",
+      "entity_id": "moa33tpv2e3r",
+      "type": "Születési hely",
+      "value_raw": "Eperjes",
+      "value_harmonized": "Eperjes",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twkkb45",
+      "entity_id": "moa33tpv2e3r",
+      "type": "Foglalkozás",
+      "value_raw": "politikus, közgazdász",
+      "value_harmonized": "Politikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twlxahq",
+      "entity_id": "moa33tpv2e3r",
+      "type": "Vallás",
+      "value_raw": "katolikus",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twmu9o2",
+      "entity_id": "moa33tpv2e3r",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1843"
+    },
+    {
+      "id": "moa33twnjch0",
+      "entity_id": "moa33tpv2e3r",
+      "type": "MTA osztály",
+      "value_raw": "törvénytudományi",
+      "value_harmonized": "törvénytudományi",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twonqzt",
+      "entity_id": "moa33tpwh9m8",
+      "type": "Születési hely",
+      "value_raw": "Szimő",
+      "value_harmonized": "Szimő",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twprr5u",
+      "entity_id": "moa33tpwh9m8",
+      "type": "Foglalkozás",
+      "value_raw": "fizikus, bencés",
+      "value_harmonized": "Tudós",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twqh4ie",
+      "entity_id": "moa33tpwh9m8",
+      "type": "Vallás",
+      "value_raw": "r. kat.",
+      "value_harmonized": "Római katolikus",
+      "date_label": ""
+    },
+    {
+      "id": "moa33twr6h7q",
+      "entity_id": "moa33tpwh9m8",
+      "type": "MTA szerep",
+      "value_raw": "levelező tag",
+      "value_harmonized": "levelező tag",
+      "date_label": "1848"
+    },
+    {
+      "id": "moa33twsvapb",
+      "entity_id": "moa33tpwh9m8",
+      "type": "MTA osztály",
+      "value_raw": "matematikai",
+      "value_harmonized": "matematikai",
+      "date_label": ""
+    }
+  ],
+  "relationships": [
+    {
+      "id": "moa33twt2xdo",
+      "entity1_id": "moa33toj4ur9",
+      "entity2_id": "moa33tol8jdl",
+      "type": "Kolléga",
+      "source": "1825 alapító adakozók"
+    },
+    {
+      "id": "moa33twuiqz1",
+      "entity1_id": "moa33toj4ur9",
+      "entity2_id": "moa33tom83e5",
+      "type": "Kolléga",
+      "source": "1825 alapító adakozók"
+    },
+    {
+      "id": "moa33twv7n66",
+      "entity1_id": "moa33toj4ur9",
+      "entity2_id": "moa33tokyy23",
+      "type": "Kolléga",
+      "source": "1825 alapító adakozók"
+    },
+    {
+      "id": "moa33twwdp0w",
+      "entity1_id": "moa33tol8jdl",
+      "entity2_id": "moa33tom83e5",
+      "type": "Kolléga",
+      "source": "1825 alapító adakozók"
+    },
+    {
+      "id": "moa33twxlc0c",
+      "entity1_id": "moa33tonmqsx",
+      "entity2_id": "moa33toj4ur9",
+      "type": "Kolléga",
+      "source": "MTA elnök és alelnök 1830-1855"
+    },
+    {
+      "id": "moa33twyeshg",
+      "entity1_id": "moa33tonmqsx",
+      "entity2_id": "moa33toosth9",
+      "type": "Kolléga",
+      "source": "MTA elnök és titoknok 1830"
+    },
+    {
+      "id": "moa33twzyjjh",
+      "entity1_id": "moa33toq8y4p",
+      "entity2_id": "moa33toosth9",
+      "type": "Tanítvány",
+      "source": "Toldy mint Döbrentei utóda a titkárságban"
+    },
+    {
+      "id": "moa33tx01y7z",
+      "entity1_id": "moa33torgd4v",
+      "entity2_id": "moa33tp4y50z",
+      "type": "Kolléga",
+      "source": "Kisfaludy Sándor és Károly testvérek"
+    },
+    {
+      "id": "moa33tx14fug",
+      "entity1_id": "moa33tp9npy7",
+      "entity2_id": "moa33totgkxg",
+      "type": "Tanítvány",
+      "source": "Kölcsey Kazinczy irodalmi tanítványa"
+    },
+    {
+      "id": "moa33tx26kma",
+      "entity1_id": "moa33tp9npy7",
+      "entity2_id": "moa33toq8y4p",
+      "type": "Tanítvány",
+      "source": "Toldy Kazinczy irodalmi követője"
+    },
+    {
+      "id": "moa33tx3fi6r",
+      "entity1_id": "moa33tp9npy7",
+      "entity2_id": "moa33tow3pnx",
+      "type": "Tanítvány",
+      "source": "Berzsenyi költészetét Kazinczy fedezte fel"
+    },
+    {
+      "id": "moa33tx4maoi",
+      "entity1_id": "moa33totgkxg",
+      "entity2_id": "moa33tow3pnx",
+      "type": "Kolléga",
+      "source": "Kölcsey 1817-ben kritikus recenziót írt Berzsenyi verseiről"
+    },
+    {
+      "id": "moa33tx56ycs",
+      "entity1_id": "moa33toskfk7",
+      "entity2_id": "moa33tpd04eo",
+      "type": "Barát",
+      "source": "Athenaeum szerkesztőtársak (1837-től)"
+    },
+    {
+      "id": "moa33tx6207w",
+      "entity1_id": "moa33toskfk7",
+      "entity2_id": "moa33toq8y4p",
+      "type": "Barát",
+      "source": "Athenaeum szerkesztőtársak (1837-től)"
+    },
+    {
+      "id": "moa33tx7j69a",
+      "entity1_id": "moa33tpd04eo",
+      "entity2_id": "moa33toq8y4p",
+      "type": "Barát",
+      "source": "Athenaeum szerkesztőtársak (1837-től)"
+    },
+    {
+      "id": "moa33tx8t92f",
+      "entity1_id": "moa33tp4y50z",
+      "entity2_id": "moa33toskfk7",
+      "type": "Kolléga",
+      "source": "Az Aurora-kör (1822-től)"
+    },
+    {
+      "id": "moa33tx9nn15",
+      "entity1_id": "moa33tpe27aw",
+      "entity2_id": "moa33tp6pu6z",
+      "type": "Kolléga",
+      "source": "Pannonhalmi bencés szerzetesek"
+    },
+    {
+      "id": "moa33txakyfv",
+      "entity1_id": "moa33tpe27aw",
+      "entity2_id": "moa33tpwh9m8",
+      "type": "Kolléga",
+      "source": "Pannonhalmi bencés szerzetesek"
+    },
+    {
+      "id": "moa33txb740m",
+      "entity1_id": "moa33tpibzyx",
+      "entity2_id": "moa33tpknfq2",
+      "type": "Barát",
+      "source": "Centralista kör 1840-es évek"
+    },
+    {
+      "id": "moa33txcee0l",
+      "entity1_id": "moa33tpibzyx",
+      "entity2_id": "moa33tpsvelu",
+      "type": "Barát",
+      "source": "Centralista kör 1840-es évek"
+    },
+    {
+      "id": "moa33txd0y0b",
+      "entity1_id": "moa33tpknfq2",
+      "entity2_id": "moa33tpsvelu",
+      "type": "Barát",
+      "source": "Centralista kör 1840-es évek"
+    },
+    {
+      "id": "moa33txegpd7",
+      "entity1_id": "moa33tpr9h2c",
+      "entity2_id": "moa33tpibzyx",
+      "type": "Kolléga",
+      "source": "1848-as politikai szövetség, majd kiegyezés"
+    },
+    {
+      "id": "moa33txfp1ef",
+      "entity1_id": "moa33tpnd85w",
+      "entity2_id": "moa33tpibzyx",
+      "type": "Kolléga",
+      "source": "1848-49 miniszterek (VKM, Eötvös 1848; Horváth Mihály 1849)"
+    },
+    {
+      "id": "moa33txg6xsj",
+      "entity1_id": "moa33toydhfg",
+      "entity2_id": "moa33toq8y4p",
+      "type": "Kolléga",
+      "source": "Bugát és Toldy a Magyar Orvosi Tár szerkesztői (1831-től)"
+    },
+    {
+      "id": "moa33txhgmfb",
+      "entity1_id": "moa33tpfkmt9",
+      "entity2_id": "moa33toskfk7",
+      "type": "Barát",
+      "source": "Bártfay szalonja a pesti irodalom központja; Vörösmarty rendszeres látogató"
+    }
+  ]
+}

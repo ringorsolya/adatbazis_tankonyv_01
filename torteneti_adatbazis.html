@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Történeti adatbázis – Oktatási eszköz</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#f3f5f2;--panel:#fff;--border:#c8d4c5;--accent:#2c5f2e;--accent2:#4a8c4d;--text:#1a2b1b;--muted:#4e6b50;--highlight:#eaf3ea;--tag-bg:#d6e8d6;--danger:#b33a2a;--warn:#c87800;--shadow:0 2px 8px rgba(0,0,0,.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:var(--accent);color:#fff;padding:11px 22px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 6px rgba(0,0,0,.2);flex-wrap:wrap}
+.header-title{flex:1;min-width:180px}
+.header-title h1{font-size:1.05rem;font-weight:bold;letter-spacing:.02em}
+.header-title p{font-size:.75rem;opacity:.72;margin-top:2px}
+.nav-tabs{display:flex;gap:3px;flex-wrap:wrap}
+.nav-tab{background:rgba(255,255,255,.14);border:none;color:#fff;padding:6px 13px;border-radius:4px;cursor:pointer;font-size:.81rem;font-family:inherit;transition:background .2s}
+.nav-tab:hover{background:rgba(255,255,255,.25)}
+.nav-tab.active{background:rgba(255,255,255,.32);font-weight:bold}
+.header-btns{display:flex;gap:5px;flex-wrap:wrap}
+.hbtn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);color:#fff;padding:5px 11px;border-radius:4px;cursor:pointer;font-size:.76rem;font-family:inherit}
+.hbtn:hover{background:rgba(255,255,255,.26)}
+.view{display:none;padding:18px;max-width:1080px;margin:0 auto}
+.view.active{display:block}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.card-title{font-size:.77rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent2);font-weight:bold;margin-bottom:13px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tip-text{font-size:.72rem;color:var(--muted);font-style:italic;text-transform:none;letter-spacing:0;font-weight:normal}
+.form-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-bottom:11px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:.73rem;color:var(--muted);font-weight:bold}
+.fg input,.fg select,.fg textarea{padding:6px 9px;border:1px solid var(--border);border-radius:5px;font-size:.87rem;font-family:inherit;background:var(--bg);color:var(--text)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 0 2px rgba(74,140,77,.15)}
+.fg textarea{resize:vertical;min-height:58px}
+.btn{padding:7px 15px;border:none;border-radius:5px;cursor:pointer;font-size:.83rem;font-family:inherit;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-p{background:var(--accent);color:#fff}
+.btn-s{background:var(--highlight);color:var(--accent);border:1px solid var(--border)}
+.btn-d{background:#fde8e6;color:var(--danger);border:1px solid #f0c5c0}
+.btn-w{background:#fef3e0;color:var(--warn);border:1px solid #fad9a0}
+.btn-sm{padding:4px 9px;font-size:.77rem}
+.attr-row{display:grid;grid-template-columns:130px 1fr 1fr 90px 28px;gap:7px;align-items:end;margin-bottom:7px;background:var(--bg);padding:7px;border-radius:5px;border:1px solid var(--border)}
+@media(max-width:680px){.attr-row{grid-template-columns:1fr 1fr}}
+.entity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:11px}
+.entity-card{background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:13px 15px;cursor:pointer;transition:box-shadow .2s,border-color .2s;box-shadow:var(--shadow)}
+.entity-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.12);border-color:var(--accent2)}
+.ec-name{font-weight:bold;font-size:.97rem;color:var(--accent)}
+.ec-sub{font-size:.77rem;color:var(--muted);margin-top:2px}
+.ec-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.tag{background:var(--tag-bg);color:var(--accent);padding:2px 8px;border-radius:10px;font-size:.71rem}
+.tag-warn{background:#fef0d5;color:var(--warn)}
+.search-bar{display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:180px;padding:7px 11px;border:1px solid var(--border);border-radius:5px;font-size:.89rem;font-family:inherit;background:var(--panel)}
+.pcount{font-size:.77rem;color:var(--muted)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:1000;align-items:center;justify-content:center;padding:18px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--panel);border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.2);max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:22px 26px;position:relative}
+.modal-close{position:absolute;top:12px;right:15px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--muted);line-height:1}
+.modal-close:hover{color:var(--accent)}
+.modal-title{font-size:1.2rem;color:var(--accent);margin-bottom:14px;padding-right:22px}
+.sub-tabs{display:flex;gap:2px;margin-bottom:15px;border-bottom:2px solid var(--border)}
+.sub-tab{padding:6px 15px;border:none;border-bottom:2px solid transparent;background:none;cursor:pointer;font-size:.83rem;font-family:inherit;color:var(--muted);margin-bottom:-2px}
+.sub-tab.active{border-bottom-color:var(--accent);color:var(--accent);font-weight:bold}
+.harm-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.harm-table th{background:var(--highlight);color:var(--accent);text-align:left;padding:7px 9px;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:1}
+.harm-table td{padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:middle}
+.harm-table tr:hover td{background:var(--bg)}
+.harm-table input[type=text]{width:100%;padding:3px 6px;border:1px solid var(--border);border-radius:3px;font-size:.81rem;font-family:inherit}
+.raw-badge{background:#fff3cd;color:#7a5c00;padding:1px 7px;border-radius:3px;font-size:.77rem}
+.harm-badge{background:#d1e7dd;color:#0d4d2a;padding:1px 7px;border-radius:3px;font-size:.77rem}
+.rel-item{display:flex;align-items:center;gap:9px;padding:7px 11px;border-bottom:1px solid var(--border);font-size:.86rem}
+.rel-item:last-child{border-bottom:none}
+.rel-type{background:var(--tag-bg);color:var(--accent);padding:2px 8px;border-radius:10px;font-size:.73rem;white-space:nowrap}
+#network-svg{width:100%;height:490px;border:1px solid var(--border);border-radius:8px;background:#fafffe;display:block}
+#map-container{width:100%;height:490px;border:1px solid var(--border);border-radius:8px;z-index:0}
+.leaflet-popup-content{font-family:'Georgia',serif;font-size:.84rem;line-height:1.55}
+.stat-bar-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.stat-bar-label{width:155px;font-size:.79rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.stat-bar-track{flex:1;background:var(--border);border-radius:3px;height:13px}
+.stat-bar-fill{background:var(--accent2);height:100%;border-radius:3px;transition:width .4s}
+.stat-bar-count{width:26px;font-size:.74rem;color:var(--muted);text-align:right}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.csv-preview{overflow-x:auto;max-height:180px;border:1px solid var(--border);border-radius:5px;font-size:.77rem;margin-top:10px}
+.csv-preview table{border-collapse:collapse;width:100%}
+.csv-preview th{background:var(--highlight);padding:4px 7px;border-bottom:1px solid var(--border);position:sticky;top:0}
+.csv-preview td{padding:3px 7px;border-bottom:1px solid var(--border);white-space:nowrap}
+.import-steps{display:flex;gap:0;margin-bottom:18px}
+.istep{flex:1;text-align:center;padding:7px;font-size:.77rem;color:var(--muted);border-bottom:3px solid var(--border)}
+.istep.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+.istep.done{color:var(--accent2);border-bottom-color:var(--accent2)}
+.col-map-row{display:grid;grid-template-columns:1fr 24px 1fr 120px;gap:7px;align-items:center;margin-bottom:7px;font-size:.83rem}
+.col-map-row select{padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)}
+.col-map-row .new-type-inp{padding:5px 7px;border:1px solid var(--accent2);border-radius:4px;font-size:.79rem;font-family:inherit;background:#eaf3ea;display:none}
+.tag-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.tag-edit{display:flex;align-items:center;gap:4px;background:var(--tag-bg);padding:3px 7px;border-radius:10px;font-size:.77rem;color:var(--accent)}
+.tag-edit button{background:none;border:none;cursor:pointer;color:var(--danger);font-size:.8rem;padding:0;line-height:1}
+.empty-state{text-align:center;padding:38px 16px;color:var(--muted)}
+.empty-state .big{font-size:2.4rem;margin-bottom:10px}
+.empty-state p{font-size:.88rem;line-height:1.65}
+.info-box{background:var(--highlight);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 5px 5px 0;font-size:.81rem;color:var(--muted);line-height:1.6;margin-bottom:13px}
+.map-unresolved{background:#fff8e1;border-left:3px solid var(--warn);padding:8px 12px;border-radius:0 5px 5px 0;font-size:.79rem;color:var(--warn);margin-top:9px;line-height:1.6}
+/* Schema editor */
+.field-row{display:grid;grid-template-columns:1fr 100px auto auto;gap:7px;align-items:center;margin-bottom:6px;background:var(--bg);padding:6px 8px;border-radius:5px;border:1px solid var(--border)}
+.field-row input{padding:4px 7px;border:1px solid var(--border);border-radius:4px;font-size:.82rem;font-family:inherit;background:#fff}
+.field-row select{padding:4px 6px;border:1px solid var(--border);border-radius:4px;font-size:.8rem;font-family:inherit;background:#fff}
+.template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:14px}
+.tmpl-btn{background:var(--bg);border:2px solid var(--border);border-radius:7px;padding:11px 8px;cursor:pointer;text-align:center;font-family:inherit;transition:border-color .2s}
+.tmpl-btn:hover{border-color:var(--accent2)}
+.tmpl-btn.active{border-color:var(--accent);background:var(--highlight)}
+.tmpl-btn .tmpl-icon{font-size:1.6rem;margin-bottom:4px}
+.tmpl-btn .tmpl-name{font-size:.76rem;color:var(--text);font-weight:bold}
+.q-badge{padding:1px 7px;border-radius:3px;font-size:.72rem;font-weight:bold}
+.q-verified{background:#d1e7dd;color:#0d4d2a}
+.q-uncertain{background:#fff3cd;color:#7a5c00}
+.q-estimated{background:#dde5f0;color:#1a3a6b}
+.q-conflicting{background:#fde8e6;color:#8b1a10}
+
+#exportMenuWrap{position:relative;display:inline-block}
+#exportMenu{display:none;position:absolute;right:0;top:110%;background:#fff;border:1px solid var(--border);border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:200;min-width:160px;padding:4px 0}
+#exportMenu button{display:block;width:100%;text-align:left;padding:7px 14px;background:none;border:none;font-size:.82rem;font-family:inherit;cursor:pointer;color:var(--text)}
+#exportMenu button:hover{background:var(--highlight)}
+
+body.locked .btn-p, body.locked .btn-d, body.locked .btn-w { display: none !important; }
+body.locked input, body.locked select, body.locked textarea { pointer-events: none; background: var(--bg) !important; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <h1 id="projName">Történeti adatbázis</h1>
+    <p id="projDesc" style="display:none"></p>
+  </div>
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('entities')" id="tab-entities">📋 Rekordok</button>
+    <button class="nav-tab" onclick="showView('entry')">✏ Adatbevitel</button>
+    <button class="nav-tab" onclick="showView('harmonize')">⚖ Harmonizálás</button>
+    <button class="nav-tab" onclick="showView('relations')">🔗 Kapcsolatok</button>
+    <button class="nav-tab" onclick="showView('viz')">📊 Vizualizáció</button>
+    <button class="nav-tab" onclick="showView('help')">❓ Súgó</button>
+  </nav>
+  <div class="header-btns">
+    <span id="lockBadge" style="display:none;padding:3px 10px;border-radius:4px;font-size:.76rem;font-weight:bold;margin-right:4px"></span>
+    <button class="hbtn" id="lockBtn" onclick="lockDB()">🔒 Zárolás</button>
+    <button class="hbtn" id="publishBtn" onclick="openPublishDialog()">📢 Publikálás</button>
+    <button class="hbtn" id="unlockBtn" onclick="unlockDB()" style="display:none">🔓 Szerkesztés</button>
+    <button class="hbtn" onclick="loadSample()">⬛ Mintaadatok</button>
+    <button class="hbtn" onclick="clearAllData()" title="Minden rekord, attribútum és kapcsolat törlése">🗑 Ürítés</button>
+    <button class="hbtn" onclick="openSettings()">⚙ Beállítások</button>
+    <div id="exportMenuWrap">
+      <button class="hbtn" onclick="toggleExportMenu()">↓ Mentés ▾</button>
+      <div id="exportMenu">
+        <button onclick="exportJSON();closeExportMenu()">📄 JSON mentés</button>
+        <button onclick="exportCSV();closeExportMenu()">📊 CSV export</button>
+      </div>
+    </div>
+    <button class="hbtn" onclick="document.getElementById('importFile').click()">↑ Betöltés</button>
+  </div>
+</header>
+
+<!-- 1. REKORDOK -->
+<div class="view active" id="view-entities">
+
+    <!-- PUBLIKÁLT BANNER -->
+  <div id="publishedBanner" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:7px;padding:12px 18px;margin-bottom:14px;font-size:.83rem;color:#1b5e20;line-height:1.8">
+    <strong>📢 Publikált adatbázis</strong><br>
+    <span id="pubName"></span>&nbsp;&nbsp;<span id="pubAffil"></span>&nbsp;&nbsp;<span id="pubDate"></span>
+  </div>
+
+<!-- SÉMAVÁLASZTÓ – csak első indításkor látható -->
+  <div id="schemaChooser" style="display:none">
+    <div style="max-width:700px;margin:0 auto;padding:10px 0">
+      <div class="card" style="border:2px solid var(--accent2)">
+        <div style="margin-bottom:18px">
+          <h2 style="color:var(--accent);font-size:1.1rem;margin-bottom:6px">Először válassz egy sémát</h2>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.6">
+            A séma határozza meg, milyen típusú forrásokat rögzítesz és milyen mezők lesznek elérhetők.<br>
+            Bármikor megváltoztatható a Beállításokban, és saját mezőket is hozzáadhatsz.
+          </p>
+        </div>
+        <div class="template-grid" id="welcomeTemplateGrid"></div>
+        <div style="text-align:center;margin-top:10px">
+          <button class="btn btn-s btn-sm" onclick="skipSchemaChoice()">Kihagyás – üres adatbázis indítása</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:0">
+        <div class="card-title">💡 Melyik sémát válasszam?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;font-size:.83rem;line-height:1.65">
+          <div><strong>👤 Prozopográfia</strong> – Ha személyekről gyűjtesz adatot (életrajz, foglalkozás, vallás, kapcsolatrendszer). Pl. reformkori nemesség, egyházi személyek, helyi elit.</div>
+          <div><strong>✉ Levelezés</strong> – Ha levelek, iratok metaadatait rögzíted (ki kinek, mikor, miről). A feladó/címzett/említett személyek attribútumként vagy kapcsolatként adhatók meg.</div>
+          <div><strong>🏛 Intézménytörténet</strong> – Ha szervezetek, intézmények (iskolák, egyházak, vállalatok) adatait dolgozod fel, beleértve a tagsági viszonyokat.</div>
+          <div><strong>📜 Egyházi anyakönyv</strong> – Ha keresztelési, házassági vagy halálozási bejegyzéseket rögzítesz strukturált formában.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainEntityView">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Keresés…" oninput="renderEntities()">
+      <span class="pcount" id="pcount"></span>
+      <button class="btn btn-p btn-sm" onclick="showView('entry');showSubTab('entry','individual')">+ Új rekord</button>
+    </div>
+    <div class="entity-grid" id="entityGrid"></div>
+    <div class="empty-state" id="entitiesEmpty" style="display:none">
+      <div class="big" id="emptyIcon">📋</div>
+      <p>Még nincs rekord az adatbázisban.<br>Kezdj az <strong>Adatbevitel</strong> fülön, vagy töltsd be a mintaadatokat.</p>
+      <br>
+      <button class="btn btn-s" style="margin-top:8px" onclick="loadSample()">Mintaadatok betöltése</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ADATBEVITEL -->
+<div class="view" id="view-entry">
+  <div class="sub-tabs">
+    <button class="sub-tab active" id="st-individual" onclick="showSubTab('entry','individual')">Egyéni bevitel</button>
+    <button class="sub-tab" id="st-csv" onclick="showSubTab('entry','csv')">CSV-import</button>
+  </div>
+  <div id="sv-individual">
+    <div id="editBanner" style="display:none" class="info-box">
+      ✏ Szerkesztés módban. A mentéssel felülírod a meglévő adatokat.
+      <button class="btn btn-s btn-sm" style="margin-left:10px" onclick="cancelEdit()">Mégsem</button>
+    </div>
+    <div class="card">
+      <div class="card-title" id="formCardTitle">Alapadatok</div>
+      <div class="form-row" id="dynamicFormFields"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Attribútumok
+        <span class="tip-text">— nyers érték (forrásból) + harmonizált forma</span>
+      </div>
+      <div class="info-box">
+        💡 <strong>Nyers érték:</strong> pontosan ahogy a forrásban szerepel.<br>
+        <strong>Harmonizált érték:</strong> egységesített, összehasonlítható forma. A <strong>Harmonizálás</strong> fülön tömeges átnevezés is lehetséges.
+      </div>
+      <div id="attrRows"></div>
+      <button class="btn btn-s btn-sm" onclick="addAttrRow()">+ Attribútum hozzáadása</button>
+    </div>
+    <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-p" onclick="savePerson()">Mentés</button>
+      <button class="btn btn-s" onclick="clearForm()">Ürítés</button>
+    </div>
+    <div id="saveMsg" style="margin-top:9px;font-size:.84rem"></div>
+  </div>
+  <div id="sv-csv" style="display:none">
+    <div class="card">
+      <div class="info-box" style="margin-bottom:14px">
+        💡 <strong>CSV-import:</strong> Tölts fel egy vesszővel vagy tabulátorral elválasztott fájlt. Az első sor legyen fejléc. Majd rendeld hozzá az oszlopokat a megfelelő mezőkhöz.
+      </div>
+      <div class="import-steps">
+        <div class="istep active" id="is1">1 · Fájl</div>
+        <div class="istep" id="is2">2 · Oszlopok</div>
+        <div class="istep" id="is3">3 · Importálás</div>
+      </div>
+      <div id="csv1">
+        <div class="fg"><label>CSV / TSV fájl</label><input type="file" id="csvFile" accept=".csv,.tsv,.txt"></div>
+        <div class="csv-preview" id="csvPreview" style="display:none"></div>
+        <br>
+        <button class="btn btn-p" id="csv1Next" onclick="csvGoStep2()" disabled>Tovább →</button>
+      </div>
+      <div id="csv2" style="display:none">
+        <p style="font-size:.83rem;color:var(--muted);margin-bottom:11px">Melyik CSV-oszlop melyik adatmező? (Amit nem szeretnél behozni, hagyd „— kihagyás —"-on.)</p>
+        <div id="colMapper"></div>
+        <br>
+        <button class="btn btn-s btn-sm" onclick="csvGoStep1()">← Vissza</button>
+        <button class="btn btn-p" onclick="csvGoStep3()">Előnézet →</button>
+      </div>
+      <div id="csv3" style="display:none">
+        <p style="font-size:.83rem;color:var(--muted);margin-bottom:7px">Importálásra kerül (első 5 sor előnézete):</p>
+        <div id="csv3Preview"></div>
+        <label style="display:flex;align-items:center;gap:7px;margin-top:11px;font-size:.82rem;cursor:pointer">
+          <input type="checkbox" id="skipDup" checked>
+          Cím-mezőre egyező rekordok kihagyása (duplikátum-szűrés)
+        </label>
+        <br>
+        <button class="btn btn-s btn-sm" onclick="csvGoStep2()">← Vissza</button>
+        <button class="btn btn-p" onclick="doImport()">Importálás</button>
+        <div id="importMsg" style="margin-top:9px;font-size:.84rem"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. HARMONIZÁLÁS -->
+<div class="view" id="view-harmonize">
+  <div class="info-box">
+    💡 <strong>Harmonizálás:</strong> A különböző forrásokban eltérően leírt, de azonos fogalmat jelölő értékeket itt lehet egységesíteni.
+    Pl. „ÜGYVÉD", „ügyvéd dr.", „Ügyvéd (Bp.)" → mind a <span class="harm-badge">Ügyvéd</span> harmonizált értéket kapják.
+  </div>
+  <div class="card">
+    <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px">
+      <div class="fg" style="min-width:190px">
+        <label>Attribútum típus</label>
+        <select id="harmType" onchange="renderHarmonize()"></select>
+      </div>
+      <span id="harmStat" style="font-size:.81rem;color:var(--muted)"></span>
+    </div>
+    <div id="harmContent"></div>
+  </div>
+</div>
+
+<!-- 4. KAPCSOLATOK -->
+<div class="view" id="view-relations">
+  <div class="card">
+    <div class="card-title">Kapcsolat hozzáadása</div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:10px;align-items:end;flex-wrap:wrap">
+      <div class="fg"><label>1. rekord</label><select id="rp1" style="width:100%"></select></div>
+      <div class="fg"><label>Kapcsolat típusa</label>
+        <select id="rtype" style="min-width:130px" onchange="toggleNewType(this,'rtypeNew')"></select>
+        <input type="text" id="rtypeNew" class="new-type-inp" placeholder="Új típus neve…" style="margin-top:5px;width:100%">
+      </div>
+      <div class="fg"><label>2. rekord</label><select id="rp2" style="width:100%"></select></div>
+      <button class="btn btn-p" onclick="addRel()" style="margin-top:18px">Hozzáad</button>
+    </div>
+    <div class="fg" style="margin-top:10px;max-width:380px">
+      <label>Forrás (opcionális)</label>
+      <input type="text" id="rsource" placeholder="Pl. anyakönyv, 1910">
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Kapcsolatok <span id="relCount" style="font-weight:normal;font-size:.77rem;color:var(--muted)"></span></div>
+    <input type="text" placeholder="Szűrés…" oninput="renderRels(this.value)"
+      style="width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:5px;margin-bottom:11px;font-size:.84rem;font-family:inherit">
+    <div id="relList"></div>
+  </div>
+</div>
+
+<!-- 5. VIZUALIZÁCIÓ -->
+<div class="view" id="view-viz">
+  <div class="sub-tabs">
+    <button class="sub-tab active" id="st-network"  onclick="showSubTab('viz','network');renderNetwork()">Hálózat</button>
+    <button class="sub-tab" id="st-stats"   onclick="showSubTab('viz','stats');renderStats()">Statisztikák</button>
+    <button class="sub-tab" id="st-timeline" onclick="showSubTab('viz','timeline');renderTimeline()">⏱ Idősor</button>
+    <button class="sub-tab" id="st-map"     onclick="showSubTab('viz','map');renderMap()">🗺 Térkép</button>
+  </div>
+  <div id="sv-network">
+    <div class="card" style="padding:12px 16px">
+      <div style="display:flex;gap:11px;align-items:flex-end;flex-wrap:wrap;margin-bottom:9px">
+        <div class="fg" style="margin:0">
+          <label>Csomópont-szín alapja</label>
+          <select id="colorBy" onchange="renderNetwork()"
+            style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)">
+            <option value="">— alapértelmezett —</option>
+          </select>
+        </div>
+        <div class="fg" style="margin:0">
+          <label>Kapcsolattípus szűrő</label>
+          <select id="relFilter" onchange="renderNetwork()"
+            style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)">
+            <option value="">Minden kapcsolat</option>
+          </select>
+        </div>
+        <button class="btn btn-s btn-sm" onclick="renderNetwork()">↺ Frissítés</button>
+      </div>
+      <svg id="network-svg"></svg>
+      <div id="netLegend" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:7px;font-size:.74rem"></div>
+    </div>
+  </div>
+  <div id="sv-stats" style="display:none">
+    <div class="stats-grid" id="statsGrid"></div>
+  </div>
+  <div id="sv-timeline" style="display:none">
+    <div class="card" style="padding:12px 16px">
+      <div style="display:flex;gap:11px;align-items:flex-end;flex-wrap:wrap;margin-bottom:9px">
+        <div class="fg" style="margin:0">
+          <label>Színezés alapja (attribútum)</label>
+          <select id="tlColorBy" onchange="renderTimeline()"
+            style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)">
+            <option value="">— nincs —</option>
+          </select>
+        </div>
+        <button class="btn btn-s btn-sm" onclick="renderTimeline()">↺ Frissítés</button>
+      </div>
+      <div class="info-box" style="font-size:.77rem;margin-bottom:9px">
+        💡 Az idősor az 1. és 2. dátummezőt használja (pl. születési–halálozási év). Beállításokban változtatható, melyik mező a dátum.
+      </div>
+      <div id="timeline-container" style="overflow-x:auto;overflow-y:auto;max-height:500px"></div>
+    </div>
+  </div>
+  <div id="sv-map" style="display:none">
+    <div class="card" style="padding:12px 16px">
+      <div style="display:flex;gap:11px;align-items:flex-end;flex-wrap:wrap;margin-bottom:9px">
+        <div class="fg" style="margin:0;min-width:200px">
+          <label>Helyadat mező / attribútum típus</label>
+          <select id="mapAttrType" onchange="renderMap()"
+            style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)">
+            <option value="">— válassz —</option>
+          </select>
+        </div>
+        <div class="fg" style="margin:0;min-width:180px">
+          <label>Buborék színezése</label>
+          <select id="mapColorBy"
+            style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.81rem;font-family:inherit;background:var(--bg)">
+            <option value="">— csak név —</option>
+          </select>
+        </div>
+        <button class="btn btn-s btn-sm" onclick="renderMap()">↺ Frissítés</button>
+      </div>
+      <div class="info-box" style="margin-bottom:9px;font-size:.77rem">
+        💡 Városnév (pl. <em>Budapest</em>, <em>Kolozsvár</em>) vagy koordináta (<em>47.49, 19.04</em>) formátum is elfogadott.
+      </div>
+      <div id="map-container"></div>
+      <div id="mapUnresolved"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. SÚGÓ -->
+<div class="view" id="view-help">
+<style>
+.help-h2{color:var(--accent);font-size:1.05rem;margin:0 0 10px;padding-bottom:7px;border-bottom:2px solid var(--border)}
+.help-h3{color:var(--accent2);font-size:.9rem;margin:14px 0 6px;font-weight:bold}
+.help-p{font-size:.85rem;line-height:1.75;color:var(--text);margin-bottom:8px}
+.help-ul{padding-left:1.3em;font-size:.84rem;line-height:1.75;color:var(--text);margin-bottom:8px}
+.help-ul li{margin-bottom:3px}
+.help-note{background:var(--highlight);border-left:3px solid var(--accent2);padding:8px 13px;border-radius:0 5px 5px 0;font-size:.81rem;color:var(--muted);line-height:1.65;margin:8px 0}
+.help-warn{background:#fff8e1;border-left:3px solid var(--warn);padding:8px 13px;border-radius:0 5px 5px 0;font-size:.81rem;color:var(--warn);line-height:1.65;margin:8px 0}
+.help-code{background:#f1f3f0;border:1px solid var(--border);border-radius:4px;padding:8px 12px;font-family:monospace;font-size:.8rem;line-height:1.7;margin:6px 0;white-space:pre-wrap}
+.help-toc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.help-toc a{background:var(--tag-bg);color:var(--accent);padding:3px 10px;border-radius:12px;font-size:.78rem;text-decoration:none}
+.help-toc a:hover{background:var(--accent);color:#fff}
+.help-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:8px}
+.help-schema-card{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 13px;font-size:.82rem;line-height:1.6}
+.help-schema-card strong{color:var(--accent)}
+</style>
+<div style="max-width:860px;margin:0 auto">
+
+  <!-- Tartalomjegyzék -->
+  <div class="card">
+    <div class="help-h2">Tartalomjegyzék</div>
+    <div class="help-toc">
+      <a href="#h-mi">1. Mi ez?</a>
+      <a href="#h-schema">2. Sémaválasztás</a>
+      <a href="#h-bevitel">3. Adatbevitel</a>
+      <a href="#h-csv">4. CSV-import</a>
+      <a href="#h-harm">5. Harmonizálás</a>
+      <a href="#h-rel">6. Kapcsolatok</a>
+      <a href="#h-viz">7. Vizualizációk</a>
+      <a href="#h-mentes">8. Mentés/betöltés</a>
+      <a href="#h-lock">9. Zárolás és publikálás</a>
+      <a href="#h-access">10. Access-import</a>
+      <a href="#h-settings">11. Beállítások</a>
+      <a href="#h-gyik">12. GYIK</a>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="card" id="h-mi">
+    <div class="help-h2">1. Mi ez az eszköz?</div>
+    <p class="help-p">A <strong>Történeti adatbázis</strong> egy böngészőben futó eszköz, amellyel különféle történeti forrásokból strukturált adatbázist lehet felépíteni, az adatokat harmonizálni (egységesíteni), és vizuálisan elemezni (hálózat, statisztikák, idősor, térkép).</p>
+    <div class="help-grid">
+      <div class="help-schema-card">👤 <strong>Prozopográfia</strong> — személyek életrajzi adatai, kapcsolatrendszere</div>
+      <div class="help-schema-card">✉ <strong>Levelezés</strong> — levelek, iratok metaadatai (ki kinek, mikor, miről)</div>
+      <div class="help-schema-card">🏛 <strong>Intézménytörténet</strong> — szervezetek, tagságok, jogutódlás</div>
+      <div class="help-schema-card">📜 <strong>Egyházi anyakönyv</strong> — keresztelési, házassági, halálozási bejegyzések</div>
+    </div>
+    <div class="help-note">Az adatok a <strong>böngészőben tárolódnak</strong> (localStorage) – nem kerülnek szerverre, internetkapcsolat nem szükséges. A JSON-exporttal mentsd el rendszeresen a munkádat!</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card" id="h-schema">
+    <div class="help-h2">2. Sémaválasztás</div>
+    <p class="help-p">Az első indításkor a <strong>Sémaválasztó</strong> jelenik meg a főoldalon. Kattints a kívánt sémakártyára. Ez határozza meg, milyen mezők lesznek elérhetők az adatbevitelnél. Bármikor megváltoztatható a ⚙ Beállításokban — a már bevitt adatokat nem törli.</p>
+    <div class="help-note">Ha nem vagy biztos a választásban, a <em>Kihagyás</em> gombbal üres adatbázist indíthatsz, és később beállíthatod a sémát.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card" id="h-bevitel">
+    <div class="help-h2">3. Adatbevitel egyenként</div>
+    <p class="help-p">Az <strong>✏ Adatbevitel → Egyéni bevitel</strong> lapon adhatsz hozzá rekordokat.</p>
+    <div class="help-h3">Alapadatok</div>
+    <p class="help-p">A séma által meghatározott mezők (a csillaggal jelölt mező kötelező). Szerkesztéshez: a Rekordok főoldalon kattints a kártyára → <em>✏ Szerkesztés</em>.</p>
+    <div class="help-h3">Attribútumok</div>
+    <ul class="help-ul">
+      <li><strong>Típus</strong> — pl. Foglalkozás, Vallás, Lakóhely (Beállításokban bővíthető)</li>
+      <li><strong>Nyers érték</strong> — pontosan ahogy a forrásban szerepel, pl. „ÜGYVÉD dr."</li>
+      <li><strong>Harmonizált érték</strong> — egységesített forma, pl. „Ügyvéd"</li>
+      <li><strong>Időpont</strong> — ha az adat időhöz kötött, pl. „1885–1910"</li>
+    </ul>
+    <div class="help-note">A nyers értéket mindig őrizd meg! A harmonizált értékre épülnek a vizualizációk, de a kutatás hitelességéhez az eredeti szöveg is szükséges.</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card" id="h-csv">
+    <div class="help-h2">4. Tömeges importálás CSV-ből</div>
+    <p class="help-p"><strong>✏ Adatbevitel → CSV-import</strong> — ha már van táblázatban tárolt adatod.</p>
+    <ul class="help-ul">
+      <li>Mentsd el az adatokat <code>.csv</code> formátumban, az első sornak fejlécnek kell lennie.</li>
+      <li>Karakter kódolás: UTF-8 vagy UTF-8 BOM (Excelből: <em>Fájl → Mentés másként → CSV UTF-8 BOM-tal</em>).</li>
+      <li>Minden oszlophoz megadhatod, melyik mezőnek feleljen meg: séma-mező, attribútum (nyers / harmonizált), vagy <em>→ Új attribútum típusként…</em> (menet közben is létrehozhatsz új típust).</li>
+      <li>Az eszköz automatikusan próbálja felismerni az oszlopokat nevük alapján.</li>
+      <li>A <em>Duplikátum-szűrés</em> opció kihagyja a már meglévő nevű rekordokat.</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="card" id="h-harm">
+    <div class="help-h2">5. Harmonizálás</div>
+    <p class="help-p">A <strong>⚖ Harmonizálás</strong> fülön az eltérő forrásszövegeket egységesíted egy közös formára.</p>
+    <p class="help-p"><em>Példa:</em> „ÜGYVÉD", „ügyvéd dr.", „jogi praxis" → mind „Ügyvéd" harmonizált érték.</p>
+    <ul class="help-ul">
+      <li>Válaszd ki az attribútum típust (pl. Foglalkozás).</li>
+      <li>A táblázatban látod az összes egyedi nyers értéket és előfordulási számukat.</li>
+      <li>Több sor kijelölhető egyszerre → <em>Alkalmazás kijelöltekre</em> gomb.</li>
+      <li>Az <em>Önkitöltés</em> gomb az üres harmonizált mezőkbe másolja a nyers értéket (gyors előkészítéshez).</li>
+    </ul>
+    <div class="help-warn">A Harmonizálás fülön végzett módosítások csak a 💾 Mentés gombbal rögzülnek!</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card" id="h-rel">
+    <div class="help-h2">6. Kapcsolatok rögzítése</div>
+    <p class="help-p">A <strong>🔗 Kapcsolatok</strong> fülön rögzítheted a rekordok közötti viszonyokat.</p>
+    <ul class="help-ul">
+      <li>Válaszd ki az <strong>1. rekordot</strong>, a <strong>kapcsolat típusát</strong> és a <strong>2. rekordot</strong>.</li>
+      <li>Az <em>→ Új kapcsolattípusként…</em> opcióval menet közben is felvehetsz új típust.</li>
+      <li>Opcionálisan adj meg <strong>forrást</strong> (pl. melyik dokumentumból tudod a kapcsolatot).</li>
+      <li>A lista szűrhető a felső szövegmezővel.</li>
+    </ul>
+    <div class="help-note">Ha egy rekordot törölsz, az összes hozzá tartozó kapcsolat is törlődik.</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card" id="h-viz">
+    <div class="help-h2">7. Vizualizációk</div>
+    <div class="help-h3">🕸 Hálózat</div>
+    <p class="help-p">Erő-gráf: csomópontok = rekordok, élek = kapcsolatok. A csomópontok húzhatók, a grafikon görgetéssel nagyítható, kattintásra megnyílik a rekord profilja. A <em>Csomópont-szín</em> legördülővel szín szerint ábrázolhatsz egy mezőt vagy attribútumot.</p>
+    <div class="help-h3">📊 Statisztikák</div>
+    <p class="help-p">Sávdiagramok a séma lista-típusú mezőinek megoszlásáról, az attribútumok értékgyakoriságáról és a dátummező évtizedes eloszlásáról.</p>
+    <div class="help-h3">⏱ Idősor</div>
+    <p class="help-p">Vízszintes sávdiagram az 1. és 2. dátummező alapján (pl. születési–halálozási év). A sávok kattinthatók. Ha csak 1 dátummező van, egypontos jelölőként jelenik meg.</p>
+    <div class="help-h3">🗺 Térkép</div>
+    <p class="help-p">Interaktív Leaflet-térkép. Elfogadott formátumok: városnév (pl. <em>Budapest</em>, <em>Kolozsvár</em>, kb. 80 beépített hely) vagy koordináta (<em>47.49, 19.04</em>). Az ismeretlen helyneveket a térkép alatt listázza.</p>
+    <div class="help-note">A Szín legördülő minden vizualizációnál listázza mind a séma-mezőket, mind az attribútum-típusokat.</div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card" id="h-mentes">
+    <div class="help-h2">8. Adatok mentése és betöltése</div>
+    <div class="help-warn">A böngésző cache törlésével az adatok elveszhetnek — rendszeresen exportálj!</div>
+    <ul class="help-ul">
+      <li><strong>↓ Mentés</strong> — letölti a teljes adatbázist JSON fájlba (rekordok, attribútumok, kapcsolatok, beállítások).</li>
+      <li><strong>↑ Betöltés</strong> — JSON, CSV, TSV vagy Excel (.xlsx, .xls) fájl betöltése. <em>JSON</em> esetén a teljes adatbázis felülíródik (előtte mentés ajánlott). <em>CSV/TSV/Excel</em> esetén a program automatikusan az Adatbevitel → CSV-import 2. lépésére ugrik (oszlop-megfeleltetés); ekkor a meglévő adatok nem vesznek el, az új rekordok hozzáadódnak. Excel-fájl esetén a legtöbb adatot tartalmazó munkalap kerül beolvasásra.</li>
+    </ul>
+    <div class="help-note">A JSON fájl ember által olvasható szöveges formátum — szövegszerkesztővel megnézhető, de módosítani óvatosan szabad.</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card" id="h-lock">
+    <div class="help-h2">9. Zárolás és publikálás</div>
+    <p class="help-p">Az adatbázist olvasható módra zárolhatod, vagy végleg publikálhatod – ez utóbbi visszavonhatatlan.</p>
+    <div class="help-h3">🔒 Zárolás (ideiglenes)</div>
+    <p class="help-p">A fejlécen a <strong>🔒 Zárolás</strong> gombra kattintva az adatbázis szerkesztési módja letiltódik:</p>
+    <ul class="help-ul">
+      <li>A rekordok, attribútumok és kapcsolatok nézhetők, kereshetők, de nem módosíthatók.</li>
+      <li>A szerkesztési fülek (Adatbevitel, Harmonizálás, Kapcsolatok) nem érhetők el.</li>
+      <li>A 🔓 Szerkesztés gombbal bármikor feloldható (Beállítások gombbal is).</li>
+      <li>Az adatbázis továbbra is szerkesztésmódban tárolódik.</li>
+    </ul>
+    <div class="help-h3">📢 Publikálás (végleges)</div>
+    <p class="help-p">A <strong>📢 Publikálás</strong> gomb megnyitja a publikálási párbeszédot:</p>
+    <ul class="help-ul">
+      <li>Megadhatod a készítő nevét és intézményi affiliációját (pl. ELTE BTK).</li>
+      <li>A publikálás <strong>véglegesen lezárja az adatbázist</strong> – később nem szerkeszthető, nem oldhető fel.</li>
+      <li>A főoldalon megjelenik az „Publikált adatbázis" banner a készítő adataival és a publikálás dátumával.</li>
+      <li>Ha szerkeszteni szeretnél, a JSON-exporttal hozz létre egy új másolatot (importálás útján).</li>
+    </ul>
+    <div class="help-note">Használd a zárolást ideiglenes olvasható mód bevezetésére (csoportmunka, prezentáció), és a publikálást csak akkor, ha végleg kész az adatbázis.</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card" id="h-access">
+    <div class="help-h2">10. Access adatbázisból importálás</div>
+    <p class="help-p">Ha az adataid Microsoft Access (.mdb / .accdb) formátumban vannak, az <code>access_to_csv.py</code> Python szkripttel exportálhatod CSV-be.</p>
+    <div class="help-h3">Legegyszerűbb mód (Accessből közvetlenül)</div>
+    <p class="help-p">Nyisd meg a táblát Accessben → <em>Külső adatok → Exportálás → Szöveges fájl → CSV UTF-8</em>.</p>
+    <div class="help-h3">Python szkripttel (automatikus)</div>
+    <div class="help-code">pip install pyodbc
+
+# Minden tábla exportálása
+python access_to_csv.py adatbazis.accdb
+
+# Csak egy tábla
+python access_to_csv.py adatbazis.accdb --tabla Szemelyek
+
+# Linux/Mac: mdbtools szükséges
+sudo apt install mdbtools   # Ubuntu
+brew install mdbtools        # macOS</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card" id="h-settings">
+    <div class="help-h2">11. Beállítások</div>
+    <p class="help-p">A fejléc <strong>⚙ Beállítások</strong> gombjára kattintva érhető el.</p>
+    <ul class="help-ul">
+      <li><strong>Sablon</strong> — gyorsan válthatsz a beépített sémák között (a már bevitt adatokat nem törli).</li>
+      <li><strong>Projekt neve</strong> — a fejlécben megjelenő cím.</li>
+      <li><strong>Rekord típus és mezők</strong> — mezők átnevezése, törlése, új mező hozzáadása (szöveg / szám / lista / hosszú szöveg típusban). A speciális mezőknél jelölhető meg a cím-mező, az 1–2. dátummező (idősorhoz) és a helyszín mező (térképhez).</li>
+      <li><strong>Attribútum típusok</strong> — szabadon bővíthető lista (pl. Foglalkozás, Vallás, Lakóhely).</li>
+      <li><strong>Kapcsolat típusok</strong> — a rekordok közötti kapcsolatok elnevezései.</li>
+    </ul>
+  </div>
+
+  <!-- 11 -->
+  <div class="card" id="h-gyik">
+    <div class="help-h2">12. GYIK</div>
+    <div class="help-h3">Elvesztek az adataim.</div>
+    <p class="help-p">A böngésző cache törlése törli az adatokat. Mindig exportálj JSON fájlba a ↓ Mentés gombbal, különösen hosszabb munka után.</p>
+    <div class="help-h3">Egy helynév nem jelenik meg a térképen.</div>
+    <p class="help-p">Nézd meg a térkép alatti „Nem azonosított helyek" listát. Próbálj koordinátát beírni (pl. <code>47.49, 19.04</code>). A geocoder kb. 80 Kárpát-medencei és európai helyet ismer.</p>
+    <div class="help-h3">Egyszerre több rekordhoz szeretnék harmonizált értéket adni.</div>
+    <p class="help-p">A Harmonizálás fülön jelöld be a sorokat → írd be az egységesített értéket → <em>Alkalmazás kijelöltekre</em>.</p>
+    <div class="help-h3">A hálózaton minden csomópont azonos színű.</div>
+    <p class="help-p">A „Csomópont-szín alapja" legördülőben válassz egy mezőt vagy attribútum-típust — de csak akkor működik, ha a rekordoknál van ilyen adat.</p>
+    <div class="help-h3">Hogyan törlök egy rekordot?</div>
+    <p class="help-p">Kattints a rekord kártyájára → <em>✏ Szerkesztés</em> → <em>Törlés</em>. A törlés visszavonhatatlan.</p>
+    <div class="help-h3">Melyik böngészőben működik?</div>
+    <p class="help-p">Bármely modern böngészőben (Chrome, Firefox, Edge, Safari). Az adatok böngészőnként külön tárolódnak — váltásnál JSON-exportot használj.</p>
+    <div class="help-h3">Ugyanahhoz a rekordhoz több azonos típusú attribútum felvehető?</div>
+    <p class="help-p">Igen — pl. Lakóhely: „Pest" (1840) és Lakóhely: „Bécs" (1848) egymás mellett élnek, különböző időponttal.</p>
+    <div class="help-h3">Mekkora adatbázist kezel kényelmesen?</div>
+    <p class="help-p">500–2000 rekord gond nélkül. 5000 felett a hálózatvizualizáció lassulhat; a térkép és a statisztikák jól skálázódnak. A localStorage határ kb. 5 MB.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="entityModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box"><button class="modal-close" onclick="document.getElementById('entityModal').classList.remove('open')">✕</button>
+    <div id="entityModalContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="settingsModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box" style="max-width:760px">
+    <button class="modal-close" onclick="document.getElementById('settingsModal').classList.remove('open')">✕</button>
+    <h2 class="modal-title">⚙ Beállítások</h2>
+
+    <!-- Sablonok -->
+    <div class="card">
+      <div class="card-title">Adatbázis sablon <span class="tip-text">— válassz sablonat, vagy testreszabhatod alább</span></div>
+      <div class="template-grid" id="templateGrid"></div>
+    </div>
+
+    <!-- Projekt -->
+    <div class="card">
+      <div class="card-title">Projekt</div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="fg"><label>Projekt neve</label><input type="text" id="cfg-name" placeholder="Pl. Reformkori értelmiség"></div>
+        <div class="fg"><label>Leírás / korszak</label><input type="text" id="cfg-desc" placeholder="Pl. 1825–1848"></div>
+      </div>
+    </div>
+
+    <!-- Rekord típus -->
+    <div class="card">
+      <div class="card-title">Rekord típus</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:9px;margin-bottom:14px">
+        <div class="fg"><label>Megnevezés (egyes szám)</label><input type="text" id="cfg-elabel" placeholder="pl. Személy"></div>
+        <div class="fg"><label>Megnevezés (többes szám)</label><input type="text" id="cfg-elabelpl" placeholder="pl. Személyek"></div>
+        <div class="fg"><label>Ikon</label><input type="text" id="cfg-eicon" placeholder="👤" style="font-size:1.1rem;text-align:center"></div>
+      </div>
+      <div class="card-title" style="margin-top:4px">Mezők</div>
+      <div id="fieldEditor"></div>
+      <div style="display:flex;gap:7px;margin-top:8px;align-items:center;flex-wrap:wrap">
+        <input type="text" id="newFieldLabel" placeholder="Új mező neve…" style="flex:1;min-width:120px;padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-size:.84rem;font-family:inherit">
+        <select id="newFieldType" style="padding:5px 8px;border:1px solid var(--border);border-radius:5px;font-size:.82rem;font-family:inherit;background:var(--bg)">
+          <option value="text">Szöveg</option>
+          <option value="number">Szám</option>
+          <option value="select">Lista (select)</option>
+          <option value="textarea">Hosszú szöveg</option>
+        </select>
+        <button class="btn btn-s btn-sm" onclick="addSchemaField()">+ Mező</button>
+      </div>
+      <div style="margin-top:13px;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent2);font-weight:bold;margin-bottom:8px">Speciális mezők</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px">
+          <div class="fg"><label>Cím / azonosító mező *</label><select id="cfg-titleField"></select></div>
+          <div class="fg"><label>1. dátum mező</label><select id="cfg-dateField1"></select></div>
+          <div class="fg"><label>2. dátum mező</label><select id="cfg-dateField2"></select></div>
+          <div class="fg"><label>Helyszín mező (térkép)</label><select id="cfg-locationField"></select></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attribútum és kapcsolat típusok -->
+    <div class="card">
+      <div class="card-title">Attribútum típusok <span class="tip-text">— szabad kulcs-érték adatok</span></div>
+      <div class="tag-list" id="attrTypeList"></div>
+      <div style="display:flex;gap:7px">
+        <input type="text" id="newAttrType" placeholder="Új típus…" style="flex:1;padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-size:.84rem;font-family:inherit">
+        <button class="btn btn-s btn-sm" onclick="addAttrType()">Hozzáad</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Kapcsolat típusok</div>
+      <div class="tag-list" id="relTypeList"></div>
+      <div style="display:flex;gap:7px">
+        <input type="text" id="newRelType" placeholder="Új típus…" style="flex:1;padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-size:.84rem;font-family:inherit">
+        <button class="btn btn-s btn-sm" onclick="addRelType()">Hozzáad</button>
+      </div>
+    </div>
+
+
+    <!-- Készítői adatok -->
+    <div class="card">
+      <div class="card-title">Készítői adatok</div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="fg"><label>Készítő neve</label><input type="text" id="cfg-creator-name" placeholder="Pl. Kiss János"></div>
+        <div class="fg"><label>Intézményi affiliáció</label><input type="text" id="cfg-creator-affil" placeholder="Pl. ELTE BTK"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:9px;flex-wrap:wrap">
+      <button class="btn btn-p" onclick="saveSettings()">Mentés</button>
+      <button class="btn btn-d btn-sm" onclick="clearAll()">Összes adat törlése</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="importFile" accept=".json,.csv,.tsv,.txt,.xlsx,.xls" style="display:none" onchange="loadAnyFile(event)">
+
+
+<div class="modal-overlay" id="publishModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box" style="max-width:480px">
+    <button class="modal-close" onclick="document.getElementById('publishModal').classList.remove('open')">✕</button>
+    <h2 class="modal-title">📢 Adatbázis publikálása</h2>
+    <div class="info-box" style="margin-bottom:14px">
+      A publikálás <strong>végleges és visszavonhatatlan</strong>. Az adatbázis ezután csak olvasható lesz, és megjelenik a készítő neve.
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Készítő neve</label><input type="text" id="pub-creator-name" placeholder="Pl. Kiss János"></div>
+      <div class="fg"><label>Intézményi affiliáció</label><input type="text" id="pub-creator-affil" placeholder="Pl. ELTE BTK"></div>
+    </div>
+    <div style="display:flex;gap:9px;margin-top:14px">
+      <button class="btn btn-p" onclick="confirmPublish()">📢 Végleges publikálás</button>
+      <button class="btn btn-s" onclick="document.getElementById('publishModal').classList.remove('open')">Mégse</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// SABLONOK
+// ══════════════════════════════════════════════════════════════
+const TEMPLATES = {
+  prozopografia: {
+    name:'Prozopográfia', icon:'👤',
+    entitySchema:{
+      label:'Személy', labelPlural:'Személyek', icon:'👤',
+      fields:[
+        {id:'f_name',  label:'Teljes név',      type:'text',   required:true},
+        {id:'f_birth', label:'Születési év',    type:'number'},
+        {id:'f_death', label:'Halálozási év',   type:'number'},
+        {id:'f_gender',label:'Nem',             type:'select', options:['Férfi','Nő','Ismeretlen']},
+        {id:'f_source',label:'Forrás',          type:'text'},
+        {id:'f_notes', label:'Megjegyzés',      type:'textarea'},
+      ],
+      titleField:'f_name', dateField1:'f_birth', dateField2:'f_death', locationField:null,
+    },
+    attrTypes:['Foglalkozás','Iskolázottság','Lakóhely','Vallás'],
+    relTypes:['Házastárs','Szülő/gyerek','Kolléga','Barát','Tanítvány'],
+  },
+  levelezés: {
+    name:'Levelezés', icon:'✉',
+    entitySchema:{
+      label:'Levél', labelPlural:'Levelek', icon:'✉',
+      fields:[
+        {id:'f_id',     label:'Azonosító / cím',   type:'text', required:true},
+        {id:'f_date',   label:'Dátum',             type:'text'},
+        {id:'f_topic',  label:'Téma',              type:'text'},
+        {id:'f_place',  label:'Helyszín',          type:'text'},
+        {id:'f_lang',   label:'Nyelv',             type:'select', options:['Magyar','Latin','Német','Francia','Olasz','Egyéb']},
+        {id:'f_archive',label:'Levéltár / jelzet', type:'text'},
+        {id:'f_notes',  label:'Megjegyzés',        type:'textarea'},
+      ],
+      titleField:'f_id', dateField1:'f_date', dateField2:null, locationField:'f_place',
+    },
+    attrTypes:['Feladó','Címzett','Említett személy','Hivatkozott mű'],
+    relTypes:['Feladó','Címzett','Említett','Válaszlevél','Melléklet'],
+  },
+  intézmény: {
+    name:'Intézménytörténet', icon:'🏛',
+    entitySchema:{
+      label:'Intézmény', labelPlural:'Intézmények', icon:'🏛',
+      fields:[
+        {id:'f_name',   label:'Intézmény neve',  type:'text', required:true},
+        {id:'f_founded',label:'Alapítás éve',    type:'number'},
+        {id:'f_closed', label:'Megszűnés éve',   type:'number'},
+        {id:'f_type',   label:'Típus',           type:'select', options:['Egyházi','Állami','Magán','Civil','Oktatási','Egyéb']},
+        {id:'f_place',  label:'Helyszín',        type:'text'},
+        {id:'f_source', label:'Forrás',          type:'text'},
+        {id:'f_notes',  label:'Megjegyzés',      type:'textarea'},
+      ],
+      titleField:'f_name', dateField1:'f_founded', dateField2:'f_closed', locationField:'f_place',
+    },
+    attrTypes:['Tevékenység','Vezető','Tag','Épület'],
+    relTypes:['Tagja','Alapítója','Vezette','Felügyelő szerv','Jogelőd'],
+  },
+  anyakönyv: {
+    name:'Egyházi anyakönyv', icon:'📜',
+    entitySchema:{
+      label:'Bejegyzés', labelPlural:'Bejegyzések', icon:'📜',
+      fields:[
+        {id:'f_name',   label:'Érintett neve',        type:'text', required:true},
+        {id:'f_date',   label:'Dátum',                type:'text'},
+        {id:'f_etype',  label:'Esemény típusa',       type:'select', options:['Keresztelés','Házasság','Temetés','Konfirmáció']},
+        {id:'f_parish', label:'Egyházközség',         type:'text'},
+        {id:'f_father', label:'Apa neve',             type:'text'},
+        {id:'f_mother', label:'Anya neve',            type:'text'},
+        {id:'f_witness',label:'Tanú / keresztszülő', type:'text'},
+        {id:'f_notes',  label:'Megjegyzés',           type:'textarea'},
+      ],
+      titleField:'f_name', dateField1:'f_date', dateField2:null, locationField:'f_parish',
+    },
+    attrTypes:['Foglalkozás','Lakhely'],
+    relTypes:['Szülő','Testvér','Házastárs','Tanú/keresztszülő'],
+  },
+};
+
+// ══════════════════════════════════════════════════════════════
+// ADATMODELL
+// ══════════════════════════════════════════════════════════════
+const KEY = 'torteneti_v1';
+
+const DEF_CFG = {
+  projectName:'Történeti adatbázis',
+  projectDesc:'Oktatási eszköz',
+  entitySchema: TEMPLATES.prozopografia.entitySchema,
+  attrTypes: TEMPLATES.prozopografia.attrTypes,
+  relTypes:  TEMPLATES.prozopografia.relTypes,
+  _schemaChosen: false,   // false = sémaválasztó mutatása első indításkor
+  _locked: false,
+  _lockedPermanent: false,
+  creatorName: '',
+  creatorAffiliation: '',
+  publishedDate: '',
+};
+
+function emptyDB(){
+  return {
+    config: JSON.parse(JSON.stringify(DEF_CFG)),
+    entities:[],     // {id, ...fieldValues}
+    attributes:[],   // {id, entity_id, type, value_raw, value_harmonized, date_label}
+    relationships:[] // {id, entity1_id, entity2_id, type, source}
+  };
+}
+
+let DB = (()=>{
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) {
+      const d = JSON.parse(r);
+      // Migráció régi prozopograf_v1 formátumból
+      if (!d.entities && d.persons) {
+        d.entities = d.persons.map(p=>({
+          id:p.id, f_name:p.name, f_birth:p.birth_year, f_death:p.death_year,
+          f_gender:p.gender, f_source:p.source, f_notes:p.notes
+        }));
+        d.attributes = (d.attributes||[]).map(a=>({...a, entity_id:a.person_id||a.entity_id}));
+        d.relationships = (d.relationships||[]).map(r=>({
+          ...r,
+          entity1_id:r.entity1_id||r.person1_id,
+          entity2_id:r.entity2_id||r.person2_id
+        }));
+        delete d.persons;
+      }
+      if (!d.config.entitySchema) d.config.entitySchema = JSON.parse(JSON.stringify(DEF_CFG.entitySchema));
+      return d;
+    }
+  } catch(e){}
+  return emptyDB();
+})();
+
+const save  = ()=> localStorage.setItem(KEY, JSON.stringify(DB));
+const uid   = ()=> Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc   = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const schema= ()=> DB.config.entitySchema;
+
+// Segédfüggvények az entitás megjelenítéséhez
+function entityTitle(e){
+  const tf = schema().titleField;
+  return e[tf] || '(cím nélkül)';
+}
+function entitySub(e){
+  const s = schema();
+  const d1 = s.dateField1 && e[s.dateField1] ? e[s.dateField1] : null;
+  const d2 = s.dateField2 && e[s.dateField2] ? e[s.dateField2] : null;
+  return [d1,d2].filter(Boolean).join('–');
+}
+function entityLocation(e){
+  const lf = schema().locationField;
+  return lf ? (e[lf]||null) : null;
+}
+
+
+// ══════════════════════════════════════════════════════════════
+// MINŐSÉGI JELÖLÉS (Q-BADGE)
+// ══════════════════════════════════════════════════════════════
+const Q_LABELS = {verified:'✓ Ellenőrzött', uncertain:'~ Bizonytalan', estimated:'≈ Becsült', conflicting:'! Ellentmondó'};
+const Q_CLASS  = {verified:'q-verified', uncertain:'q-uncertain', estimated:'q-estimated', conflicting:'q-conflicting'};
+function qBadgeHtml(q){ return q?`<span class="q-badge ${Q_CLASS[q]}">${Q_LABELS[q]}</span>`:''; }
+
+function extractYear(str){
+  if(str===null||str===undefined||str==='') return null;
+  const s=String(str).trim(); if(!s) return null;
+  if(/^\d{4}$/.test(s)) return {year:+s, uncertain:false};
+  const lo=s.toLowerCase();
+  const rng=lo.match(/(\d{4})\s*[-–]\s*(\d{4})/);
+  if(rng) return {year:Math.round((+rng[1]+ +rng[2])/2), uncertain:true};
+  const dec=lo.match(/(\d{3}0)[^\d]/);
+  if(dec&&lo.includes(dec[1])) return {year:+dec[1]+5, uncertain:true};
+  const ante=lo.match(/(?:ante|el[oő]tt|before)\s*(\d{4})|(\d{4})\s*(?:el[oő]tt|before)/);
+  if(ante) return {year:+(ante[1]||ante[2])-1, uncertain:true};
+  const post=lo.match(/(?:post|ut[aá]n|after)\s*(\d{4})|(\d{4})\s*(?:ut[aá]n|after)/);
+  if(post) return {year:+(post[1]||post[2])+1, uncertain:true};
+  const apx=lo.match(/[~≈]|kb\.?|circ?a?\.?|k[oö]r[uü]l|nagyjából/);
+  if(apx){ const y=lo.match(/(\d{4})/); if(y) return {year:+y[1], uncertain:true}; }
+  const any=s.match(/(\d{4})/);
+  if(any) return {year:+any[1], uncertain:true};
+  return null;
+}
+
+// ══════════════════════════════════════════════════════════════
+// NAVIGÁCIÓ
+// ══════════════════════════════════════════════════════════════
+const VIEWS = ['entities','entry','harmonize','relations','viz'];
+
+function showView(name){
+  VIEWS.forEach((v,i)=>{
+    document.getElementById('view-'+v).classList.toggle('active', v===name);
+    document.querySelectorAll('.nav-tab')[i].classList.toggle('active', v===name);
+  });
+  if(name==='entities')  renderEntities();
+  if(name==='harmonize') renderHarmonize();
+  if(name==='relations') { fillRelSelects(); renderRels(); }
+  if(name==='viz')       { fillVizControls(); renderNetwork(); }
+}
+
+function showSubTab(view, tab){
+  document.querySelectorAll(`#view-${view} [id^="sv-"]`).forEach(el=>el.style.display='none');
+  document.querySelectorAll(`#view-${view} .sub-tab`).forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById(`sv-${tab}`);
+  const bt=document.getElementById(`st-${tab}`);
+  if(el) el.style.display='';
+  if(bt) bt.classList.add('active');
+  if(tab==='individual') buildDynamicForm();
+}
+
+// ══════════════════════════════════════════════════════════════
+// REKORDLISTA
+// ══════════════════════════════════════════════════════════════
+function updateNavLabel(){
+  const s=schema();
+  document.getElementById('tab-entities').textContent = s.icon+' '+s.labelPlural;
+}
+
+function renderEntities(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+  const grid=document.getElementById('entityGrid');
+  const empty=document.getElementById('entitiesEmpty');
+  const s=schema();
+  updateNavLabel();
+  document.getElementById('emptyIcon').textContent = s.icon;
+
+  // Sémaválasztó első indításkor
+  const chooser=document.getElementById('schemaChooser');
+  const mainView=document.getElementById('mainEntityView');
+  if(!DB.config._schemaChosen){
+    chooser.style.display='';
+    mainView.style.display='none';
+    // Sablonkártyák renderelése
+    document.getElementById('welcomeTemplateGrid').innerHTML=Object.entries(TEMPLATES).map(([k,t])=>`
+      <button class="tmpl-btn" onclick="applyTemplateWelcome('${k}')">
+        <div class="tmpl-icon">${t.icon}</div>
+        <div class="tmpl-name">${t.name}</div>
+      </button>`).join('');
+    return;
+  }
+  chooser.style.display='none';
+  mainView.style.display='';
+
+  if(!DB.entities.length){ grid.innerHTML=''; empty.style.display=''; document.getElementById('pcount').textContent=''; return; }
+  empty.style.display='none';
+  let list=DB.entities;
+  if(q.length>=2) list=list.filter(e=>entityTitle(e).toLowerCase().includes(q));
+  document.getElementById('pcount').textContent=`${list.length} / ${DB.entities.length} ${s.label.toLowerCase()}`;
+  grid.innerHTML=list.map(e=>{
+    const attrs=DB.attributes.filter(a=>a.entity_id===e.id);
+    const typeSamples=[...new Set(attrs.map(a=>a.type))].slice(0,3).map(t=>{
+      const a=attrs.find(x=>x.type===t);
+      const v=(a?.value_harmonized||a?.value_raw||'').slice(0,18);
+      return v?`<span class="tag">${esc(t)}: ${esc(v)}</span>`:'';
+    }).join('');
+    const unharm=attrs.filter(a=>a.value_raw&&!a.value_harmonized).length;
+    const wTag=unharm?`<span class="tag tag-warn">⚠ ${unharm} harmonizálatlan</span>`:'';
+    const sub=entitySub(e);
+    // Extra mező megjelenítése (a cím és dátum után következő nem-üres mező)
+    const extraField = s.fields.find(f=>f.id!==s.titleField&&f.id!==s.dateField1&&f.id!==s.dateField2&&e[f.id]);
+    const extraVal = extraField ? `<span class="tag">${esc(e[extraField.id])}</span>` : '';
+    return `<div class="entity-card" onclick="openEntity('${e.id}')">
+      <div class="ec-name">${esc(entityTitle(e))}</div>
+      <div class="ec-sub">${esc(sub)}</div>
+      <div class="ec-tags">${extraVal}${typeSamples}${wTag}</div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// ENTITÁS MODAL
+// ══════════════════════════════════════════════════════════════
+function openEntity(id){
+  const e=DB.entities.find(x=>x.id===id); if(!e) return;
+  const s=schema();
+  const attrs=DB.attributes.filter(a=>a.entity_id===id);
+  const rels=DB.relationships.filter(r=>r.entity1_id===id||r.entity2_id===id);
+
+  const fieldsHtml=s.fields.filter(f=>e[f.id]!==undefined&&e[f.id]!==null&&e[f.id]!=='').map(f=>
+    `<div style="margin-bottom:5px;font-size:.86rem">
+      <span style="font-size:.71rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent2)">${esc(f.label)}:</span>
+      <span style="margin-left:5px">${esc(e[f.id])}</span>
+    </div>`).join('');
+
+  const byType={};
+  attrs.forEach(a=>{(byType[a.type]=byType[a.type]||[]).push(a);});
+  const attrHtml=Object.entries(byType).map(([type,items])=>
+    `<div style="margin-bottom:9px">
+      <div style="font-size:.71rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent2);margin-bottom:3px">${esc(type)}</div>
+      ${items.map(a=>`<div style="font-size:.86rem;margin-bottom:2px">
+        ${a.value_harmonized?`<span class="harm-badge">${esc(a.value_harmonized)}</span>`:`<span class="raw-badge">${esc(a.value_raw||'—')}</span>`}
+        ${a.value_harmonized&&a.value_raw!==a.value_harmonized?`<span style="font-size:.71rem;color:var(--muted);margin-left:4px">(nyers: ${esc(a.value_raw)})</span>`:''}
+        ${a.date_label?`<span style="font-size:.74rem;color:var(--muted);margin-left:5px">${esc(a.date_label)}</span>`:''}
+      </div>`).join('')}
+    </div>`).join('');
+
+  const relHtml=rels.length?rels.map(r=>{
+    const otherId=r.entity1_id===id?r.entity2_id:r.entity1_id;
+    const oe=DB.entities.find(x=>x.id===otherId);
+    return `<div class="rel-item">
+      <span class="rel-type">${esc(r.type)}</span>
+      <span style="cursor:pointer;color:var(--accent)" onclick="document.getElementById('entityModal').classList.remove('open');openEntity('${otherId}')">
+        ${oe?esc(entityTitle(oe)):'(ismeretlen)'}
+      </span>
+    </div>`;
+  }).join(''):'<div style="font-size:.84rem;color:var(--muted)">Nincs rögzített kapcsolat.</div>';
+
+  document.getElementById('entityModalContent').innerHTML=`
+    <h2 class="modal-title">${esc(entityTitle(e))}</h2>
+    <div class="card" style="margin-bottom:11px">${fieldsHtml}</div>
+    ${attrs.length?`<div class="card" style="margin-bottom:11px"><div class="card-title">Attribútumok</div>${attrHtml}</div>`:''}
+    <div class="card" style="margin-bottom:14px"><div class="card-title">Kapcsolatok</div>${relHtml}</div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button class="btn btn-s btn-sm" onclick="editEntity('${id}')">✏ Szerkesztés</button>
+      <button class="btn btn-d btn-sm" onclick="delEntity('${id}')">Törlés</button>
+    </div>`;
+  document.getElementById('entityModal').classList.add('open');
+}
+
+function editEntity(id){
+  const e=DB.entities.find(x=>x.id===id); if(!e) return;
+  document.getElementById('entityModal').classList.remove('open');
+  showView('entry'); showSubTab('entry','individual');
+  buildDynamicForm(e);
+  document.getElementById('f_title_hidden').value=id;
+  document.getElementById('editBanner').style.display='';
+}
+
+function delEntity(id){
+  if(!confirm('Biztosan törlöd ezt a rekordot és az összes kapcsolódó adatát?')) return;
+  DB.entities=DB.entities.filter(e=>e.id!==id);
+  DB.attributes=DB.attributes.filter(a=>a.entity_id!==id);
+  DB.relationships=DB.relationships.filter(r=>r.entity1_id!==id&&r.entity2_id!==id);
+  save(); document.getElementById('entityModal').classList.remove('open'); renderEntities();
+}
+
+function cancelEdit(){
+  clearForm();
+  document.getElementById('editBanner').style.display='none';
+}
+
+// ══════════════════════════════════════════════════════════════
+// DINAMIKUS FORM
+// ══════════════════════════════════════════════════════════════
+function buildDynamicForm(entity=null){
+  const s=schema();
+  document.getElementById('formCardTitle').textContent=`${s.label} adatai`;
+  const container=document.getElementById('dynamicFormFields');
+  container.innerHTML='<input type="hidden" id="f_title_hidden">';
+  s.fields.forEach(f=>{
+    const val=entity?esc(entity[f.id]||''):'';
+    let input='';
+    if(f.type==='textarea'){
+      input=`<textarea id="dynf_${f.id}" placeholder="${f.required?'Kötelező!':''}">${entity?(entity[f.id]||''):''}</textarea>`;
+    } else if(f.type==='select'){
+      const opts=(f.options||[]).map(o=>`<option${(entity&&entity[f.id]===o)?' selected':''}>${esc(o)}</option>`).join('');
+      input=`<select id="dynf_${f.id}"><option value="">—</option>${opts}</select>`;
+    } else {
+      input=`<input type="${f.type==='number'?'number':'text'}" id="dynf_${f.id}" value="${val}" placeholder="${f.required?'Kötelező!':''}">`;
+    }
+    const span=f.type==='textarea'?'style="grid-column:1/-1"':'';
+    container.insertAdjacentHTML('beforeend',`<div class="fg" ${span}><label>${esc(f.label)}${f.required?' *':''}</label>${input}</div>`);
+  });
+}
+
+function savePerson(){
+  const s=schema();
+  const titleFld=document.getElementById(`dynf_${s.titleField}`);
+  if(!titleFld||!titleFld.value.trim()){alert('A cím/azonosító mező kötelező!');return;}
+  const editId=document.getElementById('f_title_hidden')?.value||'';
+  const id=editId||uid();
+  const entity={id};
+  s.fields.forEach(f=>{
+    const el=document.getElementById(`dynf_${f.id}`);
+    if(!el) return;
+    const v=el.value.trim();
+    entity[f.id]=f.type==='number'?(v?parseFloat(v):null):v;
+  });
+  if(editId){
+    const i=DB.entities.findIndex(e=>e.id===editId);
+    if(i>=0) DB.entities[i]=entity;
+    DB.attributes=DB.attributes.filter(a=>a.entity_id!==editId);
+  } else {
+    DB.entities.push(entity);
+  }
+  document.querySelectorAll('#attrRows .attr-row').forEach(row=>{
+    const raw=row.querySelector('.attr-raw').value.trim(); if(!raw) return;
+    DB.attributes.push({
+      id:uid(), entity_id:id,
+      type:row.querySelector('.attr-type-sel').value,
+      value_raw:raw,
+      value_harmonized:row.querySelector('.attr-harm').value.trim(),
+      date_label:row.querySelector('.attr-date').value.trim()
+    });
+  });
+  save(); clearForm();
+  document.getElementById('editBanner').style.display='none';
+  const msg=document.getElementById('saveMsg');
+  msg.innerHTML=`<span style="color:var(--accent)">✓ ${esc(entity[s.titleField])} elmentve.</span>`;
+  setTimeout(()=>msg.innerHTML='',3500);
+}
+
+function clearForm(){
+  document.getElementById('f_title_hidden') && (document.getElementById('f_title_hidden').value='');
+  buildDynamicForm();
+  document.getElementById('attrRows').innerHTML='';
+}
+
+// ══════════════════════════════════════════════════════════════
+// ATTRIBÚTUM SOROK
+// ══════════════════════════════════════════════════════════════
+function addAttrRow(attr=null){
+  const row=document.createElement('div');
+  row.className='attr-row';
+  row.innerHTML=`
+    <div class="fg" style="margin:0"><label>Típus</label>
+      <select class="attr-type-sel" style="padding:5px 7px;border:1px solid var(--border);border-radius:4px;font-size:.8rem;font-family:inherit;background:var(--bg)">
+        ${DB.config.attrTypes.map(t=>`<option${attr?.type===t?' selected':''}>${esc(t)}</option>`).join('')}
+      </select>
+    </div>
+    <div class="fg" style="margin:0"><label style="color:var(--warn)">Nyers érték</label>
+      <input class="attr-raw" type="text" placeholder="Forrásból…" value="${esc(attr?.value_raw||'')}">
+    </div>
+    <div class="fg" style="margin:0"><label style="color:var(--accent2)">Harmonizált</label>
+      <input class="attr-harm" type="text" placeholder="Egységesített" value="${esc(attr?.value_harmonized||'')}">
+    </div>
+    <div class="fg" style="margin:0"><label>Időpont</label>
+      <input class="attr-date" type="text" placeholder="Pl. 1880" value="${esc(attr?.date_label||'')}">
+    </div>
+    <button onclick="this.parentElement.remove()" style="background:none;border:none;color:var(--danger);font-size:1.1rem;cursor:pointer;margin-top:18px;line-height:1">✕</button>`;
+  document.getElementById('attrRows').appendChild(row);
+}
+
+// ══════════════════════════════════════════════════════════════
+// CSV IMPORT
+// ══════════════════════════════════════════════════════════════
+let csvData=[],csvHeaders=[];
+
+document.getElementById('csvFile').addEventListener('change',function(e){
+  const file=e.target.files[0]; if(!file) return;
+  Papa.parse(file,{header:true,skipEmptyLines:true,complete:res=>{
+    csvData=res.data; csvHeaders=res.meta.fields;
+    const prev=document.getElementById('csvPreview');
+    prev.style.display='';
+    prev.innerHTML=`<table><tr>${csvHeaders.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>
+      ${csvData.slice(0,5).map(row=>`<tr>${csvHeaders.map(h=>`<td>${esc(row[h]||'')}</td>`).join('')}</tr>`).join('')}</table>`;
+    document.getElementById('csv1Next').disabled=false;
+  }});
+});
+
+const CSV_FIELDS=()=>{
+  const s=schema();
+  const schemaFields=s.fields.map(f=>({v:`schema:${f.id}`,l:f.label+(f.required?' *':'')}));
+  const attrFields=DB.config.attrTypes.flatMap(t=>[
+    {v:`attr:${t}:raw`,l:`${t} (nyers)`},
+    {v:`attr:${t}:harm`,l:`${t} (harmonizált)`}
+  ]);
+  return [
+    {v:'',l:'— kihagyás —'},
+    ...schemaFields,
+    ...attrFields,
+    {v:'__new',l:'→ Új attribútum típusként…'}
+  ];
+};
+
+function autoMap(col){
+  const n=col.toLowerCase().replace(/\s+/g,'');
+  const s=schema();
+  // Schema mezőkre illesztés
+  for(const f of s.fields){
+    const fl=f.label.toLowerCase().replace(/\s+/g,'');
+    if(n===fl||n.includes(fl.slice(0,5))) return `schema:${f.id}`;
+  }
+  // Attr típusokra illesztés
+  for(const t of DB.config.attrTypes)
+    if(n.includes(t.toLowerCase().replace(/\s+/g,'').slice(0,5))) return `attr:${t}:raw`;
+  // Általános minták
+  if(/nev|name|cim|title|azonos/.test(n)) return `schema:${s.titleField}`;
+  if(/forr|source/.test(n)) { const sf=s.fields.find(f=>f.id.includes('source')||f.label.toLowerCase().includes('forrás')); return sf?`schema:${sf.id}`:''; }
+  if(/megj|note/.test(n)) { const nf=s.fields.find(f=>f.type==='textarea'); return nf?`schema:${nf.id}`:''; }
+  return '';
+}
+
+function toggleNewType(sel,inputId){
+  const inp=document.getElementById(inputId); if(!inp) return;
+  inp.style.display=sel.value==='__new'?'block':'none';
+  if(sel.value==='__new') inp.focus();
+}
+
+function csvGoStep1(){
+  document.getElementById('csv2').style.display='none';
+  document.getElementById('csv1').style.display='';
+  document.getElementById('is2').classList.remove('active','done');
+  document.getElementById('is1').classList.remove('done');
+  document.getElementById('is1').classList.add('active');
+}
+function csvGoStep2(){
+  document.getElementById('csv1').style.display='none';
+  document.getElementById('csv3').style.display='none';
+  document.getElementById('csv2').style.display='';
+  document.getElementById('is1').classList.remove('active'); document.getElementById('is1').classList.add('done');
+  document.getElementById('is3').classList.remove('active','done');
+  document.getElementById('is2').classList.remove('done'); document.getElementById('is2').classList.add('active');
+  const fields=CSV_FIELDS();
+  document.getElementById('colMapper').innerHTML=csvHeaders.map((h,i)=>{
+    const mapped=autoMap(h);
+    return `<div class="col-map-row">
+      <strong style="font-size:.82rem">${esc(h)}</strong>
+      <span style="text-align:center;color:var(--accent2)">→</span>
+      <select id="cm-${i}" onchange="toggleNewType(this,'nt-${i}')">
+        ${fields.map(f=>`<option value="${f.v}"${mapped===f.v?' selected':''}>${esc(f.l)}</option>`).join('')}
+      </select>
+      <input type="text" id="nt-${i}" class="new-type-inp" placeholder="Típus neve…">
+    </div>`;
+  }).join('');
+}
+function csvGoStep3(){
+  document.getElementById('csv2').style.display='none';
+  document.getElementById('csv3').style.display='';
+  document.getElementById('is2').classList.remove('active'); document.getElementById('is2').classList.add('done');
+  document.getElementById('is3').classList.add('active');
+  const mapping=getMapping();
+  const preview=csvData.slice(0,5).map(row=>buildRow(row,mapping));
+  const s=schema();
+  document.getElementById('csv3Preview').innerHTML=`
+    <div class="csv-preview"><table>
+      <tr><th>Cím</th><th>Adat 2</th><th>Attribútumok</th></tr>
+      ${preview.map(({e,attrs})=>`<tr>
+        <td>${esc(e[s.titleField]||'—')}</td>
+        <td>${esc(s.dateField1?e[s.dateField1]:'')}</td>
+        <td>${attrs.map(a=>`${esc(a.type)}: ${esc(a.value_raw)}`).join('; ')}</td>
+      </tr>`).join('')}
+    </table></div>
+    <p style="font-size:.77rem;color:var(--muted);margin-top:5px">Összesen ${csvData.length} sor.</p>`;
+}
+function getMapping(){
+  const m={};
+  csvHeaders.forEach((h,i)=>{
+    const s=document.getElementById(`cm-${i}`);
+    if(!s||!s.value) return;
+    if(s.value==='__new'){
+      const inp=document.getElementById(`nt-${i}`);
+      const typeName=(inp?.value||'').trim();
+      if(typeName) m[h]=`attr:${typeName}:raw`;
+    } else { m[h]=s.value; }
+  });
+  return m;
+}
+function buildRow(row,mapping){
+  const s=schema();
+  const e={id:uid()};
+  s.fields.forEach(f=>{e[f.id]=f.type==='number'?null:'';});
+  const attrs=[];
+  for(const [col,target] of Object.entries(mapping)){
+    const val=(row[col]||'').trim(); if(!val) continue;
+    if(target.startsWith('schema:')){
+      const fid=target.slice(7);
+      const fd=s.fields.find(f=>f.id===fid);
+      e[fid]=fd&&fd.type==='number'?(parseFloat(val)||null):val;
+    } else if(target.startsWith('attr:')){
+      const parts=target.split(':'); const type=parts[1]; const kind=parts[2];
+      let ex=attrs.find(a=>a.type===type);
+      if(!ex){ex={id:uid(),entity_id:e.id,type,value_raw:'',value_harmonized:'',date_label:''};attrs.push(ex);}
+      if(kind==='raw')  ex.value_raw=val;
+      if(kind==='harm') ex.value_harmonized=val;
+    }
+  }
+  return {e,attrs};
+}
+function doImport(){
+  const mapping=getMapping();
+  // Új attr típusok hozzáadása
+  Object.values(mapping).forEach(v=>{
+    if(v.startsWith('attr:')){
+      const typeName=v.split(':')[1];
+      if(typeName&&!DB.config.attrTypes.includes(typeName)) DB.config.attrTypes.push(typeName);
+    }
+  });
+  const s=schema();
+  const skip=document.getElementById('skipDup').checked;
+  const existing=new Set(DB.entities.map(e=>(e[s.titleField]||'').toLowerCase()));
+  let added=0,skipped=0;
+  csvData.forEach(row=>{
+    const {e,attrs}=buildRow(row,mapping);
+    if(!e[s.titleField]){skipped++;return;}
+    if(skip&&existing.has((e[s.titleField]||'').toLowerCase())){skipped++;return;}
+    DB.entities.push(e);
+    attrs.forEach(a=>{a.entity_id=e.id;DB.attributes.push(a);});
+    existing.add((e[s.titleField]||'').toLowerCase());
+    added++;
+  });
+  save();
+  document.getElementById('importMsg').innerHTML=
+    `<span style="color:var(--accent)">✓ ${added} rekord importálva.</span>${skipped?` <span style="color:var(--muted)">${skipped} kihagyva.</span>`:''}`;
+}
+
+// ══════════════════════════════════════════════════════════════
+// HARMONIZÁLÁS
+// ══════════════════════════════════════════════════════════════
+function renderHarmonize(){
+  const sel=document.getElementById('harmType');
+  // A rebuild alatt megőrizzük a felhasználó kijelölését
+  const prev = sel.value;
+  const want = (prev && DB.config.attrTypes.includes(prev)) ? prev : (DB.config.attrTypes[0]||'');
+  sel.innerHTML=DB.config.attrTypes.map(t=>`<option${t===want?' selected':''}>${esc(t)}</option>`).join('');
+  const type=sel.value; if(!type) return;
+  const attrs=DB.attributes.filter(a=>a.type===type);
+  if(!attrs.length){
+    document.getElementById('harmContent').innerHTML=`<div style="color:var(--muted);font-size:.87rem">Nincs ilyen típusú attribútum az adatbázisban.</div>`;
+    document.getElementById('harmStat').textContent=''; return;
+  }
+  const groups=[],idx={};
+  attrs.forEach(a=>{
+    const k=a.value_raw||'(üres)';
+    if(idx[k]===undefined){idx[k]=groups.length;groups.push({raw:k,harm:a.value_harmonized||'',count:0});}
+    groups[idx[k]].count++;
+    if(a.value_harmonized&&!groups[idx[k]].harm) groups[idx[k]].harm=a.value_harmonized;
+  });
+  groups.sort((a,b)=>b.count-a.count);
+  const unharm=groups.filter(g=>!g.harm).length;
+  document.getElementById('harmStat').textContent=`${groups.length} egyedi nyers érték · ${unharm} harmonizálatlan`;
+  document.getElementById('harmContent').innerHTML=`
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="btn btn-s btn-sm" onclick="autoFill()">Önkitöltés</button>
+      <button class="btn btn-p btn-sm" onclick="saveHarm('${esc(type)}')">💾 Mentés</button>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="harm-table">
+      <thead><tr>
+        <th style="width:34px"><input type="checkbox" id="cbAll" onchange="document.querySelectorAll('.hcb').forEach(c=>c.checked=this.checked)"></th>
+        <th>Nyers érték</th><th>Harmonizált érték</th><th style="width:48px;text-align:center">Db</th>
+      </tr></thead>
+      <tbody>${groups.map((g,i)=>`<tr>
+        <td><input type="checkbox" class="hcb" data-i="${i}"></td>
+        <td><span class="raw-badge">${esc(g.raw)}</span></td>
+        <td><input type="text" class="hinput" data-i="${i}" value="${esc(g.harm)}" placeholder="Egységesített forma…"></td>
+        <td style="text-align:center;color:var(--muted)">${g.count}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px">
+      <input type="text" id="bulkVal" placeholder="Egységesített érték a kijelöltekre…"
+        style="flex:1;min-width:140px;padding:5px 9px;border:1px solid var(--border);border-radius:4px;font-size:.82rem;font-family:inherit">
+      <button class="btn btn-w btn-sm" onclick="applyBulk()">Alkalmazás kijelöltekre</button>
+      <button class="btn btn-p btn-sm" onclick="saveHarm('${esc(type)}')">💾 Mentés</button>
+    </div>`;
+  window._harmGroups=groups;
+}
+function autoFill(){ document.querySelectorAll('.hinput').forEach(inp=>{if(!inp.value.trim())inp.value=window._harmGroups[+inp.dataset.i]?.raw||'';}); }
+function applyBulk(){
+  const v=document.getElementById('bulkVal').value.trim(); if(!v){alert('Adj meg harmonizált értéket!');return;}
+  document.querySelectorAll('.hcb:checked').forEach(cb=>{const inp=document.querySelector(`.hinput[data-i="${cb.dataset.i}"]`);if(inp)inp.value=v;});
+}
+function saveHarm(type){
+  if(!window._harmGroups) return;
+  document.querySelectorAll('.hinput').forEach(inp=>{
+    const raw=window._harmGroups[+inp.dataset.i]?.raw;
+    const harm=inp.value.trim();
+    DB.attributes.forEach(a=>{if(a.type===type&&(a.value_raw||'(üres)')===raw)a.value_harmonized=harm;});
+  });
+  save(); renderHarmonize();
+  const msg=document.createElement('div');
+  msg.style.cssText='position:fixed;top:18px;right:18px;background:var(--accent);color:#fff;padding:9px 18px;border-radius:6px;font-size:.84rem;z-index:9999';
+  msg.textContent='✓ Harmonizálás mentve!';
+  document.body.appendChild(msg); setTimeout(()=>msg.remove(),2500);
+}
+
+// ══════════════════════════════════════════════════════════════
+// KAPCSOLATOK
+// ══════════════════════════════════════════════════════════════
+function fillRelSelects(){
+  const opts=DB.entities.map(e=>`<option value="${e.id}">${esc(entityTitle(e))}</option>`).join('');
+  document.getElementById('rp1').innerHTML=opts;
+  document.getElementById('rp2').innerHTML=opts;
+  document.getElementById('rtype').innerHTML=DB.config.relTypes.map(t=>`<option>${esc(t)}</option>`).join('')+`<option value="__new">→ Új kapcsolattípusként…</option>`;
+}
+function addRel(){
+  const p1=document.getElementById('rp1').value,p2=document.getElementById('rp2').value;
+  let type=document.getElementById('rtype').value;
+  if(type==='__new'){
+    type=(document.getElementById('rtypeNew').value||'').trim();
+    if(!type){alert('Add meg az új kapcsolattípus nevét!');return;}
+    if(!DB.config.relTypes.includes(type)){DB.config.relTypes.push(type);save();}
+    document.getElementById('rtypeNew').value='';
+  }
+  if(!p1||!p2||p1===p2){alert('Két különböző rekordot válassz!');return;}
+  if(DB.relationships.find(r=>((r.entity1_id===p1&&r.entity2_id===p2)||(r.entity1_id===p2&&r.entity2_id===p1))&&r.type===type))
+    {alert('Ez a kapcsolat már létezik!');return;}
+  DB.relationships.push({id:uid(),entity1_id:p1,entity2_id:p2,type,source:document.getElementById('rsource').value.trim()});
+  save(); document.getElementById('rsource').value=''; renderRels();
+}
+function renderRels(q=''){
+  document.getElementById('relCount').textContent=`(${DB.relationships.length})`;
+  let list=DB.relationships;
+  if(q){const lq=q.toLowerCase();list=list.filter(r=>{
+    const e1=DB.entities.find(e=>e.id===r.entity1_id),e2=DB.entities.find(e=>e.id===r.entity2_id);
+    return (entityTitle(e1||{})).toLowerCase().includes(lq)||(entityTitle(e2||{})).toLowerCase().includes(lq);
+  });}
+  document.getElementById('relList').innerHTML=list.length?list.map(r=>{
+    const e1=DB.entities.find(e=>e.id===r.entity1_id),e2=DB.entities.find(e=>e.id===r.entity2_id);
+    return `<div class="rel-item">
+      <span class="rel-type">${esc(r.type)}</span>
+      <span style="flex:1"><strong>${esc(entityTitle(e1||{}))}</strong> ↔ <strong>${esc(entityTitle(e2||{}))}</strong>
+        ${r.source?`<span style="color:var(--muted);font-size:.74rem;margin-left:5px">(${esc(r.source)})</span>`:''}
+      </span>
+      <button class="btn btn-d btn-sm" onclick="delRel('${r.id}')">✕</button>
+    </div>`;
+  }).join(''):`<div style="font-size:.84rem;color:var(--muted);padding:8px 0">Nincs kapcsolat.</div>`;
+}
+function delRel(id){DB.relationships=DB.relationships.filter(r=>r.id!==id);save();renderRels();}
+
+// ══════════════════════════════════════════════════════════════
+// VIZUALIZÁCIÓ
+// ══════════════════════════════════════════════════════════════
+const PALETTE=['#2c5f2e','#d45b00','#6b21a8','#0e5fa0','#b5002c','#00786b','#7c5900','#005f80'];
+
+// Visszaadja egy rekord adott colorBy értékét.
+// colorBy: 'schema:fieldId' | 'attr:típusnév' | '' (üres = nincs)
+function getColorValue(entity, colorBy){
+  if(!colorBy) return null;
+  if(colorBy.startsWith('schema:')){
+    const fid=colorBy.slice(7);
+    const v=entity[fid];
+    return (v!==undefined&&v!==null&&v!=='')?String(v):null;
+  } else if(colorBy.startsWith('attr:')){
+    const type=colorBy.slice(5);
+    const a=DB.attributes.find(x=>x.entity_id===entity.id&&x.type===type);
+    return a?.value_harmonized||a?.value_raw||null;
+  } else {
+    // örökség: prefix nélküli attr típusnév
+    const a=DB.attributes.find(x=>x.entity_id===entity.id&&x.type===colorBy);
+    return a?.value_harmonized||a?.value_raw||null;
+  }
+}
+
+function fillVizControls(){
+  const s=schema();
+  // Szín-opciók: schema mezők (nem cím) + attribútum típusok
+  const schemaColorOpts=s.fields
+    .filter(f=>f.id!==s.titleField)
+    .map(f=>`<option value="schema:${f.id}">${esc(f.label)} (mező)</option>`).join('');
+  const attrColorOpts=DB.config.attrTypes.map(t=>`<option value="attr:${t}">${esc(t)} (attribútum)</option>`).join('');
+  const allColorOpts=schemaColorOpts+attrColorOpts;
+
+  const prevColorBy=document.getElementById('colorBy').value;
+  document.getElementById('colorBy').innerHTML=`<option value="">— alapértelmezett —</option>${allColorOpts}`;
+  if(prevColorBy) document.getElementById('colorBy').value=prevColorBy;
+
+  document.getElementById('relFilter').innerHTML=`<option value="">Minden kapcsolat</option>${DB.config.relTypes.map(t=>`<option>${esc(t)}</option>`).join('')}`;
+
+  // Térkép – helyadat forrás: csak olyan mezők/attribútumok, ahol van is érték
+  // Címkébe belesűrítjük a kitöltött rekordok számát.
+  const nonTitleTextFields = s.fields.filter(f=>(f.type==='text'||f.type==='select')&&f.id!==s.titleField);
+  const locCandidates = [];
+  nonTitleTextFields.forEach(f=>{
+    const n = DB.entities.filter(e=>(e[f.id]||'').toString().trim()!=='').length;
+    const isLocLike = /hely|város|város|orszag|ország|lak|szül|birt|hon/i.test(f.label+f.id);
+    locCandidates.push({value:`schema:${f.id}`, label:esc(f.label), count:n, isLocLike});
+  });
+  DB.config.attrTypes.forEach(t=>{
+    const n = DB.attributes.filter(a=>a.type===t && ((a.value_harmonized||a.value_raw||'').toString().trim()!=='')).length;
+    const isLocLike = /hely|város|lak|szül|birt|hon/i.test(t);
+    locCandidates.push({value:`attr:${t}`, label:esc(t)+' (attribútum)', count:n, isLocLike});
+  });
+  const locOpts = locCandidates.map(c=>`<option value="${c.value}">${c.label}${c.count?` · ${c.count} érték`:' · üres'}</option>`).join('');
+  const prev1=document.getElementById('mapAttrType').value;
+  const prev2=document.getElementById('mapColorBy').value;
+  document.getElementById('mapAttrType').innerHTML=`<option value="">— válassz —</option>${locOpts}`;
+  document.getElementById('mapColorBy').innerHTML=`<option value="">— csak név —</option>${allColorOpts}`;
+  if(prev1) document.getElementById('mapAttrType').value=prev1;
+  if(prev2) document.getElementById('mapColorBy').value=prev2;
+  // Automatikus választás: locationField → hely-jellegű név + legtöbb adat → legtöbb adat
+  if(!prev1){
+    if(s.locationField) {
+      document.getElementById('mapAttrType').value=`schema:${s.locationField}`;
+    } else {
+      const ranked = locCandidates
+        .filter(c=>c.count>0)
+        .sort((a,b)=>(b.isLocLike-a.isLocLike) || (b.count-a.count));
+      if(ranked.length) document.getElementById('mapAttrType').value = ranked[0].value;
+    }
+  }
+
+  // Idősor színező
+  const tlSel=document.getElementById('tlColorBy');
+  if(tlSel){ const pv=tlSel.value; tlSel.innerHTML=`<option value="">— nincs —</option>${allColorOpts}`; if(pv) tlSel.value=pv; }
+}
+
+// ══════════════════════════════════════════════════════════════
+// IDŐSOR VIZUALIZÁCIÓ
+// ══════════════════════════════════════════════════════════════
+function renderTimeline(){
+  const s=schema();
+  const container=document.getElementById('timeline-container');
+  const colorBy=document.getElementById('tlColorBy')?.value||'';
+
+  // Dátum adatok összegyűjtése
+  const items=[];
+  DB.entities.forEach(e=>{
+    const d1 = extractYear(e[s.dateField1]);
+    const d2 = extractYear(e[s.dateField2]);
+    const birth = d1 ? d1.year : null;
+    const death = d2 ? d2.year : null;
+    const uncertain = (d1&&d1.uncertain)||(d2&&d2.uncertain);
+    if(!birth&&!death) return;
+    const start=birth||death, end=death||birth;
+    items.push({e, start, end, span:end-start, uncertain});
+  });
+
+  if(!items.length){
+    container.innerHTML=`<div class="empty-state"><div class="big">⏱</div><p>Nincs dátumadata az adatbázisban.<br>A Beállításokban jelöld meg, melyik mező az 1. és 2. dátummező.</p></div>`;
+    return;
+  }
+
+  items.sort((a,b)=>a.start-b.start);
+  const minY=items[0].start, maxY=Math.max(...items.map(i=>i.end));
+  const range=Math.max(maxY-minY,1);
+
+  // Színezés
+  let colorMap={},colorVals=[];
+  if(colorBy){
+    items.forEach(({e})=>{
+      colorMap[e.id]=getColorValue(e,colorBy)||'—';
+    });
+    colorVals=[...new Set(Object.values(colorMap))];
+  }
+  const getColor=id=>colorBy&&colorMap[id]&&colorMap[id]!=='—'?PALETTE[colorVals.indexOf(colorMap[id])%PALETTE.length]:'#4a8c4d';
+
+  const ROW_H=28, PAD=6, LABEL_W=180, BAR_MIN=4;
+  const W=Math.max(container.clientWidth||600,600)-LABEL_W-20;
+  const H=items.length*(ROW_H+PAD)+40;
+
+  // Decade ticks
+  const tickStart=Math.floor(minY/10)*10, tickEnd=Math.ceil(maxY/10)*10;
+  const ticks=[];
+  for(let y=tickStart;y<=tickEnd;y+=10) ticks.push(y);
+  const xOf=y=>Math.round((y-minY)/range*W);
+
+  let svg=`<svg width="${LABEL_W+W+20}" height="${H}" style="font-family:Georgia,serif;font-size:11px">`;
+  // Grid lines + decade labels
+  svg+=`<g transform="translate(${LABEL_W},30)">`;
+  ticks.forEach(y=>{
+    const x=xOf(y);
+    svg+=`<line x1="${x}" y1="-16" x2="${x}" y2="${H-30}" stroke="#c8d4c5" stroke-width="1"/>
+          <text x="${x}" y="-4" text-anchor="middle" fill="#4e6b50" font-size="10">${y}</text>`;
+  });
+
+  // Bars
+  items.forEach(({e,start,end,uncertain},i)=>{
+    const y=i*(ROW_H+PAD);
+    const x1=xOf(start), x2=Math.max(xOf(end),x1+BAR_MIN);
+    const bw=x2-x1, bh=ROW_H-4;
+    const color=getColor(e.id);
+    const title=entityTitle(e);
+    const sub2=s.dateField2?e[s.dateField2]:'';
+    const dasharray = uncertain ? '4,2' : 'none';
+    svg+=`<rect x="${x1}" y="${y+2}" width="${bw}" height="${bh}" rx="3"
+            fill="${color}" opacity=".82" style="cursor:pointer" stroke-dasharray="${dasharray}"
+            onclick="openEntity('${e.id}')">
+            <title>${esc(title)} (${start}${sub2?'–'+sub2:''})</title>
+          </rect>`;
+    if(bw>30){
+      svg+=`<text x="${x1+4}" y="${y+ROW_H-7}" fill="#fff" font-size="10" style="pointer-events:none"
+              dominant-baseline="auto">${esc(title.length>22?title.slice(0,21)+'…':title)}</text>`;
+    }
+  });
+  svg+=`</g>`;
+
+  // Név sáv bal oldalon
+  items.forEach(({e,start},i)=>{
+    const y=30+i*(ROW_H+PAD)+2;
+    const title=entityTitle(e);
+    svg+=`<text x="${LABEL_W-6}" y="${y+ROW_H-8}" text-anchor="end" fill="#1a2b1b" font-size="11"
+            style="cursor:pointer" onclick="openEntity('${e.id}')"
+            dominant-baseline="auto">${esc(title.length>22?title.slice(0,21)+'…':title)}</text>`;
+  });
+
+  // Jelmagyarázat
+  if(colorBy&&colorVals.length){
+    let lx=LABEL_W, ly=H-8;
+    svg+=`<g>`;
+    colorVals.slice(0,8).forEach((v,i)=>{
+      svg+=`<rect x="${lx}" y="${ly-10}" width="10" height="10" rx="2" fill="${PALETTE[i%PALETTE.length]}"/>
+            <text x="${lx+13}" y="${ly}" font-size="10" fill="#4e6b50">${esc(v)}</text>`;
+      lx+=Math.min(v.length*7+22,120);
+    });
+    svg+=`</g>`;
+  }
+
+  svg+=`</svg>`;
+  container.innerHTML=svg;
+}
+
+function renderNetwork(){
+  const svg=d3.select('#network-svg');
+  svg.selectAll('*').remove();
+  const W=document.getElementById('network-svg').clientWidth||720,H=490;
+  svg.attr('viewBox',`0 0 ${W} ${H}`);
+  const colorBy=document.getElementById('colorBy')?.value||'';
+  const relFilter=document.getElementById('relFilter')?.value||'';
+  let rels=DB.relationships;
+  if(relFilter) rels=rels.filter(r=>r.type===relFilter);
+  if(!DB.entities.length){
+    svg.append('text').attr('x',W/2).attr('y',H/2).attr('text-anchor','middle').attr('fill','#aaa').attr('font-family','Georgia').text('Még nincs adat');
+    return;
+  }
+  const usedIds=rels.length?new Set([...rels.map(r=>r.entity1_id),...rels.map(r=>r.entity2_id)]):new Set(DB.entities.map(e=>e.id));
+  const nodes=DB.entities.filter(e=>usedIds.has(e.id)).map(e=>({...e}));
+  const links=rels.map(r=>({source:r.entity1_id,target:r.entity2_id,type:r.type}));
+  let colorMap={},colorScale=null,valArr=[];
+  if(colorBy){
+    nodes.forEach(n=>{colorMap[n.id]=getColorValue(n,colorBy)||'—';});
+    valArr=[...new Set(Object.values(colorMap))];
+    colorScale=v=>PALETTE[valArr.indexOf(v)%PALETTE.length];
+    document.getElementById('netLegend').innerHTML=valArr.map((v,i)=>
+      `<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:${PALETTE[i%PALETTE.length]};display:inline-block"></span>${esc(v)}</span>`).join('');
+  } else { document.getElementById('netLegend').innerHTML=''; }
+  const g=svg.append('g');
+  svg.call(d3.zoom().scaleExtent([.25,5]).on('zoom',e=>g.attr('transform',e.transform)));
+  const relTypes=[...new Set(rels.map(r=>r.type))];
+  const lColor=t=>PALETTE[(relTypes.indexOf(t)+3)%PALETTE.length];
+  g.append('g').selectAll('line').data(links).join('line')
+    .attr('stroke',d=>lColor(d.type)).attr('stroke-width',1.8).attr('stroke-opacity',.5).attr('class','link');
+  const tooltip=d3.select('body').selectAll('.ntip').data([0]).join('div').attr('class','ntip')
+    .style('position','fixed').style('background','rgba(0,0,0,.72)').style('color','#fff')
+    .style('padding','4px 10px').style('border-radius','4px').style('font-size','.77rem')
+    .style('pointer-events','none').style('opacity',0).style('z-index','9999');
+  const node=g.append('g').selectAll('g').data(nodes).join('g')
+    .call(d3.drag()
+      .on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y;})
+      .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;})
+      .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
+  node.append('circle').attr('r',10)
+    .attr('fill',d=>colorBy&&colorMap[d.id]?colorScale(colorMap[d.id]):'#4a8c4d')
+    .attr('stroke','#fff').attr('stroke-width',2).style('cursor','pointer')
+    .on('click',(_,d)=>openEntity(d.id))
+    .on('mouseover',function(e,d){d3.select(this).attr('r',13);tooltip.style('opacity',1).text(entityTitle(d));})
+    .on('mousemove',e=>tooltip.style('left',(e.clientX+11)+'px').style('top',(e.clientY-22)+'px'))
+    .on('mouseout',function(){d3.select(this).attr('r',10);tooltip.style('opacity',0);});
+  node.append('text').attr('dy',22).attr('text-anchor','middle')
+    .attr('fill','#1a2b1b').attr('font-size','11').attr('font-family','Georgia')
+    .text(d=>{const t=entityTitle(d);return t.length>16?t.slice(0,15)+'…':t;})
+    .style('pointer-events','none');
+  const sim=d3.forceSimulation(nodes)
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(100))
+    .force('charge',d3.forceManyBody().strength(-220))
+    .force('center',d3.forceCenter(W/2,H/2))
+    .on('tick',()=>{
+      g.selectAll('.link').attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      node.attr('transform',d=>`translate(${d.x},${d.y})`);
+    });
+}
+
+function renderStats(){
+  const s=schema();
+  const cards=[];
+  cards.push(`<div class="card"><div class="card-title">Összesítő</div>
+    <div style="font-size:.9rem;line-height:2.1">
+      ${s.icon} <strong>${DB.entities.length}</strong> ${s.label.toLowerCase()}<br>
+      📋 <strong>${DB.attributes.length}</strong> attribútum-bejegyzés<br>
+      🔗 <strong>${DB.relationships.length}</strong> kapcsolat<br>
+      ⚠ <strong>${DB.attributes.filter(a=>a.value_raw&&!a.value_harmonized).length}</strong> harmonizálatlan
+    </div></div>`);
+  // Schema select mezők megoszlása
+  s.fields.filter(f=>f.type==='select'&&f.id!==s.titleField).forEach(f=>{
+    const counts={};
+    DB.entities.forEach(e=>{if(e[f.id]) counts[e[f.id]]=(counts[e[f.id]]||0)+1;});
+    const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    if(!sorted.length) return;
+    const max=sorted[0][1];
+    cards.push(`<div class="card"><div class="card-title">${esc(f.label)}</div>
+      ${sorted.map(([v,n])=>`<div class="stat-bar-row">
+        <div class="stat-bar-label" title="${esc(v)}">${esc(v)}</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(n/max*100).toFixed(1)}%"></div></div>
+        <div class="stat-bar-count">${n}</div>
+      </div>`).join('')}</div>`);
+  });
+  // Attr típusok megoszlása
+  DB.config.attrTypes.forEach(type=>{
+    const attrs=DB.attributes.filter(a=>a.type===type); if(!attrs.length) return;
+    const counts={};
+    attrs.forEach(a=>{const v=a.value_harmonized||a.value_raw||'—';counts[v]=(counts[v]||0)+1;});
+    const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    const max=sorted[0]?.[1]||1;
+    cards.push(`<div class="card"><div class="card-title">${esc(type)}</div>
+      ${sorted.map(([v,n])=>`<div class="stat-bar-row">
+        <div class="stat-bar-label" title="${esc(v)}">${esc(v)}</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(n/max*100).toFixed(1)}%"></div></div>
+        <div class="stat-bar-count">${n}</div>
+      </div>`).join('')}</div>`);
+  });
+  // Dátum mező eloszlása (évtized)
+  if(s.dateField1){
+    const byDec={};
+    DB.entities.forEach(e=>{if(!e[s.dateField1])return;const yr=parseInt(e[s.dateField1]);if(!yr||isNaN(yr))return;const d=Math.floor(yr/10)*10;byDec[d]=(byDec[d]||0)+1;});
+    if(Object.keys(byDec).length>1){
+      const sorted=Object.entries(byDec).sort((a,b)=>+a[0]-+b[0]);
+      const max=Math.max(...sorted.map(([,n])=>n));
+      const f=s.fields.find(f=>f.id===s.dateField1);
+      cards.push(`<div class="card"><div class="card-title">${esc(f?.label||'Dátum')} – évtized</div>
+        ${sorted.map(([d,n])=>`<div class="stat-bar-row">
+          <div class="stat-bar-label">${d}-es évek</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(n/max*100).toFixed(1)}%"></div></div>
+          <div class="stat-bar-count">${n}</div>
+        </div>`).join('')}</div>`);
+    }
+  }
+  document.getElementById('statsGrid').innerHTML=cards.join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// TÉRKÉP
+// ══════════════════════════════════════════════════════════════
+let _leafletMap=null;
+
+const GEO_DICT={'budapest':['bp','buda','pest'],'debrecen':[],'győr':['gyor'],'miskolc':[],'pécs':['pecs'],'szeged':[],'kecskemét':['kecskemet'],'nyíregyháza':['nyiregyhaza'],'székesfehérvár':['szekesfehervar'],'veszprém':['veszprem'],'szombathely':[],'sopron':[],'eger':[],'kaposvár':['kaposvar'],'zalaegerszeg':[],'szolnok':[],'nagykanizsa':[],'békéscsaba':['bekescsaba'],'hódmezővásárhely':['hodmezovasarhely'],'esztergom':[],'vác':['vac'],'pápa':['papa'],'gyöngyös':['gyongyos'],'cegléd':['cegled'],'orosháza':['oroshaza'],'makó':['mako'],'baja':[],'mohács':['mohacs'],'szekszárd':['szekszard'],'paks':[],'komárom':['komarom'],'szentendre':[],'gödöllő':['godollo'],'hatvan':[],'balassagyarmat':[],'salgótarján':['salgotarjan'],'gyula':[],'csongrád':['csongrad'],'jászberény':['jaszbereny'],'körmend':['kormend'],'keszthely':[],'kolozsvár':['kolozsvar','cluj','cluj-napoca'],'nagyvárad':['nagyvarad','oradea'],'temesvár':['temesvar','timisoara'],'arad':[],'pozsony':['bratislava','pressburg'],'kassa':['kosice'],'ungvár':['ungvar','uzhhorod'],'marosvásárhely':['marosvasarhely','targu mures'],'brassó':['brasso','brasov'],'szatmárnémeti':['szatmarnemeti','satu mare'],'nagyszombat':['trnava'],'zágráb':['zagreb'],'fiume':['rijeka'],'eszék':['osijek'],'szabadka':['subotica'],'újvidék':['ujvidek','novi sad'],'zombor':['sombor'],'eperjes':['presov'],'lőcse':['locse','levoca'],'besztercebánya':['besztercebanya','banska bystrica'],'rozsnyó':['rozsnyo','roznava'],'rimaszombat':['rimaszombat','rimavska sobota'],'erdély':['transylvania'],'felvidék':['felvidek'],'délvidék':['delvidek'],'kárpátalja':['karpatalja'],'bécs':['wien','vienna'],'prága':['praha','prague'],'berlin':[],'párizs':['paris'],'london':[],'róma':['roma','rome']};
+const GEO_COORDS={'budapest':[47.498,19.040],'debrecen':[47.532,21.627],'győr':[47.688,17.650],'miskolc':[48.104,20.778],'pécs':[46.073,18.232],'szeged':[46.253,20.141],'kecskemét':[46.896,19.690],'nyíregyháza':[47.955,21.717],'székesfehérvár':[47.187,18.410],'veszprém':[47.103,17.909],'szombathely':[47.231,16.622],'sopron':[47.683,16.583],'eger':[47.903,20.377],'kaposvár':[46.360,17.797],'zalaegerszeg':[46.842,16.842],'szolnok':[47.174,20.185],'nagykanizsa':[46.459,16.990],'békéscsaba':[46.676,21.088],'hódmezővásárhely':[46.417,20.328],'esztergom':[47.794,18.740],'vác':[47.778,19.133],'pápa':[47.330,17.471],'gyöngyös':[47.784,19.927],'cegléd':[47.171,19.799],'orosháza':[46.563,20.662],'makó':[46.221,20.479],'baja':[46.179,18.954],'mohács':[45.996,18.678],'szekszárd':[46.357,18.707],'paks':[46.626,18.859],'komárom':[47.744,18.129],'szentendre':[47.663,19.074],'gödöllő':[47.600,19.360],'hatvan':[47.672,19.682],'balassagyarmat':[48.073,19.295],'salgótarján':[48.114,19.803],'gyula':[46.648,21.280],'csongrád':[46.707,20.143],'jászberény':[47.499,19.915],'körmend':[47.015,16.605],'keszthely':[46.764,17.245],'kolozsvár':[46.771,23.624],'nagyvárad':[47.072,21.921],'temesvár':[45.749,21.209],'arad':[46.187,21.312],'pozsony':[48.149,17.108],'kassa':[48.716,21.261],'ungvár':[48.619,22.302],'marosvásárhely':[46.541,24.558],'brassó':[45.651,25.606],'szatmárnémeti':[47.793,22.886],'nagyszombat':[48.378,17.587],'zágráb':[45.815,15.982],'fiume':[45.327,14.442],'eszék':[45.554,18.695],'szabadka':[46.100,19.667],'újvidék':[45.251,19.836],'zombor':[45.792,19.113],'eperjes':[49.000,21.239],'lőcse':[49.020,20.593],'besztercebánya':[48.736,19.148],'rozsnyó':[48.661,20.528],'rimaszombat':[48.381,20.022],'erdély':[46.800,24.000],'felvidék':[48.500,19.500],'délvidék':[45.500,19.500],'kárpátalja':[48.400,23.000],'bécs':[48.208,16.373],'prága':[50.075,14.438],'berlin':[52.520,13.405],'párizs':[48.853,2.350],'london':[51.507,-0.128],'róma':[41.902,12.496]};
+
+function geocode(raw){
+  if(!raw) return null;
+  const v=raw.trim();
+  const cm=v.match(/^(-?\d+\.?\d*)\s*[,;]\s*(-?\d+\.?\d*)$/);
+  if(cm){const lat=parseFloat(cm[1]),lng=parseFloat(cm[2]);if(lat>=-90&&lat<=90&&lng>=-180&&lng<=180)return[lat,lng];}
+  const norm=s=>s.toLowerCase().replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ö/g,'o').replace(/ő/g,'o').replace(/ú/g,'u').replace(/ü/g,'u').replace(/ű/g,'u');
+  const nv=norm(v);
+  for(const[place,coord]of Object.entries(GEO_COORDS)){const pn=norm(place);if(nv===pn||nv.startsWith(pn+' ')||nv.startsWith(pn+','))return coord;}
+  for(const[place,aliases]of Object.entries(GEO_DICT)){for(const alias of[place,...aliases]){if(norm(alias)===nv)return GEO_COORDS[place]||null;}}
+  for(const[place,coord]of Object.entries(GEO_COORDS)){const pn=norm(place);if(nv.includes(pn)&&pn.length>=4)return coord;}
+  return null;
+}
+
+function renderMap(){
+  const typeEl=document.getElementById('mapAttrType');
+  const typeVal=typeEl?.value;
+  if(!typeVal){
+    document.getElementById('map-container').innerHTML='<div style="height:490px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-style:italic">Válassz egy helyadat mezőt a térképhez.</div>';
+    document.getElementById('mapUnresolved').innerHTML=''; return;
+  }
+  const colorBy=document.getElementById('mapColorBy')?.value||'';
+  if(_leafletMap){_leafletMap.remove();_leafletMap=null;}
+  document.getElementById('map-container').innerHTML='';
+  _leafletMap=L.map('map-container').setView([47.5,19.0],6);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',subdomains:'abcd',maxZoom:19}).addTo(_leafletMap);
+  const locationMap={};
+  const unresolved=new Set();
+  let withValue=0, withoutValue=0;
+  DB.entities.forEach(e=>{
+    let locVal=null;
+    if(typeVal.startsWith('schema:')){
+      const fid=typeVal.slice(7); locVal=(e[fid]||'').trim();
+    } else if(typeVal.startsWith('attr:')){
+      const type=typeVal.slice(5);
+      const a=DB.attributes.find(x=>x.entity_id===e.id&&x.type===type);
+      locVal=(a?.value_harmonized||a?.value_raw||'').trim();
+    }
+    if(!locVal){ withoutValue++; return; }
+    withValue++;
+    const coord=geocode(locVal);
+    if(!coord){unresolved.add(locVal);return;}
+    const key=coord[0].toFixed(3)+','+coord[1].toFixed(3);
+    if(!locationMap[key]) locationMap[key]={coord,locVal,entities:[]};
+    locationMap[key].entities.push(e);
+  });
+  // Előre összegyűjtjük a lehetséges színértékeket
+  let colorVals=[];
+  if(colorBy){
+    DB.entities.forEach(e=>{const v=getColorValue(e,colorBy);if(v&&!colorVals.includes(v))colorVals.push(v);});
+  }
+  Object.values(locationMap).forEach(({coord,locVal,entities:ents})=>{
+    const n=ents.length;
+    const r=Math.max(14,Math.min(38,14+n*3));
+    let color='#2c5f2e';
+    if(colorBy&&ents[0]){const cv=getColorValue(ents[0],colorBy);const ci=colorVals.indexOf(cv);if(ci>=0)color=PALETTE[ci%PALETTE.length];}
+    const icon=L.divIcon({className:'',html:`<div style="width:${r}px;height:${r}px;border-radius:50%;background:${color};border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:${r>20?11:9}px;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer;font-family:Georgia,serif;">${n}</div>`,iconSize:[r,r],iconAnchor:[r/2,r/2]});
+    const links=ents.slice(0,8).map(e=>`<div style="margin:2px 0"><a href="#" onclick="document.getElementById('entityModal')||0;openEntity('${e.id}');return false" style="color:var(--accent);text-decoration:none">▸ ${esc(entityTitle(e))}</a></div>`).join('');
+    const more=ents.length>8?`<div style="font-size:.74rem;color:#888;margin-top:3px">…és még ${ents.length-8} rekord</div>`:'';
+    L.marker(coord,{icon}).addTo(_leafletMap).bindPopup(`<div style="min-width:160px"><strong>${esc(locVal)}</strong><div style="font-size:.76rem;color:#888;margin-bottom:6px">${n} rekord</div>${links}${more}</div>`,{maxWidth:260});
+  });
+  if(Object.keys(locationMap).length){
+    const bounds=Object.values(locationMap).map(l=>l.coord);
+    if(bounds.length===1)_leafletMap.setView(bounds[0],8);
+    else _leafletMap.fitBounds(bounds,{padding:[30,30]});
+  }
+  const unresEl=document.getElementById('mapUnresolved');
+  const parts=[];
+  // 1. Diagnosztika: ha a választott mezőben kevés vagy nulla érték van
+  if(DB.entities.length && withValue===0){
+    // Javaslat: melyik mezőben/attribútumban van a legtöbb érték?
+    const suggestions=[];
+    const s2=schema();
+    s2.fields.filter(f=>(f.type==='text'||f.type==='select')&&f.id!==s2.titleField).forEach(f=>{
+      const n=DB.entities.filter(e=>(e[f.id]||'').toString().trim()!=='').length;
+      if(n>0) suggestions.push({label:f.label+' (mező)', n});
+    });
+    DB.config.attrTypes.forEach(t=>{
+      const n=DB.attributes.filter(a=>a.type===t && (a.value_harmonized||a.value_raw||'').toString().trim()!=='').length;
+      if(n>0) suggestions.push({label:t+' (attribútum)', n});
+    });
+    suggestions.sort((a,b)=>b.n-a.n);
+    parts.push('<div class="map-unresolved" style="background:#fff4e5;border-color:#ffb74d"><strong>⚠ A választott mezőben nincs érték.</strong><br>'
+      + (suggestions.length
+          ? 'A következő mezőkben van a legtöbb adat, próbáld ezek egyikét:<br>'
+            + suggestions.slice(0,5).map(sg=>`<span style="background:#fff;padding:2px 8px;border-radius:3px;margin:3px 3px 0 0;display:inline-block">${esc(sg.label)} <em style="color:#888">· ${sg.n} érték</em></span>`).join(' ')
+          : 'Egyetlen rekord sincs kitöltve. Először adj meg adatokat az Adatbevitel fülön.')
+      + '</div>');
+  }
+  // 2. Nem azonosított helyek listája
+  if(unresolved.size){
+    parts.push('<div class="map-unresolved">⚠ <strong>Nem azonosított helyek ('+unresolved.size+'):</strong> '
+      + [...unresolved].map(v=>`<span style="background:#fff;padding:1px 6px;border-radius:3px;margin:2px;display:inline-block">${esc(v)}</span>`).join(' ')
+      + '<br><span style="font-size:.74rem">Tipp: ha nincs a beépített szótárban, a cellába koordinátát is írhatsz: <em>47.49, 19.04</em></span></div>');
+  }
+  // 3. Siker-összefoglaló
+  if(withValue>0 && Object.keys(locationMap).length){
+    const placed = Object.values(locationMap).reduce((s,l)=>s+l.entities.length,0);
+    parts.push(`<div style="font-size:.78rem;color:#666;margin-top:8px">✓ ${placed} rekord elhelyezve ${Object.keys(locationMap).length} helyen${withoutValue?`, ${withoutValue} rekordban nincs kitöltve ez a mező`:''}.</div>`);
+  }
+  unresEl.innerHTML = parts.join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// ZÁROLÁS / PUBLIKÁLÁS
+// ══════════════════════════════════════════════════════════════
+function applyLockState(){
+  const locked    = !!DB.config._locked;
+  const permanent = !!DB.config._lockedPermanent;
+  document.body.classList.toggle('locked', locked);
+  const badge = document.getElementById('lockBadge');
+  if(locked){
+    badge.style.display = '';
+    if(permanent){
+      badge.textContent = '📢 PUBLIKÁLT';
+      badge.style.background = '#e8f5e9';
+      badge.style.color       = '#2e7d32';
+      badge.style.border      = '1px solid #a5d6a7';
+    } else {
+      badge.textContent = '🔒 ZÁROLT';
+      badge.style.background = 'rgba(179,58,42,.18)';
+      badge.style.color       = '#b33a2a';
+      badge.style.border      = '1px solid rgba(179,58,42,.3)';
+    }
+  } else {
+    badge.style.display = 'none';
+  }
+  document.getElementById('lockBtn').style.display    = locked ? 'none' : '';
+  document.getElementById('publishBtn').style.display = locked ? 'none' : '';
+  document.getElementById('unlockBtn').style.display  = (locked && !permanent) ? '' : 'none';
+  const banner = document.getElementById('publishedBanner');
+  if(permanent){
+    banner.style.display = '';
+    document.getElementById('pubName').textContent  = DB.config.creatorName      ? '✏️ ' + DB.config.creatorName      : '';
+    document.getElementById('pubAffil').textContent = DB.config.creatorAffiliation ? '🏛 ' + DB.config.creatorAffiliation : '';
+    document.getElementById('pubDate').textContent  = DB.config.publishedDate     ? '📅 Publikálva: ' + DB.config.publishedDate : '';
+  } else {
+    banner.style.display = 'none';
+  }
+  if(locked){
+    const editViews = ['entry','harmonize','relations'];
+    const active = VIEWS.find(v=>document.getElementById('view-'+v)?.classList.contains('active'));
+    if(editViews.includes(active)) showView('entities');
+  }
+}
+
+function lockDB(){
+  if(!confirm('Zárolod az adatbázist?\n\nEzután mások csak böngészhetik és kereshetnek benne, de nem módosíthatják az adatokat.\n\nA zárolás a ⚙ Beállítások gombbal feloldható.')) return;
+  DB.config._locked = true;
+  save();
+  applyLockState();
+}
+
+function unlockDB(){
+  if(DB.config._lockedPermanent){
+    alert('Ez az adatbázis véglegesen publikálva lett – a zárolás nem oldható fel.\n\nHa szerkeszteni szeretnéd, hozz létre egy új példányt (JSON importtal).');
+    return;
+  }
+  if(!confirm('Feloldod a zárolást és visszakapcsolod a szerkesztési módot?')) return;
+  DB.config._locked = false;
+  save();
+  applyLockState();
+}
+
+function openPublishDialog(){
+  const n = document.getElementById('pub-creator-name');
+  const a = document.getElementById('pub-creator-affil');
+  if(n) n.value = DB.config.creatorName || '';
+  if(a) a.value = DB.config.creatorAffiliation || '';
+  document.getElementById('publishModal').classList.add('open');
+}
+
+function confirmPublish(){
+  const name  = (document.getElementById('pub-creator-name')?.value  || '').trim();
+  const affil = (document.getElementById('pub-creator-affil')?.value || '').trim();
+  if(name)  DB.config.creatorName = name;
+  if(affil) DB.config.creatorAffiliation = affil;
+  DB.config._locked          = true;
+  DB.config._lockedPermanent = true;
+  DB.config.publishedDate    = new Date().toLocaleDateString('hu-HU');
+  save();
+  document.getElementById('publishModal').classList.remove('open');
+  document.getElementById('settingsModal').classList.remove('open');
+  applyLockState();
+  showView('entities');
+}
+
+function publishDB(){ openPublishDialog(); }
+
+
+// ══════════════════════════════════════════════════════════════
+// BEÁLLÍTÁSOK
+// ══════════════════════════════════════════════════════════════
+function openSettings(){
+  // Sablonok
+  document.getElementById('templateGrid').innerHTML=Object.entries(TEMPLATES).map(([k,t])=>`
+    <button class="tmpl-btn" onclick="applyTemplate('${k}')">
+      <div class="tmpl-icon">${t.icon}</div>
+      <div class="tmpl-name">${t.name}</div>
+    </button>`).join('');
+  document.getElementById('cfg-name').value=DB.config.projectName;
+  document.getElementById('cfg-desc').value=DB.config.projectDesc;
+  const s=schema();
+  document.getElementById('cfg-elabel').value=s.label;
+  document.getElementById('cfg-elabelpl').value=s.labelPlural;
+  document.getElementById('cfg-eicon').value=s.icon;
+  renderFieldEditor();
+  renderTagList('attrTypeList','attrTypes');
+  renderTagList('relTypeList','relTypes');
+  document.getElementById('settingsModal').classList.add('open');
+}
+
+// Sémaválasztó a főoldalról (első indításkor)
+function applyTemplateWelcome(key){
+  const t=TEMPLATES[key];
+  DB.config.entitySchema=JSON.parse(JSON.stringify(t.entitySchema));
+  DB.config.attrTypes=[...t.attrTypes];
+  DB.config.relTypes=[...t.relTypes];
+  DB.config.projectDesc=t.name;
+  DB.config._schemaChosen=true;
+  save();
+  updateNavLabel();
+  renderEntities();
+}
+function skipSchemaChoice(){
+  DB.config._schemaChosen=true;
+  save();
+  renderEntities();
+}
+
+function applyTemplate(key){
+  if(DB.entities.length&&!confirm(`A sablon alkalmazása felülírja a rekord típus sémáját (az adatokat nem törli). Folytatod?`)) return;
+  const t=TEMPLATES[key];
+  DB.config.entitySchema=JSON.parse(JSON.stringify(t.entitySchema));
+  DB.config.attrTypes=[...t.attrTypes];
+  DB.config.relTypes=[...t.relTypes];
+  DB.config.projectDesc=t.name;
+  DB.config._schemaChosen=true;
+  document.getElementById('cfg-elabel').value=t.entitySchema.label;
+  document.getElementById('cfg-elabelpl').value=t.entitySchema.labelPlural;
+  document.getElementById('cfg-eicon').value=t.entitySchema.icon;
+  renderFieldEditor();
+  renderTagList('attrTypeList','attrTypes');
+  renderTagList('relTypeList','relTypes');
+  document.getElementById('cfg-desc').value=t.name;
+  document.querySelectorAll('.tmpl-btn').forEach((b,i)=>b.classList.toggle('active',Object.keys(TEMPLATES)[i]===key));
+}
+
+function renderFieldEditor(){
+  const s=schema();
+  const container=document.getElementById('fieldEditor');
+  container.innerHTML=s.fields.map((f,i)=>{
+    const isRequired=f.required;
+    return `<div class="field-row" id="fr-${i}">
+      <input type="text" value="${esc(f.label)}" oninput="updateFieldLabel(${i},this.value)" placeholder="Mező neve">
+      <select onchange="updateFieldType(${i},this.value)">
+        <option value="text"${f.type==='text'?' selected':''}>Szöveg</option>
+        <option value="number"${f.type==='number'?' selected':''}>Szám</option>
+        <option value="select"${f.type==='select'?' selected':''}>Lista</option>
+        <option value="textarea"${f.type==='textarea'?' selected':''}>Hosszú szöveg</option>
+      </select>
+      ${f.type==='select'?`<input type="text" style="grid-column:1/-1;margin-top:4px;font-size:.77rem" placeholder="Értékek vesszővel: Férfi,Nő,…" value="${esc((f.options||[]).join(','))}" oninput="updateFieldOptions(${i},this.value)">`:'<span></span>'}
+      ${isRequired?'<span style="font-size:.71rem;color:var(--accent2);text-align:center">kötelező</span>':`<button class="btn btn-d btn-sm" onclick="removeSchemaField(${i})">×</button>`}
+    </div>`;
+  }).join('');
+  // Speciális mezők dropdownjai
+  const fieldOpts='<option value="">— nincs —</option>'+s.fields.map(f=>`<option value="${f.id}">${esc(f.label)}</option>`).join('');
+  ['titleField','dateField1','dateField2','locationField'].forEach(key=>{
+    const el=document.getElementById('cfg-'+key);
+    if(!el) return;
+    el.innerHTML=fieldOpts;
+    el.value=s[key]||'';
+  });
+  document.getElementById('cfg-titleField').querySelector('option[value=""]') && (document.getElementById('cfg-titleField').querySelector('option[value=""]').textContent='— kötelező! —');
+}
+
+function updateFieldLabel(i,v){ schema().fields[i].label=v; }
+function updateFieldType(i,v){
+  schema().fields[i].type=v;
+  if(v==='select'&&!schema().fields[i].options) schema().fields[i].options=[];
+  renderFieldEditor();
+}
+function updateFieldOptions(i,v){ schema().fields[i].options=v.split(',').map(x=>x.trim()).filter(Boolean); }
+function removeSchemaField(i){ schema().fields.splice(i,1); renderFieldEditor(); }
+function addSchemaField(){
+  const lbl=document.getElementById('newFieldLabel').value.trim(); if(!lbl)return;
+  const type=document.getElementById('newFieldType').value;
+  const newId='f_'+lbl.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'')+Math.random().toString(36).slice(2,5);
+  schema().fields.push({id:newId,label:lbl,type,options:type==='select'?[]:undefined});
+  document.getElementById('newFieldLabel').value='';
+  renderFieldEditor();
+}
+function renderTagList(containerId,key){
+  document.getElementById(containerId).innerHTML=DB.config[key].map((t,i)=>
+    `<span class="tag-edit">${esc(t)}<button onclick="removeTag('${key}',${i})">×</button></span>`).join('');
+}
+function removeTag(key,i){DB.config[key].splice(i,1);renderTagList(key==='attrTypes'?'attrTypeList':'relTypeList',key);}
+function addAttrType(){const v=document.getElementById('newAttrType').value.trim();if(!v)return;if(!DB.config.attrTypes.includes(v))DB.config.attrTypes.push(v);renderTagList('attrTypeList','attrTypes');document.getElementById('newAttrType').value='';}
+function addRelType(){const v=document.getElementById('newRelType').value.trim();if(!v)return;if(!DB.config.relTypes.includes(v))DB.config.relTypes.push(v);renderTagList('relTypeList','relTypes');document.getElementById('newRelType').value='';}
+
+function saveSettings(){
+  DB.config.projectName=document.getElementById('cfg-name').value.trim()||'Történeti adatbázis';
+  DB.config.projectDesc=document.getElementById('cfg-desc').value.trim();
+  DB.config.creatorName        = document.getElementById('cfg-creator-name')?.value?.trim() || DB.config.creatorName;
+  DB.config.creatorAffiliation = document.getElementById('cfg-creator-affil')?.value?.trim() || DB.config.creatorAffiliation;
+  const s=schema();
+  s.label=document.getElementById('cfg-elabel').value.trim()||'Rekord';
+  s.labelPlural=document.getElementById('cfg-elabelpl').value.trim()||'Rekordok';
+  s.icon=document.getElementById('cfg-eicon').value.trim()||'📋';
+  s.titleField=document.getElementById('cfg-titleField').value||s.fields[0]?.id;
+  s.dateField1=document.getElementById('cfg-dateField1').value||null;
+  s.dateField2=document.getElementById('cfg-dateField2').value||null;
+  s.locationField=document.getElementById('cfg-locationField').value||null;
+  document.getElementById('projName').textContent=DB.config.projectName;
+  document.getElementById('projDesc').textContent=DB.config.projectDesc;
+  save();
+  applyLockState();
+  document.getElementById('settingsModal').classList.remove('open');
+  renderEntities();
+}
+function clearAll(){
+  if(!confirm('Biztosan törlöd az összes adatot?')) return;
+  DB=emptyDB(); save();
+  document.getElementById('settingsModal').classList.remove('open');
+  renderEntities();
+}
+
+// ══════════════════════════════════════════════════════════════
+// EXPORT / IMPORT
+// ══════════════════════════════════════════════════════════════
+function exportJSON(){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(DB,null,2)],{type:'application/json'}));
+  a.download=(DB.config.projectName||'rekordtar')+'_adatok.json';
+  a.click();
+}
+
+function toggleExportMenu(){
+  const m=document.getElementById('exportMenu');
+  m.style.display=m.style.display==='none'||!m.style.display?'':'none';
+}
+function closeExportMenu(){ const m=document.getElementById('exportMenu'); if(m) m.style.display='none'; }
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('exportMenuWrap');
+  if(wrap&&!wrap.contains(e.target)) closeExportMenu();
+});
+
+function exportCSV(){
+  const s=schema();
+  const attrTypes=DB.config.attrTypes;
+  const schemaHeaders=s.fields.map(f=>f.label);
+  const attrHeaders=attrTypes.flatMap(t=>[t+' (nyers)', t+' (harmonizált)']);
+  const headers=[...schemaHeaders, ...attrHeaders, 'Kapcsolatok'];
+  const rows=DB.entities.map(e=>{
+    const schemaCols=s.fields.map(f=>csvCell(String(e[f.id]??'')));
+    const attrCols=attrTypes.flatMap(t=>{
+      const as=DB.attributes.filter(a=>a.entity_id===e.id&&a.type===t);
+      return [csvCell(as.map(a=>a.value_raw||'').filter(Boolean).join(' | ')),
+              csvCell(as.map(a=>a.value_harmonized||a.value_raw||'').filter(Boolean).join(' | '))];
+    });
+    const rels=DB.relationships.filter(r=>r.entity1_id===e.id||r.entity2_id===e.id).map(r=>{
+      const otherId=r.entity1_id===e.id?r.entity2_id:r.entity1_id;
+      const other=DB.entities.find(x=>x.id===otherId);
+      return r.type+': '+(other?entityTitle(other):'?');
+    });
+    return [...schemaCols,...attrCols,csvCell(rels.join(' | '))].join(',');
+  });
+  const csv='\uFEFF'+[headers.map(csvCell).join(','),...rows].join('\r\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download=(DB.config.projectName||'rekordtar')+'_export.csv';
+  a.click();
+}
+
+function csvCell(v){
+  const s=String(v??'');
+  if(s.includes(',')||s.includes('"')||s.includes('\n')||s.includes('\r'))
+    return '"'+s.replace(/"/g,'""')+'"';
+  return s;
+}
+
+// Dispatcher a fejléc ↑ Betöltés gombhoz: fájlkiterjesztés alapján dönt.
+function loadAnyFile(e){
+  const file = e.target.files[0]; if(!file) return;
+  const name = (file.name||'').toLowerCase();
+  const ext  = name.slice(name.lastIndexOf('.')+1);
+  if(ext==='json'){
+    return loadJSON(e);
+  }
+  if(ext==='xlsx' || ext==='xls'){
+    if(typeof XLSX==='undefined'){
+      alert('Az Excel-olvasó (SheetJS) nem töltődött be. Ellenőrizd az internetkapcsolatot, vagy mentsd el a fájlt CSV-ként.');
+      e.target.value=''; return;
+    }
+    const r = new FileReader();
+    r.onload = ev => {
+      try{
+        const wb = XLSX.read(new Uint8Array(ev.target.result), {type:'array'});
+        // Legtöbb adatot tartalmazó lapot választjuk (az első ha holtverseny)
+        let bestSheet = wb.SheetNames[0], bestCount = -1;
+        wb.SheetNames.forEach(sn=>{
+          const ws = wb.Sheets[sn];
+          const ref = ws['!ref'];
+          if(!ref) return;
+          const range = XLSX.utils.decode_range(ref);
+          const rows = range.e.r - range.s.r;
+          if(rows > bestCount){ bestCount = rows; bestSheet = sn; }
+        });
+        const ws = wb.Sheets[bestSheet];
+        const rows = XLSX.utils.sheet_to_json(ws, {defval:'', raw:false});
+        if(!rows.length){ alert('A(z) "'+bestSheet+'" munkalap üres.'); e.target.value=''; return; }
+        csvHeaders = Object.keys(rows[0]);
+        csvData    = rows;
+        if(wb.SheetNames.length > 1){
+          alert('Excel-fájl betöltve.\nAutomatikusan a(z) "'+bestSheet+'" munkalap (' + rows.length + ' sor) került kiválasztásra '+wb.SheetNames.length+' lap közül.');
+        }
+        _openCsvImportStep2();
+      } catch(err){
+        alert('Nem sikerült olvasni az Excel-fájlt: ' + err.message);
+      }
+    };
+    r.readAsArrayBuffer(file);
+    e.target.value=''; return;
+  }
+  if(ext==='csv' || ext==='tsv' || ext==='txt'){
+    Papa.parse(file, {header:true, skipEmptyLines:true, complete: res => {
+      if(!res.data || !res.data.length){ alert('A fájl üres vagy nem értelmezhető.'); return; }
+      csvData = res.data;
+      csvHeaders = res.meta.fields || Object.keys(res.data[0]);
+      _openCsvImportStep2();
+    }, error: err => alert('CSV-olvasási hiba: '+err.message) });
+    e.target.value=''; return;
+  }
+  alert('Ismeretlen formátum: .' + ext + '\nElfogadott: JSON, CSV, TSV, XLSX, XLS.');
+  e.target.value='';
+}
+
+// Átugrunk az Adatbevitel → CSV-import → 2. lépésre (oszlop-megfeleltetés)
+function _openCsvImportStep2(){
+  // A ↑ Betöltéssel jövő adatokat az Adatbevitel CSV-importjába tereljük
+  try{
+    showView('entry');
+    showSubTab('entry','csv');
+    // csvPreview megjelenítése
+    const prev = document.getElementById('csvPreview');
+    if(prev){
+      prev.style.display = '';
+      prev.innerHTML = '<table><tr>' + csvHeaders.map(h=>`<th>${esc(h)}</th>`).join('') + '</tr>'
+        + csvData.slice(0,5).map(row => '<tr>' + csvHeaders.map(h=>`<td>${esc(row[h]||'')}</td>`).join('') + '</tr>').join('')
+        + '</table>';
+    }
+    const nx = document.getElementById('csv1Next'); if(nx) nx.disabled = false;
+    // Ugrás az oszlop-megfeleltetés lépésre
+    if(typeof csvGoStep2==='function') csvGoStep2();
+  } catch(err){
+    alert('Megnyitási hiba: '+err.message);
+  }
+}
+
+function loadJSON(e){
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const d=JSON.parse(ev.target.result);
+      if(!d.config){alert('Érvénytelen fájl!');return;}
+      // Migráció régi formátumból
+      if(!d.entities&&d.persons){
+        d.entities=d.persons.map(p=>({id:p.id,f_name:p.name,f_birth:p.birth_year,f_death:p.death_year,f_gender:p.gender,f_source:p.source,f_notes:p.notes}));
+        d.attributes=(d.attributes||[]).map(a=>({...a,entity_id:a.person_id||a.entity_id}));
+        d.relationships=(d.relationships||[]).map(r=>({...r,entity1_id:r.entity1_id||r.person1_id,entity2_id:r.entity2_id||r.person2_id}));
+      }
+      if(!d.config.entitySchema) d.config.entitySchema=JSON.parse(JSON.stringify(DEF_CFG.entitySchema));
+      if(!confirm(`Betöltsük a(z) "${d.config.projectName}" projektet?`)) return;
+      DB=d; save();
+      document.getElementById('projName').textContent=DB.config.projectName;
+      document.getElementById('projDesc').textContent=DB.config.projectDesc;
+      renderEntities();
+      alert(`✓ ${DB.entities.length} rekord betöltve.`);
+    }catch{alert('Hibás fájlformátum!');}
+  };
+  r.readAsText(file); e.target.value='';
+}
+
+// ══════════════════════════════════════════════════════════════
+// MINDEN ADAT TÖRLÉSE
+// ══════════════════════════════════════════════════════════════
+function clearAllData(){
+  if(DB.config._locked){
+    alert('Az adatbázis zárolva van. Előbb oldd fel a 🔓 Szerkesztés gombbal.');
+    return;
+  }
+  const nE=(DB.entities||[]).length, nA=(DB.attributes||[]).length, nR=(DB.relationships||[]).length;
+  if(nE+nA+nR===0){
+    alert('Az adatbázis már üres.');
+    return;
+  }
+  const msg = 'Biztosan törölsz MINDEN betöltött adatot?\n\n'
+            + '• ' + nE + ' rekord\n'
+            + '• ' + nA + ' attribútum\n'
+            + '• ' + nR + ' kapcsolat\n\n'
+            + 'A projekt neve, séma és beállítások megmaradnak.\n'
+            + 'Tipp: előbb mentsd el JSON-ba (↓ Mentés) biztonsági másolatként.';
+  if(!confirm(msg)) return;
+  if(!confirm('Utolsó megerősítés: valóban törlöd az összes adatot?')) return;
+  const cfgBackup = JSON.parse(JSON.stringify(DB.config));
+  DB = emptyDB();
+  DB.config = cfgBackup;
+  save();
+  renderEntities();
+  try{ if(typeof renderAttributes==='function') renderAttributes(); }catch(e){}
+  try{ if(typeof renderHarmList==='function') renderHarmList(); }catch(e){}
+  try{ if(typeof renderRelations==='function') renderRelations(); }catch(e){}
+  try{ if(typeof renderViz==='function') renderViz(); }catch(e){}
+  alert('✓ Minden adat törölve (' + (nE+nA+nR) + ' elem). A projekt-beállítások megmaradtak.');
+}
+
+// ══════════════════════════════════════════════════════════════
+// MINTAADATOK
+// ══════════════════════════════════════════════════════════════
+function loadSample(){
+  if(DB.entities.length&&!confirm('A jelenlegi adatokat felülírod. Folytatod?')) return;
+  DB=emptyDB();
+  DB.config.projectName='Reformkori értelmiség';
+  DB.config.projectDesc='1825–1848 mintaadatbázis';
+  DB.config._schemaChosen=true;
+  const ids=['s1','s2','s3','s4','s5'];
+  DB.entities=[
+    {id:'s1',f_name:'Széchenyi István',f_birth:'1791',f_death:'1860',f_gender:'Férfi',f_source:'MTA Kézirattár',f_notes:'A legnagyobb magyar'},
+    {id:'s2',f_name:'Kossuth Lajos',f_birth:'1802',f_death:'1894',f_gender:'Férfi',f_source:'Országos Levéltár',f_notes:''},
+    {id:'s3',f_name:'Deák Ferenc',f_birth:'1803',f_death:'1876',f_gender:'Férfi',f_source:'',f_notes:'A haza bölcse'},
+    {id:'s4',f_name:'Wesselényi Miklós',f_birth:'1796',f_death:'1850',f_gender:'Férfi',f_source:'',f_notes:''},
+    {id:'s5',f_name:'Batthyány Lajos',f_birth:'1807',f_death:'1849',f_gender:'Férfi',f_source:'',f_notes:''},
+  ];
+  DB.attributes=[
+    {id:'a1',entity_id:'s1',type:'Foglalkozás',value_raw:'politikus, író',value_harmonized:'Politikus',date_label:''},
+    {id:'a2',entity_id:'s1',type:'Vallás',value_raw:'r.k.',value_harmonized:'Római katolikus',date_label:''},
+    {id:'a3',entity_id:'s2',type:'Foglalkozás',value_raw:'ügyvéd, politikus',value_harmonized:'Politikus',date_label:''},
+    {id:'a4',entity_id:'s3',type:'Foglalkozás',value_raw:'ügyvéd, politikus',value_harmonized:'Politikus',date_label:''},
+    {id:'a5',entity_id:'s4',type:'Foglalkozás',value_raw:'főnemes, politikus',value_harmonized:'Politikus',date_label:''},
+  ];
+  DB.relationships=[
+    {id:'r1',entity1_id:'s1',entity2_id:'s2',type:'Kolléga',source:''},
+    {id:'r2',entity1_id:'s1',entity2_id:'s4',type:'Barát',source:''},
+    {id:'r3',entity1_id:'s2',entity2_id:'s3',type:'Kolléga',source:''},
+    {id:'r4',entity1_id:'s3',entity2_id:'s5',type:'Kolléga',source:''},
+  ];
+  save();
+  renderEntities();
+  alert('✓ Mintaadatok betöltve (5 személy).');
+}
+
+// ══════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════
+document.getElementById('projName').textContent=DB.config.projectName;
+document.getElementById('projDesc').textContent=DB.config.projectDesc;
+buildDynamicForm();
+renderEntities();
+applyLockState();
+</script>
+</body>
+</html>
